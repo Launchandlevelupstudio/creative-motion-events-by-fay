@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Creative Motion Events — Event Design &amp; Production | Washington DC, Maryland, Virginia</title>
+<meta name="description" content="Creative Motion Events is corporate and private event design and creative direction, led personally by Fayola Whyte-Manco. Galas, awards nights, appreciation events, and luxury private celebrations across Washington DC, Maryland and Virginia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400&family=Alex+Brush&display=swap" rel="stylesheet">
+<style>
+:root{--black:#161311;--white:#fff;--ivory:#FAF9F6;--grey:#6B655E;--line:#DCD7CF;--gold:#A38443;
+  --serif:"Cormorant Garamond",Garamond,"Times New Roman",serif;--sans:"Jost",-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--black);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.narrow{max-width:720px;margin:0 auto;padding:0 24px}
+hr{border:0;border-top:1px solid var(--line)}
+h1,h2,h3{font-family:var(--serif);font-weight:300;line-height:1.1}
+.caps{font-family:var(--sans);font-size:.68rem;letter-spacing:.3em;text-transform:uppercase}
+p{max-width:64ch}
+.center{text-align:center}.center p{margin-left:auto;margin-right:auto}
+.gold{color:var(--gold)}
+
+/* header (every page) */
+header{border-bottom:1px solid var(--line);background:var(--white);z-index:50}
+@media(min-width:821px){header{position:sticky;top:0}}
+.bar{max-width:1180px;margin:0 auto;padding:18px 24px 0;display:flex;flex-direction:column;align-items:center}
+.wm{display:flex;flex-direction:column;align-items:center;line-height:1.1;text-align:center}
+.wm .co{font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+.wm .by{font-family:var(--serif);font-style:italic;font-size:1.35rem;margin-top:3px}
+nav{margin-top:10px;width:100%}
+nav ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:0 2px}
+nav a{display:block;padding:12px 14px;font-size:.64rem;letter-spacing:.26em;text-transform:uppercase;white-space:nowrap}
+nav a.strong{font-weight:400;color:var(--black);border:1px solid var(--black);padding:8px 16px;margin:3px 0 0 8px}
+nav a.strong:hover,nav a.strong.on{background:var(--black);color:var(--white)}
+nav a:hover,nav a:focus-visible,nav a.on{color:var(--gold)}
+@media(max-width:640px){nav a{font-size:.58rem;letter-spacing:.18em;padding:10px 8px}nav a.strong{padding:7px 12px;margin-left:4px}}
+
+/* pages */
+.page{display:none}.page.on{display:block}
+.pt{padding:64px 0 56px;text-align:center}
+.pt h1{font-size:clamp(1.8rem,3.4vw,2.6rem);letter-spacing:.22em;text-transform:uppercase}
+.pt .rule{width:64px;height:1px;background:var(--black);margin:22px auto 0}
+.pt .sub{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--grey);margin-top:18px}
+.section{padding:70px 0}
+@media(max-width:640px){.section{padding:50px 0}.pt{padding:48px 0 40px}}
+
+/* landing — built to the approved mockup, full portrait always visible */
+.land{container-type:inline-size;max-width:1180px;margin:0 auto}
+.hero{position:relative;background:#F8F6F1;overflow:hidden}
+.hero .photo{position:relative;aspect-ratio:1020/1500;background:#EFEBE4}
+.hero .photo img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.hero .scrim{position:absolute;inset:0;background:linear-gradient(0deg,rgba(255,255,255,.97) 0%,rgba(255,255,255,.92) 22%,rgba(255,255,255,.55) 40%,rgba(255,255,255,0) 58%)}
+.hero .ht{position:absolute;left:6.4cqw;right:6.4cqw;bottom:7cqw}
+.hline{display:flex;align-items:center;gap:2.2cqw;font-size:max(1.9cqw,.6rem);letter-spacing:.36em;text-transform:uppercase;color:var(--gold);font-weight:400}
+.hline::before{content:"";width:6.2cqw;height:1px;background:var(--gold);flex:none}
+.hline.dark{color:#3a3531}
+.hero .first{font-family:var(--serif);font-style:italic;font-weight:400;font-size:19cqw;line-height:.86;margin:.6cqw 0 0 -.6cqw;color:#1f1a16}
+.hero .last{font-family:var(--serif);font-size:6.2cqw;letter-spacing:.11em;color:var(--gold);line-height:1;margin-top:5.5cqw;font-weight:400}
+.hero .tag{margin-top:3.6cqw}
+@container (min-width: 860px){
+  .hero{display:grid;grid-template-columns:1fr 1fr;align-items:stretch}
+  .hero .photo{aspect-ratio:auto;height:100%;min-height:720px;grid-column:2}
+  .hero .photo img{object-position:center 20%}
+  .hero .scrim{background:linear-gradient(90deg,rgba(248,246,241,1) 0%,rgba(248,246,241,0) 18%)}
+  .hero .ht{position:static;grid-column:1;grid-row:1;align-self:center;padding:64px 0 64px 6cqw}
+  .hline{font-size:.78rem;gap:18px}.hline::before{width:64px}
+  .hero .first{font-size:12.5cqw;margin-left:-.04em}
+  .hero .last{font-size:4cqw;margin-top:34px}
+  .hero .tag{margin-top:26px}
+}
+
+.stmt{position:relative;background:#F8F6F1;padding:8cqw 6cqw 7cqw;text-align:center;overflow:hidden;border-top:1px solid var(--line)}
+@container (min-width: 860px){.stmt{padding:96px 24px 84px}.stmt h2{font-size:3.2rem}.stmt p{font-size:1.15rem;max-width:34em}.stmt .cta{font-size:.78rem;padding:20px 44px;min-width:0;gap:14px}.stmt .cta svg{width:22px;height:22px}.stmt .div{width:120px;margin:34px auto}.stmt .mono{font-size:560px;left:-30px;color:rgba(163,132,67,.06)}.stmt .in{max-width:820px}.trio{max-width:820px;margin-top:60px}.trio svg{width:30px;height:30px;margin-bottom:12px}.trio span{font-size:.68rem}}
+.stmt .mono{position:absolute;left:-4cqw;top:2cqw;font-family:"Alex Brush",cursive;font-size:62cqw;line-height:1;color:rgba(163,132,67,.09);pointer-events:none;user-select:none}
+.stmt .in{position:relative;max-width:min(78cqw,100%);margin:0 auto}
+.stmt h2{font-family:var(--serif);font-weight:400;font-size:max(5.1cqw,1.45rem);letter-spacing:.07em;text-transform:uppercase;line-height:1.28;color:#1f1a16}
+.stmt h2 .cel{font-family:"Alex Brush",cursive;font-size:2.15em;letter-spacing:0;text-transform:none;color:var(--gold);line-height:.75;display:inline-block;vertical-align:-.12em;font-weight:400}
+.stmt h2 .amber{color:var(--gold)}
+.stmt .div{width:max(13cqw,80px);height:1px;background:rgba(163,132,67,.7);margin:4.4cqw auto}
+.stmt p{font-size:max(2.2cqw,.95rem);line-height:1.55;color:#4a4540;max-width:60cqw;margin:0 auto}
+.stmt .cta{display:inline-flex;align-items:center;gap:1.6cqw;margin-top:5cqw;background:#1a1613;color:#fff;border:1px solid var(--gold);
+  padding:max(2.2cqw,14px) max(4.4cqw,26px);font-size:max(1.6cqw,.66rem);letter-spacing:.34em;text-transform:uppercase;font-weight:400;min-width:42cqw;justify-content:center}
+.stmt .cta svg{width:max(2.8cqw,16px);height:max(2.8cqw,16px);stroke:var(--gold);fill:none;stroke-width:1.4}
+.stmt .cta:hover{background:var(--gold);border-color:var(--gold)}
+.stmt .cta:hover svg{stroke:#fff}
+.trio{display:grid;grid-template-columns:1fr 1fr 1fr;margin:5.4cqw auto 0;max-width:82cqw}
+.trio div{padding:0 1cqw;border-left:1px solid rgba(163,132,67,.45);display:flex;flex-direction:column;align-items:center}
+.trio div:first-child{border-left:0}
+.trio svg{width:max(3.6cqw,22px);height:max(3.6cqw,22px);margin-bottom:1.4cqw;stroke:var(--gold);fill:none;stroke-width:1.1}
+.trio span{font-size:max(1.45cqw,.56rem);letter-spacing:.28em;text-transform:uppercase;color:#3a3531;line-height:1.75;font-weight:400}
+
+.btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:34px}
+.btn{display:inline-block;padding:17px 32px;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;border:1px solid var(--black);transition:.25s;cursor:pointer;font-family:var(--sans);background:transparent;color:var(--black);font-weight:400}
+.btn-solid{background:var(--black);color:var(--white)}
+.btn-solid:hover{background:var(--gold);border-color:var(--gold)}
+.btn-ghost:hover{background:var(--black);color:var(--white)}
+.contact .btn{justify-self:start;width:auto}
+@media(max-width:560px){.btn{width:100%;text-align:center}}
+
+/* image blocks */
+.ph{background:#EDE8E0;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px;
+  font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);width:100%;height:100%}
+.fig{background:#EDE8E0;overflow:hidden}
+.fig img{width:100%;height:100%;object-fit:cover}
+.fig.tall{aspect-ratio:4/5}.fig.wide{aspect-ratio:16/9}.fig.sq{aspect-ratio:1}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:820px){.grid2{grid-template-columns:1fr;gap:34px}.grid3{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.grid3{grid-template-columns:1fr}}
+
+/* lists */
+.h3{font-family:var(--sans);font-weight:400;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.list{list-style:none}
+.list li{padding:10px 0;border-bottom:1px solid var(--line)}
+.list li span{color:var(--grey);white-space:nowrap;font-family:var(--serif);font-size:1.05rem}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+@media(max-width:760px){.cols{grid-template-columns:1fr;gap:40px}}
+
+/* offers */
+.offer{padding:34px 0;border-top:1px solid var(--line)}
+.offer:last-child{border-bottom:1px solid var(--line)}
+.offer h3{font-size:1.8rem;margin-bottom:8px}
+.offer .who{font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.offer p{color:var(--grey);font-size:.97rem}
+.offer .price{font-family:var(--serif);font-size:1.35rem;white-space:nowrap}
+@media(max-width:640px){.offer{grid-template-columns:1fr;gap:8px}}
+
+/* case */
+.facts{display:flex;gap:40px;margin:28px 0;flex-wrap:wrap}
+.facts div{font-family:var(--serif);font-size:1.9rem;line-height:1}
+.facts small{display:block;font-family:var(--sans);font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--grey);margin-top:8px}
+blockquote{font-family:var(--serif);font-style:italic;font-size:1.4rem;line-height:1.45;padding-top:26px;border-top:1px solid var(--line);margin-top:26px}
+blockquote cite{display:block;font-family:var(--sans);font-style:normal;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--grey);margin-top:14px}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:36px}
+.step{border-top:1px solid var(--black);padding-top:20px}
+.step h3{font-size:1.55rem;margin-bottom:8px}
+.step p{color:var(--grey);font-size:.94rem}
+@media(max-width:820px){.steps{grid-template-columns:1fr 1fr;gap:28px}}
+@media(max-width:520px){.steps{grid-template-columns:1fr}}
+
+/* about */
+.about-quote{font-family:var(--serif);font-style:italic;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.35;text-align:center;max-width:26ch;margin:0 auto}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;margin-top:10px}
+.pillar{border-top:1px solid var(--black);padding-top:18px}
+.pillar h3{font-size:1.5rem;margin-bottom:8px}
+.pillar p{color:var(--grey);font-size:.94rem}
+@media(max-width:700px){.pillars{grid-template-columns:1fr}}
+.creds{display:flex;flex-wrap:wrap;justify-content:center;gap:16px 50px;font-family:var(--serif);font-size:1.25rem;letter-spacing:.06em;text-transform:uppercase;color:var(--grey)}
+
+/* work */
+.tile{position:relative}
+.tile .cap{padding:12px 0 0;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--grey)}
+.tile .cap b{display:block;font-weight:400;color:var(--black);font-family:var(--serif);font-size:1.15rem;letter-spacing:.02em;text-transform:none}
+.filters{display:flex;justify-content:center;gap:28px;margin-bottom:36px}
+.filters button{background:none;border:0;cursor:pointer;font-family:var(--sans);font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--grey);padding:6px 0;border-bottom:1px solid transparent}
+.filters button.on{color:var(--black);border-color:var(--gold)}
+.press li{display:flex;justify-content:space-between;gap:20px;padding:12px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.press li span{color:var(--grey);font-family:var(--serif);white-space:nowrap}
+
+/* journal */
+.jgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
+.jcard{display:block;border-top:1px solid var(--black);padding-top:0}
+.jcard.soon{opacity:.55;cursor:default}
+.jmeta{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:16px 0 10px}
+.jmeta.center{text-align:center;margin:0 0 18px}
+.jcard h3{font-size:1.35rem;line-height:1.28;margin-bottom:10px}
+.jcard p{font-size:.92rem;color:var(--grey)}
+.jread{display:inline-block;margin-top:12px;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid var(--gold);padding-bottom:4px}
+@media(max-width:860px){.jgrid{grid-template-columns:1fr;gap:44px}}
+
+/* journal post */
+.post-head{max-width:760px;margin:0 auto;padding:52px 24px 0;text-align:center}
+.back{display:inline-block;margin-bottom:26px;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--grey)}
+.back:hover{color:var(--gold)}
+.post-head h1{font-size:clamp(1.7rem,3.6vw,2.6rem);letter-spacing:.01em;text-transform:none;margin:0 auto 18px;max-width:20ch}
+.post-head .dek{font-family:var(--serif);font-style:italic;font-size:1.2rem;color:var(--grey);max-width:38em;margin:0 auto}
+.post-hero{aspect-ratio:21/9;margin:40px auto 0;max-width:1040px}
+.post-body{padding-top:46px;padding-bottom:70px}
+.post-body h2{font-size:1.5rem;margin:42px 0 16px;letter-spacing:.01em}
+.post-body p{max-width:70ch}
+.breakdown{list-style:none;margin:22px 0;border-top:1px solid var(--line)}
+.breakdown li{display:flex;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1px solid var(--line)}
+.breakdown li em{font-family:var(--serif);font-style:italic;color:var(--gold);white-space:nowrap}
+.post-cta{text-align:center;background:var(--ivory);padding:44px 24px;margin:50px 0 40px}
+.post-cta p{font-family:var(--serif);font-style:italic;font-size:1.3rem;margin:0 auto 20px;max-width:none}
+.post-author{display:flex;gap:22px;align-items:flex-start;border-top:1px solid var(--line);padding-top:34px}
+.author-photo{width:74px;aspect-ratio:1;flex:none}
+@media(max-width:600px){.post-author{flex-direction:column;align-items:center;text-align:center}}
+
+/* contact */
+.contact{background:var(--black);color:var(--white)}
+.contact .pt h1{color:var(--white)}.contact .pt .rule{background:var(--gold)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:60px}
+.contact .lines{font-family:var(--serif);font-size:1.3rem;line-height:1.8}
+.contact .lines a:hover{color:var(--gold)}
+.contact .note{color:rgba(255,255,255,.62);margin-top:22px;font-size:.94rem}
+form{display:grid;gap:16px}
+label{display:block;font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:7px}
+input,select,textarea{width:100%;padding:14px 15px;background:transparent;border:1px solid rgba(255,255,255,.3);color:var(--white);font-family:var(--sans);font-weight:300;font-size:1rem;border-radius:0}
+select option{color:var(--black)}
+input:focus,select:focus,textarea:focus{outline:1px solid var(--gold);outline-offset:0;border-color:var(--gold)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.contact .btn{border-color:var(--white);color:var(--white)}
+.contact .btn:hover{background:var(--gold);border-color:var(--gold)}
+@media(max-width:820px){.contact-grid{grid-template-columns:1fr;gap:40px}.row{grid-template-columns:1fr}}
+
+/* footer with socials */
+footer{padding:44px 24px 96px;text-align:center;border-top:1px solid var(--line)}
+.social{display:flex;justify-content:center;flex-wrap:wrap;gap:14px 34px;font-size:.68rem;letter-spacing:.26em;text-transform:uppercase}
+.social a:hover{color:var(--gold)}
+
+footer .legal{margin-top:22px;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);line-height:2}
+footer .legal a:hover{color:var(--gold)}
+
+/* concierge */
+/* ---- Concierge widget: dark luxe theme ---- */
+:root{
+  --cw-bg:#161412; --cw-panel:#1C1A17; --cw-bubble:#26231F; --cw-border:rgba(212,175,120,.16);
+  --cw-border-soft:rgba(255,255,255,.08); --cw-text:#EDE6DA; --cw-text-dim:rgba(237,230,218,.6);
+  --cw-gold:#CBA463; --cw-gold-soft:#E4C68B; --cw-gold-deep:#9C7C3E;
+}
+.fab{position:fixed;right:24px;bottom:24px;z-index:90;width:62px;height:62px;border-radius:50%;
+  background:radial-gradient(circle at 32% 28%,#221f1b,var(--cw-bg) 70%);border:1px solid rgba(203,164,99,.55);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;
+  box-shadow:0 14px 32px rgba(0,0,0,.45),0 0 0 1px rgba(203,164,99,.08) inset;transition:.25s}
+.fab:hover{box-shadow:0 16px 38px rgba(0,0,0,.5),0 0 22px rgba(203,164,99,.35);border-color:var(--cw-gold-soft)}
+.fab span{display:none}
+.fab svg{width:26px;height:26px;stroke:var(--cw-gold);fill:none;stroke-width:1.5}
+.fab .dot{display:none}
+@media(max-width:640px){.fab{right:16px;bottom:16px;width:54px;height:54px}.fab svg{width:22px;height:22px}}
+
+.chat{position:fixed;right:24px;bottom:24px;z-index:95;width:min(390px,calc(100vw - 30px));
+  height:min(640px,calc(100vh - 40px));background:var(--cw-panel);display:none;flex-direction:column;
+  border-radius:22px;overflow:hidden;border:1px solid var(--cw-border);
+  box-shadow:0 30px 80px rgba(0,0,0,.55);font-family:var(--sans);color:var(--cw-text)}
+.chat.open{display:flex}
+.chat-head{background:linear-gradient(180deg,#1E1B17,#181613);padding:20px 20px;display:flex;
+  justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid var(--cw-border-soft)}
+.chat-head .id{display:flex;align-items:center;gap:12px;min-width:0}
+.chat-head .mono{width:42px;height:42px;border-radius:50%;flex:none;background:#0F0E0C;
+  border:1px solid rgba(203,164,99,.45);display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:1.05rem;letter-spacing:-.02em;
+  background-image:linear-gradient(135deg,var(--cw-gold-soft),var(--cw-gold-deep));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.chat-head .t{font-family:var(--serif);font-size:1.28rem;color:var(--cw-text);line-height:1.15;white-space:nowrap}
+.chat-head .s{font-size:.68rem;color:var(--cw-text-dim);margin-top:2px;letter-spacing:.02em}
+.head-actions{display:flex;gap:8px;flex:none}
+.icon-btn{width:28px;height:28px;border-radius:50%;background:transparent;border:1px solid var(--cw-border-soft);
+  color:var(--cw-text-dim);cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:.95rem;line-height:1;transition:.2s}
+.icon-btn:hover{border-color:var(--cw-gold);color:var(--cw-gold-soft)}
+
+.chat-log{flex:1;overflow-y:auto;padding:22px 18px;display:flex;flex-direction:column;gap:16px;background:var(--cw-panel)}
+.chat-log>*{flex-shrink:0}
+.msg-row{display:flex;gap:9px;align-items:flex-end;max-width:88%}
+.msg-row.me{align-self:flex-end;flex-direction:row-reverse}
+.msg-row .av{width:28px;height:28px;border-radius:50%;flex:none;background:#0F0E0C;
+  border:1px solid rgba(203,164,99,.4);display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:.66rem;letter-spacing:-.02em;
+  background-image:linear-gradient(135deg,var(--cw-gold-soft),var(--cw-gold-deep));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.msg-wrap{display:flex;flex-direction:column;gap:4px}
+.msg-row.me .msg-wrap{align-items:flex-end}
+.msg{font-size:.9rem;line-height:1.55;padding:12px 15px;white-space:pre-wrap;animation:rise .28s ease both;border-radius:16px}
+.msg.bot{background:var(--cw-bubble);color:var(--cw-text);border:1px solid var(--cw-border-soft);border-bottom-left-radius:4px}
+.msg.me{background:linear-gradient(135deg,var(--cw-gold-soft),var(--cw-gold-deep));color:#1B1509;border-bottom-right-radius:4px}
+.msg.err{background:#3A2A22;color:#F0C9AE;border:1px solid #5A3E2E;border-bottom-left-radius:4px}
+.msg-time{font-size:.62rem;color:var(--cw-text-dim);padding:0 4px;display:flex;align-items:center;gap:4px}
+.msg-time svg{width:11px;height:11px;stroke:var(--cw-gold-soft)}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+.promo{margin:2px 0 4px 37px;background:var(--cw-bubble);border:1px solid var(--cw-border-soft);
+  border-radius:16px;overflow:hidden;animation:rise .3s ease both}
+.promo-tag{display:flex;align-items:center;gap:7px;padding:12px 14px 0;font-size:.72rem;color:var(--cw-gold-soft)}
+.promo-body{display:flex;gap:12px;padding:10px 14px 14px;align-items:center}
+.promo-body img{width:64px;height:64px;object-fit:cover;border-radius:10px;flex:none}
+.promo-body h4{font-family:var(--serif);font-size:1.02rem;color:var(--cw-text);margin-bottom:3px;font-weight:400}
+.promo-body p{font-size:.78rem;color:var(--cw-text-dim);line-height:1.4}
+.promo-body .arrow{flex:none;color:var(--cw-gold);font-size:1.1rem}
+.promo a.promo-link{display:block}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:2px 18px 16px;margin-left:37px}
+.chip{background:transparent;border:1px solid rgba(203,164,99,.4);border-radius:20px;padding:8px 14px;
+  font-family:var(--sans);font-size:.72rem;cursor:pointer;color:var(--cw-gold-soft);transition:.2s}
+.chip:hover{background:rgba(203,164,99,.12);border-color:var(--cw-gold-soft);color:var(--cw-text)}
+
+.chat-form{display:flex;align-items:center;gap:8px;margin:0 16px 12px;padding:6px 6px 6px 16px;
+  background:#0F0E0C;border:1px solid var(--cw-border-soft);border-radius:26px}
+.chat-form input{flex:1;border:0;padding:8px 0;color:var(--cw-text);font-family:var(--sans);font-size:.9rem;background:transparent}
+.chat-form input::placeholder{color:var(--cw-text-dim)}
+.chat-form input:focus{outline:none}
+.chat-form button{background:linear-gradient(135deg,var(--cw-gold-soft),var(--cw-gold-deep));color:#1B1509;
+  border:0;width:36px;height:36px;border-radius:50%;cursor:pointer;flex:none;display:flex;align-items:center;
+  justify-content:center;transition:.2s}
+.chat-form button:hover{filter:brightness(1.08)}
+.chat-form button svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2}
+.chat-foot{text-align:center;padding:0 16px 16px;font-size:.66rem;color:var(--cw-text-dim);
+  display:flex;align-items:center;justify-content:center;gap:6px}
+.chat-foot svg{width:11px;height:11px;stroke:var(--cw-gold-soft)}
+.typing{display:flex;gap:5px;align-self:flex-start;margin-left:37px;padding:14px 16px;background:var(--cw-bubble);
+  border:1px solid var(--cw-border-soft);border-radius:16px;border-bottom-left-radius:4px}
+.typing i{width:5px;height:5px;border-radius:50%;background:var(--cw-gold-soft);animation:b 1.2s infinite}
+.typing i:nth-child(2){animation-delay:.18s}.typing i:nth-child(3){animation-delay:.36s}
+@keyframes b{0%,60%,100%{opacity:.25}30%{opacity:1}}
+.chat-log::-webkit-scrollbar{width:6px}
+.chat-log::-webkit-scrollbar-thumb{background:rgba(203,164,99,.25);border-radius:3px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* Photo placeholders (real assets pending) */
+.ph-img{display:block;width:100%;height:100%;background:linear-gradient(145deg,#E8E2D8 0%,#D4CDC2 45%,#C9C2B6 100%);box-sizing:border-box}
+.hero .photo .ph-img{position:absolute;inset:0}
+.fig{position:relative}
+.fig .ph-img{position:absolute;inset:0}
+.promo-body .ph-img{width:64px;height:64px;border-radius:10px;flex:none;position:static;height:64px}
+</style>
+
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <a class="wm" href="#home" data-go="home"><span class="co">Creative Motion Events</span><span class="by">Fayola Whyte-Manco</span></a>
+    <nav><ul>
+      <li><a href="#who" data-go="who">Meet Fayola</a></li>
+      <li><a href="#what" data-go="what">What We Do</a></li>
+      <li><a href="#corporate" data-go="corporate">Corporate</a></li>
+      <li><a href="#private" data-go="private">Private</a></li>
+      <li><a href="#work" data-go="work">Work</a></li>
+      <li><a href="#journal" data-go="journal">Journal</a></li>
+      <li><a href="#contact" data-go="contact" class="strong">Contact</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<!-- ============ HOME ============ -->
+<section class="page" id="p-home">
+<div class="land">
+  <div class="hero">
+    <div class="photo">
+      <div class="ph-img" role="img" aria-label="Fayola Whyte-Manco, creative director of Creative Motion Events"></div>
+      <div class="scrim"></div>
+    </div>
+    <div class="ht">
+      <div class="hline">Creative Direction &amp; Event Design</div>
+      <div class="first">Fayola</div>
+      <div class="last">WHYTE-MANCO</div>
+      <div class="hline dark tag">Events with intention</div>
+    </div>
+  </div>
+  <div class="stmt">
+    <div class="mono">F</div>
+    <div class="in">
+      <h2>To feel seen.<br>To feel<br><span class="cel">Celebrated</span>.<br>To feel like<br>this moment was<br><span class="amber">made for you.</span></h2>
+      <div class="div"></div>
+      <p>Design-led galas, awards nights and appreciation events for organizations across the DMV — and luxury private celebrations for the moments that took decades to arrive.</p>
+      <a class="cta" href="#contact" data-go="contact">Let's Create Together <svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+      <div class="trio">
+        <div><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>Corporate<br>Events</span></div>
+        <div><svg viewBox="0 0 24 24"><path d="M6 3l2 6.5a3 3 0 005.6 0L15.5 3zM10.5 12.5V20M7.5 21h6"/><path d="M14 4l-.6 5a2.5 2.5 0 004.8 1L20 4zM16.7 11.6l1 7.4"/></svg><span>Private<br>Celebrations</span></div>
+        <div><svg viewBox="0 0 24 24"><path d="M11 4l1.6 4.6L17 10l-4.4 1.4L11 16l-1.6-4.6L5 10l4.4-1.4z"/><path d="M18 14l.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6z"/><path d="M6 17l.4 1.1 1.1.4-1.1.4L6 20l-.4-1.1-1.1-.4 1.1-.4z"/></svg><span>Unforgettable<br>Experiences</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ MEET FAYOLA ============ -->
+<section class="page" id="p-who">
+  <div class="pt"><h1>Meet Fayola</h1><div class="rule"></div>
+    <div class="sub">Creative direction &amp; event design</div></div>
+  <div class="wrap grid2">
+    <div class="fig tall"><div class="ph-img" role="img" aria-label="Fayola Whyte-Manco"></div></div>
+    <div>
+      <div class="h3">Her Approach</div>
+      <p>Fayola Whyte-Manco is a Washington DC event designer and creative director working across DC, Maryland and Virginia. She designs the room and directs the production herself — concept, installations, tablescapes, vendor direction, install and breakdown — so the people in it can simply be present.</p>
+      <p style="margin-top:18px">Since 2017 she's produced more than 200 events, nearly all of them by referral: association galas and awards nights, a bank branch grand opening, an embassy cultural celebration, and the milestone birthdays, showers and dinners families remember for years.</p>
+      <div class="h3" style="margin-top:34px">Her Story</div>
+      <p>Long before the business, there was a little girl pulling her friends together — arranging the food, setting the space, making sure everyone felt special. Not because anyone asked; because making people feel good has always been who she is. Fayola designed her own wedding in 2011, turned that passion into a company in 2017, and still puts her heart into every room herself. The florals, the installations, the details are executed with precision. What drives her is people.</p>
+    </div>
+  </div>
+
+  <div class="section"><div class="narrow">
+    <p class="about-quote">"Life moves fast and quietly. We get so caught up in the everyday that we forget to stop — to celebrate ourselves, to celebrate each other."</p>
+  </div></div>
+
+  <div class="wrap pillars">
+    <div class="pillar"><h3>People first</h3><p>The design serves the people. Every decision is made for how the space feels to the person walking into it.</p></div>
+    <div class="pillar"><h3>Corporate and private</h3><p>Boardrooms and ballrooms, family tables and branded stages — the same care, the same calm.</p></div>
+    <div class="pillar"><h3>Relationships over transactions</h3><p>One point of contact from first conversation to breakdown, and a partner your committee never has to question.</p></div>
+  </div>
+
+  <div class="section"><div class="creds">
+    <span>Since 2017</span><span>200+ events</span><span>Referral-driven</span><span>Fully insured · COI on request</span><span>Rockville REDI business spotlight</span>
+  </div></div>
+</section>
+
+<!-- ============ WHAT WE DO ============ -->
+<section class="page" id="p-what">
+  <div class="pt"><h1>What We Do</h1><div class="rule"></div>
+    <div class="sub">Every detail. Every space. Every person.</div></div>
+  <div class="wrap"><div class="fig wide"><div class="ph-img" role="img" aria-label="Event design by Creative Motion Events"></div></div></div>
+  <div class="section"><div class="wrap cols">
+    <div><div class="h3">Services</div><ul class="list">
+      <li>Event design &amp; creative direction</li><li>Tablescape &amp; installation design</li>
+      <li>Branded stages, entry moments &amp; step-and-repeat</li><li>Florals &amp; décor sourcing</li>
+      <li>Custom signage &amp; printed material</li><li>Full vendor sourcing &amp; direction</li>
+      <li>Budget oversight &amp; timeline management</li><li>Install lead, on-site direction &amp; breakdown</li>
+      <li>Photography &amp; videography coordination</li><li>Annual design partnerships</li>
+    </ul></div>
+    <div><div class="h3">Capabilities</div><ul class="list">
+      <li>Galas &amp; awards nights</li><li>Holiday &amp; employee appreciation</li>
+      <li>Grand openings &amp; brand moments</li><li>Cultural &amp; embassy celebrations</li>
+      <li>Executive &amp; donor dinners</li><li>Nonprofit &amp; association programs</li>
+      <li>Milestone birthdays &amp; anniversaries</li><li>Showers &amp; intimate gatherings</li>
+      <li>Destination celebrations</li><li>Annual design partnership</li>
+    </ul></div>
+  </div></div>
+  <div class="wrap"><div class="grid2">
+    <div class="fig sq"><div class="ph-img" role="img" aria-label="Tablescape design"></div></div>
+    <div class="fig sq"><div class="ph-img" role="img" aria-label="Installation design"></div></div>
+  </div></div>
+  <div class="section"><div class="wrap">
+    <div class="pt" style="padding-top:0"><h1 style="font-size:1.6rem">How We Work</h1><div class="rule"></div></div>
+    <div class="steps">
+      <div class="step"><h3>We connect</h3><p>A relaxed, honest conversation about your vision, your people, and what this moment means to you.</p></div>
+      <div class="step"><h3>We design</h3><p>A full creative concept — mood, color, texture and flow — with a proposal in five business days.</p></div>
+      <div class="step"><h3>We produce</h3><p>Every vendor, every timeline, every detail — managed and directed so you never have to worry.</p></div>
+      <div class="step"><h3>You feel it</h3><p>You walk into your event and feel exactly what you hoped for. That's when we know we did our job.</p></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ============ CORPORATE ============ -->
+<section class="page" id="p-corporate">
+  <div class="pt"><h1>Corporate</h1><div class="rule"></div>
+    <div class="sub">Galas, awards nights and appreciation events — designed so your people feel it, and your sponsors photograph it.</div></div>
+  <div class="wrap"><div class="fig wide"><div class="ph-img" role="img" aria-label="Corporate event design by Creative Motion Events"></div></div></div>
+  <div class="section"><div class="narrow center">
+    <p>Most corporate event companies sell you AV and staging. We start with the people in the room. For associations, nonprofits, banks and employers across DC, Maryland and Virginia, we handle the full visual experience — concept, branded installations, tablescapes, vendor direction, install and breakdown — on a fixed budget with one point of contact. The only thing your committee manages is the microphone.</p>
+  </div></div>
+  <div class="wrap">
+    <div class="offer"><div><div class="who">Associations &amp; nonprofits</div><h3>Gala &amp; Awards Design</h3><p>Concept, branded stage and step-and-repeat, tablescapes, entry moment, vendor direction, install and breakdown. Design fee and production shown separately.</p></div></div>
+    <div class="offer"><div><div class="who">Employers &amp; HR teams</div><h3>Holiday &amp; Employee Appreciation</h3><p>A December room your team actually wants to be photographed in — designed, produced, and struck the same night. Lock two years at this year's pricing.</p></div></div>
+    <div class="offer"><div><div class="who">Brands &amp; local business</div><h3>Grand Openings &amp; Brand Moments</h3><p>Fast-turn installations for openings, anniversaries and ribbon cuttings, built around the photo your marketing team needs.</p></div></div>
+    <div class="offer"><div><div class="who">Embassies &amp; cultural organizations</div><h3>Cultural Celebrations</h3><p>Protocol-aware design for national days, receptions and heritage events, with the specificity generic producers miss.</p></div></div>
+    <div class="offer"><div><div class="who">Returning clients</div><h3>Annual Design Partnership</h3><p>Your design system on file, priority dates, a quarterly touchpoint, 10% off production and a 48-hour response commitment.</p></div></div>
+  </div>
+  <div class="section"><div class="wrap grid2">
+    <div class="fig tall"><div class="ph-img" role="img" aria-label="Awards gala room design"></div></div>
+    <div>
+      <div class="h3">Featured — PMI Washington DC Chapter</div>
+      <h2 style="font-size:clamp(1.9rem,3.4vw,2.8rem);margin-bottom:18px">An awards night the sponsors photographed all evening</h2>
+      <p style="color:var(--grey)">A professional association chapter needed its annual gala to feel like the milestone it was — sponsor-worthy, on budget, and calm for a volunteer committee already running the program. We designed the room, directed every vendor, and handed the committee one contact.</p>
+      <div class="facts"><div>Full<small>Design &amp; production</small></div><div>One<small>Point of contact</small></div><div>Zero<small>Day-of surprises</small></div></div>
+      <blockquote>Fayola is absolutely amazing. I gave her a limited budget for my corporate event and timeline and she delivered in every way — all while providing an amazing client experience.<cite>Erika Bazemore · Branch Manager II · PNC Bank, Wheaton MD</cite></blockquote>
+    </div>
+  </div></div>
+  <div class="wrap center" style="padding-bottom:70px">
+    <a class="btn btn-solid" href="#contact" data-go="contact">Request a Corporate Proposal</a>
+  </div>
+</section>
+
+<!-- ============ PRIVATE ============ -->
+<section class="page" id="p-private">
+  <div class="pt"><h1>Private</h1><div class="rule"></div>
+    <div class="sub">For the moments that took decades to arrive.</div></div>
+  <div class="wrap"><div class="fig wide"><div class="ph-img" role="img" aria-label="Luxury private celebration design"></div></div></div>
+  <div class="section"><div class="narrow center">
+    <p>Tailored, luxurious experiences for your most special life moments — milestone birthdays, anniversaries, showers, intimate dinners and destination celebrations — designed with elegance and produced with calm.</p>
+  </div></div>
+  <div class="wrap grid3">
+    <div class="tile"><div class="fig tall"><div class="ph-img" role="img" aria-label="Luxury milestone birthday"></div></div><div class="cap"><b>Luxury milestone birthday</b>Maryland</div></div>
+    <div class="tile"><div class="fig tall"><div class="ph-img" role="img" aria-label="Intimate celebration"></div></div><div class="cap"><b>Intimate celebration</b>Washington, D.C.</div></div>
+    <div class="tile"><div class="fig tall"><div class="ph-img" role="img" aria-label="Celebration design"></div></div><div class="cap"><b>Celebration design</b>DMV</div></div>
+  </div>
+  <div class="section wrap center"><a class="btn btn-solid" href="#contact" data-go="contact">Begin an Inquiry</a></div>
+</section>
+
+<!-- ============ WORK ============ -->
+<section class="page" id="p-work">
+  <div class="pt"><h1>Work</h1><div class="rule"></div><div class="sub">Moments that stay with you.</div></div>
+  <div class="wrap">
+    <div class="filters"><button class="on" data-f="all">All</button><button data-f="corp">Corporate</button><button data-f="priv">Private</button><button data-f="dest">Destination</button></div>
+    <div class="grid3" id="workGrid">
+      <div class="tile" data-c="corp"><div class="fig tall"><div class="ph-img" role="img" aria-label="Awards gala"></div></div><div class="cap"><b>Awards gala</b>Washington, D.C. · Corporate</div></div>
+      <div class="tile" data-c="corp"><div class="fig tall"><div class="ph-img" role="img" aria-label="Corporate celebration"></div></div><div class="cap"><b>Corporate celebration</b>Maryland · Corporate</div></div>
+      <div class="tile" data-c="corp"><div class="fig tall"><div class="ph-img" role="img" aria-label="Brand moment"></div></div><div class="cap"><b>Brand moment</b>DMV · Corporate</div></div>
+      <div class="tile" data-c="priv"><div class="fig tall"><div class="ph-img" role="img" aria-label="Luxury milestone birthday"></div></div><div class="cap"><b>Luxury milestone birthday</b>Maryland · Private</div></div>
+      <div class="tile" data-c="priv"><div class="fig tall"><div class="ph-img" role="img" aria-label="Private celebration"></div></div><div class="cap"><b>Private celebration</b>Washington, D.C. · Private</div></div>
+      <div class="tile" data-c="dest"><div class="fig tall"><div class="ph-img" role="img" aria-label="Destination celebration"></div></div><div class="cap"><b>Destination celebration</b>Destination</div></div>
+    </div>
+  </div>
+  <div class="section"><div class="narrow">
+    <div class="h3 center">Press</div>
+    <ul class="list press">
+      <li>Brides &amp; Weddings Magazine — Ballroom styled shoot <span>2022</span></li>
+      <li>Elegant Wedding Magazine — Pink &amp; greenery color ideas <span>2021</span></li>
+      <li>Capitol Romance — Modern boho styled shoot <span>2021</span></li>
+      <li>Brides &amp; Weddings Magazine — Black Love Matters inspiration <span>2020</span></li>
+      <li>Rockville Economic Development — Business spotlight <span>2025</span></li>
+    </ul>
+  </div></div>
+</section>
+
+<!-- ============ JOURNAL ============ -->
+<section class="page" id="p-journal">
+  <div class="pt"><h1>Journal</h1><div class="rule"></div><div class="sub">Notes on design, budgets, and how a room comes together.</div></div>
+  <div class="wrap">
+    <div class="jgrid">
+      <a class="jcard" href="#post-gala-budget" data-go="post-gala-budget">
+        <div class="fig wide"><div class="ph">Photo: gala tablescape detail</div></div>
+        <div class="jmeta">Budgets &amp; Planning · September 2026</div>
+        <h3>What Does a $15,000 Gala Design Budget Actually Buy in Washington DC?</h3>
+        <p>A transparent, line-by-line breakdown of where a mid-size corporate gala budget goes — and what changes the number up or down.</p>
+        <span class="jread">Read the breakdown →</span>
+      </a>
+      <div class="jcard soon">
+        <div class="fig wide"><div class="ph">Coming next</div></div>
+        <div class="jmeta">Proof · Coming soon</div>
+        <h3>Inside the PMI Washington DC Awards Gala</h3>
+        <p>How a professional association's annual gala went from budget to branded stage in six weeks.</p>
+      </div>
+      <div class="jcard soon">
+        <div class="fig wide"><div class="ph">Coming next</div></div>
+        <div class="jmeta">Buyer Education · Coming soon</div>
+        <h3>The 12 Things a Gala Committee Should Hand Their Designer 90 Days Out</h3>
+        <p>A planning checklist for association and nonprofit committees working with a designer for the first time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ JOURNAL POST: $15K GALA BUDGET ============ -->
+<section class="page" id="p-post-gala-budget">
+  <article class="post">
+    <div class="post-head">
+      <a class="back" href="#journal" data-go="journal">← Journal</a>
+      <div class="jmeta center">Budgets &amp; Planning · September 2026 · 6 min read</div>
+      <h1>What Does a $15,000 Gala Design Budget Actually Buy in Washington DC?</h1>
+      <p class="dek">A line-by-line answer for association boards, nonprofit committees, and corporate planners pricing out an annual gala in DC, Maryland, or Virginia.</p>
+    </div>
+
+    <div class="fig wide post-hero"><div class="ph">Photo: branded gala stage, full width</div></div>
+
+    <div class="post-body narrow">
+      <p><strong>Short answer:</strong> in the Washington DC market, a $15,000 design and production budget typically covers full creative direction, a branded stage or step-and-repeat, tablescapes and centerpieces for 150–250 guests, entry and registration styling, signage, vendor coordination, and a install-and-breakdown crew — with the designer's fee shown separately from hard costs. Here's exactly where that money goes.</p>
+
+      <h2>Design fee vs. production cost — the split that matters</h2>
+      <p>Every reputable proposal separates two line items: the <strong>design fee</strong> (creative direction, concept development, vendor sourcing, project management, and on-site oversight) and <strong>production cost</strong> (the actual florals, rentals, linens, signage, and labor). On a $15,000 gala, the design fee typically runs 20–30% of the total, with the remainder going to physical production. If a proposal doesn't separate these, it's worth asking why — it usually means the designer's time is being buried inside marked-up rentals instead of billed transparently.</p>
+
+      <h2>A sample $15,000 breakdown</h2>
+      <ul class="breakdown">
+        <li><span>Creative direction &amp; design fee</span><em>~25%</em></li>
+        <li><span>Branded stage, step-and-repeat &amp; entry moment</span><em>~20%</em></li>
+        <li><span>Tablescapes, centerpieces &amp; linens</span><em>~20%</em></li>
+        <li><span>Florals &amp; installations</span><em>~15%</em></li>
+        <li><span>Signage &amp; custom printed material</span><em>~8%</em></li>
+        <li><span>Install, breakdown &amp; on-site labor</span><em>~12%</em></li>
+      </ul>
+      <p>This is a starting template, not a fixed formula — a committee that already owns linens or is renting a pre-decorated ballroom will shift more of the budget toward florals and branding; an embassy or cultural event may shift more toward protocol-aware installations and less toward signage.</p>
+
+      <h2>What pushes the number up</h2>
+      <p>Guest count above 250, a venue with load-in restrictions or union labor requirements, a rush timeline under six weeks, custom fabrication (marquee letters, oversized backdrops, branded floor decals), and multiple room transformations in one night (cocktail hour to dinner to dance floor) all add cost. So does asking for florals that are out of season or imported.</p>
+
+      <h2>What keeps it at $15,000 instead of $25,000</h2>
+      <p>Reusing a strong existing brand palette instead of a full rebrand each year, booking 90 days out instead of 30, choosing a venue with in-house tables, chairs and linens, and committing to an Annual Design Partnership so the designer isn't rebuilding a concept from zero every year — all of this keeps a gala at the same quality without the price climbing annually.</p>
+
+      <h2>Corporate and nonprofit budgets aren't priced the same way</h2>
+      <p>A corporate-sponsored gala usually has more flexibility on production value because sponsor dollars are funding visibility — the branded stage and step-and-repeat need to photograph well for sponsors' own marketing. A nonprofit or association gala more often needs the budget to stretch across both design <em>and</em> a silent auction or program element, so the design fee conversation happens earlier and the production choices lean more efficient by design, not by looking cheaper.</p>
+
+      <h2>How to get an accurate number for your event</h2>
+      <p>The honest answer is that no designer can price a gala from a guest count alone. The number moves on venue, timeline, guest count, and how much of the room needs to be built versus enhanced. The fastest way to get a real number is a short consultation: fifteen minutes on the event, the venue, and what "success" looks like for your sponsors or board, followed by a proposal that shows the design fee and production cost as two separate lines — exactly as described above.</p>
+
+      <div class="post-cta">
+        <p>Planning a gala or awards night in the DMV?</p>
+        <a class="btn btn-solid" href="#contact" data-go="contact">Request a Corporate Proposal</a>
+      </div>
+
+      <div class="post-author">
+        <div class="fig sq author-photo"><div class="ph">Photo</div></div>
+        <div>
+          <div class="h3" style="margin-bottom:6px">Written by Fayola Whyte-Manco</div>
+          <p style="font-size:.92rem">Creative director of Creative Motion Events, based in the Washington DC / Maryland / Virginia area. Fayola has designed and produced galas, awards nights, and appreciation events for associations, employers, and cultural organizations across the DMV since 2017.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What Does a $15,000 Gala Design Budget Actually Buy in Washington DC?",
+    "description": "A line-by-line breakdown of where a $15,000 corporate or nonprofit gala design and production budget goes in the Washington DC, Maryland and Virginia market.",
+    "author": {"@type": "Person", "name": "Fayola Whyte-Manco", "jobTitle": "Creative Director", "worksFor": {"@type": "Organization", "name": "Creative Motion Events"}},
+    "publisher": {"@type": "Organization", "name": "Creative Motion Events by Fay LLC"},
+    "datePublished": "2026-09-01",
+    "mainEntityOfPage": "https://www.creativemotionevents.com/journal/15k-gala-design-budget",
+    "articleSection": "Budgets & Planning",
+    "keywords": "gala design budget, corporate gala cost Washington DC, nonprofit gala planner Maryland, event design pricing DMV"
+  }
+  </script>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="page contact" id="p-contact">
+  <div class="pt"><h1>Contact</h1><div class="rule"></div></div>
+  <div class="wrap contact-grid" style="padding-bottom:80px">
+    <div>
+      <div class="lines">
+        <a href="mailto:hello@creativemotionevents.com">hello@creativemotionevents.com</a><br>
+        <a href="tel:3013377256">301.337.7256</a><br>
+        Washington DC &nbsp;|&nbsp; Maryland &nbsp;|&nbsp; Virginia
+      </div>
+      <p class="note">Corporate inquiries receive a reply within 24 hours and a proposal within five business days. Private celebrations, within 48 hours. Certificate of insurance available on request.</p>
+      <p class="note">Prefer to talk it through first? Ask Iris, bottom right — she can scope your event and pricing in a couple of minutes.</p>
+    </div>
+    <form id="inqForm">
+      <div class="row"><div><label for="f-name">Name</label><input id="f-name" required></div><div><label for="f-org">Organization</label><input id="f-org"></div></div>
+      <div class="row"><div><label for="f-email">Email</label><input id="f-email" type="email" required></div><div><label for="f-date">Event date or month</label><input id="f-date" placeholder="November 2026"></div></div>
+      <div class="row">
+        <div><label for="f-type">Event type</label><select id="f-type"><option>Gala or awards night</option><option>Holiday or employee appreciation</option><option>Grand opening or brand moment</option><option>Cultural or embassy event</option><option>Private celebration</option><option>Something else</option></select></div>
+        <div><label for="f-budget">Design &amp; production budget</label><select id="f-budget"><option>Under $7,500</option><option>$7,500 – $15,000</option><option>$15,000 – $30,000</option><option>$30,000+</option><option>Not sure yet</option></select></div>
+      </div>
+      <div><label for="f-notes">What should we know?</label><textarea id="f-notes" rows="4"></textarea></div>
+      <button type="submit" class="btn">Send inquiry</button>
+      <p id="formNote" style="font-size:.85rem;color:rgba(255,255,255,.6)"></p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="social">
+    <a href="https://www.instagram.com/creativemotioneventrentals" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.facebook.com/@creativemotionevents" target="_blank" rel="noopener">Facebook</a>
+    <a href="https://www.tiktok.com/@creativemotionevents" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://www.linkedin.com/in/fayola-whyte-manco-184a5bb9" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.google.com/search?q=Creative+Motion+Events+by+Fay+LLC+reviews" target="_blank" rel="noopener">Reviews</a>
+  </div>
+  <div class="legal">© 2026 Creative Motion Events by Fay LLC &nbsp;·&nbsp; Est. 2017</div>
+</footer>
+
+<button class="fab" id="fab" aria-label="Ask Iris">
+  <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/><circle cx="8.5" cy="12" r=".6" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r=".6" fill="currentColor" stroke="none"/><circle cx="15.5" cy="12" r=".6" fill="currentColor" stroke="none"/></svg>
+</button>
+<div class="chat" id="chat" role="dialog" aria-label="Iris, the Creative Motion Events concierge">
+  <div class="chat-head">
+    <div class="id"><div class="mono">CM</div><div><div class="t">Iris</div><div class="s">Creative Concierge</div></div></div>
+    <div class="head-actions">
+      <button class="icon-btn" id="chatMin" aria-label="Minimize">–</button>
+      <button class="icon-btn" id="chatClose" aria-label="Close">✕</button>
+    </div>
+  </div>
+  <div class="chat-log" id="log"></div>
+  <div class="chips" id="chips"><button class="chip">Our process</button><button class="chip">See our work</button><button class="chip">Book a consultation</button></div>
+  <form class="chat-form" id="chatForm">
+    <input id="chatInput" placeholder="Type your message…" autocomplete="off" aria-label="Message Iris">
+    <button type="submit" aria-label="Send"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+  </form>
+  <div class="chat-foot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M6 10V7a6 6 0 0112 0v3M5 10h14v10H5z"/></svg> Confidential · Personalized · Replies within 24 hrs</div>
+</div>
+
+<script>
+/* hash router — one small landing page, menu opens each page */
+const pages=['home','who','what','corporate','private','work','journal','post-gala-budget','contact'];
+function go(p){
+  if(!pages.includes(p))p='home';
+  pages.forEach(x=>document.getElementById('p-'+x).classList.toggle('on',x===p));
+  document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.dataset.go===p));
+  try{history.replaceState(null,'','#'+p)}catch(e){}
+  window.scrollTo(0,0);
+}
+document.addEventListener('click',e=>{
+  const a=e.target.closest('[data-go]');
+  if(a){e.preventDefault();go(a.dataset.go)}
+});
+go((location.hash||'#home').slice(1));
+
+/* work filters */
+document.querySelectorAll('.filters button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+  const f=b.dataset.f;document.querySelectorAll('#workGrid .tile').forEach(t=>t.style.display=(f==='all'||t.dataset.c===f)?'':'none');
+}));
+
+document.getElementById('inqForm').addEventListener('submit',e=>{e.preventDefault();
+  document.getElementById('formNote').textContent='Thank you — this demo form is not yet connected. On launch it routes to HoneyBook and sends the capabilities deck automatically.'});
+
+const SYSTEM=`You are Iris, the concierge for Creative Motion Events (CME), an event design and creative direction practice in the Washington DC / Maryland / Virginia area, led personally by creative director Fayola Whyte-Manco. Fayola is the brand — she designs and directs every event herself.
+
+What CME does: event design and creative direction, full production and vendor direction. Corporate: galas and awards nights, holiday and employee appreciation events, grand openings and brand moments, cultural and embassy events, and an Annual Design Partnership (design system on file, priority dates, quarterly touchpoints, discounted production, 48-hour response). Private celebrations: milestone birthdays, showers, dinners, destination events.
+
+Proof points: the PMI Washington DC Chapter Awards Gala, the PNC Bank Wheaton grand opening, and an embassy cultural celebration. In business since 2017, 200+ events, largely referral-driven. Fully insured; COI available.
+
+What CME does NOT do: AV, staging and sound as a standalone service; conferences and sales kickoffs; venue rental. CME partners with AV firms and venues instead.
+
+Pricing: Every event is quoted from scope, so never state a dollar figure or price range yourself. If asked about cost, explain that pricing is tailored to the design and production scope, and that the Contact page has a budget-range field so Fayola can match the right scope to it. Steer toward that form rather than estimating a number.
+
+Your job:
+1. Answer questions about services, scope, process and timelines — warmly and briefly.
+2. Qualify: ask for event type, date or month, guest count and venue status. One question at a time. Do not ask for or quote a budget number yourself — that lives on the Contact form.
+3. When you have the essentials, direct them to the Contact page form (it includes a budget-range field) or hello@creativemotionevents.com, and note corporate inquiries get a reply within 24 hours and a proposal within 5 business days.
+
+Voice: warm, calm, confident, plain language. 2-4 sentences per reply. Never invent clients, prices, availability or dates. If unsure, say Fayola will confirm.`;
+const chat=document.getElementById('chat'),fab=document.getElementById('fab'),log=document.getElementById('log'),chips=document.getElementById('chips'),form=document.getElementById('chatForm'),input=document.getElementById('chatInput');
+let history=[],started=false;
+function timeNow(){return new Date().toLocaleTimeString([], {hour:'numeric', minute:'2-digit'})}
+function bubble(t,c){
+  const row=document.createElement('div');row.className='msg-row '+(c==='me'?'me':'');
+  if(c!=='me'){const av=document.createElement('div');av.className='av';av.textContent='CM';row.appendChild(av);}
+  const wrap=document.createElement('div');wrap.className='msg-wrap';
+  const d=document.createElement('div');d.className='msg '+c;d.textContent=t;wrap.appendChild(d);
+  const time=document.createElement('div');time.className='msg-time';
+  time.innerHTML=timeNow()+(c==='me'?' <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg>':'');
+  wrap.appendChild(time);
+  row.appendChild(wrap);
+  log.appendChild(row);log.scrollTop=log.scrollHeight;return d;
+}
+function promoCard(){
+  const div=document.createElement('div');div.className='promo';
+  div.innerHTML=`<a class="promo-link" href="#corporate" data-go="corporate">
+    <div class="promo-tag">✨ Inspired for you</div>
+    <div class="promo-body">
+      <div class="ph-img" role="img" aria-label="Gala and Awards Design"></div>
+      <div><h4>Gala &amp; Awards Design</h4><p>A branded stage and room your sponsors photograph.</p></div>
+      <div class="arrow">→</div>
+    </div>
+  </a>`;
+  log.appendChild(div);log.scrollTop=log.scrollHeight;
+  div.querySelector('a').addEventListener('click',e=>{e.preventDefault();go('corporate');chat.classList.remove('open');fab.style.display='flex'});
+}
+function closeChat(){chat.classList.remove('open');fab.style.display='flex'}
+fab.addEventListener('click',()=>{chat.classList.add('open');fab.style.display='none';
+  if(!started){started=true;
+    bubble("Hello! I'm here to help bring your event vision to life. What are you dreaming of?",'bot');
+    promoCard();
+    bubble("Whenever you're ready, I can help with process, pricing scope, or booking a consultation.",'bot');
+  }input.focus()});
+document.getElementById('chatClose').addEventListener('click',closeChat);
+document.getElementById('chatMin').addEventListener('click',closeChat);
+chips.addEventListener('click',e=>{if(e.target.classList.contains('chip')){input.value=e.target.textContent;form.requestSubmit()}});
+form.addEventListener('submit',async e=>{e.preventDefault();const text=input.value.trim();if(!text)return;
+  input.value='';chips.style.display='none';bubble(text,'me');history.push({role:'user',content:text});
+  const ty=document.createElement('div');ty.className='typing';ty.innerHTML='<i></i><i></i><i></i>';log.appendChild(ty);log.scrollTop=log.scrollHeight;
+  const fail=()=>bubble("I couldn't reach Fayola's system just now. Email hello@creativemotionevents.com and she'll reply within 24 hours.",'err');
+  try{const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,system:SYSTEM,messages:history})});
+    const d=await r.json();const reply=(d.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('\n').trim();ty.remove();
+    if(reply){bubble(reply,'bot');history.push({role:'assistant',content:reply})}else fail()}catch(err){ty.remove();fail()}});
+</script>
+</body>
+</html>
