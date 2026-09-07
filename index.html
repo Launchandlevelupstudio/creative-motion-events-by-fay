@@ -211,8 +211,24 @@ blockquote cite{display:block;font-family:var(--sans);font-style:normal;font-siz
 .post-cta{text-align:center;background:var(--ivory);padding:44px 24px;margin:50px 0 40px}
 .post-cta p{font-family:var(--serif);font-style:italic;font-size:1.3rem;margin:0 auto 20px;max-width:none}
 .post-author{display:flex;gap:22px;align-items:flex-start;border-top:1px solid var(--line);padding-top:34px}
-.author-photo{width:74px;aspect-ratio:1;flex:none}
+.author-photo{width:96px;aspect-ratio:3/4;flex:none;background:#F3EEE6}
+.fig.author-photo img{width:100%;height:100%;object-fit:contain;object-position:center top;display:block}
 @media(max-width:600px){.post-author{flex-direction:column;align-items:center;text-align:center}}
+
+/* FAQ accordion */
+.faq{margin:48px 0 10px;border-top:1px solid var(--line)}
+.faq h2{font-size:1.35rem;margin:28px 0 14px}
+.faq details{border-bottom:1px solid var(--line);padding:0}
+.faq summary{cursor:pointer;list-style:none;padding:16px 28px 16px 0;font-family:var(--serif);font-size:1.08rem;line-height:1.35;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:0;top:16px;color:var(--gold);font-family:var(--sans);font-size:1.1rem;line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq .faq-a{padding:0 0 18px;color:var(--grey);font-size:.95rem;max-width:62ch}
+.post-inline{margin:28px 0 8px}
+.post-inline img{width:100%;height:auto;display:block}
+.post-inline figcaption{font-family:var(--serif);font-style:italic;font-size:.95rem;color:var(--grey);margin-top:10px}
+.jcard .thumb{aspect-ratio:16/9;overflow:hidden;background:#EDE8E0}
+.jcard .thumb img{width:100%;height:100%;object-fit:cover;display:block}
 
 /* contact */
 .contact{background:var(--black);color:var(--white)}
@@ -568,96 +584,377 @@ footer .legal a:hover{color:var(--gold)}
   <div class="pt"><h1>Journal</h1><div class="rule"></div><div class="sub">Notes on design, budgets, and how a room comes together.</div></div>
   <div class="wrap">
     <div class="jgrid">
-      <a class="jcard" href="#post-gala-budget" data-go="post-gala-budget">
-        <div class="fig wide"><div class="ph">Photo: gala tablescape detail</div></div>
-        <div class="jmeta">Budgets &amp; Planning · September 2026</div>
-        <h3>What Does a $15,000 Gala Design Budget Actually Buy in Washington DC?</h3>
-        <p>A transparent, line-by-line breakdown of where a mid-size corporate gala budget goes, and what changes the number up or down.</p>
-        <span class="jread">Read the breakdown →</span>
+      <a class="jcard" href="#post-employee-appreciation" data-go="post-employee-appreciation">
+        <div class="thumb"><img src="images/journal/gala-tablescape.jpg" alt="Employee appreciation event with candlelit tables and branded lounge"></div>
+        <div class="jmeta">Perspective · Buyer education</div>
+        <h3>The Most Underrated Retention Tool in the DMV Is a Room</h3>
+        <p>Employers across Washington, Maryland, and Virginia spend heavily on recruiting and almost nothing on the one evening a year that tells people they were seen.</p>
+        <span class="jread">Read the perspective →</span>
       </a>
-      <div class="jcard soon">
-        <div class="fig wide"><div class="ph">Coming next</div></div>
-        <div class="jmeta">Proof · Coming soon</div>
-        <h3>Inside the PMI Washington DC Awards Gala</h3>
-        <p>How a professional association's annual gala went from budget to branded stage in six weeks.</p>
-      </div>
-      <div class="jcard soon">
-        <div class="fig wide"><div class="ph">Coming next</div></div>
-        <div class="jmeta">Buyer Education · Coming soon</div>
-        <h3>The 12 Things a Gala Committee Should Hand Their Designer 90 Days Out</h3>
-        <p>A planning checklist for association and nonprofit committees working with a designer for the first time.</p>
-      </div>
+      <a class="jcard" href="#post-sponsor-recognition" data-go="post-sponsor-recognition">
+        <div class="thumb"><img src="images/journal/awards-stage.jpg" alt="Awards gala stage with sponsor branding integrated into the backdrop"></div>
+        <div class="jmeta">Buyer education · Perspective</div>
+        <h3>Sponsor-Visible Design: How to Make Your Gala Sponsors Look Expensive</h3>
+        <p>The sponsors paid for the evening. The committee owes them a room worth photographing, not a wall of logos.</p>
+        <span class="jread">Read the perspective →</span>
+      </a>
+      <a class="jcard" href="#post-hiring-designer" data-go="post-hiring-designer">
+        <div class="thumb"><img src="images/journal/planning-checklist.jpg" alt="Milestone celebration with a designed floral tablescape"></div>
+        <div class="jmeta">Buyer education · Perspective</div>
+        <h3>Before You Hire an Event Designer: What First-Time Clients in the DC Area Should Know</h3>
+        <p>The milestone is real. The venue is booked. Now someone has suggested a designer, and you have no idea what that means.</p>
+        <span class="jread">Read the guide →</span>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ============ JOURNAL POST: $15K GALA BUDGET ============ -->
-<section class="page" id="p-post-gala-budget">
+<!-- ============ JOURNAL POST: EMPLOYEE APPRECIATION ============ -->
+<section class="page" id="p-post-employee-appreciation">
   <article class="post">
     <div class="post-head">
       <a class="back" href="#journal" data-go="journal">← Journal</a>
-      <div class="jmeta center">Budgets &amp; Planning · September 2026 · 6 min read</div>
-      <h1>What Does a $15,000 Gala Design Budget Actually Buy in Washington DC?</h1>
-      <p class="dek">A line-by-line answer for association boards, nonprofit committees, and corporate planners pricing out an annual gala in DC, Maryland, or Virginia.</p>
+      <div class="jmeta center">Perspective · Buyer education · September 2026</div>
+      <h1>The Most Underrated Retention Tool in the DMV Is a Room</h1>
+      <p class="dek">Employers across Washington, Maryland, and Virginia spend heavily on recruiting and almost nothing on the one evening a year that tells people they were seen. Here is how to change that, and what it actually takes.</p>
     </div>
 
-    <div class="fig wide post-hero"><img src="images/fayola-journal.jpg" alt="Fayola Whyte-Manco" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"></div>
+    <div class="fig wide post-hero"><img src="images/journal/gala-tablescape.jpg" alt="Employee appreciation event with candlelit tables and branded lounge in a Maryland venue" style="width:100%;height:100%;object-fit:cover;object-position:center"></div>
 
     <div class="post-body narrow">
-      <p><strong>Short answer:</strong> in the Washington DC market, a $15,000 design and production budget typically covers full creative direction, a branded stage or step-and-repeat, tablescapes and centerpieces for 150-250 guests, entry and registration styling, signage, vendor coordination, and a install-and-breakdown crew, with the designer's fee shown separately from hard costs. Here's exactly where that money goes.</p>
+      <p>Ask any HR director in Rockville or Tysons what keeps their best people, and the answers are predictable: pay, flexibility, a manager who listens. Ask what their employee appreciation event looked like last December, and the room usually goes quiet.</p>
+      <p>It was a conference room. There were platters. Someone found a Bluetooth speaker.</p>
+      <p>That gap, between the retention conversation and the appreciation event, is one of the quietest missed opportunities in the regional economy. The Washington area is home to thousands of employers with 50 to 500 people: federal contractors along the I-270 corridor, biotech in Gaithersburg and Bethesda, law and accounting firms downtown, healthcare systems, association headquarters. Nearly all of them hold some version of a holiday party or appreciation night. Very few treat it as the retention investment it is.</p>
 
-      <h2>Design fee vs. production cost: the split that matters</h2>
-      <p>Every reputable proposal separates two line items: the <strong>design fee</strong> (creative direction, concept development, vendor sourcing, project management, and on-site oversight) and <strong>production cost</strong> (the actual florals, rentals, linens, signage, and labor). On a $15,000 gala, the design fee typically runs 20-30% of the total, with the remainder going to physical production. If a proposal doesn't separate these, it's worth asking why. It usually means the designer's time is being buried inside marked-up rentals instead of billed transparently.</p>
+      <h2>The event is the message</h2>
+      <p>An appreciation event is not entertainment. It is a communication, the one time a year an organization says something to its people without a memo, a dashboard, or a performance review in the way.</p>
+      <p>The problem is that most rooms say the wrong thing. A fluorescent-lit space with a folding table and a sheet cake communicates that the evening was an obligation. Nobody planned it because nobody was told they were allowed to.</p>
+      <p>Designed rooms communicate the opposite. Warm lighting instead of overhead panels. A tablescape that someone clearly thought about. A single focal moment, a branded installation, a lounge, a photo backdrop, that gives people somewhere to gather and something to photograph. None of this requires a ballroom. It requires intention.</p>
 
-      <h2>A sample $15,000 breakdown</h2>
-      <ul class="breakdown">
-        <li><span>Creative direction &amp; design fee</span><em>~25%</em></li>
-        <li><span>Branded stage, step-and-repeat &amp; entry moment</span><em>~20%</em></li>
-        <li><span>Tablescapes, centerpieces &amp; linens</span><em>~20%</em></li>
-        <li><span>Florals &amp; installations</span><em>~15%</em></li>
-        <li><span>Signage &amp; custom printed material</span><em>~8%</em></li>
-        <li><span>Install, breakdown &amp; on-site labor</span><em>~12%</em></li>
+      <figure class="post-inline">
+        <img src="images/journal/planning-checklist.jpg" alt="Detailed corporate tablescape with linen, floral, and name card at a DC employee event">
+        <figcaption>Intention shows at the scale of a single place setting.</figcaption>
+      </figure>
+
+      <h2>What appreciation events actually cost in the DMV</h2>
+      <p>Employers new to hiring an event designer are often surprised in both directions: the entry point is lower than they feared, and the difference between "decorated" and "designed" is larger than they assumed.</p>
+      <p>For a 75- to 300-person employee event in the Washington area, the design and production layer, concept, installations, tablescapes, signage, install, and breakdown, separate from venue and catering, typically runs <strong>$6,000 to $20,000</strong>. Venue rental and food are separate lines and often the larger ones.</p>
+      <p>A few principles hold at every budget:</p>
+      <ul>
+        <li><strong>The design fee should be visible.</strong> A professional designer separates creative direction from hard goods (linens, rentals, florals, fabrication). If a quote lumps everything into one number, you cannot tell what you are paying for.</li>
+        <li><strong>One focal moment beats ten small touches.</strong> Guests remember the thing they stood in front of. Spread a budget thin and nothing registers.</li>
+        <li><strong>Install and breakdown are labor, not magic.</strong> Ask who leads it, how many people are on site, and whether next-day breakdown is included or billed.</li>
       </ul>
-      <p>This is a starting template, not a fixed formula. A committee that already owns linens or is renting a pre-decorated ballroom will shift more of the budget toward florals and branding; an embassy or cultural event may shift more toward protocol-aware installations and less toward signage.</p>
 
-      <h2>What pushes the number up</h2>
-      <p>Guest count above 250, a venue with load-in restrictions or union labor requirements, a rush timeline under six weeks, custom fabrication (marquee letters, oversized backdrops, branded floor decals), and multiple room transformations in one night (cocktail hour to dinner to dance floor) all add cost. So does asking for florals that are out of season or imported.</p>
+      <figure class="post-inline">
+        <img src="images/journal/awards-stage.jpg" alt="Event design team installing a branded backdrop before a corporate holiday party in Northern Virginia">
+        <figcaption>Install is labor, not magic. Ask who leads it.</figcaption>
+      </figure>
 
-      <h2>What keeps it at $15,000 instead of $25,000</h2>
-      <p>Reusing a strong existing brand palette instead of a full rebrand each year, booking 90 days out instead of 30, choosing a venue with in-house tables, chairs and linens, and committing to an Annual Design Partnership so the designer isn't rebuilding a concept from zero every year. All of this keeps a gala at the same quality without the price climbing annually.</p>
+      <h2>The calendar problem nobody mentions</h2>
+      <p>Here is the practical reality for Washington-area employers: December dates are decided in September and October.</p>
+      <p>Venues fill first. Designers and their install teams follow. An HR team that begins calling in early November will find the good rooms gone and the remaining vendors stretched across too many events. The result is the same conference room, again, with the same speaker.</p>
+      <p>The employers who consistently host events people talk about have a habit: they book the same designer every year, lock next year's date before this year's party ends, and stop re-sourcing from scratch every fall. It is less work and better work.</p>
 
-      <h2>Corporate and nonprofit budgets aren't priced the same way</h2>
-      <p>A corporate-sponsored gala usually has more flexibility on production value because sponsor dollars are funding visibility. The branded stage and step-and-repeat need to photograph well for sponsors' own marketing. A nonprofit or association gala more often needs the budget to stretch across both design <em>and</em> a silent auction or program element, so the design fee conversation happens earlier and the production choices lean more efficient by design, not by looking cheaper.</p>
+      <h2>Four questions to ask before you book</h2>
+      <ol>
+        <li><strong>Have you designed an event for an organization like ours?</strong> Ask for a case study with a photo of the actual room, not a mood board.</li>
+        <li><strong>What does our budget buy, specifically?</strong> A real answer includes a scope: what is in, what is out, what is optional.</li>
+        <li><strong>Who is on site the night of the event?</strong> A named lead, a team size, and a plan for overtime.</li>
+        <li><strong>What happens next year?</strong> The right partner will already be thinking about it.</li>
+      </ol>
 
-      <h2>How to get an accurate number for your event</h2>
-      <p>The honest answer is that no designer can price a gala from a guest count alone. The number moves on venue, timeline, guest count, and how much of the room needs to be built versus enhanced. The fastest way to get a real number is a short consultation: fifteen minutes on the event, the venue, and what "success" looks like for your sponsors or board, followed by a proposal that shows the design fee and production cost as two separate lines, exactly as described above.</p>
+      <figure class="post-inline">
+        <img src="images/journal/gala-tablescape.jpg" alt="Branded marquee focal installation at a corporate appreciation event in Washington DC">
+        <figcaption>One focal moment beats ten small touches.</figcaption>
+      </figure>
+
+      <h2>The bottom line</h2>
+      <p>Retention is built in the ordinary weeks. But once a year, an employer gets to make a statement in a single room, in front of everyone at once. The organizations that take that seriously do not spend more than their competitors. They just decide earlier, plan with intention, and hire someone whose job is to make people feel seen.</p>
+      <p>Your people built this year. Give them a room that says so.</p>
 
       <div class="post-cta">
-        <p>Planning a gala or awards night in the DMV?</p>
-        <a class="btn btn-solid" href="#contact" data-go="contact">Request a Corporate Proposal</a>
+        <p>Creative Motion Events designs and produces employee appreciation events, holiday parties, and recognition moments for employers across Washington, DC, Maryland, and Northern Virginia. December dates are limited.</p>
+        <a class="btn btn-solid" href="#corporate" data-go="corporate">Reserve your date</a>
+      </div>
+
+      <div class="faq">
+        <h2>FAQ</h2>
+        <details>
+          <summary>How far in advance should we book a holiday party designer in DC?</summary>
+          <div class="faq-a">For December events, confirm your designer by mid-October. Peak-season install teams are booked by early November.</div>
+        </details>
+        <details>
+          <summary>What is the difference between an event planner and an event designer?</summary>
+          <div class="faq-a">A planner manages logistics, vendors, and timeline. An event designer owns the visual experience: concept, installations, tablescapes, and the on-site look of the room. Some studios do both; ask which model you are buying.</div>
+        </details>
+        <details>
+          <summary>Do we need a large budget for an appreciation event to look intentional?</summary>
+          <div class="faq-a">No. A single well-executed focal installation, good lighting, and a considered tablescape can transform a modest space. Spreading a small budget across many small elements is what makes a room feel thin.</div>
+        </details>
       </div>
 
       <div class="post-author">
-        <div class="fig sq author-photo"><img src="images/fayola-journal.jpg" alt="Fayola Whyte-Manco" style="width:100%;height:100%;object-fit:cover;object-position:center top"></div>
+        <div class="fig author-photo"><img src="images/fayola-author.jpg" alt="Fayola Whyte-Manco, creative director of Creative Motion Events"></div>
         <div>
           <div class="h3" style="margin-bottom:6px">Written by Fayola Whyte-Manco</div>
           <p style="font-size:.92rem">Creative director of Creative Motion Events, based in the Washington DC / Maryland / Virginia area. Fayola has designed and produced galas, awards nights, and appreciation events for associations, employers, and cultural organizations across the DMV since 2017.</p>
         </div>
       </div>
+
     </div>
   </article>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "What Does a $15,000 Gala Design Budget Actually Buy in Washington DC?",
-    "description": "A line-by-line breakdown of where a $15,000 corporate or nonprofit gala design and production budget goes in the Washington DC, Maryland and Virginia market.",
+    "headline": "The Most Underrated Retention Tool in the DMV Is a Room",
+    "description": "Employee appreciation events are the most underused retention tool in the DMV. A Washington-area event designer on what works, what it costs, and when to book.",
     "author": {"@type": "Person", "name": "Fayola Whyte-Manco", "jobTitle": "Creative Director", "worksFor": {"@type": "Organization", "name": "Creative Motion Events"}},
     "publisher": {"@type": "Organization", "name": "Creative Motion Events by Fay LLC"},
     "datePublished": "2026-09-01",
-    "mainEntityOfPage": "https://www.creativemotionevents.com/journal/15k-gala-design-budget",
-    "articleSection": "Budgets & Planning",
-    "keywords": "gala design budget, corporate gala cost Washington DC, nonprofit gala planner Maryland, event design pricing DMV"
+    "mainEntityOfPage": "https://www.creativemotionevents.com/journal/employee-appreciation-events-dmv",
+    "articleSection": "Perspective",
+    "keywords": "employee appreciation event design Maryland, corporate holiday party décor DC, employee appreciation ideas Washington DC"
+  }
+  </script>
+</section>
+
+<!-- ============ JOURNAL POST: SPONSOR RECOGNITION ============ -->
+<section class="page" id="p-post-sponsor-recognition">
+  <article class="post">
+    <div class="post-head">
+      <a class="back" href="#journal" data-go="journal">← Journal</a>
+      <div class="jmeta center">Buyer education · Perspective · September 2026</div>
+      <h1>Sponsor-Visible Design: How to Make Your Gala Sponsors Look Expensive</h1>
+      <p class="dek">The sponsors paid for the evening. The committee owes them a room worth photographing, not a wall of logos. A Washington-area designer on getting recognition right.</p>
+    </div>
+
+    <div class="fig wide post-hero"><img src="images/journal/awards-stage.jpg" alt="Awards gala stage with sponsor branding integrated into the backdrop design in Washington DC" style="width:100%;height:100%;object-fit:cover;object-position:center"></div>
+
+    <div class="post-body narrow">
+      <p>Every nonprofit gala chair in the Washington region knows the moment. The sponsorship packet promised "prominent recognition at the event." The event is now eight weeks out. And somebody on the committee has just asked the question nobody wants to own: <em>where, exactly, are the logos going?</em></p>
+      <p>The default answer is everywhere. A step-and-repeat with fourteen logos in a grid. A slide loop on the screens. Pop-up banners flanking the registration table. Table cards. A line in the program. By the time guests sit down, the ballroom looks less like a celebration and less like a thank-you than a convention floor.</p>
+      <p>Sponsors notice. Not because they wanted less visibility, because they wanted <em>better</em> visibility. There is a difference between being seen and being seen well, and it is the difference your development director will hear about in the renewal call.</p>
+
+      <h2>Recognition is a design decision, not a placement decision</h2>
+      <p>The instinct to put logos in as many places as possible comes from treating recognition as a checklist. Presenting sponsor: check. Gold sponsors: check. Table sponsors: check.</p>
+      <p>A designer treats it as a hierarchy. The presenting sponsor should own the most photographed square footage in the room. The next tier should be integrated where guests linger. Everyone else should be acknowledged with dignity in a place people will actually read.</p>
+      <p>That hierarchy does two things. It makes the top sponsor feel like they bought something exclusive, which they did. And it makes the room feel intentional, which is what every guest, and every sponsor's CEO, sitting at table three, is silently evaluating.</p>
+
+      <figure class="post-inline">
+        <img src="images/journal/gala-tablescape.jpg" alt="Designed gala welcome installation with event identity and presenting sponsor recognition">
+        <figcaption>The arrival moment sets the register for the evening.</figcaption>
+      </figure>
+
+      <h2>Where sponsor recognition actually works</h2>
+      <p><strong>The stage.</strong> Nothing else comes close. The stage is where the awards are handed out, where the honoree speaks, where every photographer points every camera. A presenting sponsor's mark integrated into the stage backdrop, dimensional, lit, part of the design rather than stuck on it, appears in every image the organization publishes for the next year. That is the visibility they paid for.</p>
+      <p><strong>The arrival moment.</strong> The first thing guests see sets the register for the evening. A single, well-designed welcome installation carrying the event identity and the presenting sponsor does more than three banners at the door.</p>
+      <p><strong>Where guests gather.</strong> The bar, the lounge, the cocktail-hour vignette. Guests spend forty-five minutes in these spaces before the program begins, and they take photos there. A second-tier sponsor integrated into a lounge moment gets more genuine exposure than a logo on a screen that scrolls past during dinner.</p>
+      <p><strong>The tables.</strong> Table sponsorship is common and often handled badly, a tent card nobody reads. Integrating a sponsor's name into the table design, at the scale of the centerpiece rather than the salt shaker, turns a line item into a moment.</p>
+
+      <figure class="post-inline">
+        <img src="images/journal/planning-checklist.jpg" alt="Sponsor lounge vignette at a nonprofit gala cocktail hour in Maryland">
+        <figcaption>Where guests linger is where a sponsor is actually seen.</figcaption>
+      </figure>
+
+      <h2>Where it doesn't</h2>
+      <ul>
+        <li><strong>The logo grid.</strong> A step-and-repeat crammed with every sponsor mark at equal size satisfies a contract and pleases no one. If a backdrop is needed for photos, use it for the event identity and the presenting sponsor only.</li>
+        <li><strong>The slide loop.</strong> Screens belong to the program. A logo carousel during dinner reads as filler and is ignored.</li>
+        <li><strong>The pop-up banner.</strong> Retractable banners are trade-show furniture. In a designed ballroom they look like an apology.</li>
+        <li><strong>The centerpiece flag.</strong> A logo on a stick in the floral arrangement undermines the table and the sponsor at the same time.</li>
+      </ul>
+
+      <h2>What sponsors actually want</h2>
+      <p>Ask any corporate marketing manager who approves gala sponsorships in the DMV what they are buying, and the honest answer is usually two things: association with a cause their leadership cares about, and proof, in photographs, that the money went somewhere that looked serious.</p>
+      <p>The second one is where design earns its place. A sponsor who receives a set of images in which their brand appears, elegantly, inside a room that clearly took thought will renew. A sponsor who receives a photo of their logo on a folding banner beside a fire exit will ask the committee to justify the number.</p>
+
+      <figure class="post-inline">
+        <img src="images/journal/awards-stage.jpg" alt="Table sponsor recognition integrated into the centerpiece design at an association gala">
+        <figcaption>A line item, turned into a moment.</figcaption>
+      </figure>
+
+      <h2>Three things to do before the sponsorship packet goes out</h2>
+      <ol>
+        <li><strong>Write the recognition tiers in design language.</strong> Instead of "logo on signage," say "presenting sponsor integrated into stage design; recognized in welcome installation." It sells better and it forces the committee to decide the hierarchy early.</li>
+        <li><strong>Bring the designer in before the packet is final.</strong> Recognition promised in October has to be delivered in April. The room should be designed around what was sold, not retrofitted to it.</li>
+        <li><strong>Plan the photography.</strong> Sponsor deliverables should include images of their recognition in the room. Book the photographer with a shot list that has the sponsors' names on it.</li>
+      </ol>
+
+      <h2>The room is the renewal</h2>
+      <p>Committees think about sponsors when the money comes in and again when the thank-you notes go out. The evening in between is where the relationship is actually decided. A room that makes a sponsor look expensive is not a favor to the sponsor. It is the organization's best argument for next year.</p>
+
+      <div class="post-cta">
+        <p>Creative Motion Events designs and produces galas, awards nights, and annual dinners for associations and nonprofits across Washington, DC, Maryland, and Northern Virginia.</p>
+        <a class="btn btn-solid" href="#corporate" data-go="corporate">See gala design</a>
+        <a class="btn" href="#contact" data-go="contact" style="margin-left:12px">Request a corporate proposal</a>
+      </div>
+
+      <div class="faq">
+        <h2>FAQ</h2>
+        <details>
+          <summary>How should a nonprofit recognize gala sponsors at the event?</summary>
+          <div class="faq-a">By hierarchy, not quantity. The presenting sponsor belongs in the stage design; second-tier sponsors in arrival and lounge moments; all others in a single, well-designed acknowledgment guests will actually read.</div>
+        </details>
+        <details>
+          <summary>Is a step-and-repeat necessary at a gala?</summary>
+          <div class="faq-a">Only if photography needs it. If so, reserve it for the event identity and presenting sponsor rather than a grid of every logo.</div>
+        </details>
+        <details>
+          <summary>When should sponsor recognition be planned?</summary>
+          <div class="faq-a">Before the sponsorship packet is finalized. Recognition sold in the packet has to be designed into the room, which is easier when the designer is involved early.</div>
+        </details>
+      </div>
+
+      <div class="post-author">
+        <div class="fig author-photo"><img src="images/fayola-author.jpg" alt="Fayola Whyte-Manco, creative director of Creative Motion Events"></div>
+        <div>
+          <div class="h3" style="margin-bottom:6px">Written by Fayola Whyte-Manco</div>
+          <p style="font-size:.92rem">Creative director of Creative Motion Events, based in the Washington DC / Maryland / Virginia area. Fayola has designed and produced galas, awards nights, and appreciation events for associations, employers, and cultural organizations across the DMV since 2017.</p>
+        </div>
+      </div>
+
+    </div>
+  </article>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Sponsor-Visible Design: How to Make Your Gala Sponsors Look Expensive",
+    "description": "Your sponsors funded the gala. A Washington-area event designer on how to recognize them in the room without turning your awards night into a trade show.",
+    "author": {"@type": "Person", "name": "Fayola Whyte-Manco", "jobTitle": "Creative Director", "worksFor": {"@type": "Organization", "name": "Creative Motion Events"}},
+    "publisher": {"@type": "Organization", "name": "Creative Motion Events by Fay LLC"},
+    "datePublished": "2026-09-01",
+    "mainEntityOfPage": "https://www.creativemotionevents.com/journal/sponsor-recognition-gala-design",
+    "articleSection": "Buyer education",
+    "keywords": "gala sponsor recognition ideas, gala décor Washington DC, nonprofit gala design Maryland"
+  }
+  </script>
+</section>
+
+<!-- ============ JOURNAL POST: HIRING A DESIGNER ============ -->
+<section class="page" id="p-post-hiring-designer">
+  <article class="post">
+    <div class="post-head">
+      <a class="back" href="#journal" data-go="journal">← Journal</a>
+      <div class="jmeta center">Buyer education · Perspective · September 2026</div>
+      <h1>Before You Hire an Event Designer: What First-Time Clients in the DC Area Should Know</h1>
+      <p class="dek">The milestone is real. The venue is booked. Now someone has suggested a designer, and you have no idea what that means, what it costs, or whether you need one. This is for you.</p>
+    </div>
+
+    <div class="fig wide post-hero"><img src="images/journal/planning-checklist.jpg" alt="Milestone birthday celebration designed with a long floral tablescape in a Washington DC venue" style="width:100%;height:100%;object-fit:cover;object-position:center"></div>
+
+    <div class="post-body narrow">
+      <p>There is a particular moment in planning a milestone celebration, a fortieth, a fiftieth, an anniversary, a graduation, a baby shower that has somehow become an event, when the spreadsheet stops helping. The venue is chosen. The date is set. The guest list is finally honest. And the person planning it realizes they have a room and a date and no idea what the room is going to <em>look like</em>.</p>
+      <p>That is usually when a friend says: you should talk to a designer.</p>
+      <p>For most people in the Washington area, that is the first time they have heard the phrase applied to a party. So here is what it means, what it does not mean, and how to know whether it is right for the occasion you are planning.</p>
+
+      <h2>Designer, planner, or both?</h2>
+      <p>The terms get used interchangeably, and they are not the same job.</p>
+      <p>An <strong>event planner</strong> manages logistics: the timeline, the contracts, the caterer, the transportation, the day-of schedule. Their product is a smooth evening.</p>
+      <p>An <strong>event designer</strong> owns the visual and emotional experience of the room: the concept, the color story, the tablescape, the focal installations, the lighting mood, the way guests move through the space. Their product is a transformed room.</p>
+      <p>Some studios do both. Many venues include a coordinator who handles the planning side. If your venue has one, what you likely need is design, someone to make the room feel like it belongs to the person being celebrated.</p>
+
+      <figure class="post-inline">
+        <img src="images/journal/gala-tablescape.jpg" alt="Event planning timeline beside an event designer's swatches and concept sketch">
+        <figcaption>Two jobs, one evening. Know which one you are hiring.</figcaption>
+      </figure>
+
+      <h2>What a designer actually does</h2>
+      <p>The process, from the client's side, usually looks like this:</p>
+      <ol>
+        <li><strong>A conversation.</strong> Who is this for, what do they love, what is the room, what is the budget, what would make the evening feel like <em>them</em>.</li>
+        <li><strong>A concept.</strong> A mood board and a written direction, not just "gold and white" but a point of view. Good designers present one strong idea, not a menu.</li>
+        <li><strong>A scope and a proposal.</strong> What is included, what is not, and what it costs, with the design fee shown separately from the rentals and florals.</li>
+        <li><strong>Sourcing and coordination.</strong> Linens, florals, custom pieces, signage, rentals. The designer manages those vendors so you do not.</li>
+        <li><strong>Install day.</strong> A team arrives before guests and transforms the room. This is the part clients describe as magic. It is mostly ladders and a very specific plan.</li>
+        <li><strong>Breakdown.</strong> Often same night, sometimes next morning, depending on the venue.</li>
+      </ol>
+
+      <h2>What it costs in the DMV</h2>
+      <p>For a styled private celebration in the Washington area, 40 to 150 guests, a real room, a full concept, design and production typically starts around <strong>$5,000</strong> and rises with guest count, custom elements, and live florals. That figure is separate from venue and catering.</p>
+      <p>Below that threshold, a full install with a team is difficult to deliver well. Some studios offer a smaller drop-off styling product for intimate dinners; ask.</p>
+      <p>Two things to look for in any quote:</p>
+      <ul>
+        <li><strong>The design fee is its own line.</strong> You should be able to see what you are paying for creative direction versus what you are paying for tablecloths.</li>
+        <li><strong>The scope names what is excluded.</strong> AV, catering, and the venue itself almost always are. Rush timelines and next-day breakdown are often additional.</li>
+      </ul>
+
+      <figure class="post-inline">
+        <img src="images/journal/awards-stage.jpg" alt="Event design team installing florals for a private celebration in Bethesda Maryland">
+        <figcaption>Magic is mostly ladders and a very specific plan.</figcaption>
+      </figure>
+
+      <h2>When you probably need one</h2>
+      <ul>
+        <li>The room is a blank canvas, a hotel ballroom, a rented loft, a tent, a backyard.</li>
+        <li>The occasion is once-in-a-lifetime and you want it to photograph like it.</li>
+        <li>You are planning it for someone else and want the evening to feel like a gift, not a task.</li>
+        <li>You have tried Pinterest and now have four hundred images and no direction.</li>
+      </ul>
+
+      <h2>When you probably don't</h2>
+      <ul>
+        <li>The venue is already beautiful and fully furnished, and a great florist covers it.</li>
+        <li>The guest list is under 25 and the gathering is a dinner.</li>
+        <li>The budget is fully committed to venue and food, with nothing left for the room.</li>
+      </ul>
+      <p>There is no shame in the second list. A good designer will tell you which list you are on.</p>
+
+      <figure class="post-inline">
+        <img src="images/journal/planning-checklist.jpg" alt="Personalized place card and floral detail at a milestone celebration in Rockville MD">
+        <figcaption>Designed for the person, not the palette.</figcaption>
+      </figure>
+
+      <h2>The question to ask on the first call</h2>
+      <p>Not "what do you charge?" Ask: <em>"What would you do with this room for this person?"</em></p>
+      <p>The answer tells you everything. A designer who asks about the guest of honor before the color palette is the one who will make the room feel like it means something. That is the whole point of the evening, and it is the part a spreadsheet was never going to give you.</p>
+
+      <div class="post-cta">
+        <p>Creative Motion Events designs milestone celebrations across Washington, DC, Maryland, and Northern Virginia, and destination events by invitation. Investment starts at $5,000.</p>
+        <a class="btn btn-solid" href="#contact" data-go="contact">Begin an inquiry</a>
+        <a class="btn" href="#work" data-go="work" style="margin-left:12px">See recent rooms</a>
+      </div>
+
+      <div class="faq">
+        <h2>FAQ</h2>
+        <details>
+          <summary>How much does an event designer cost in Washington, DC?</summary>
+          <div class="faq-a">Styled private celebrations in the DMV typically start around $5,000 for design and production, separate from venue and catering. Guest count, custom pieces, and live florals move the number.</div>
+        </details>
+        <details>
+          <summary>What is the difference between an event designer and an event planner?</summary>
+          <div class="faq-a">A planner manages logistics and timeline. A designer owns the look, feel, and transformation of the room. Some studios do both.</div>
+        </details>
+        <details>
+          <summary>How far in advance should I book an event designer for a milestone birthday?</summary>
+          <div class="faq-a">Three to six months is comfortable. Peak seasons, spring, fall, and December, book earlier in the Washington area.</div>
+        </details>
+      </div>
+
+      <div class="post-author">
+        <div class="fig author-photo"><img src="images/fayola-author.jpg" alt="Fayola Whyte-Manco, creative director of Creative Motion Events"></div>
+        <div>
+          <div class="h3" style="margin-bottom:6px">Written by Fayola Whyte-Manco</div>
+          <p style="font-size:.92rem">Creative director of Creative Motion Events, based in the Washington DC / Maryland / Virginia area. Fayola has designed and produced galas, awards nights, and appreciation events for associations, employers, and cultural organizations across the DMV since 2017.</p>
+        </div>
+      </div>
+
+    </div>
+  </article>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Before You Hire an Event Designer: What First-Time Clients in the DC Area Should Know",
+    "description": "Planning a milestone birthday, anniversary, or celebration in the DC area? What first-time clients should know before hiring an event designer in Maryland or DC.",
+    "author": {"@type": "Person", "name": "Fayola Whyte-Manco", "jobTitle": "Creative Director", "worksFor": {"@type": "Organization", "name": "Creative Motion Events"}},
+    "publisher": {"@type": "Organization", "name": "Creative Motion Events by Fay LLC"},
+    "datePublished": "2026-09-01",
+    "mainEntityOfPage": "https://www.creativemotionevents.com/journal/hiring-an-event-designer-dc-first-time",
+    "articleSection": "Buyer education",
+    "keywords": "event designer Washington DC, event designer Rockville MD, milestone birthday party planner DC"
   }
   </script>
 </section>
@@ -820,7 +1117,7 @@ footer .legal a:hover{color:var(--gold)}
 <script>
 /* hash router: one small landing page, menu opens each page */
 if('scrollRestoration' in window.history){window.history.scrollRestoration='manual'}
-const pages=['home','who','what','corporate','private','work','journal','post-gala-budget','contact'];
+const pages=['home','who','what','corporate','private','work','journal','post-employee-appreciation','post-sponsor-recognition','post-hiring-designer','contact'];
 function scrollToTop(){
   window.scrollTo(0,0);
   document.documentElement.scrollTop=0;
@@ -922,24 +1219,10 @@ function bubble(t,c){
   row.appendChild(wrap);
   log.appendChild(row);log.scrollTop=log.scrollHeight;return d;
 }
-function promoCard(){
-  const div=document.createElement('div');div.className='promo';
-  div.innerHTML=`<a class="promo-link" href="#corporate" data-go="corporate">
-    <div class="promo-tag">✨ Inspired for you</div>
-    <div class="promo-body">
-      <div class="ph-img" role="img" aria-label="Gala and Awards Design"></div>
-      <div><h4>Gala &amp; Awards Design</h4><p>A branded stage and room your sponsors photograph.</p></div>
-      <div class="arrow">→</div>
-    </div>
-  </a>`;
-  log.appendChild(div);log.scrollTop=log.scrollHeight;
-  div.querySelector('a').addEventListener('click',e=>{e.preventDefault();go('corporate');chat.classList.remove('open');fab.style.display='flex'});
-}
 function closeChat(){chat.classList.remove('open');fab.style.display='flex'}
 fab.addEventListener('click',()=>{chat.classList.add('open');fab.style.display='none';
   if(!started){started=true;
     bubble("Hi, I'm Iris. Ready when you are. Tell me a little about your event and I'll help bring the vision to life.",'bot');
-    promoCard();
   }input.focus()});
 document.getElementById('chatClose').addEventListener('click',closeChat);
 document.getElementById('chatMin').addEventListener('click',closeChat);
