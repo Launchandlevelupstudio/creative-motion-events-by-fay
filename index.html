@@ -759,7 +759,7 @@ footer .legal a:hover{color:var(--gold)}
 
 <script>
 /* hash router: one small landing page, menu opens each page */
-if('scrollRestoration' in history){history.scrollRestoration='manual'}
+if('scrollRestoration' in window.history){window.history.scrollRestoration='manual'}
 const pages=['home','who','what','corporate','private','work','journal','post-gala-budget','contact'];
 function scrollToTop(){
   window.scrollTo(0,0);
@@ -772,7 +772,7 @@ function go(p){
   if(!pages.includes(p))p='home';
   pages.forEach(x=>document.getElementById('p-'+x).classList.toggle('on',x===p));
   document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.dataset.go===p));
-  try{history.replaceState(null,'','#'+p)}catch(e){}
+  try{window.history.replaceState(null,'','#'+p)}catch(e){}
   scrollToTop();
   requestAnimationFrame(scrollToTop);
 }
@@ -836,7 +836,7 @@ Your job:
 
 Voice: warm, calm, confident, plain language. 2-4 sentences per reply. Never invent clients, prices, availability or dates. If unsure, say Fayola will confirm.`;
 const chat=document.getElementById('chat'),fab=document.getElementById('fab'),log=document.getElementById('log'),chips=document.getElementById('chips'),form=document.getElementById('chatForm'),input=document.getElementById('chatInput');
-let history=[],started=false;
+let chatHistory=[],started=false;
 function timeNow(){return new Date().toLocaleTimeString([], {hour:'numeric', minute:'2-digit'})}
 function bubble(t,c){
   const row=document.createElement('div');row.className='msg-row '+(c==='me'?'me':'');
@@ -871,12 +871,12 @@ document.getElementById('chatClose').addEventListener('click',closeChat);
 document.getElementById('chatMin').addEventListener('click',closeChat);
 chips.addEventListener('click',e=>{if(e.target.classList.contains('chip')){input.value=e.target.textContent;form.requestSubmit()}});
 form.addEventListener('submit',async e=>{e.preventDefault();const text=input.value.trim();if(!text)return;
-  input.value='';chips.style.display='none';bubble(text,'me');history.push({role:'user',content:text});
+  input.value='';chips.style.display='none';bubble(text,'me');chatHistory.push({role:'user',content:text});
   const ty=document.createElement('div');ty.className='typing';ty.innerHTML='<i></i><i></i><i></i>';log.appendChild(ty);log.scrollTop=log.scrollHeight;
   const fail=()=>bubble("I couldn't reach Fayola's system just now. Email hello@creativemotionevents.com and she'll reply within 24 hours.",'err');
-  try{const r=await fetch('https://cme-chat-api-launch-and-level-up-studio.vercel.app/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({clientId:'cme-iris',messages:history})});
+  try{const r=await fetch('https://cme-chat-api-launch-and-level-up-studio.vercel.app/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({clientId:'cme-iris',messages:chatHistory})});
     const d=await r.json();const reply=(d.reply||'').trim();ty.remove();
-    if(reply){bubble(reply,'bot');history.push({role:'assistant',content:reply})}else fail()}catch(err){ty.remove();fail()}});
+    if(reply){bubble(reply,'bot');chatHistory.push({role:'assistant',content:reply})}else fail()}catch(err){ty.remove();fail()}});
 </script>
 </body>
 </html>
