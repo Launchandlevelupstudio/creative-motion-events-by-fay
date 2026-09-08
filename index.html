@@ -972,104 +972,17 @@ footer .legal a:hover{color:var(--gold)}
       <p class="note">Whether you are planning a corporate gala, an appreciation event, or a private celebration, we would love to hear about it. Share a few details and Fayola will follow up personally.</p>
       <p class="note">Prefer to talk it through first? Ask Iris, bottom right. She can scope your event and pricing in a couple of minutes.</p>
     </div>
-    <form id="inqForm" action="https://formsubmit.co/hello@creativemotionevents.com" method="POST">
-      <input type="hidden" name="_subject" value="New inquiry from Creative Motion Events website">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-      <div class="row">
-        <div><label for="f-name">Full Name</label><input id="f-name" name="Full Name" required></div>
-        <div><label for="f-email">Email Address</label><input id="f-email" name="Email Address" type="email" required></div>
-      </div>
-      <div class="row">
-        <div><label for="f-phone">Phone Number</label><input id="f-phone" name="Phone Number" type="tel" required></div>
-        <div><label for="f-org">Organization/Company</label><input id="f-org" name="Organization/Company" placeholder="Optional"></div>
-      </div>
-      <div class="row">
-        <div>
-          <label for="f-type">Event Type</label>
-          <select id="f-type" name="Event Type" required>
-            <option value="" selected disabled>Select an event type</option>
-            <option>Corporate gala or awards night</option>
-            <option>Holiday or employee appreciation</option>
-            <option>Grand opening or brand moment</option>
-            <option>Cultural or embassy event</option>
-            <option>Private celebration</option>
-            <option>Milestone birthday</option>
-            <option>Shower or intimate dinner</option>
-            <option>Destination celebration</option>
-            <option>Something else</option>
-          </select>
-        </div>
-        <div>
-          <label for="f-date">Event Date</label>
-          <input id="f-date" name="Event Date" placeholder="e.g. November 15, 2026">
-          <span class="form-hint">If your date is flexible, please share your preferred month.</span>
-        </div>
-      </div>
-      <div class="row">
-        <div>
-          <label for="f-venue">Venue Name</label>
-          <input id="f-venue" name="Venue Name" placeholder="Venue name">
-        </div>
-        <div>
-          <label for="f-city">Event City/State</label>
-          <input id="f-city" name="Event City/State" placeholder="City, State">
-        </div>
-      </div>
-      <label class="check"><input type="checkbox" id="f-venue-pending" name="Venue Status" value="Venue not selected yet"> Venue not selected yet.</label>
-      <div class="row">
-        <div>
-          <label for="f-guests">Estimated Guest Count</label>
-          <input id="f-guests" name="Estimated Guest Count" placeholder="e.g. 150">
-        </div>
-        <div>
-          <label for="f-budget">Overall Event Investment</label>
-          <select id="f-budget" name="Overall Event Investment" required>
-            <option value="" selected disabled>Select an investment range</option>
-            <option>Under $7,500</option>
-            <option>$7,500-$12,000</option>
-            <option>$12,000-$20,000</option>
-            <option>$20,000-$35,000</option>
-            <option>$35,000-$60,000</option>
-            <option>$60,000+</option>
-            <option>Budget not finalized</option>
-          </select>
-        </div>
-      </div>
-      <div>
-        <label>What Support Are You Looking For?</label>
-        <div class="support-opts">
-          <label><input type="radio" name="What Support Are You Looking For?" value="Full-service planning and design" required> Full-service planning and design</label>
-          <label><input type="radio" name="What Support Are You Looking For?" value="Event design and production"> Event design and production</label>
-          <label><input type="radio" name="What Support Are You Looking For?" value="Corporate event production"> Corporate event production</label>
-          <label><input type="radio" name="What Support Are You Looking For?" value="Décor and styling"> Décor and styling</label>
-          <label><input type="radio" name="What Support Are You Looking For?" value="Rentals only"> Rentals only</label>
-          <label><input type="radio" name="What Support Are You Looking For?" value="Not sure-I need guidance"> Not sure-I need guidance</label>
-        </div>
-      </div>
-      <div>
-        <label for="f-notes">Tell Us About Your Vision</label>
-        <textarea id="f-notes" name="Tell Us About Your Vision" rows="4" placeholder="Tell us about your event, your vision, and the areas where you would like support."></textarea>
-      </div>
-      <div>
-        <label for="f-hear">How Did You Hear About Us?</label>
-        <select id="f-hear" name="How Did You Hear About Us?">
-          <option value="" selected disabled>Select one</option>
-          <option>Google</option>
-          <option>Instagram</option>
-          <option>Facebook</option>
-          <option>LinkedIn</option>
-          <option>Referral</option>
-          <option>Venue or vendor</option>
-          <option>Previous client</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <button type="submit" class="btn">Send inquiry</button>
+    <div class="hb-inquiry" id="inqForm">
+      <p class="note" style="margin-top:0">Prefer to open in a new tab? <a href="https://creativemotionevents.hbportal.co/public/69fbbb7a0634dc956af011b7" target="_blank" rel="noopener">Start your inquiry on HoneyBook</a></p>
+      <iframe
+        src="https://creativemotionevents.hbportal.co/public/69fbbb7a0634dc956af011b7"
+        title="Inquiry form"
+        loading="lazy"
+        allowfullscreen
+        style="width:100%;min-height:900px;border:none;border-radius:4px;background:#fff"
+      ></iframe>
       <p class="form-foot">Creative Motion Events specializes in elevated event design and full-service production. Most custom projects begin at $5,000. After submitting your inquiry, you can expect a response within 1-2 business days.</p>
-      <p id="formNote" style="font-size:.85rem;color:rgba(255,255,255,.6)"></p>
-    </form>
+    </div>
   </div>
 </section>
 
@@ -1160,35 +1073,6 @@ document.querySelectorAll('.filters button').forEach(b=>b.addEventListener('clic
   const f=b.dataset.f;document.querySelectorAll('#workGrid .tile').forEach(t=>t.style.display=(f==='all'||t.dataset.c===f)?'':'none');
 }));
 
-document.getElementById('inqForm').addEventListener('submit',async e=>{
-  e.preventDefault();
-  const form=e.target;
-  const note=document.getElementById('formNote');
-  const btn=form.querySelector('button[type="submit"]');
-  note.textContent='Sending your inquiry…';
-  if(btn){btn.disabled=true}
-  const fd=new FormData(form);
-  const email=form.querySelector('#f-email');
-  if(email&&email.value){fd.set('_replyto',email.value)}
-  if(!form.querySelector('#f-venue-pending').checked){fd.delete('Venue Status')}
-  try{
-    const r=await fetch('https://formsubmit.co/ajax/hello@creativemotionevents.com',{
-      method:'POST',
-      body:fd,
-      headers:{'Accept':'application/json'}
-    });
-    if(r.ok){
-      note.textContent='Thank you. Your inquiry has been sent. You can expect a response within 1-2 business days.';
-      form.reset();
-    }else{
-      note.textContent='Something went wrong sending your inquiry. Please email hello@creativemotionevents.com directly.';
-    }
-  }catch(err){
-    note.textContent='Something went wrong sending your inquiry. Please email hello@creativemotionevents.com directly.';
-  }
-  if(btn){btn.disabled=false}
-});
-
 const SYSTEM=`You are Iris, the concierge for Creative Motion Events (CME), an event design and creative direction practice in the Washington DC / Maryland / Virginia area, led personally by creative director Fayola Whyte-Manco. Fayola is the brand. She designs and directs every event herself.
 
 What CME does: event design and creative direction, full production and vendor direction. Corporate: galas and awards nights, holiday and employee appreciation events, grand openings and brand moments, cultural and embassy events, and an Annual Design Partnership (design system on file, priority dates, quarterly touchpoints, discounted production, 48-hour response). Private celebrations: milestone birthdays, showers, dinners, destination events.
@@ -1197,12 +1081,12 @@ Proof points: the PMI Washington DC Chapter Awards Gala, the PNC Bank Wheaton gr
 
 What CME does NOT do: AV, staging and sound as a standalone service; conferences and sales kickoffs; venue rental. CME partners with AV firms and venues instead.
 
-Pricing: Every event is quoted from scope, so never state a dollar figure or price range yourself. If asked about cost, explain that pricing is tailored to the design and production scope, and that the Contact page has a budget-range field so Fayola can match the right scope to it. Steer toward that form rather than estimating a number.
+Pricing: Every event is quoted from scope, so never state a dollar figure or price range yourself. If asked about cost, explain that pricing is tailored to the design and production scope, and steer them to the Contact page inquiry form (HoneyBook) so Fayola can match the right scope. Never estimate a number.
 
 Your job:
 1. Answer questions about services, scope, process and timelines, warmly and briefly.
-2. Qualify: ask for event type, date or month, guest count and venue status. One question at a time. Do not ask for or quote a budget number yourself; that lives on the Contact form.
-3. When you have the essentials, direct them to the Contact page form (it includes a budget-range field) or hello@creativemotionevents.com, and note that inquiries typically receive a response within 1-2 business days.
+2. Qualify: ask for event type, date or month, guest count and venue status. One question at a time. Do not ask for or quote a budget number yourself; that lives on the Contact inquiry form.
+3. When you have the essentials, direct them to the Contact page HoneyBook inquiry form or hello@creativemotionevents.com, and note that inquiries typically receive a response within 1-2 business days.
 
 Voice: warm, calm, confident, plain language. 2-4 sentences per reply. Never invent clients, prices, availability or dates. If unsure, say Fayola will confirm.`;
 const chat=document.getElementById('chat'),fab=document.getElementById('fab'),log=document.getElementById('log'),chips=document.getElementById('chips'),form=document.getElementById('chatForm'),input=document.getElementById('chatInput');
