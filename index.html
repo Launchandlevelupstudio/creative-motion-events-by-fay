@@ -388,6 +388,50 @@ footer .legal a:hover{color:var(--gold)}
 .work-stack .tile .cap b{font-size:clamp(1.35rem,2.6vw,1.75rem)}
 .fig.work-fig{aspect-ratio:16/10;background:#EDE8E0;overflow:hidden}
 .fig.work-fig img{width:100%;height:100%;object-fit:cover}
+
+/* Work landing hero tiles (#p-work only) */
+#p-work .work-hero{display:flex;flex-direction:column;gap:18px;max-width:1040px;margin:0 auto 48px}
+#p-work .work-hero-tile{
+  position:relative;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;
+  min-height:clamp(280px,44vh,460px);aspect-ratio:2.05/1;overflow:hidden;
+  background-size:cover;background-position:center;background-color:#2a2520;
+  text-decoration:none;color:#fff;padding:clamp(28px,4.5vw,52px);
+  transition:transform .35s ease;
+}
+#p-work .work-hero-tile::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    linear-gradient(105deg,rgba(22,19,17,.72) 0%,rgba(22,19,17,.42) 38%,rgba(22,19,17,.12) 68%,rgba(22,19,17,.08) 100%),
+    linear-gradient(0deg,rgba(22,19,17,.55) 0%,rgba(22,19,17,.15) 42%,transparent 70%);
+}
+#p-work .work-hero-tile:hover{transform:scale(1.005)}
+#p-work .work-hero-tile:hover .work-hero-cta{background:rgba(255,255,255,.12)}
+#p-work .work-hero-copy,#p-work .work-hero-cta{position:relative;z-index:1}
+#p-work .work-hero-copy{max-width:18ch;margin-bottom:clamp(22px,3.5vw,36px)}
+#p-work .work-hero-tile h2{
+  font-family:var(--serif);font-weight:400;font-size:clamp(2.1rem,4.8vw,3.4rem);
+  line-height:1.05;letter-spacing:.01em;color:#fff;margin:0;text-transform:none;
+}
+#p-work .work-hero-rule{width:48px;height:1.5px;background:#C5A46E;margin:16px 0 14px}
+#p-work .work-hero-sub{
+  font-family:var(--sans);font-size:clamp(.58rem,.9vw,.68rem);letter-spacing:.28em;
+  text-transform:uppercase;color:rgba(255,255,255,.92);line-height:1.5;
+}
+#p-work .work-hero-cta{
+  display:inline-flex;align-items:center;gap:8px;padding:12px 22px;
+  font-family:var(--sans);font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;
+  color:#fff;border:1px solid rgba(255,255,255,.9);background:transparent;
+  transition:background .25s ease,border-color .25s ease;min-height:44px;
+}
+@media(max-width:700px){
+  #p-work .work-hero{gap:14px}
+  #p-work .work-hero-tile{
+    aspect-ratio:auto;min-height:min(52vh,420px);padding:28px 22px 26px;
+  }
+  #p-work .work-hero-copy{max-width:14ch;margin-bottom:28px}
+  #p-work .work-hero-tile h2{font-size:clamp(1.85rem,9vw,2.5rem)}
+  #p-work .work-hero-sub{letter-spacing:.22em;font-size:.56rem}
+}
 .album-head{padding:40px 24px 28px;max-width:1120px}
 .album-head h1{font-size:clamp(1.7rem,3.2vw,2.4rem);letter-spacing:.06em;font-weight:400;text-transform:none;margin:8px 0 10px}
 .album-loc{font-family:var(--sans);font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--grey)}
@@ -577,9 +621,23 @@ footer .legal a:hover{color:var(--gold)}
 <section class="page" id="p-work">
   <div class="pt"><h1>Work</h1><div class="rule"></div><div class="sub">Moments that stay with you.</div></div>
   <div class="wrap">
-    <div class="work-stack">
-      <a class="tile" href="#work-corporate" data-go="work-corporate"><div class="fig work-fig"><img src="images/work/corporate-cover.jpg" alt="Corporate Events by Creative Motion Events"></div><div class="cap"><b>Corporate Events</b>Grand openings · galas · brand moments</div></a>
-      <a class="tile" href="#work-private" data-go="work-private"><div class="fig work-fig"><img src="images/work/private-cover.jpg" alt="Private Celebrations by Creative Motion Events"></div><div class="cap"><b>Private Celebrations</b>Engagements · showers · celebrations</div></a>
+    <div class="work-hero">
+      <a class="work-hero-tile" href="#work-corporate" data-go="work-corporate" style="background-image:url('images/work/corporate-cover.jpg')" aria-label="Explore Corporate Events">
+        <div class="work-hero-copy">
+          <h2>Corporate<br>Events</h2>
+          <div class="work-hero-rule" aria-hidden="true"></div>
+          <div class="work-hero-sub">GRAND OPENINGS · GALAS · BRAND MOMENTS</div>
+        </div>
+        <span class="work-hero-cta">EXPLORE →</span>
+      </a>
+      <a class="work-hero-tile" href="#work-private" data-go="work-private" style="background-image:url('images/work/private-cover.jpg')" aria-label="Explore Private Celebrations">
+        <div class="work-hero-copy">
+          <h2>Private<br>Celebrations</h2>
+          <div class="work-hero-rule" aria-hidden="true"></div>
+          <div class="work-hero-sub">ENGAGEMENTS · BRIDAL SHOWERS · MILESTONES</div>
+        </div>
+        <span class="work-hero-cta">EXPLORE →</span>
+      </a>
     </div>
   </div>
   <div class="section"><div class="narrow">
