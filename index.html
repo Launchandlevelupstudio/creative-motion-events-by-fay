@@ -574,22 +574,15 @@ footer .legal a:hover{color:var(--gold)}
 
 <!-- ============ WORK ============ -->
 <section class="page" id="p-work">
-  <div class="pt work-pt">
-    <div class="wrap work-pt-inner">
-      <h1>Work</h1>
-      <div class="sub">Real Events. Meaningful Experiences.</div>
-    </div>
-  </div>
+  <div class="pt"><h1>Work</h1><div class="rule"></div><div class="sub">Moments that stay with you.</div></div>
   <div class="wrap">
-    <div class="work-stack" id="workGrid">
-      <a class="tile work-cat" href="#work-bridal" data-go="work-bridal">
-        <div class="fig work-fig"><img src="images/albums/titi-bridal-shower/09.jpg" alt="Titi's Bridal Shower"></div>
-        <div class="cap"><b>Private Celebrations</b>BRIDAL · ENGAGEMENT · MILESTONE</div>
-      </a>
-      <a class="tile work-cat" href="#work-corporate" data-go="work-corporate">
-        <div class="fig work-fig"><img src="images/work/corporate-events.jpg" alt="Corporate Events"></div>
-        <div class="cap"><b>Corporate Events</b>MARYLAND · CORPORATE</div>
-      </a>
+    <div class="filters"><button class="on" data-f="all">All</button><button data-f="corp">Corporate</button><button data-f="priv">Private</button><button data-f="dest">Destination</button></div>
+    <div class="grid3" id="workGrid">
+      <a class="tile" data-c="corp" href="#album-pnc-grand-opening" data-go="album-pnc-grand-opening"><div class="fig tall"><img src="images/albums/pnc-grand-opening/cover.jpg" alt="PNC Bank Grand Opening"></div><div class="cap"><b>PNC Grand Opening</b>Maryland · Corporate</div></a>
+      <a class="tile" data-c="corp" href="#album-able-health-grand-opening" data-go="album-able-health-grand-opening"><div class="fig tall"><img src="images/albums/able-health-grand-opening/cover.jpg" alt="Able Health Services Grand Opening"></div><div class="cap"><b>Able Health Grand Opening</b>Hanover, MD · Corporate</div></a>
+      <a class="tile" data-c="priv" href="#album-titi-bridal-shower" data-go="album-titi-bridal-shower"><div class="fig tall"><img src="images/albums/titi-bridal-shower/cover.jpg" alt="Titi Bridal Shower"></div><div class="cap"><b>Titi Bridal Shower</b>Maryland · Private</div></a>
+      <a class="tile" data-c="priv" href="#album-jazmine-jaleesa-engagement" data-go="album-jazmine-jaleesa-engagement"><div class="fig tall"><img src="images/albums/jazmine-jaleesa-engagement/cover.jpg" alt="Jazmine &amp; Jaleesa Engagement Dinner"></div><div class="cap"><b>Jazmine &amp; Jaleesa Engagement Dinner</b>Private</div></a>
+      <div class="tile" data-c="dest"><div class="fig tall"><div class="ph-img" role="img" aria-label="Destination celebration"></div></div><div class="cap"><b>Destination celebration</b>Destination</div></div>
     </div>
   </div>
   <div class="section"><div class="narrow">
@@ -616,52 +609,10 @@ footer .legal a:hover{color:var(--gold)}
   </div></div>
 </section>
 
-<!-- ============ WORK: PRIVATE CELEBRATIONS ============ -->
-<section class="page" id="p-work-bridal">
-  <div class="album-head wrap">
-    <a class="back" href="#work" data-go="work">← Work</a>
-    <h1>Private Celebrations</h1>
-    <div class="album-loc">BRIDAL · ENGAGEMENT · MILESTONE</div>
-  </div>
-  <div class="wrap">
-    <div class="work-stack">
-      <a class="tile work-cat" href="#album-titi-bridal-shower" data-go="album-titi-bridal-shower">
-        <div class="fig work-fig"><img src="images/albums/titi-bridal-shower/09.jpg" alt="Titi's Bridal Shower"></div>
-        <div class="cap"><b>Titi’s Bridal Shower</b>Maryland · Private</div>
-      </a>
-      <a class="tile work-cat" href="#album-jazmine-jaleesa-engagement" data-go="album-jazmine-jaleesa-engagement">
-        <div class="fig work-fig"><img src="images/albums/jazmine-jaleesa-engagement/11.jpg" alt="Jazmine & Jaleesa Engagement Dinner"></div>
-        <div class="cap"><b>Jazmine &amp; Jaleesa Engagement Dinner</b>Private Celebration</div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ WORK: CORPORATE ============ -->
-<section class="page" id="p-work-corporate">
-  <div class="album-head wrap">
-    <a class="back" href="#work" data-go="work">← Work</a>
-    <h1>Corporate Events</h1>
-    <div class="album-loc">MARYLAND · CORPORATE</div>
-  </div>
-  <div class="wrap">
-    <div class="work-stack">
-      <a class="tile work-cat" href="#album-pnc-grand-opening" data-go="album-pnc-grand-opening">
-        <div class="fig work-fig"><img src="images/albums/pnc-grand-opening/cover.jpg" alt="PNC Bank Grand Opening"></div>
-        <div class="cap"><b>PNC Bank Grand Opening</b>Maryland · Corporate</div>
-      </a>
-      <a class="tile work-cat" href="#album-able-health-grand-opening" data-go="album-able-health-grand-opening">
-        <div class="fig work-fig"><img src="images/albums/able-health-grand-opening/cover.jpg" alt="Able Health Services Grand Opening"></div>
-        <div class="cap"><b>Able Health Services Grand Opening</b>Hanover, MD · Corporate</div>
-      </a>
-    </div>
-  </div>
-</section>
-
 <!-- ============ ALBUM: titi-bridal-shower ============ -->
 <section class="page" id="p-album-titi-bridal-shower">
   <div class="album-head wrap">
-    <a class="back" href="#work-bridal" data-go="work-bridal">← PRIVATE CELEBRATIONS</a>
+    <a class="back" href="#work" data-go="work">← Work</a>
     <h1>Titi’s Bridal Shower</h1>
     <div class="album-loc">MARYLAND · PRIVATE CELEBRATION</div>
   </div>
@@ -733,7 +684,7 @@ footer .legal a:hover{color:var(--gold)}
 <!-- ============ ALBUM: jazmine-jaleesa-engagement ============ -->
 <section class="page" id="p-album-jazmine-jaleesa-engagement">
   <div class="album-head wrap">
-    <a class="back" href="#work-bridal" data-go="work-bridal">← PRIVATE CELEBRATIONS</a>
+    <a class="back" href="#work" data-go="work">← Work</a>
     <h1>Jazmine &amp; Jaleesa Engagement Dinner</h1>
     <div class="album-loc">PRIVATE CELEBRATION</div>
   </div>
@@ -805,7 +756,7 @@ footer .legal a:hover{color:var(--gold)}
 <!-- ============ ALBUM: pnc-grand-opening ============ -->
 <section class="page" id="p-album-pnc-grand-opening">
   <div class="album-head wrap">
-    <a class="back" href="#work-corporate" data-go="work-corporate">← CORPORATE EVENTS</a>
+    <a class="back" href="#work" data-go="work">← Work</a>
     <h1>PNC Bank Grand Opening</h1>
     <div class="album-loc">MARYLAND · CORPORATE</div>
   </div>
@@ -1324,7 +1275,7 @@ footer .legal a:hover{color:var(--gold)}
 <!-- ============ ALBUM: able-health-grand-opening ============ -->
 <section class="page" id="p-album-able-health-grand-opening">
   <div class="album-head wrap">
-    <a class="back" href="#work-corporate" data-go="work-corporate">← CORPORATE EVENTS</a>
+    <a class="back" href="#work" data-go="work">← Work</a>
     <h1>Able Health Services Grand Opening</h1>
     <div class="album-loc">HANOVER, MD · CORPORATE</div>
   </div>
@@ -2090,7 +2041,7 @@ footer .legal a:hover{color:var(--gold)}
 <script>
 /* hash router: one small landing page, menu opens each page */
 if('scrollRestoration' in window.history){window.history.scrollRestoration='manual'}
-const pages=['home','who','what','corporate','private','work','work-bridal','work-corporate','album-titi-bridal-shower','album-jazmine-jaleesa-engagement','album-pnc-grand-opening','album-able-health-grand-opening','journal','post-employee-appreciation','post-sponsor-recognition','post-hiring-designer','contact'];
+const pages=['home','who','what','corporate','private','work','album-titi-bridal-shower','album-jazmine-jaleesa-engagement','album-pnc-grand-opening','album-able-health-grand-opening','journal','post-employee-appreciation','post-sponsor-recognition','post-hiring-designer','contact'];
 function scrollToTop(){
   window.scrollTo(0,0);
   document.documentElement.scrollTop=0;
@@ -2127,6 +2078,13 @@ document.addEventListener('click',e=>{
 go((location.hash||'#home').slice(1));
 window.addEventListener('load',scrollToTop);
 document.addEventListener('DOMContentLoaded',scrollToTop);
+
+/* work filters */
+document.querySelectorAll('.filters button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+  const f=b.dataset.f;document.querySelectorAll('#workGrid .tile').forEach(t=>t.style.display=(f==='all'||t.dataset.c===f)?'':'none');
+}));
+
 
 
 const SYSTEM=`You are Iris, the concierge for Creative Motion Events (CME), an event design and creative direction practice in the Washington DC / Maryland / Virginia area, led personally by creative director Fayola Whyte-Manco. Fayola is the brand. She designs and directs every event herself.
