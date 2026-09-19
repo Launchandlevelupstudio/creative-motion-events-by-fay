@@ -376,6 +376,35 @@ footer .legal a:hover{color:var(--gold)}
 .fig{position:relative}
 .fig .ph-img{position:absolute;inset:0}
 .promo-body .ph-img{width:64px;height:64px;border-radius:10px;flex:none;position:static;height:64px}
+
+/* Work 3-level navigation */
+.work-pt{padding:56px 0 36px;text-align:left}
+.work-pt-inner{display:flex;align-items:baseline;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.work-pt h1{font-size:clamp(1.8rem,3.4vw,2.6rem);letter-spacing:.22em;text-transform:uppercase;margin:0}
+.work-pt .sub{font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,2vw,1.35rem);color:var(--grey);margin:0;letter-spacing:.01em;text-transform:none}
+.work-stack{display:flex;flex-direction:column;gap:42px;max-width:760px;margin:0 auto 48px}
+.work-stack .tile .cap{padding:14px 0 0}
+.work-stack .tile .cap b{font-size:clamp(1.35rem,2.6vw,1.75rem)}
+.fig.work-fig{aspect-ratio:16/10;background:#EDE8E0;overflow:hidden}
+.fig.work-fig img{width:100%;height:100%;object-fit:cover}
+.album-head{padding:40px 24px 28px;max-width:1120px}
+.album-head h1{font-size:clamp(1.7rem,3.2vw,2.4rem);letter-spacing:.06em;font-weight:400;text-transform:none;margin:8px 0 10px}
+.album-loc{font-family:var(--sans);font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--grey)}
+.album-hero{margin-bottom:18px}
+.album-hero .fig,.album-hero .lb-open{display:block;width:100%;border:0;padding:0;background:#EDE8E0;cursor:zoom-in;aspect-ratio:16/10;overflow:hidden}
+.album-hero img{width:100%;height:100%;object-fit:cover}
+.album-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-bottom:64px}
+@media(min-width:820px){.album-grid{grid-template-columns:1fr 1fr 1fr;gap:14px}}
+.album-cell{display:block;width:100%;border:0;padding:0;background:#EDE8E0;cursor:zoom-in;aspect-ratio:1;overflow:hidden}
+.album-cell img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.album-cell:hover img{transform:scale(1.03)}
+.album-empty{padding:40px 0 80px;text-align:center}
+.album-empty .coming{font-family:var(--serif);font-style:italic;font-size:1.25rem;color:var(--grey)}
+.lb{position:fixed;inset:0;z-index:200;background:rgba(22,19,17,.92);display:none;align-items:center;justify-content:center;padding:24px}
+.lb.open{display:flex}
+.lb img{max-width:min(96vw,1200px);max-height:90vh;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.lb-close{position:absolute;top:16px;right:20px;background:none;border:0;color:#fff;font-size:1.6rem;cursor:pointer;line-height:1;padding:8px}
+
 </style>
 
 </head>
@@ -545,16 +574,22 @@ footer .legal a:hover{color:var(--gold)}
 
 <!-- ============ WORK ============ -->
 <section class="page" id="p-work">
-  <div class="pt"><h1>Work</h1><div class="rule"></div><div class="sub">Moments that stay with you.</div></div>
+  <div class="pt work-pt">
+    <div class="wrap work-pt-inner">
+      <h1>Work</h1>
+      <div class="sub">Real Events. Meaningful Experiences.</div>
+    </div>
+  </div>
   <div class="wrap">
-    <div class="filters"><button class="on" data-f="all">All</button><button data-f="corp">Corporate</button><button data-f="priv">Private</button><button data-f="dest">Destination</button></div>
-    <div class="grid3" id="workGrid">
-      <a class="tile" data-c="corp" href="https://photos.google.com/share/AF1QipNR3v4DnQP-Ayz0HzzDyIIip8-vwTHn3j_q2D461aZjPoDogXwUQYUGPEgbZtdnHg?key=dTJaaDZ2Uk5KZ0JBa3hIX1hPZUxDZWVDTWYwYmxB" target="_blank" rel="noopener"><div class="fig tall"><div class="ph-img" role="img" aria-label="PNC Grand Opening"></div></div><div class="cap"><b>PNC Grand Opening</b>Corporate · View album →</div></a>
-      <div class="tile" data-c="corp"><div class="fig tall"><div class="ph-img" role="img" aria-label="Corporate celebration"></div></div><div class="cap"><b>Corporate celebration</b>Maryland · Corporate</div></div>
-      <div class="tile" data-c="corp"><div class="fig tall"><div class="ph-img" role="img" aria-label="Brand moment"></div></div><div class="cap"><b>Brand moment</b>DMV · Corporate</div></div>
-      <a class="tile" data-c="priv" href="https://t-fashimages45.pixieset.com/titibridalshower/" target="_blank" rel="noopener"><div class="fig tall"><img src="images/work/titi-bridal-shower.jpg" alt="Titi Bridal Shower"></div><div class="cap"><b>Titi Bridal Shower</b>Private · View album →</div></a>
-      <a class="tile" data-c="priv" href="https://seanbryanproductions.pic-time.com/KYbfdvZmYCLnt" target="_blank" rel="noopener"><div class="fig tall"><img src="images/work/jazmine-jaleesa-engagement.jpg" alt="Jazmine &amp; Jaleesa Engagement Dinner"></div><div class="cap"><b>Jazmine &amp; Jaleesa Engagement Dinner</b>Private · View album →</div></a>
-      <div class="tile" data-c="dest"><div class="fig tall"><div class="ph-img" role="img" aria-label="Destination celebration"></div></div><div class="cap"><b>Destination celebration</b>Destination</div></div>
+    <div class="work-stack" id="workGrid">
+      <a class="tile work-cat" href="#work-bridal" data-go="work-bridal">
+        <div class="fig work-fig"><img src="images/albums/titi-bridal-shower/cover.jpg" alt="Titi's Bridal Shower"></div>
+        <div class="cap"><b>Private Celebrations</b>BRIDAL · ENGAGEMENT · MILESTONE</div>
+      </a>
+      <a class="tile work-cat" href="#work-corporate" data-go="work-corporate">
+        <div class="fig work-fig"><img src="images/work/corporate-events.jpg" alt="Corporate Events"></div>
+        <div class="cap"><b>Corporate Events</b>MARYLAND · CORPORATE</div>
+      </a>
     </div>
   </div>
   <div class="section"><div class="narrow">
@@ -579,6 +614,84 @@ footer .legal a:hover{color:var(--gold)}
       </div>
     </div>
   </div></div>
+</section>
+
+<!-- ============ WORK: PRIVATE CELEBRATIONS ============ -->
+<section class="page" id="p-work-bridal">
+  <div class="album-head wrap">
+    <a class="back" href="#work" data-go="work">← Work</a>
+    <h1>Private Celebrations</h1>
+    <div class="album-loc">BRIDAL · ENGAGEMENT · MILESTONE</div>
+  </div>
+  <div class="wrap">
+    <div class="work-stack">
+      <a class="tile work-cat" href="#album-titi-bridal-shower" data-go="album-titi-bridal-shower">
+        <div class="fig work-fig"><img src="images/albums/titi-bridal-shower/cover.jpg" alt="Titi's Bridal Shower"></div>
+        <div class="cap"><b>Titi’s Bridal Shower</b>Maryland · Private</div>
+      </a>
+      <a class="tile work-cat" href="#album-jazmine-jaleesa-engagement" data-go="album-jazmine-jaleesa-engagement">
+        <div class="fig work-fig"><img src="images/albums/jazmine-jaleesa-engagement/cover.jpg" alt="Jazmine & Jaleesa Engagement Dinner"></div>
+        <div class="cap"><b>Jazmine &amp; Jaleesa Engagement Dinner</b>Private Celebration</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK: CORPORATE ============ -->
+<section class="page" id="p-work-corporate">
+  <div class="album-head wrap">
+    <a class="back" href="#work" data-go="work">← Work</a>
+    <h1>Corporate Events</h1>
+    <div class="album-loc">MARYLAND · CORPORATE</div>
+  </div>
+  <div class="wrap">
+    <div class="work-stack">
+      <a class="tile work-cat" href="#album-pnc-grand-opening" data-go="album-pnc-grand-opening">
+        <div class="fig work-fig"><div class="ph-img" role="img" aria-label="PNC Bank Grand Opening"></div></div>
+        <div class="cap"><b>PNC Bank Grand Opening</b>Maryland · Photos coming soon</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ALBUM: titi-bridal-shower ============ -->
+<section class="page" id="p-album-titi-bridal-shower">
+  <div class="album-head wrap">
+    <a class="back" href="#work-bridal" data-go="work-bridal">← PRIVATE CELEBRATIONS</a>
+    <h1>Titi’s Bridal Shower</h1>
+    <div class="album-loc">MARYLAND · PRIVATE CELEBRATION</div>
+  </div>
+  <div class="album-hero wrap">
+    <button type="button" class="lb-open fig wide" data-src="images/albums/titi-bridal-shower/cover.jpg" aria-label="View photo">
+      <img src="images/albums/titi-bridal-shower/cover.jpg" alt="Titi’s Bridal Shower">
+    </button>
+  </div>
+</section>
+
+<!-- ============ ALBUM: jazmine-jaleesa-engagement ============ -->
+<section class="page" id="p-album-jazmine-jaleesa-engagement">
+  <div class="album-head wrap">
+    <a class="back" href="#work-bridal" data-go="work-bridal">← PRIVATE CELEBRATIONS</a>
+    <h1>Jazmine &amp; Jaleesa Engagement Dinner</h1>
+    <div class="album-loc">PRIVATE CELEBRATION</div>
+  </div>
+  <div class="album-hero wrap">
+    <button type="button" class="lb-open fig wide" data-src="images/albums/jazmine-jaleesa-engagement/cover.jpg" aria-label="View photo">
+      <img src="images/albums/jazmine-jaleesa-engagement/cover.jpg" alt="Jazmine &amp; Jaleesa Engagement Dinner">
+    </button>
+  </div>
+</section>
+
+<!-- ============ ALBUM: pnc-grand-opening ============ -->
+<section class="page" id="p-album-pnc-grand-opening">
+  <div class="album-head wrap">
+    <a class="back" href="#work-corporate" data-go="work-corporate">← CORPORATE EVENTS</a>
+    <h1>PNC Bank Grand Opening</h1>
+    <div class="album-loc">MARYLAND · CORPORATE</div>
+  </div>
+  <div class="wrap album-empty">
+    <p class="coming">Photos coming soon.</p>
+  </div>
 </section>
 
 <!-- ============ JOURNAL ============ -->
@@ -1029,10 +1142,16 @@ footer .legal a:hover{color:var(--gold)}
   <div class="chat-foot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M6 10V7a6 6 0 0112 0v3M5 10h14v10H5z"/></svg> Confidential · Personalized · Replies within 24 hrs</div>
 </div>
 
+
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo">
+  <button type="button" class="lb-close" id="lbClose" aria-label="Close">✕</button>
+  <img id="lbImg" alt="">
+</div>
+
 <script>
 /* hash router: one small landing page, menu opens each page */
 if('scrollRestoration' in window.history){window.history.scrollRestoration='manual'}
-const pages=['home','who','what','corporate','private','work','journal','post-employee-appreciation','post-sponsor-recognition','post-hiring-designer','contact'];
+const pages=['home','who','what','corporate','private','work','work-bridal','work-corporate','album-titi-bridal-shower','album-jazmine-jaleesa-engagement','album-pnc-grand-opening','journal','post-employee-appreciation','post-sponsor-recognition','post-hiring-designer','contact'];
 function scrollToTop(){
   window.scrollTo(0,0);
   document.documentElement.scrollTop=0;
@@ -1054,8 +1173,9 @@ function toggleMenu(){
 if(menuToggle){menuToggle.addEventListener('click',e=>{e.stopPropagation();toggleMenu()})}
 function go(p){
   if(!pages.includes(p))p='home';
-  pages.forEach(x=>document.getElementById('p-'+x).classList.toggle('on',x===p));
-  document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.dataset.go===p));
+  pages.forEach(x=>{const el=document.getElementById('p-'+x);if(el)el.classList.toggle('on',x===p)});
+  const navKey=(p==='work'||p.startsWith('work-')||p.startsWith('album-'))?'work':p;
+  document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.dataset.go===navKey));
   closeMenu();
   try{window.history.replaceState(null,'','#'+p)}catch(e){}
   scrollToTop();
@@ -1069,11 +1189,6 @@ go((location.hash||'#home').slice(1));
 window.addEventListener('load',scrollToTop);
 document.addEventListener('DOMContentLoaded',scrollToTop);
 
-/* work filters */
-document.querySelectorAll('.filters button').forEach(b=>b.addEventListener('click',()=>{
-  document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
-  const f=b.dataset.f;document.querySelectorAll('#workGrid .tile').forEach(t=>t.style.display=(f==='all'||t.dataset.c===f)?'':'none');
-}));
 
 const SYSTEM=`You are Iris, the concierge for Creative Motion Events (CME), an event design and creative direction practice in the Washington DC / Maryland / Virginia area, led personally by creative director Fayola Whyte-Manco. Fayola is the brand. She designs and directs every event herself.
 
@@ -1120,6 +1235,20 @@ form.addEventListener('submit',async e=>{e.preventDefault();const text=input.val
   try{const r=await fetch('https://cme-chat-api-launch-and-level-up-studio.vercel.app/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({clientId:'cme-iris',messages:chatHistory})});
     const d=await r.json();const reply=(d.reply||'').trim();ty.remove();
     if(reply){bubble(reply,'bot');chatHistory.push({role:'assistant',content:reply})}else fail()}catch(err){ty.remove();fail()}});
+
+/* lightbox */
+(function(){
+  const lb=document.getElementById('lightbox'), img=document.getElementById('lbImg');
+  function open(src){if(!src)return;img.src=src;lb.classList.add('open');document.body.style.overflow='hidden'}
+  function close(){lb.classList.remove('open');img.removeAttribute('src');document.body.style.overflow=''}
+  document.addEventListener('click',e=>{
+    const t=e.target.closest('.lb-open');
+    if(t){e.preventDefault();open(t.dataset.src||(t.querySelector('img')&&t.querySelector('img').src))}
+  });
+  document.getElementById('lbClose').addEventListener('click',close);
+  lb.addEventListener('click',e=>{if(e.target===lb)close()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+})();
 </script>
 </body>
 </html>
