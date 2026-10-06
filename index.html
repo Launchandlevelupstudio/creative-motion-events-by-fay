@@ -503,6 +503,137 @@ footer .legal a:hover{color:var(--gold)}
 .lb img{max-width:min(96vw,1200px);max-height:90vh;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.45)}
 .lb-close{position:absolute;top:16px;right:20px;background:none;border:0;color:#fff;font-size:1.6rem;cursor:pointer;line-height:1;padding:8px}
 
+
+/* Corporate + Annual Design Partnership (scoped to those pages and the Corporate submenu) */
+nav a.nav-sub{display:block;position:static;margin-top:0;padding:0 16px 12px;font-size:.62rem;letter-spacing:.14em;color:#9a8570;white-space:normal;text-align:center;line-height:1.45;box-shadow:none;background:transparent}
+nav a.nav-sub.on{color:var(--black);box-shadow:none}
+@media(min-width:641px){
+  li.nav-item-corporate{position:relative}
+  nav a.nav-sub{display:none;text-align:left;white-space:nowrap;margin:0;line-height:1.3}
+  li.nav-item-corporate:hover > a.nav-sub,
+  li.nav-item-corporate:focus-within > a.nav-sub{
+    display:block;position:absolute;top:100%;left:50%;transform:translateX(-50%);z-index:6;
+    background:#fff;border:1px solid var(--line);padding:12px 18px;color:#9a8570;
+    box-shadow:0 12px 28px rgba(22,19,17,.08);letter-spacing:.12em;font-size:.62rem
+  }
+  li.nav-item-corporate > a.nav-sub::before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px}
+  li.nav-item-corporate:hover > a.nav-sub.on,
+  li.nav-item-corporate:focus-within > a.nav-sub.on{color:var(--black)}
+}
+#p-corporate .pt{padding-bottom:22px}
+#p-corporate .pt .rule,#p-annual-partnership .pt .rule{width:36px;background:var(--gold)}
+#p-corporate .pt .sub{max-width:22em;margin-left:auto;margin-right:auto;color:var(--black);font-size:clamp(1.2rem,2.4vw,1.65rem);line-height:1.25}
+#p-corporate .corp-hero{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center 40%;background:#EDE8E0}
+#p-corporate .corp-intro{max-width:62rem;margin:22px auto 8px;text-align:center;font-size:clamp(1rem,1.45vw,1.08rem);line-height:1.6;color:var(--black)}
+#p-corporate .corp-services{border-top:1px solid var(--line);margin-top:28px}
+#p-corporate .corp-services article{padding:26px 0 24px;border-bottom:1px solid var(--line)}
+#p-corporate .corp-services .h3{margin-bottom:6px}
+#p-corporate .corp-services h2{font-size:clamp(1.7rem,3vw,2.3rem);font-weight:400;margin:0 0 8px;line-height:1.08}
+#p-corporate .corp-services p{max-width:none;margin:0;color:#5e5955;font-size:clamp(.98rem,1.4vw,1.05rem);line-height:1.55}
+#p-corporate .corp-teaser{background:#F8F6F1;margin-top:28px;padding:28px 28px 28px 32px;display:grid;grid-template-columns:minmax(0,1.22fr) minmax(0,1fr);gap:28px;align-items:stretch}
+#p-corporate .corp-teaser-copy{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+#p-corporate .corp-teaser h2{font-size:clamp(1.9rem,3.4vw,2.7rem);font-weight:400;margin:4px 0 0;line-height:1.05}
+#p-corporate .corp-gold-rule{width:37px;height:1px;background:var(--gold);margin:12px 0 14px;flex:none}
+#p-corporate .corp-gold-rule.center,#p-annual-partnership .corp-gold-rule.center{margin-left:auto;margin-right:auto}
+#p-corporate .corp-statement{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1.25rem,2.3vw,1.7rem);line-height:1.15;color:var(--black);max-width:none;margin:0 0 12px}
+#p-corporate .corp-teaser-copy > p:not(.corp-statement){color:#55504c;max-width:none;margin:0 0 18px;font-size:clamp(.95rem,1.2vw,1.02rem);line-height:1.5}
+#p-corporate .corp-teaser .btn{margin-top:auto;border-color:var(--gold);max-width:100%}
+#p-corporate .corp-teaser .btn:hover{background:var(--black);color:#fff;border-color:var(--black)}
+#p-corporate .corp-teaser-photo{width:100%;height:300px;object-fit:cover;object-position:center 50%;background:#EDE8E0}
+#p-corporate .corp-featured{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:28px;align-items:center;padding:36px 0 8px}
+#p-corporate .corp-featured h2{font-size:clamp(1.6rem,2.8vw,2.15rem);font-weight:400;margin:6px 0 12px;line-height:1.08}
+#p-corporate .corp-featured p{color:#635e59;max-width:none;margin:0;font-size:clamp(.95rem,1.15vw,1.02rem);line-height:1.5}
+#p-corporate .corp-featured-photo{width:100%;aspect-ratio:2.12/1;object-fit:cover;object-position:center 55%;background:#EDE8E0}
+#p-corporate .corp-values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));text-align:center;padding:22px 0 8px}
+#p-corporate .corp-values > div{padding:0 8px}
+#p-corporate .corp-values > div:not(:last-child){border-right:1px solid rgba(163,132,67,.75)}
+#p-corporate .corp-values strong{display:block;font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1.45rem,2.6vw,1.85rem);line-height:1}
+#p-corporate .corp-values span{display:block;margin-top:8px;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);line-height:1.35}
+#p-corporate .corp-closing{text-align:center;padding:18px 0 72px}
+#p-annual-partnership .pt{padding-bottom:18px}
+#p-annual-partnership .pt .h3{margin-bottom:8px}
+#p-annual-partnership .pt h1{text-transform:none;letter-spacing:0;font-weight:400;font-size:clamp(1.9rem,5.4vw,4.05rem);line-height:1.02;max-width:100%}
+#p-annual-partnership .pt .sub{max-width:18em;margin-left:auto;margin-right:auto;color:var(--black);font-size:clamp(1.2rem,2.6vw,1.85rem);line-height:1.15}
+#p-annual-partnership .partner-intro{max-width:50rem;margin:16px auto 22px;text-align:center;color:#66615e;font-size:clamp(1rem,1.4vw,1.08rem);line-height:1.55}
+#p-annual-partnership .partner-hero .btn{margin-bottom:6px}
+#p-annual-partnership .partner-wrap{padding-bottom:72px}
+#p-annual-partnership .partner-banner{width:100%;aspect-ratio:2.5/1;object-fit:cover;object-position:center 55%;background:#EDE8E0}
+#p-annual-partnership .partner-kicker{text-align:center;font-family:var(--sans);font-weight:400;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);line-height:1.45;margin:0}
+#p-annual-partnership .partner-benefits{padding-top:36px}
+#p-annual-partnership .partner-benefit-grid{display:grid;grid-template-columns:1fr 1fr;margin-top:18px}
+#p-annual-partnership .partner-benefit{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:start;padding:16px 18px 22px 4px;border-bottom:1px solid var(--line);min-width:0}
+#p-annual-partnership .partner-benefit:nth-child(odd){border-right:1px solid var(--line)}
+#p-annual-partnership .partner-benefit:nth-child(even){padding-left:22px}
+#p-annual-partnership .partner-benefit:nth-child(n+3){border-bottom:0;padding-top:22px}
+#p-annual-partnership .partner-benefit svg{width:34px;height:34px;stroke:var(--gold);fill:none;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round}
+#p-annual-partnership .partner-benefit h3{font-family:var(--sans);font-weight:400;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;line-height:1.35;margin:2px 0 6px}
+#p-annual-partnership .partner-benefit p{margin:0;max-width:none;color:#6b6763;font-size:.92rem;line-height:1.45}
+#p-annual-partnership .partner-process{padding:36px 0 8px}
+#p-annual-partnership .partner-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:22px}
+#p-annual-partnership .partner-step{text-align:center;padding:0 18px 6px;min-width:0}
+#p-annual-partnership .partner-step:not(:last-child){border-right:1px solid var(--line)}
+#p-annual-partnership .partner-num{font-family:var(--serif);font-weight:400;font-size:2.6rem;line-height:1}
+#p-annual-partnership .partner-step .corp-gold-rule{margin:8px auto 12px}
+#p-annual-partnership .partner-step h3{font-size:1.4rem;font-weight:400;margin:0 0 8px;line-height:1.15}
+#p-annual-partnership .partner-step p{margin:0 auto;max-width:28ch;color:#77716d;font-size:.92rem;line-height:1.4}
+#p-annual-partnership .partner-invest{margin:28px 0 8px;padding:36px 22px 34px;text-align:center;background:#F8F6F1}
+#p-annual-partnership .partner-invest h2{font-style:italic;font-weight:400;font-size:clamp(1.65rem,3.4vw,2.65rem);line-height:1.15;margin:10px auto 12px;max-width:16em}
+#p-annual-partnership .partner-invest p{max-width:52rem;margin:0 auto;color:#6e6761;font-size:.98rem;line-height:1.5}
+#p-annual-partnership .partner-who{text-align:center;padding:28px 0 32px}
+#p-annual-partnership .partner-who p{font-family:var(--serif);font-size:clamp(1.12rem,2vw,1.45rem);line-height:1.55;max-width:none;margin:14px auto 0}
+#p-annual-partnership .partner-dot{color:var(--gold);padding:0 6px}
+#p-annual-partnership .partner-inquiry{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.87fr);gap:28px;background:var(--ivory);padding:28px;scroll-margin-top:120px}
+#p-annual-partnership .partner-inquiry .h3{margin-bottom:6px}
+#p-annual-partnership .partner-inquiry h2{font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:400;margin:4px 0 8px;line-height:1.05}
+#p-annual-partnership .partner-inquiry-lead{color:#76716d;max-width:none;margin:0 0 16px;font-size:.95rem;line-height:1.45}
+#partnershipInquiry{gap:12px}
+#partnershipInquiry label{display:block;margin:0;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#524c46}
+#partnershipInquiry label span{display:block;margin-bottom:6px}
+#partnershipInquiry input,#partnershipInquiry select,#partnershipInquiry textarea{width:100%;min-height:44px;padding:12px;background:#fff;border:1px solid #d4cfc8;color:var(--black);font-family:var(--sans);font-weight:300;font-size:16px;border-radius:0}
+#partnershipInquiry textarea{min-height:96px;resize:vertical}
+#partnershipInquiry input::placeholder,#partnershipInquiry textarea::placeholder{color:#9a948c}
+#partnershipInquiry .btn{justify-self:start;width:auto;max-width:100%;margin-top:4px}
+#partnershipInquiry button:disabled{opacity:.72;cursor:progress}
+#p-annual-partnership .partner-thanks{display:none;font-family:var(--serif);font-style:italic;font-size:1.25rem;line-height:1.45;color:var(--black);max-width:none;margin:8px 0 0}
+#inquire.is-thanks #partnershipInquiry{display:none}
+#inquire.is-thanks .partner-thanks{display:block}
+#p-annual-partnership .partner-return{margin:14px 0 0;color:#726d68;max-width:none;font-size:.95rem}
+#p-annual-partnership .partner-return a{color:#a17f58;border-bottom:1px solid var(--gold);padding-bottom:1px}
+#p-annual-partnership .partner-inquiry-photo{width:100%;height:100%;max-height:425px;min-height:280px;object-fit:cover;object-position:center 50%;background:#EDE8E0}
+@media(max-width:820px){
+  #p-corporate .corp-featured{grid-template-columns:1fr;gap:18px}
+  #p-corporate .corp-featured-photo{order:-1;aspect-ratio:2.2/1}
+}
+@media(max-width:720px){
+  #p-corporate .corp-teaser{grid-template-columns:1fr;gap:16px;padding:22px 18px}
+  #p-corporate .corp-teaser-photo{height:260px;order:-1}
+  #p-corporate .corp-teaser .btn{max-width:none}
+  #p-annual-partnership .partner-inquiry{grid-template-columns:1fr;padding:22px 18px}
+  #p-annual-partnership .partner-inquiry-photo{min-height:200px;max-height:280px;order:-1}
+  #p-annual-partnership .partner-banner{aspect-ratio:2.1/1}
+  #partnershipInquiry .btn{justify-self:stretch;width:100%}
+}
+@media(max-width:640px){
+  #p-annual-partnership .partner-kicker{letter-spacing:.12em;font-size:.62rem}
+  #p-annual-partnership .pt .h3{letter-spacing:.14em}
+  #p-corporate .corp-hero{aspect-ratio:16/9}
+}
+@media(max-width:520px){
+  #p-corporate .corp-hero{aspect-ratio:1.7/1}
+  #p-corporate .corp-featured-photo{aspect-ratio:1.9/1}
+  #p-corporate .corp-services h2{font-size:1.7rem}
+  #p-corporate .corp-intro,#p-corporate .corp-services p,#p-corporate .corp-teaser-copy > p:not(.corp-statement),#p-corporate .corp-featured p{font-size:.95rem;line-height:1.5}
+  #p-annual-partnership .partner-benefit-grid{grid-template-columns:1fr}
+  #p-annual-partnership .partner-benefit,#p-annual-partnership .partner-benefit:nth-child(even),#p-annual-partnership .partner-benefit:nth-child(n+3){border-right:0;border-bottom:1px solid var(--line);padding:16px 4px}
+  #p-annual-partnership .partner-benefit:last-child{border-bottom:0}
+  #p-annual-partnership .partner-steps{grid-template-columns:1fr;gap:8px}
+  #p-annual-partnership .partner-step{padding:0 8px 18px;border-bottom:1px solid var(--line);border-right:0}
+  #p-annual-partnership .partner-step:last-child{border-bottom:0}
+  #p-annual-partnership .partner-banner{aspect-ratio:1.75/1}
+  #p-annual-partnership .partner-inquiry-photo{display:none}
+  #p-annual-partnership .partner-intro,#p-annual-partnership .partner-benefit p,#p-annual-partnership .partner-step p,#p-annual-partnership .partner-invest p,#p-annual-partnership .partner-inquiry-lead{font-size:.95rem;line-height:1.5}
+}
+
 </style>
 
 </head>
@@ -515,7 +646,7 @@ footer .legal a:hover{color:var(--gold)}
       <ul id="navList">
       <li><a href="#who" data-go="who">Meet Fayola</a></li>
       <li><a href="#what" data-go="what">What We Do</a></li>
-      <li><a href="#corporate" data-go="corporate">Corporate</a></li>
+      <li class="nav-item-corporate"><a href="#corporate" data-go="corporate">Corporate</a><a class="nav-sub" href="#annual-partnership" data-go="annual-partnership"><span aria-hidden="true">↳ </span>Annual Design Partnership</a></li>
       <li><a href="#private" data-go="private">Private</a></li>
       <li><a href="#work" data-go="work">Work</a></li>
       <li><a href="#journal" data-go="journal">Journal</a></li>
@@ -646,32 +777,144 @@ footer .legal a:hover{color:var(--gold)}
 
 <!-- ============ CORPORATE ============ -->
 <section class="page" id="p-corporate">
-  <div class="pt"><h1>Corporate</h1><div class="rule"></div>
-    <div class="sub">Galas, awards nights and appreciation events, designed so your people feel it, and your sponsors photograph it.</div></div>
-  <div class="wrap"><div class="fig wide"><img src="images/pmi-wdc-2026/pmi-wdc-conference-general-session-jw-marriott-reston-ballroom.jpg" alt="PMI Washington DC Chapter 2026 conference general session at JW Marriott Reston: panel on white lounge seating before a branded stage, guests at navy-draped round tables with floral centerpieces" width="1672" height="941" style="object-position:center 40%"></div></div>
-  <div class="section"><div class="narrow center">
-    <p>Most corporate event companies sell you AV and staging. We start with the people in the room. For associations, nonprofits, banks and employers across DC, Maryland and Virginia, we handle the full visual experience: concept, branded installations, tablescapes, vendor direction, install and breakdown, on a fixed budget with one point of contact. The only thing your committee manages is the microphone.</p>
-  </div></div>
-  <div class="wrap">
-    <div class="offer"><div><div class="who">Associations &amp; nonprofits</div><h3>Gala &amp; Awards Design</h3><p>Concept, branded stage and step-and-repeat, tablescapes, entry moment, vendor direction, install and breakdown. Design fee and production shown separately.</p></div></div>
-    <div class="offer"><div><div class="who">Employers &amp; HR teams</div><h3>Holiday &amp; Employee Appreciation</h3><p>A December room your team actually wants to be photographed in, designed, produced, and struck the same night. Lock two years at this year's pricing.</p></div></div>
-    <div class="offer"><div><div class="who">Brands &amp; local business</div><h3>Grand Openings &amp; Brand Moments</h3><p>Fast-turn installations for openings, anniversaries and ribbon cuttings, built around the photo your marketing team needs.</p></div></div>
-    <div class="offer"><div><div class="who">Embassies &amp; cultural organizations</div><h3>Cultural Celebrations</h3><p>Protocol-aware design for national days, receptions and heritage events, with the specificity generic producers miss.</p></div></div>
-    <div class="offer"><div><div class="who">Returning clients</div><h3>Annual Design Partnership</h3><p>Your design system on file, priority dates, a quarterly touchpoint, 10% off production and a 48-hour response commitment.</p></div></div>
+  <div class="pt">
+    <h1>Corporate</h1>
+    <div class="rule"></div>
+    <div class="sub">Thoughtfully designed events that reflect your organization<br> and leave a lasting impression.</div>
   </div>
-  <div class="section"><div class="wrap grid2">
-    <div>
-      <div class="fig tall"><img src="images/pmi-wdc-2026/pmi-wdc-awards-gala-centerpiece-navy-linen-ballroom-depth-n088.jpg" alt="Orchid cylinder centerpiece with gold votive on navy linen, ballroom tables and ceiling lights behind, PMI Washington DC Chapter Awards Gala, JW Marriott Reston, Virginia" width="1245" height="1600"></div>
+  <div class="wrap">
+    <img class="corp-hero" src="images/pmi-wdc-2026/pmi-wdc-conference-general-session-jw-marriott-reston-ballroom.jpg" alt="PMI Washington DC Chapter 2026 conference general session at JW Marriott Reston: panel on white lounge seating before a branded stage, guests at navy-draped round tables with floral centerpieces" width="1672" height="941">
+    <p class="corp-intro">From corporate galas and awards ceremonies to grand openings, employee celebrations, and branded experiences, Creative Motion Events creates environments that bring your vision to life — so your people feel it, and your organization is remembered.</p>
+    <div class="corp-services">
+      <article>
+        <div class="h3">Associations &amp; Nonprofits</div>
+        <h2>Gala &amp; Awards Design</h2>
+        <p>Creative concepts, branded stages, thoughtful tablescapes, entrance experiences, vendor direction, and on-site execution. Design fees and production expenses are quoted separately.</p>
+      </article>
+      <article>
+        <div class="h3">Employers &amp; HR Teams</div>
+        <h2>Holiday &amp; Employee Appreciation</h2>
+        <p>Celebrate the people behind your organization. We design memorable holiday events, team recognition celebrations, and company milestones with intention and care.</p>
+      </article>
+      <article>
+        <div class="h3">Brands &amp; Local Businesses</div>
+        <h2>Grand Openings &amp; Brand Moments</h2>
+        <p>Thoughtfully branded installations for grand openings, anniversaries, and ribbon cuttings — built around an experience your guests and marketing team will remember.</p>
+      </article>
+      <article>
+        <div class="h3">Embassies &amp; Cultural Organizations</div>
+        <h2>Cultural Celebrations</h2>
+        <p>Thoughtfully designed receptions, cultural celebrations, and special occasions that honor tradition, reflect cultural identity, and bring communities together.</p>
+      </article>
     </div>
-    <div>
-      <div class="h3">Featured: PMI Washington DC Chapter</div>
-      <h2 style="font-size:clamp(1.9rem,3.4vw,2.8rem);margin-bottom:18px">An awards night the sponsors photographed all evening</h2>
-      <p style="color:var(--grey)">A professional association chapter needed its annual gala to feel like the milestone it was: sponsor-worthy, on budget, and calm for a volunteer committee already running the program. We designed the room, directed every vendor, and handed the committee one contact.</p>
-      <div class="facts"><div>Full<small>Design &amp; production</small></div><div>One<small>Point of contact</small></div><div>Calm<small>Prepared on-site direction</small></div></div>
+    <section class="corp-teaser" aria-labelledby="partnerTeaserTitle">
+      <div class="corp-teaser-copy">
+        <div class="h3">For organizations with recurring events</div>
+        <h2 id="partnerTeaserTitle">Annual Design Partnership</h2>
+        <div class="corp-gold-rule"></div>
+        <p class="corp-statement">Your Events. One Creative Partner.<br>All Year Long.</p>
+        <p>A dedicated creative partner for organizations hosting three or more events annually. Enjoy consistent creative direction, advance planning, and coordinated visual production. Each event has its own scope and budget, with no separate annual membership fee.</p>
+        <a class="btn" href="#annual-partnership" data-go="annual-partnership">Explore Annual Partnerships <span aria-hidden="true">→</span></a>
+      </div>
+      <img class="corp-teaser-photo" src="images/corporate/hydrangea-rose-urn-centerpiece.jpg" alt="Colorful hydrangeas and roses in an antique-gold urn at a corporate event" width="920" height="800">
+    </section>
+    <section class="corp-featured" aria-labelledby="featuredTitle">
+      <div>
+        <div class="h3">Featured: PMI Washington DC Chapter</div>
+        <h2 id="featuredTitle">An awards night the sponsors photographed all evening</h2>
+        <p>A professional association chapter wanted its annual gala to feel like the milestone it was: sponsor-worthy, on budget, and calm for its volunteer committee. We designed the room, directed the creative vendors, and provided one point of contact.</p>
+      </div>
+      <img class="corp-featured-photo" src="images/pmi-wdc-2026/pmi-wdc-awards-gala-navy-table-orchid-centerpiece-stage-glow-095.jpg" alt="Navy gala table with gold chargers and an orchid centerpiece, stage screen glowing behind, at the PMI Washington DC Chapter Awards Gala, JW Marriott Reston, Virginia" width="2000" height="1365">
+    </section>
+    <div class="corp-values" aria-label="Our approach">
+      <div><strong>Full</strong><span>Design &amp; Production</span></div>
+      <div><strong>One</strong><span>Point of Contact</span></div>
+      <div><strong>Calm</strong><span>Prepared On-Site Direction</span></div>
     </div>
-  </div></div>
-  <div class="wrap center" style="padding-bottom:70px">
-    <a class="btn btn-solid" href="#contact" data-go="contact">Request a Corporate Proposal</a>
+    <div class="corp-closing">
+      <a class="btn btn-solid" href="#contact" data-go="contact">Request a Corporate Proposal <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ANNUAL DESIGN PARTNERSHIP ============ -->
+<section class="page" id="p-annual-partnership">
+  <div class="pt partner-hero">
+    <p class="h3">For Organizations With 3+ Events a Year</p>
+    <h1>Annual Design Partnership</h1>
+    <div class="rule"></div>
+    <div class="sub">One Creative Partner. Every Event. All Year Long.</div>
+    <p class="partner-intro">Your team has enough to manage. You shouldn't have to restart the design process for every event. We get to know your organization, your brand, and your vision so each experience builds on an established creative relationship.</p>
+    <a class="btn btn-solid" href="#inquire" data-scroll="inquire">Discuss Your Event Calendar <span aria-hidden="true">→</span></a>
+  </div>
+  <div class="wrap partner-wrap">
+    <img class="partner-banner" src="images/annual-partnership/design-materials-color-swatches-flatlay.jpg" alt="Creative direction workspace with event planning materials, photo inspiration, color swatches and gold pen" width="578" height="232">
+    <section class="partner-benefits" aria-labelledby="benefitsTitle">
+      <h2 id="benefitsTitle" class="partner-kicker">Why Partner With Us?</h2>
+      <div class="corp-gold-rule center"></div>
+      <div class="partner-benefit-grid">
+        <article class="partner-benefit">
+          <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="14" r="5"/><circle cx="8" cy="19" r="4"/><circle cx="32" cy="19" r="4"/><path d="M10 31v-3c0-5 4-8 10-8s10 3 10 8v3M2 32v-4c0-4 2-6 6-6m24 0c4 0 6 2 6 6v4"/></svg>
+          <div><h3>One Familiar Creative Director</h3><p>A consistent point of contact from event to event.</p></div>
+        </article>
+        <article class="partner-benefit">
+          <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M13 25c-2-2-4-5-4-9a11 11 0 0 1 22 0c0 4-2 7-4 9-2 1-3 3-3 6h-8c0-3-1-5-3-6zM16 35h8M18 38h4M20 1v3M5 8l3 3M35 8l-3 3M2 19h4M34 19h4"/></svg>
+          <div><h3>Design That Knows Your Brand</h3><p>Distinct events with continuity in your standards and vision.</p></div>
+        </article>
+        <article class="partner-benefit">
+          <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="5" y="9" width="30" height="27" rx="2"/><path d="M5 16h30M13 4v10M27 4v10"/></svg>
+          <div><h3>Plan Ahead</h3><p>Review your annual calendar and receive priority consideration for available dates.</p></div>
+        </article>
+        <article class="partner-benefit">
+          <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M17 3h6l1 5 4 2 4-2 4 5-3 4v6l3 4-4 5-4-2-4 2-1 5h-6l-1-5-4-2-4 2-4-5 3-4v-6l-3-4 4-5 4 2 4-2z"/><circle cx="20" cy="20" r="6"/></svg>
+          <div><h3>Production Direction</h3><p>We coordinate approved design vendors and oversee visual installations for each contracted event.</p></div>
+        </article>
+      </div>
+    </section>
+    <section class="partner-process" aria-labelledby="processTitle">
+      <h2 class="partner-kicker" id="processTitle">How It Works</h2>
+      <div class="corp-gold-rule center"></div>
+      <div class="partner-steps">
+        <article class="partner-step"><span class="partner-num">01</span><div class="corp-gold-rule"></div><h3>Share Your Calendar</h3><p>Tell us about your events, goals, and budgets.</p></article>
+        <article class="partner-step"><span class="partner-num">02</span><div class="corp-gold-rule"></div><h3>Establish the Partnership</h3><p>Agree on a customized 12-month commitment covering three or more events.</p></article>
+        <article class="partner-step"><span class="partner-num">03</span><div class="corp-gold-rule"></div><h3>Scope Each Event</h3><p>Every event has its own proposal, design fee, approved production budget, and execution plan.</p></article>
+      </div>
+    </section>
+    <section class="partner-invest" aria-labelledby="investmentTitle">
+      <div class="partner-kicker">Your Investment, Clearly Explained</div>
+      <h2 id="investmentTitle">No separate annual membership fee.</h2>
+      <p>Commit to at least three events in 12 months. Each event is priced individually. Florals, rentals, signage, lighting, staffing, and outside vendor costs are budgeted separately.<br>This is not an unlimited event package.</p>
+    </section>
+    <section class="partner-who" aria-label="Who the annual partnership is for">
+      <h2 class="partner-kicker">Who It's For</h2>
+      <div class="corp-gold-rule center"></div>
+      <p>Corporations <span class="partner-dot">·</span> Associations <span class="partner-dot">·</span> Nonprofits <span class="partner-dot">·</span> Employers <span class="partner-dot">·</span> Cultural organizations</p>
+      <p><em>Galas</em> <span class="partner-dot">·</span> <em>Conferences</em> <span class="partner-dot">·</span> <em>Awards</em> <span class="partner-dot">·</span> <em>Employee celebrations</em> <span class="partner-dot">·</span> <em>Grand openings</em> <span class="partner-dot">·</span> <em>Branded experiences</em></p>
+    </section>
+    <section class="partner-inquiry" id="inquire" aria-labelledby="inquireTitle">
+      <div>
+        <p class="h3">Let's Plan Your Year Together</p>
+        <h2 id="inquireTitle">Tell Us What's on Your Calendar.</h2>
+        <p class="partner-inquiry-lead">Share a few details and we'll be in touch to discuss whether an Annual Design Partnership is right for your organization.</p>
+        <form id="partnershipInquiry" action="https://formsubmit.co/hello@creativemotionevents.com" method="POST">
+          <input type="hidden" name="_subject" value="Annual Design Partnership inquiry">
+          <input type="hidden" name="_captcha" value="true">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" id="partnership-next" value="https://launchandlevelupstudio.github.io/creative-motion-events-by-fay/?partnership=thanks#annual-partnership">
+          <input type="hidden" name="_replyto" id="partnership-replyto" value="">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <label><span>Contact Name</span><input name="Contact Name" autocomplete="name" required placeholder="Your name"></label>
+          <label><span>Organization</span><input name="Organization" autocomplete="organization" required placeholder="Company or association"></label>
+          <label><span>Work Email</span><input type="email" name="Work Email" id="partnership-email" autocomplete="email" required placeholder="name@organization.com"></label>
+          <label><span>Events Per Year</span><select name="Events Per Year" required><option value="">Select a number</option><option>1–2</option><option>3–4</option><option>5–7</option><option>8+</option></select></label>
+          <label><span>Upcoming Event Types / Details</span><textarea name="Upcoming Event Types / Details" placeholder="Tell us about your upcoming events, dates, and goals"></textarea></label>
+          <button class="btn btn-solid" type="submit">Request a Partnership Consultation <span aria-hidden="true">→</span></button>
+        </form>
+        <p class="partner-thanks" id="partnershipThanks">Thank you. Your Annual Design Partnership inquiry is in. You can expect a response within 1-2 business days.</p>
+        <p class="partner-return">Planning just one event? <a href="#corporate" data-go="corporate">Explore Corporate Events.</a></p>
+      </div>
+      <img class="partner-inquiry-photo" src="images/annual-partnership/gold-cocktail-tables-cream-florals.jpg" alt="Elegant gold cocktail tables, cream florals, and candlelight at a contemporary event space" width="219" height="248">
+    </section>
   </div>
 </section>
 
@@ -5471,7 +5714,7 @@ footer .legal a:hover{color:var(--gold)}
 <script>
 /* hash router: one small landing page, menu opens each page */
 if('scrollRestoration' in window.history){window.history.scrollRestoration='manual'}
-const pages=['home','who','what','corporate','private','work','work-corporate','work-corporate-galas','work-corporate-grand-openings','work-private','work-private-engagements','work-private-bridal','album-titi-bridal-shower','album-jazmine-jaleesa-engagement','album-pnc-grand-opening','album-able-health-grand-opening','album-pmi-wdc-awards-gala','journal','post-employee-appreciation','post-sponsor-recognition','post-hiring-designer','contact'];
+const pages=['home','who','what','corporate','annual-partnership','private','work','work-corporate','work-corporate-galas','work-corporate-grand-openings','work-private','work-private-engagements','work-private-bridal','album-titi-bridal-shower','album-jazmine-jaleesa-engagement','album-pnc-grand-opening','album-able-health-grand-opening','album-pmi-wdc-awards-gala','journal','post-employee-appreciation','post-sponsor-recognition','post-hiring-designer','contact'];
 function scrollToTop(){
   window.scrollTo(0,0);
   document.documentElement.scrollTop=0;
@@ -5492,12 +5735,16 @@ function toggleMenu(){
 }
 if(menuToggle){menuToggle.addEventListener('click',e=>{e.stopPropagation();toggleMenu()})}
 function go(p){
+  if(p==='inquire')p='annual-partnership';
   if(!pages.includes(p))p='home';
   pages.forEach(x=>{const el=document.getElementById('p-'+x);if(el)el.classList.toggle('on',x===p)});
-  const navKey=(p==='work'||p.startsWith('work-')||p.startsWith('album-'))?'work':p;
-  document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.dataset.go===navKey));
+  document.querySelectorAll('nav a').forEach(a=>{
+    const key=a.dataset.go;
+    const on=!!key && (key===p || ((p==='work'||p.startsWith('work-')||p.startsWith('album-'))&&key==='work') || (p==='annual-partnership'&&key==='corporate'));
+    a.classList.toggle('on',on);
+  });
   closeMenu();
-  try{window.history.replaceState(null,'','#'+p)}catch(e){}
+  try{window.history.replaceState(null,'',location.pathname+'#'+p)}catch(e){}
   scrollToTop();
   requestAnimationFrame(scrollToTop);
 }
@@ -5505,9 +5752,56 @@ document.addEventListener('click',e=>{
   const a=e.target.closest('[data-go]');
   if(a){e.preventDefault();go(a.dataset.go)}
 });
-go((location.hash||'#home').slice(1));
-window.addEventListener('load',scrollToTop);
-document.addEventListener('DOMContentLoaded',scrollToTop);
+const partnershipThanks=new URLSearchParams(location.search).get('partnership')==='thanks';
+let start=(location.hash||'#home').slice(1).split(/[?&]/)[0];
+if(partnershipThanks) start='annual-partnership';
+go(start);
+if(partnershipThanks){
+  const inquire=document.getElementById('inquire');
+  if(inquire) inquire.classList.add('is-thanks');
+  setTimeout(()=>{if(inquire) inquire.scrollIntoView({block:'start'})},80);
+}
+document.addEventListener('click',e=>{
+  const s=e.target.closest('[data-scroll]');
+  if(!s) return;
+  const el=document.getElementById(s.getAttribute('data-scroll'));
+  if(!el) return;
+  e.preventDefault();
+  el.scrollIntoView({behavior:'smooth',block:'start'});
+});
+(function(){
+  const form=document.getElementById('partnershipInquiry');
+  if(!form) return;
+  const next=document.getElementById('partnership-next');
+  const reply=document.getElementById('partnership-replyto');
+  const email=document.getElementById('partnership-email');
+  const FALLBACK='https://launchandlevelupstudio.github.io/creative-motion-events-by-fay/?partnership=thanks#annual-partnership';
+  function nextUrl(){
+    try{
+      if(location.protocol==='http:'||location.protocol==='https:'){
+        return location.origin+location.pathname+'?partnership=thanks#annual-partnership';
+      }
+    }catch(err){}
+    return FALLBACK;
+  }
+  if(next) next.value=nextUrl();
+  form.addEventListener('submit',function(){
+    if(next) next.value=nextUrl();
+    if(reply&&email) reply.value=email.value;
+    const btn=form.querySelector('button[type="submit"]');
+    if(btn){btn.disabled=true;btn.setAttribute('aria-busy','true');}
+  });
+})();
+function settleScroll(){
+  if(partnershipThanks){
+    const inquire=document.getElementById('inquire');
+    if(inquire) inquire.scrollIntoView({block:'start',behavior:'auto'});
+    return;
+  }
+  scrollToTop();
+}
+window.addEventListener('load',settleScroll);
+document.addEventListener('DOMContentLoaded',settleScroll);
 
 /* work browse: Work → Corporate/Private → subcategory → album */
 
@@ -5515,7 +5809,7 @@ document.addEventListener('DOMContentLoaded',scrollToTop);
 
 const SYSTEM=`You are Iris, the concierge for Creative Motion Events (CME), an event design and creative direction practice in the Washington DC / Maryland / Virginia area, led personally by creative director Fayola Whyte-Manco. Fayola is the brand. She designs and directs every event herself.
 
-What CME does: event design and creative direction, full production and vendor direction. Corporate: galas and awards nights, holiday and employee appreciation events, grand openings and brand moments, cultural and embassy events, and an Annual Design Partnership (design system on file, priority dates, quarterly touchpoints, discounted production, 48-hour response). Private celebrations: milestone birthdays, showers, dinners, destination events.
+What CME does: event design and creative direction, full production and vendor direction. Corporate: galas and awards nights, holiday and employee appreciation events, grand openings and brand moments, cultural and embassy events, and an Annual Design Partnership for organizations hosting three or more events a year (one creative director across the year, each event scoped and priced on its own, no separate annual membership fee, and not an unlimited package). Private celebrations: milestone birthdays, showers, dinners, destination events.
 
 Proof points: the PMI Washington DC Chapter Awards Gala, the PNC Bank Wheaton grand opening, and an embassy cultural celebration. In business since 2017, 200+ events, largely referral-driven. Fully insured; COI available.
 
