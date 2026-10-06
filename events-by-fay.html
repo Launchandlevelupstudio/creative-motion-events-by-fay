@@ -28,9 +28,11 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;color:var(--ink);background:var(--paper);font-family:'DM Sans',Arial,sans-serif;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-button,input{font:inherit}
-button{cursor:pointer}
+/* Page link/control styles stay inside the page wrapper so they cannot restyle the shared site header. */
+.ebf a{color:inherit;text-decoration:none}
+.ebf button,.ebf input,.dialog button,.dialog input{font:inherit}
+.ebf button,.dialog button{cursor:pointer}
+.ebf{position:relative;z-index:0}
 .wrap{max-width:1190px;width:calc(100% - 82px);margin:auto}
 .serif{font-family:'Italiana','Bodoni MT','Didot','Times New Roman',serif;font-weight:400}
 .smallcaps{font-size:11px;font-weight:600;letter-spacing:.27em;text-transform:uppercase}
@@ -46,7 +48,7 @@ button{cursor:pointer}
 .pillbtn:hover{transform:translateY(-2px);filter:brightness(1.06)}
 
 /* Full-bleed editorial hero. Drinks photo is BACKGROUND, never a floating card. */
-.hero{position:relative;background:var(--blackplum);min-height:645px;color:var(--ivory);display:flex;align-items:center;overflow:hidden;isolation:isolate}
+.hero{position:relative;z-index:0;background:var(--blackplum);min-height:645px;color:var(--ivory);display:flex;align-items:center;overflow:hidden;isolation:isolate}
 .hero-image{position:absolute;z-index:-3;inset:0 0 0 auto;width:69%;background-image:url('images/events-by-fay/hero-cocktails.jpg');background-size:cover;background-position:center 39%}
 .hero:before{content:'';position:absolute;z-index:-2;inset:0;background:linear-gradient(90deg,#1a050def 0%,#24040feF 24%,rgba(38,3,17,.93) 39%,rgba(33,4,14,.52) 60%,rgba(16,2,8,.07) 88%),linear-gradient(0deg,rgba(21,2,10,.38),transparent 30%)}
 .hero-inner{position:relative;padding:68px 0 64px}
@@ -219,12 +221,13 @@ button{cursor:pointer}
 main section[id]{scroll-margin-top:150px}
 @media(max-width:640px){main section[id]{scroll-margin-top:130px}}
 
-/* Site header and footer. Scoped so they do not restyle the Events by Fay page. */
-header.site-header{background:#fff;z-index:50;position:sticky;top:0;color:#161311;font-family:"Jost",-apple-system,"Segoe UI",sans-serif;font-weight:300}
+/* Site header and footer. Scoped so they do not restyle the Events by Fay page.
+   Font size and line-height match the main site body, which this page does not share. */
+header.site-header{background:#fff;z-index:50;position:sticky;top:0;color:#161311;font-family:"Jost",-apple-system,"Segoe UI",sans-serif;font-weight:300;font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
 header.site-header .bar{max-width:1180px;margin:0 auto;padding:18px 24px 0;display:flex;flex-direction:column;align-items:center}
 header.site-header .wm{display:flex;flex-direction:column;align-items:center;line-height:1.1;text-align:center;color:#161311;text-decoration:none}
 header.site-header .wm .co{font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:#A38443}
-header.site-header .wm .by{font-family:"Cormorant Garamond",Garamond,"Times New Roman",serif;font-style:italic;font-size:1.35rem;margin-top:3px;font-weight:400}
+header.site-header .wm .by{font-family:"Cormorant Garamond",Garamond,"Times New Roman",serif;font-style:italic;font-weight:300;font-size:1.35rem;margin-top:3px}
 header.site-header nav{margin-top:14px;width:100%;position:relative}
 header.site-header nav ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0 2.4rem;margin:0;padding:0 12px;position:relative}
 header.site-header nav ul::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:#C8C2B8;z-index:0}
@@ -245,6 +248,7 @@ header.site-header .menu-toggle::before,header.site-header .menu-toggle::after{c
 header.site-header .menu-toggle::before{margin-bottom:12px}
 header.site-header .menu-toggle::after{margin-top:12px}
 @media(max-width:640px){
+  header.site-header{border-bottom:0}
   header.site-header nav{padding-bottom:0;margin-top:6px}
   header.site-header nav ul{display:none;flex-direction:column;align-items:center;gap:0;padding:8px 0 4px}
   header.site-header nav ul::before{display:none}
@@ -252,7 +256,7 @@ header.site-header .menu-toggle::after{margin-top:12px}
   header.site-header nav.open ul{display:flex}
   header.site-header nav a{border:0;padding:11px 12px;font-size:.72rem;letter-spacing:.34em;color:#A8A29A;background:transparent;font-weight:300;box-shadow:none}
   header.site-header nav a:hover,header.site-header nav a:focus-visible,header.site-header nav a.on{background:transparent;color:#161311;box-shadow:none}
-  header.site-header
+  header.site-header .menu-toggle{display:block}
 }
 footer.site-footer{padding:44px 24px 48px;text-align:center;border-top:1px solid #DCD7CF;background:#fff;color:#161311;font-family:"Jost",-apple-system,"Segoe UI",sans-serif;font-weight:300}
 footer.site-footer .social{display:flex;justify-content:center;flex-wrap:wrap;align-items:center;gap:16px 22px}
@@ -283,7 +287,7 @@ footer.site-footer .legal{margin-top:22px;font-size:.62rem;letter-spacing:.2em;t
   </div>
 </header>
 
-<main>
+<main class="ebf">
 
  <section class="hero" aria-labelledby="hero-title">
   <div class="hero-image" aria-hidden="true"></div>
