@@ -183,12 +183,35 @@ blockquote cite{display:block;font-family:var(--sans);font-style:normal;font-siz
 @media(max-width:520px){.steps{grid-template-columns:1fr}}
 
 /* about */
-.about-quote{font-family:var(--serif);font-style:italic;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.35;text-align:center;max-width:26ch;margin:0 auto}
-.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;margin-top:10px}
+.bio-grid{align-items:start}
+.bio-name{font-size:clamp(2.05rem,3vw,2.7rem);font-weight:400;line-height:1.05;margin:0 0 18px}
+.bio p+p{margin-top:16px}
+.bio .h3{margin-top:32px}
+.bio-emphasis{font-family:var(--serif);font-style:italic;font-size:1.28rem;line-height:1.45;color:var(--black);margin-top:22px}
+.philosophy{background:var(--ivory);margin-top:72px;padding:68px 0 56px}
+.philosophy .about-quote{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1.48rem,2.4vw,2.05rem);line-height:1.38;text-align:center;max-width:17.5em;margin:0 auto;padding:0;border:0;color:var(--black)}
+.about-gold{width:52px;height:1px;background:var(--gold);margin:30px auto 46px}
+.about-points{list-style:none;display:grid;grid-template-columns:1fr;gap:42px;margin:0;padding:0}
+.about-kicker{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.about-kicker span:first-child{font-family:var(--sans);font-size:.72rem;letter-spacing:.16em;color:var(--gold);font-weight:400;line-height:1}
+.about-hair{height:1px;background:var(--line);flex:1}
+.about-points h3{font-size:clamp(1.45rem,2vw,1.7rem);font-weight:400;margin:0 0 10px;line-height:1.15}
+.about-points p{color:var(--grey);font-size:.96rem;line-height:1.7;margin:0;max-width:none}
+.about-stats{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:46px;padding-top:22px;border-top:1px solid var(--line);font-family:var(--sans);font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;color:var(--grey);font-weight:400}
+.about-stat-rule{width:1px;height:16px;background:#C8C2B8;flex:none}
+@media(min-width:1040px){
+  .about-points{grid-template-columns:repeat(3,1fr);gap:40px 36px}
+  .philosophy{margin-top:84px;padding:80px 0 64px}
+}
+@media(max-width:640px){
+  .philosophy{margin-top:48px;padding:52px 0 40px}
+  .about-gold{margin:26px auto 36px}
+  .about-points{gap:34px}
+  .about-stats{margin-top:36px;gap:16px;letter-spacing:.2em;font-size:.64rem}
+}
 .pillar{border-top:1px solid var(--black);padding-top:18px}
 .pillar h3{font-size:1.5rem;margin-bottom:8px}
 .pillar p{color:var(--grey);font-size:.94rem}
-@media(max-width:700px){.pillars{grid-template-columns:1fr}}
 .celebrate{display:grid;grid-template-columns:1fr 1fr;gap:34px 56px;margin-top:8px}
 @media(max-width:760px){.celebrate{grid-template-columns:1fr;gap:28px}}
 .pt h2{font-size:1.6rem;letter-spacing:.18em;text-transform:uppercase;font-weight:300}
@@ -204,8 +227,6 @@ blockquote cite{display:block;font-family:var(--sans);font-style:normal;font-siz
   .album-links a{display:block;margin:8px 0}
   .album-links .dot{display:none}
 }
-.creds{display:flex;flex-wrap:wrap;justify-content:center;gap:16px 50px;font-family:var(--serif);font-size:1.25rem;letter-spacing:.06em;text-transform:uppercase;color:var(--grey)}
-
 /* work */
 .tile{position:relative}
 a.tile{display:block;text-decoration:none;color:inherit}
@@ -543,30 +564,49 @@ footer .legal a:hover{color:var(--gold)}
 <section class="page" id="p-who">
   <div class="pt"><h1>Meet Fayola</h1><div class="rule"></div>
     <div class="sub">Creative direction &amp; event design</div></div>
-  <div class="wrap grid2">
+  <div class="wrap grid2 bio-grid">
     <div class="fig tall"><img src="images/fayola-meet.jpg" alt="Fayola Whyte-Manco"></div>
-    <div>
-      <div class="h3">Her Approach</div>
-      <p>Fayola Whyte-Manco is a Washington DC event designer and creative director working across DC, Maryland and Virginia. She designs the room and directs the production herself: concept, installations, tablescapes, vendor direction, install and breakdown, so the people in it can simply be present.</p>
-      <p style="margin-top:18px">Since 2017 she's produced more than 200 events, nearly all of them by referral: association galas and awards nights, a bank branch grand opening, an embassy cultural celebration, and the milestone birthdays, showers and dinners families remember for years.</p>
-      <div class="h3" style="margin-top:34px">Her Story</div>
-      <p>Long before the business, there was a little girl pulling her friends together, arranging the food, setting the space, making sure everyone felt special. Not because anyone asked; because making people feel good has always been who she is. Fayola designed her own wedding in 2011, turned that passion into a company in 2017, and still puts her heart into every room herself. The florals, the installations, the details are executed with precision. What drives her is people.</p>
+    <div class="bio">
+      <h2 class="bio-name">Fayola Whyte-Manco</h2>
+      <p>Fayola Whyte-Manco is the Founder and Creative Director of Creative Motion Events, an event design and production company serving Washington, DC, Maryland, and Virginia.</p>
+      <p>Since 2017, she has brought more than 200 events to life, building her business largely through referrals and meaningful client relationships. Her experience spans corporate galas, grand openings, cultural celebrations, and beautifully curated private events.</p>
+      <p>With an eye for detail and a passion for creating memorable experiences, Fayola oversees the creative vision, design, and production of each event. From the initial concept to the final installation, she brings together the right people and elements to create an experience that feels effortless for her clients.</p>
+      <div class="h3">Her Story</div>
+      <p>Long before Creative Motion Events, there was a little girl who loved bringing people together. Whether arranging the food, setting up a space, or making sure everyone felt special, creating experiences for others came naturally.</p>
+      <p>In 2011, Fayola designed her own wedding, never imagining that her passion would eventually become a business. In 2017, Creative Motion Events was born.</p>
+      <p>Today, that same passion continues to shape her work. While her designs have evolved, her purpose remains the same: creating beautiful spaces, meaningful moments, and experiences that bring people together.</p>
+      <p class="bio-emphasis">Because for Fayola, it has never been just about the décor. It's always been about the people.</p>
     </div>
   </div>
 
-  <div class="section"><div class="narrow">
-    <p class="about-quote">"Life moves fast and quietly. We get so caught up in the everyday that we forget to stop, to celebrate ourselves, to celebrate each other."</p>
-  </div></div>
-
-  <div class="wrap pillars">
-    <div class="pillar"><h3>People first</h3><p>The design serves the people. Every decision is made for how the space feels to the person walking into it.</p></div>
-    <div class="pillar"><h3>Corporate and private</h3><p>Boardrooms and ballrooms, family tables and branded stages: the same care, the same calm.</p></div>
-    <div class="pillar"><h3>Relationships over transactions</h3><p>One point of contact from first conversation to breakdown, and a partner your committee never has to question.</p></div>
+  <div class="philosophy">
+    <div class="wrap">
+      <blockquote class="about-quote">“Life moves fast and quietly. We get so caught up in the everyday that we forget to stop, to celebrate ourselves, to celebrate each other.”</blockquote>
+      <div class="about-gold" aria-hidden="true"></div>
+      <ol class="about-points">
+        <li>
+          <div class="about-kicker" aria-hidden="true"><span>01</span><span class="about-hair"></span></div>
+          <h3>People First</h3>
+          <p>Beautiful design is only part of the experience. What matters most is how people feel, the connections made, and the memories they take with them.</p>
+        </li>
+        <li>
+          <div class="about-kicker" aria-hidden="true"><span>02</span><span class="about-hair"></span></div>
+          <h3>Corporate &amp; Private Experiences</h3>
+          <p>From corporate celebrations and branded experiences to intimate gatherings and milestone occasions, every event is thoughtfully designed with intention, creativity, and attention to detail.</p>
+        </li>
+        <li>
+          <div class="about-kicker" aria-hidden="true"><span>03</span><span class="about-hair"></span></div>
+          <h3>A Personal Approach</h3>
+          <p>We believe the best experiences begin with genuine relationships. Every client, every vision, and every detail matters. Our commitment is to make the process feel collaborative, organized, and personal from beginning to end.</p>
+        </li>
+      </ol>
+      <div class="about-stats">
+        <span>Established 2017</span>
+        <span class="about-stat-rule" aria-hidden="true"></span>
+        <span>200+ Events</span>
+      </div>
+    </div>
   </div>
-
-  <div class="section"><div class="creds">
-    <span>Established 2017</span><span>200+ Events</span><span>Referral-Driven</span><span>Fully Insured · COI Available Upon Request</span>
-  </div></div>
 </section>
 
 <!-- ============ WHAT WE DO ============ -->
