@@ -59,6 +59,14 @@ nav a.strong:hover{color:var(--black);background:transparent}
   header{border-bottom:0}
   nav{padding-bottom:0}
 }
+@media(min-width:641px) and (max-width:1200px){
+  nav ul{gap:0 1.15rem}
+  nav a{letter-spacing:.18em;padding:10px 2px}
+}
+@media(min-width:641px) and (max-width:860px){
+  nav ul{gap:0 .7rem}
+  nav a{letter-spacing:.12em;font-size:.62rem;padding:10px 1px}
+}
 
 /* pages */
 .page{display:none}.page.on{display:block}
@@ -466,6 +474,7 @@ footer .legal a:hover{color:var(--gold)}
       <li><a href="#private" data-go="private">Private</a></li>
       <li><a href="#work" data-go="work">Work</a></li>
       <li><a href="#journal" data-go="journal">Journal</a></li>
+      <li><a href="events-by-fay.html">Events by Fay</a></li>
       <li><a href="#contact" data-go="contact">Contact</a></li>
       </ul>
       <button type="button" class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navList">MENU</button>
