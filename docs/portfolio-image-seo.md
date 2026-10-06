@@ -31,6 +31,7 @@ Use this for every Creative Motion Events Work album (covers + gallery shots). G
 | PNC Bank Grand Opening | `pnc-bank-grand-opening-maryland-` |
 | Jazmine & Jaleesa Engagement Dinner | `jazmine-jaleesa-engagement-dinner-maryland-` |
 | Titi Bridal Shower | `titi-bridal-shower-maryland-` |
+| PMI Washington DC Chapter Awards Gala & Conference (JW Marriott Reston, Oct 2026) | `pmi-wdc-` files in `images/pmi-wdc-2026/` |
 
 ### Examples
 
@@ -90,6 +91,11 @@ Keep it one natural sentence. Swap details so images aren’t identical.
 
 - Cover: `Luxury bridal shower tablescape and floral event design by Creative Motion Events in Maryland`
 - Variant: `Miss to Mrs bridal shower backdrop and seating design by Creative Motion Events in Maryland`
+
+**PMI Washington DC Chapter — Awards Gala & Conference (JW Marriott Reston, Oct 2026)**
+
+- Cover: `Finished ballroom with navy tables, orchid centerpieces and the lit 2026 PMIWDC Conference stage for the PMI Washington DC Chapter Awards Gala, JW Marriott Reston, Virginia`
+- Credit on the album: Photography: Danielle Clark. Do not credit the phone shot (PMI-091) as that credit when it is used on its own.
 
 ### Work landing / category covers
 
