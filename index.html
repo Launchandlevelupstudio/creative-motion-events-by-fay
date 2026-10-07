@@ -626,19 +626,20 @@ footer .legal a:hover{color:var(--gold)}
 #p-what .pt h1{font-size:clamp(1.35rem, 4.6vw, 2.15rem);letter-spacing:.24em}
 #p-what .pt .rule{width:52px;margin-top:14px}
 #p-what .pt .sub{font-size:clamp(1.02rem, 3.1vw, 1.28rem);margin-top:12px;line-height:1.35}
-#p-what .what-hero{margin:22px 0 0}
-#p-what .what-hero img{display:block;width:100%;height:auto;aspect-ratio:5/2;object-fit:cover;object-position:center 30%}
+#p-what .what-hero{position:relative;margin:22px 0 0;aspect-ratio:2.4/1;overflow:hidden}
+#p-what .what-hero img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center 38%}
 #p-what .what-block{margin-top:34px}
 #p-what .what-block .h3{margin-bottom:12px}
 #p-what .what-list{list-style:none;border-top:1px solid var(--line);margin:0}
 #p-what .what-list li{font-family:var(--serif);font-weight:400;font-size:clamp(1.05rem, 2.6vw, 1.28rem);line-height:1.3;color:var(--black);padding:11px 0 12px;border-bottom:1px solid var(--line)}
-#p-what .what-grid{display:grid;grid-template-columns:1.12fr 1fr;gap:10px;align-items:stretch;margin-top:22px}
+#p-what .what-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);gap:6px;align-items:stretch;margin-top:22px}
 #p-what .what-grid-main{position:relative;min-height:0;min-width:0}
-#p-what .what-grid-main img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%}
-#p-what .what-stack{display:grid;gap:10px;min-width:0}
-#p-what .what-stack img{display:block;width:100%;height:auto;aspect-ratio:2.05/1;object-fit:cover}
-#p-what .what-stack img.team{object-position:center 32%}
-#p-what .what-stack img.olive{object-position:center 34%}
+#p-what .what-grid-main img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% 42%}
+#p-what .what-stack{display:grid;gap:6px;min-width:0;align-content:start}
+#p-what .what-stack figure{position:relative;aspect-ratio:2.05/1;margin:0;min-width:0;overflow:hidden}
+#p-what .what-stack img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
+#p-what .what-stack .team img{object-position:center 10%}
+#p-what .what-stack .olive img{object-position:center 48%}
 #p-what .what-banner{margin-top:28px}
 #p-what .what-banner img{display:block;width:100%;height:auto;aspect-ratio:3.75/1;object-fit:cover;object-position:center 24%}
 #p-what .what-steps{display:grid;grid-template-columns:1fr 1fr;gap:32px 36px;margin:8px 0 64px}
@@ -652,8 +653,8 @@ footer .legal a:hover{color:var(--gold)}
   #p-what .pt{padding:64px 0 28px}
   #p-what .what-hero{margin-top:26px}
   #p-what .what-block{margin-top:42px}
-  #p-what .what-grid{margin-top:26px;gap:12px}
-  #p-what .what-stack{gap:12px}
+  #p-what .what-grid{margin-top:26px;gap:8px}
+  #p-what .what-stack{gap:8px}
 }
 @media(max-width:640px){
   #p-what .what-col{width:min(860px, calc(100% - 40px))}
@@ -662,8 +663,8 @@ footer .legal a:hover{color:var(--gold)}
   #p-what .what-hero{margin-top:16px}
   #p-what .what-block{margin-top:26px}
   #p-what .what-list li{padding:8px 0 9px}
-  #p-what .what-grid{gap:8px;margin-top:16px}
-  #p-what .what-stack{gap:8px}
+  #p-what .what-grid{grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);gap:4px;margin-top:16px}
+  #p-what .what-stack{gap:4px}
   #p-what .what-banner{margin-top:22px}
   #p-what .what-steps{gap:22px 14px;margin-bottom:48px}
   #p-what .what-step{gap:8px 10px}
@@ -806,8 +807,8 @@ footer .legal a:hover{color:var(--gold)}
         <img src="images/what-we-do/team-greenery-prep.jpg" alt="Two event staff in black shirts arranging greenery with floral shears">
       </figure>
       <div class="what-stack">
-        <img class="team" src="images/what-we-do/cme-event-staff-team-group.jpg" alt="Five event staff in black polo shirts posing together in front of a balloon installation">
-        <img class="olive" src="images/what-we-do/olive-tree-planter-install.jpg" alt="An event staff member placing a small olive tree into a white planter">
+        <figure class="team"><img src="images/what-we-do/cme-event-staff-team-group.jpg" alt="Five event staff in black polo shirts posing together in front of a balloon installation"></figure>
+        <figure class="olive"><img src="images/what-we-do/olive-tree-planter-install.jpg" alt="An event staff member placing a small olive tree into a white planter"></figure>
       </div>
     </div>
   </div>
