@@ -228,14 +228,11 @@ main section[id]{scroll-margin-top:150px}
    Font size and line-height match the main site body, which this page does not share. */
 header.site-header{background:#fff;z-index:50;position:sticky;top:0;color:#161311;font-family:"Jost",-apple-system,"Segoe UI",sans-serif;font-weight:300;font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
 header.site-header .bar{max-width:1180px;margin:0 auto;padding:18px 24px 0;display:flex;flex-direction:column;align-items:center}
-header.site-header .wm{display:flex;align-items:center;justify-content:center;line-height:0;color:#161311;text-decoration:none}
-header.site-header .wm picture{display:block}
+header.site-header .wm{display:flex;align-items:center;justify-content:center;line-height:0;color:#161311;text-decoration:none;width:100%}
+header.site-header .wm picture{display:flex;justify-content:center;width:100%}
 header.site-header .wm img{height:48px;width:auto;max-width:none}
-header.site-header .wm .logo-mark{display:none}
 @media(max-width:768px){
-  header.site-header .wm .logo-wide{display:none}
-  header.site-header .wm .logo-mark{display:block}
-  header.site-header .wm .logo-mark img{height:44px}
+  header.site-header .wm img{height:auto;width:auto;max-height:38px;max-width:85%}
 }
 header.site-header nav{margin-top:14px;width:100%;position:relative}
 header.site-header nav ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0 2.4rem;margin:0;padding:0 12px;position:relative}
@@ -285,10 +282,6 @@ footer.site-footer .legal{margin-top:22px;font-size:.62rem;letter-spacing:.2em;t
       <picture class="logo-wide">
         <source srcset="images/brand/cm-logo-horizontal.webp" type="image/webp">
         <img src="images/brand/cm-logo-horizontal.png" alt="Creative Motion Events by Fay">
-      </picture>
-      <picture class="logo-mark">
-        <source srcset="images/brand/cm-logo-monogram.webp" type="image/webp">
-        <img src="images/brand/cm-logo-monogram.png" alt="Creative Motion Events by Fay">
       </picture>
     </a>
     <nav id="siteNav" aria-label="Primary">
