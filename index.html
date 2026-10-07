@@ -31,14 +31,11 @@ p{max-width:64ch}
 /* header (every page) - desktop Nick Gentile line nav; mobile MENU dropdown */
 header{background:var(--white);z-index:50;position:sticky;top:0}
 .bar{max-width:1180px;margin:0 auto;padding:18px 24px 0;display:flex;flex-direction:column;align-items:center}
-.wm{display:flex;align-items:center;justify-content:center;line-height:0}
-.wm picture{display:block}
+.wm{display:flex;align-items:center;justify-content:center;line-height:0;width:100%}
+.wm picture{display:flex;justify-content:center;width:100%}
 .wm img{height:48px;width:auto;max-width:none}
-.wm .logo-mark{display:none}
 @media(max-width:768px){
-  .wm .logo-wide{display:none}
-  .wm .logo-mark{display:block}
-  .wm .logo-mark img{height:44px}
+  .wm img{height:auto;width:auto;max-height:38px;max-width:85%}
 }
 nav{margin-top:14px;width:100%;position:relative}
 nav ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0 2.4rem;margin:0;padding:0 12px;position:relative}
@@ -694,10 +691,6 @@ footer .legal a:hover{color:var(--gold)}
       <picture class="logo-wide">
         <source srcset="images/brand/cm-logo-horizontal.webp" type="image/webp">
         <img src="images/brand/cm-logo-horizontal.png" alt="Creative Motion Events by Fay">
-      </picture>
-      <picture class="logo-mark">
-        <source srcset="images/brand/cm-logo-monogram.webp" type="image/webp">
-        <img src="images/brand/cm-logo-monogram.png" alt="Creative Motion Events by Fay">
       </picture>
     </a>
     <nav id="siteNav" aria-label="Primary">
