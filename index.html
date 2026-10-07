@@ -626,21 +626,20 @@ footer .legal a:hover{color:var(--gold)}
 #p-what .pt h1{font-size:clamp(1.35rem, 4.6vw, 2.15rem);letter-spacing:.24em}
 #p-what .pt .rule{width:52px;margin-top:14px}
 #p-what .pt .sub{font-size:clamp(1.02rem, 3.1vw, 1.28rem);margin-top:12px;line-height:1.35}
-#p-what .what-hero{margin:22px 0 0}
-/* Portrait source. Contain + natural ratio so both people, arms, and the pitcher stay in frame. */
-#p-what .what-hero img{display:block;width:auto;height:auto;max-width:100%;max-height:min(82vh,920px);margin-inline:auto;object-fit:contain;object-position:center center}
+#p-what .what-hero{position:relative;margin:22px 0 0;aspect-ratio:4/3;overflow:hidden}
+#p-what .what-hero img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center 26%}
 #p-what .what-block{margin-top:34px}
 #p-what .what-block .h3{margin-bottom:12px}
 #p-what .what-list{list-style:none;border-top:1px solid var(--line);margin:0}
 #p-what .what-list li{font-family:var(--serif);font-weight:400;font-size:clamp(1.05rem, 2.6vw, 1.28rem);line-height:1.3;color:var(--black);padding:11px 0 12px;border-bottom:1px solid var(--line)}
-/* Greenery (1536/908) shares a height with the team photo (1536/1066). The olive portrait (884/1536) keeps its natural ratio under the team so the face, tree, and planter are not cropped into a strip. */
-#p-what .what-grid{display:grid;grid-template-columns:minmax(0,1.174fr) minmax(0,1fr);gap:12px;align-items:start;margin-top:22px}
-#p-what .what-grid-main{min-width:0;min-height:0}
-#p-what .what-grid-main img{display:block;width:100%;height:auto;max-height:none;aspect-ratio:1536/908;object-fit:contain;object-position:center center}
-#p-what .what-stack{display:flex;flex-direction:column;gap:12px;min-width:0}
-#p-what .what-stack img{display:block;width:100%;height:auto;max-height:none;object-fit:contain;object-position:center center}
-#p-what .what-stack img.team{aspect-ratio:1536/1066;box-sizing:border-box;padding:12px;background:var(--white)}
-#p-what .what-stack img.olive{aspect-ratio:884/1536}
+#p-what .what-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);gap:6px;align-items:stretch;margin-top:22px}
+#p-what .what-grid-main{position:relative;min-height:0;min-width:0}
+#p-what .what-grid-main img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% 42%}
+#p-what .what-stack{display:grid;gap:6px;min-width:0;align-content:start}
+#p-what .what-stack figure{position:relative;aspect-ratio:2.05/1;margin:0;min-width:0;overflow:hidden}
+#p-what .what-stack img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
+#p-what .what-stack .team img{object-position:center 10%}
+#p-what .what-stack .olive img{object-position:center 48%}
 #p-what .what-banner{margin-top:28px}
 #p-what .what-banner img{display:block;width:100%;height:auto;max-height:none;aspect-ratio:1536/902;object-fit:contain;object-position:center center}
 #p-what .what-steps{display:grid;grid-template-columns:1fr 1fr;gap:32px 36px;margin:8px 0 64px}
@@ -654,13 +653,8 @@ footer .legal a:hover{color:var(--gold)}
   #p-what .pt{padding:64px 0 28px}
   #p-what .what-hero{margin-top:26px}
   #p-what .what-block{margin-top:42px}
-  #p-what .what-grid{margin-top:26px;gap:12px}
-  #p-what .what-stack{gap:12px}
-}
-@media(max-width:1100px){
-  /* Full-width stack keeps every photo at its natural ratio when the columns would get too narrow. */
-  #p-what .what-grid{grid-template-columns:1fr;gap:10px}
-  #p-what .what-grid-main img{width:100%;height:auto;aspect-ratio:1536/908;object-fit:contain}
+  #p-what .what-grid{margin-top:26px;gap:8px}
+  #p-what .what-stack{gap:8px}
 }
 @media(max-width:640px){
   #p-what .what-col{width:min(860px, calc(100% - 40px))}
@@ -669,8 +663,8 @@ footer .legal a:hover{color:var(--gold)}
   #p-what .what-hero{margin-top:16px}
   #p-what .what-block{margin-top:26px}
   #p-what .what-list li{padding:8px 0 9px}
-  #p-what .what-grid{gap:8px;margin-top:16px}
-  #p-what .what-stack{gap:8px}
+  #p-what .what-grid{grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);gap:4px;margin-top:16px}
+  #p-what .what-stack{gap:4px}
   #p-what .what-banner{margin-top:22px}
   #p-what .what-steps{gap:22px 14px;margin-bottom:48px}
   #p-what .what-step{gap:8px 10px}
@@ -790,7 +784,7 @@ footer .legal a:hover{color:var(--gold)}
     <div class="pt"><h1>What We Do</h1><div class="rule"></div>
       <div class="sub">Every detail. Every space. Every person.</div></div>
     <figure class="what-hero">
-      <img src="images/what-we-do/team-pitcher-table-setup.jpg" alt="Two event staff in black shirts setting a silver pitcher on a navy table in a ballroom" width="861" height="1536">
+      <img src="images/what-we-do/team-pitcher-table-setup.jpg" alt="Two event staff in black shirts setting a silver pitcher on a navy table in a ballroom" width="1176" height="1689">
     </figure>
     <div class="what-block">
       <div class="h3">Services</div>
@@ -813,8 +807,8 @@ footer .legal a:hover{color:var(--gold)}
         <img src="images/what-we-do/team-greenery-prep.jpg" alt="Two event staff in black shirts arranging greenery with floral shears" width="1536" height="908">
       </figure>
       <div class="what-stack">
-        <img class="team" src="images/what-we-do/cme-event-staff-team-group.jpg" alt="Five event staff in black polo shirts posing together in front of a balloon installation" width="1536" height="1066">
-        <img class="olive" src="images/what-we-do/olive-tree-planter-install.jpg" alt="An event staff member placing a small olive tree into a white planter" width="884" height="1536">
+        <figure class="team"><img src="images/what-we-do/cme-event-staff-team-group.jpg" alt="Five event staff in black polo shirts posing together in front of a balloon installation"></figure>
+        <figure class="olive"><img src="images/what-we-do/olive-tree-planter-install.jpg" alt="An event staff member placing a small olive tree into a white planter"></figure>
       </div>
     </div>
   </div>
