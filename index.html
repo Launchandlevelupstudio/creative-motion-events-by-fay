@@ -284,8 +284,13 @@ a.tile:hover .cap b{color:var(--gold)}
 .faq details[open] summary::after{content:"–"}
 .faq .faq-a{padding:0 0 18px;color:var(--grey);font-size:.95rem;max-width:62ch}
 .post-inline{margin:28px 0 8px}
-.post-inline img{width:100%;height:auto;display:block}
+.post-inline img{width:100%;height:auto;display:block;object-fit:cover}
+.post-inline.portrait{width:100%;max-width:520px;margin-left:auto;margin-right:auto}
 .post-inline figcaption{font-family:var(--serif);font-style:italic;font-size:.95rem;color:var(--grey);margin-top:10px}
+.post-body p+p,.post-body figure+p,.post-body ul+p{margin-top:16px}
+.post-body ul{margin:8px 0 4px;padding-left:1.2em}
+.post-body li+li{margin-top:.4em}
+@media(max-width:640px){.post-inline.portrait{max-width:none}}
 .jcard .thumb{aspect-ratio:16/9;overflow:hidden;background:#EDE8E0}
 .jcard .thumb img{width:100%;height:100%;object-fit:cover;display:block}
 
@@ -5346,25 +5351,25 @@ footer .legal a:hover{color:var(--gold)}
   <div class="wrap">
     <div class="jgrid">
       <a class="jcard" href="#post-employee-appreciation" data-go="post-employee-appreciation">
-        <div class="thumb"><img src="images/pmi-wdc-2026/pmi-wdc-awards-gala-ballroom-lit-stage-alt-n130.jpg" alt="Ballroom set with navy tables and the lit PMIWDC Conference stage for the PMI Washington DC Chapter Awards Gala, JW Marriott Reston, Virginia" width="2000" height="1336" style="object-position:center 40%"></div>
-        <div class="jmeta">Perspective · Buyer education</div>
-        <h3>The Most Underrated Retention Tool in the DMV Is a Room</h3>
-        <p>Employers across Washington, Maryland, and Virginia spend heavily on recruiting and almost nothing on the one evening a year that tells people they were seen.</p>
+        <div class="thumb"><img src="images/journal/pmi-wdc-conference-stage-screen-wide.jpg" alt="The 2026 PMIWDC Conference stage, its wide screen glowing magenta and blue between red-lit curtains, at the PMI Washington DC Chapter Awards Gala" style="aspect-ratio:2400/1385;object-fit:cover"></div>
+        <div class="jmeta">Perspective · Corporate · October 2026</div>
+        <h3>Employee Appreciation Events in the DMV: Why the Room Is the Thank-You</h3>
+        <p>People remember how an appreciation night made them feel, and most of that feeling comes from the room.</p>
         <span class="jread">Read the perspective →</span>
       </a>
       <a class="jcard" href="#post-sponsor-recognition" data-go="post-sponsor-recognition">
-        <div class="thumb"><img src="images/pmi-wdc-2026/pmi-wdc-2026-conference-stage-screen-dc-skyline-n142.jpg" alt="2026 PMIWDC Conference stage screen with a Washington DC skyline graphic at the PMI Washington DC Chapter Awards Gala, JW Marriott Reston, Virginia" width="2000" height="1154"></div>
-        <div class="jmeta">Buyer education · Perspective</div>
-        <h3>Sponsor-Visible Design: How to Make Your Gala Sponsors Look Expensive</h3>
-        <p>The sponsors paid for the evening. The committee owes them a room worth photographing, not a wall of logos.</p>
+        <div class="thumb"><!-- TEMP Post 2 hero: swap for PMI_Fayola-directing photo --><img src="images/what-we-do/on-site-direction-pointing.jpg" alt="Fayola Whyte-Manco, Creative Motion Events event director, directing setup at the PMI Washington DC Chapter Awards Gala" style="aspect-ratio:4045/2448;object-fit:cover"></div>
+        <div class="jmeta">Corporate · Event Direction · October 2026</div>
+        <h3>More Than Décor: What an Event Director Actually Does</h3>
+        <p>A polished event is about much more than what guests see. Someone has to make sure every vendor, detail and timeline works together.</p>
         <span class="jread">Read the perspective →</span>
       </a>
       <a class="jcard" href="#post-hiring-designer" data-go="post-hiring-designer">
-        <div class="thumb"><img src="images/albums/jazmine-jaleesa-engagement/jazmine-jaleesa-engagement-dinner-maryland-gallery-186.jpg" alt="Guests dining along the long tent-covered table at Jazmine &amp; Jaleesa's engagement dinner in Maryland" width="1600" height="1067" style="object-position:center 50%"></div>
-        <div class="jmeta">Buyer education · Perspective</div>
-        <h3>Before You Hire an Event Designer: What First-Time Clients in the DC Area Should Know</h3>
-        <p>The milestone is real. The venue is booked. Now someone has suggested a designer, and you have no idea what that means.</p>
-        <span class="jread">Read the guide →</span>
+        <div class="thumb"><img src="images/albums/jazmine-jaleesa-engagement/jazmine-jaleesa-engagement-dinner-maryland-gallery-186.jpg" alt="Guests seated along a long white-draped table under a sheer white tent, with baby's breath florals, gold-rimmed place settings and glassware down the center" style="aspect-ratio:1600/1067;object-fit:cover"></div>
+        <div class="jmeta">Design notes · Dinners · October 2026</div>
+        <h3>The Long Table: How One Shared Table Changes a Dinner</h3>
+        <p>Rounds work for a program. A long table makes dinner feel like one conversation.</p>
+        <span class="jread">Read the perspective →</span>
       </a>
     </div>
   </div>
@@ -5375,108 +5380,61 @@ footer .legal a:hover{color:var(--gold)}
   <article class="post">
     <div class="post-head">
       <a class="back" href="#journal" data-go="journal">← Journal</a>
-      <div class="jmeta center">Perspective · Buyer education · September 2026</div>
-      <h1>The Most Underrated Retention Tool in the DMV Is a Room</h1>
-      <p class="dek">Employers across Washington, Maryland, and Virginia spend heavily on recruiting and almost nothing on the one evening a year that tells people they were seen. Here is how to change that, and what it actually takes.</p>
+      <div class="jmeta center">Perspective · Corporate · October 2026</div>
+      <h1>Employee Appreciation Events in the DMV: Why the Room Is the Thank-You</h1>
+      <p class="dek">Most employers already know they should thank their people. Fewer think about what the room says while they do it. This is how we approach appreciation events for teams across DC, Maryland and Virginia.</p>
     </div>
 
-    <div class="fig wide post-hero"><img src="images/pmi-wdc-2026/pmi-wdc-awards-gala-ballroom-lit-stage-alt-n130.jpg" alt="Ballroom set with navy tables and the lit PMIWDC Conference stage for the PMI Washington DC Chapter Awards Gala, JW Marriott Reston, Virginia" width="2000" height="1336" style="width:100%;height:100%;object-fit:cover;object-position:center 40%"></div>
+    <div class="fig wide post-hero"><img src="images/journal/pmi-wdc-conference-stage-screen-wide.jpg" alt="The 2026 PMIWDC Conference stage, its wide screen glowing magenta and blue between red-lit curtains, at the PMI Washington DC Chapter Awards Gala" style="width:100%;height:auto;aspect-ratio:21/9;object-fit:cover;object-position:center"></div>
 
     <div class="post-body narrow">
-      <p>Ask any HR director in Rockville or Tysons what keeps their best people, and the answers are predictable: pay, flexibility, a manager who listens. Ask what their employee appreciation event looked like last December, and the room usually goes quiet.</p>
-      <p>It was a conference room. There were platters. Someone found a Bluetooth speaker.</p>
-      <p>That gap, between the retention conversation and the appreciation event, is one of the quietest missed opportunities in the regional economy. The Washington area is home to thousands of employers with 50 to 500 people: federal contractors along the I-270 corridor, biotech in Gaithersburg and Bethesda, law and accounting firms downtown, healthcare systems, association headquarters. Nearly all of them hold some version of a holiday party or appreciation night. Very few treat it as the retention investment it is.</p>
+      <p>An appreciation event is the one time a year an organization thanks its people without a memo or a slide deck. The guest list, the date and the budget matter. What people remember, though, is how the room felt when they walked in.</p>
+      <p>At Creative Motion Events, we design appreciation nights, team celebrations and office milestones for employers, associations and healthcare teams across the DMV. The same few decisions come up every time.</p>
 
-      <h2>The event is the message</h2>
-      <p>An appreciation event is not entertainment. It is a communication, the one time a year an organization says something to its people without a memo, a dashboard, or a performance review in the way.</p>
-      <p>The problem is that most rooms say the wrong thing. A fluorescent-lit space with a folding table and a sheet cake communicates that the evening was an obligation. Nobody planned it because nobody was told they were allowed to.</p>
-      <p>Designed rooms communicate the opposite. Warm lighting instead of overhead panels. A tablescape that someone clearly thought about. A single focal moment, a branded installation, a lounge, a photo backdrop, that gives people somewhere to gather and something to photograph. None of this requires a ballroom. It requires intention.</p>
-
+      <h2>Start with the feeling, not the theme</h2>
+      <p>Before color palettes or centerpieces, we ask one question: what should your team feel when they arrive? Celebrated? Relaxed? Proud of the year they just had? That answer guides everything else. A room meant to feel relaxed needs soft seating and places to talk. A room meant to feel celebratory needs a focal point and a little drama.</p>
       <figure class="post-inline">
-        <img src="images/able-health/able-health-grand-opening-hanover-md-name-card-6.jpg" alt="Calligraphy Reserved and Thank You place card with florals at the Able Health Services grand opening in Hanover, Maryland" width="1600" height="913">
-        <figcaption>Intention shows at the scale of a single place setting.</figcaption>
+        <img src="images/journal/pmi-wdc-welcome-balloon-arch-branded-panel.jpg" alt="A navy, turquoise and orange balloon arch wrapped around an arched 2026 PMIWDC Conference welcome panel in magenta and blue, in the pre-function area at the PMI Washington DC Chapter Awards Gala" style="aspect-ratio:2400/1491" loading="lazy">
+        <figcaption>The arrival is the first thank-you.</figcaption>
       </figure>
 
-      <h2>What appreciation events actually cost in the DMV</h2>
-      <p>Employers new to hiring an event designer are often surprised in both directions: the entry point is lower than they feared, and the difference between "decorated" and "designed" is larger than they assumed.</p>
-      <p>For a 75- to 300-person employee event in the Washington area, the design and production layer, concept, installations, tablescapes, signage, install, and breakdown, separate from venue and catering, typically runs <strong>$6,000 to $20,000</strong>. Venue rental and food are separate lines and often the larger ones.</p>
-      <p>A few principles hold at every budget:</p>
-      <ul>
-        <li><strong>The design fee should be visible.</strong> A professional designer separates creative direction from hard goods (linens, rentals, florals, fabrication). If a quote lumps everything into one number, you cannot tell what you are paying for.</li>
-        <li><strong>One focal moment beats ten small touches.</strong> Guests remember the thing they stood in front of. Spread a budget thin and nothing registers.</li>
-        <li><strong>Install and breakdown are labor, not magic.</strong> Ask who leads it, how many people are on site, and whether next-day breakdown is included or billed.</li>
-      </ul>
-
-      <figure class="post-inline">
-        <img src="images/pmi-wdc-2026/pmi-wdc-creative-motion-team-laying-gold-star-runner-027.jpg" alt="Creative Motion Events team member laying a gold star runner on a navy table during setup for the PMI Washington DC Chapter Awards Gala, JW Marriott Reston, Virginia" width="1600" height="1058">
-        <figcaption>Install is labor, not magic. Ask who leads it.</figcaption>
+      <h2>Light the room, then guide people through it</h2>
+      <p>You don't need a ballroom. Warm, low light in place of overhead panels, a stage that glows instead of glares, and a few pieces someone clearly chose will change a conference center or office floor more than any amount of extra décor.</p>
+      <p>Wayfinding is part of the design, too. Room signs, welcome cubes and directional pieces in the event's colors tell guests where to go, and that someone planned the night with them in mind.</p>
+      <figure class="post-inline portrait">
+        <img src="images/journal/pmi-wdc-signage-tower-thank-you-sponsors.jpg" alt="A stacked signage tower of printed cubes reading Thank You Sponsors &amp; Exhibitors, 2026 PMIWDC Conference, and directions to the Executive Lounge and meeting rooms, at the PMI Washington DC Chapter Awards Gala" style="aspect-ratio:1291/2400" loading="lazy">
+        <figcaption>Even the room signs tell guests they were expected.</figcaption>
       </figure>
 
-      <h2>The calendar problem nobody mentions</h2>
-      <p>Here is the practical reality for Washington-area employers: December dates are decided in September and October.</p>
-      <p>Venues fill first. Designers and their install teams follow. An HR team that begins calling in early November will find the good rooms gone and the remaining vendors stretched across too many events. The result is the same conference room, again, with the same speaker.</p>
-      <p>The employers who consistently host events people talk about have a habit: they book the same designer every year, lock next year's date before this year's party ends, and stop re-sourcing from scratch every fall. It is less work and better work.</p>
-
-      <h2>Four questions to ask before you book</h2>
-      <ol>
-        <li><strong>Have you designed an event for an organization like ours?</strong> Ask for a case study with a photo of the actual room, not a mood board.</li>
-        <li><strong>What does our budget buy, specifically?</strong> A real answer includes a scope: what is in, what is out, what is optional.</li>
-        <li><strong>Who is on site the night of the event?</strong> A named lead, a team size, and a plan for overtime.</li>
-        <li><strong>What happens next year?</strong> The right partner will already be thinking about it.</li>
-      </ol>
-
+      <h2>Give people one place to gather</h2>
+      <p>Spread a budget across ten small touches and nothing stands out. Put it into one strong moment, like a styled lounge, a balloon installation or a branded backdrop, and you give your team a place to gather, talk and take the photo they will share the next morning.</p>
+      <p>At the PMI Washington DC Chapter Awards Gala, the welcome pieces, the signage and the stage all carried the same navy, magenta and blue, so the evening felt like one design from the escalator to the ballroom.</p>
       <figure class="post-inline">
-        <img src="images/pmi-wdc-2026/pmi-wdc-marquee-letters-balloon-wall-099.jpg" alt="PMIWDC marquee letters and navy, teal and orange balloon wall at the PMI Washington DC Chapter Awards Gala, JW Marriott Reston, Virginia" width="1600" height="940">
-        <figcaption>One focal moment beats ten small touches.</figcaption>
+        <img src="images/journal/pmi-wdc-navy-table-stage-glow.jpg" alt="A navy-linen gala table with gold-rimmed chargers, navy napkins, a gold sequin runner and a turquoise and magenta orchid floating-candle centerpiece, with the stage screen glowing magenta and blue behind, at the PMI Washington DC Chapter Awards Gala" style="aspect-ratio:2400/1639" loading="lazy">
+        <figcaption>One palette, from the first sign to the stage.</figcaption>
       </figure>
 
-      <h2>The bottom line</h2>
-      <p>Retention is built in the ordinary weeks. But once a year, an employer gets to make a statement in a single room, in front of everyone at once. The organizations that take that seriously do not spend more than their competitors. They just decide earlier, plan with intention, and hire someone whose job is to make people feel seen.</p>
-      <p>Your people built this year. Give them a room that says so.</p>
+      <h2>Plan early and keep it simple</h2>
+      <p>Year-end dates in the DMV book early, for venues and for design teams. The employers who host the evenings people talk about usually decide on the date, the room and the feeling well ahead of time, and then let one partner carry the design from concept through install and breakdown.</p>
+      <p>If you are planning an appreciation night, holiday gathering or team celebration, we would love to hear about your people and your space.</p>
 
       <div class="post-cta">
-        <p>Creative Motion Events designs and produces employee appreciation events, holiday parties, and recognition moments for employers across Washington, DC, Maryland, and Northern Virginia. December dates are limited.</p>
-        <a class="btn btn-solid" href="#corporate" data-go="corporate">Reserve your date</a>
+        <a class="btn btn-solid" href="#contact" data-go="contact">Begin an inquiry</a>
       </div>
-
-      <div class="faq">
-        <h2>FAQ</h2>
-        <details>
-          <summary>How far in advance should we book a holiday party designer in DC?</summary>
-          <div class="faq-a">For December events, confirm your designer by mid-October. Peak-season install teams are booked by early November.</div>
-        </details>
-        <details>
-          <summary>What is the difference between an event planner and an event designer?</summary>
-          <div class="faq-a">A planner manages logistics, vendors, and timeline. An event designer owns the visual experience: concept, installations, tablescapes, and the on-site look of the room. Some studios do both; ask which model you are buying.</div>
-        </details>
-        <details>
-          <summary>Do we need a large budget for an appreciation event to look intentional?</summary>
-          <div class="faq-a">No. A single well-executed focal installation, good lighting, and a considered tablescape can transform a modest space. Spreading a small budget across many small elements is what makes a room feel thin.</div>
-        </details>
-      </div>
-
-      <div class="post-author">
-        <div class="fig author-photo"><img src="images/fayola-author.jpg" alt="Fayola Whyte-Manco, creative director of Creative Motion Events"></div>
-        <div>
-          <div class="h3" style="margin-bottom:6px">Written by Fayola Whyte-Manco</div>
-          <p style="font-size:.92rem">Creative director of Creative Motion Events, based in the Washington DC / Maryland / Virginia area. Fayola has designed and produced galas, awards nights, and appreciation events for associations, employers, and cultural organizations across the DMV since 2017.</p>
-        </div>
-      </div>
-
     </div>
   </article>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "The Most Underrated Retention Tool in the DMV Is a Room",
-    "description": "Employee appreciation events are the most underused retention tool in the DMV. A Washington-area event designer on what works, what it costs, and when to book.",
+    "headline": "Employee Appreciation Events in the DMV: Why the Room Is the Thank-You",
+    "description": "How a DMV event designer plans employee appreciation events: setting the mood, lighting and wayfinding, one gathering point, and planning early.",
     "author": {"@type": "Person", "name": "Fayola Whyte-Manco", "jobTitle": "Creative Director", "worksFor": {"@type": "Organization", "name": "Creative Motion Events"}},
     "publisher": {"@type": "Organization", "name": "Creative Motion Events by Fay LLC"},
-    "datePublished": "2026-09-01",
+    "datePublished": "2026-10-01",
     "mainEntityOfPage": "https://www.creativemotionevents.com/journal/employee-appreciation-events-dmv",
     "articleSection": "Perspective",
-    "keywords": "employee appreciation event design Maryland, corporate holiday party décor DC, employee appreciation ideas Washington DC"
+    "keywords": "employee appreciation events DMV, appreciation event design Washington DC, corporate team celebration Maryland"
   }
   </script>
 </section>
@@ -5486,110 +5444,78 @@ footer .legal a:hover{color:var(--gold)}
   <article class="post">
     <div class="post-head">
       <a class="back" href="#journal" data-go="journal">← Journal</a>
-      <div class="jmeta center">Buyer education · Perspective · September 2026</div>
-      <h1>Sponsor-Visible Design: How to Make Your Gala Sponsors Look Expensive</h1>
-      <p class="dek">The sponsors paid for the evening. The committee owes them a room worth photographing, not a wall of logos. A Washington-area designer on getting recognition right.</p>
+      <div class="jmeta center">Corporate · Event Direction · October 2026</div>
+      <h1>More Than Décor: What an Event Director Actually Does</h1>
+      <p class="dek">Beautiful design may be what guests notice first, but behind every polished event are timelines, vendors, deliveries, decisions and dozens of moving pieces. That is where event direction comes in.</p>
     </div>
 
-    <div class="fig wide post-hero"><img src="images/pmi-wdc-2026/pmi-wdc-2026-conference-stage-screen-dc-skyline-n142.jpg" alt="2026 PMIWDC Conference stage screen with a Washington DC skyline graphic at the PMI Washington DC Chapter Awards Gala, JW Marriott Reston, Virginia" width="2000" height="1154" style="width:100%;height:100%;object-fit:cover;object-position:center"></div>
+    <!-- TEMP Post 2 hero: swap for PMI_Fayola-directing photo -->
+    <div class="fig wide post-hero"><img src="images/what-we-do/on-site-direction-pointing.jpg" alt="Fayola Whyte-Manco, Creative Motion Events event director, directing setup at the PMI Washington DC Chapter Awards Gala" style="width:100%;height:auto;aspect-ratio:21/9;object-fit:cover;object-position:center"></div>
 
     <div class="post-body narrow">
-      <p>Every nonprofit gala chair in the Washington region knows the moment. The sponsorship packet promised "prominent recognition at the event." The event is now eight weeks out. And somebody on the committee has just asked the question nobody wants to own: <em>where, exactly, are the logos going?</em></p>
-      <p>The default answer is everywhere. A step-and-repeat with fourteen logos in a grid. A slide loop on the screens. Pop-up banners flanking the registration table. Table cards. A line in the program. By the time guests sit down, the ballroom looks less like a celebration and less like a thank-you than a convention floor.</p>
-      <p>Sponsors notice. Not because they wanted less visibility, because they wanted <em>better</em> visibility. There is a difference between being seen and being seen well, and it is the difference your development director will hear about in the renewal call.</p>
+      <h2>The finished room is only part of the job</h2>
+      <p>When guests walk into an event, they see the finished version: the tables are set, signage is standing, the stage is ready and every detail feels intentional.</p>
+      <p>What they do not see is everything that had to happen before those doors opened.</p>
+      <p>For a corporate event, gala, grand opening or awards celebration, décor is only one piece of the production. Someone still has to determine what is needed, source the right vendors, communicate the vision, confirm logistics, manage arrival times and make sure all of those pieces work together inside one space.</p>
+      <p>That is a major part of what I do as an Event Director.</p>
 
-      <h2>Recognition is a design decision, not a placement decision</h2>
-      <p>The instinct to put logos in as many places as possible comes from treating recognition as a checklist. Presenting sponsor: check. Gold sponsors: check. Table sponsors: check.</p>
-      <p>A designer treats it as a hierarchy. The presenting sponsor should own the most photographed square footage in the room. The next tier should be integrated where guests linger. Everyone else should be acknowledged with dignity in a place people will actually read.</p>
-      <p>That hierarchy does two things. It makes the top sponsor feel like they bought something exclusive, which they did. And it makes the room feel intentional, which is what every guest, and every sponsor's CEO, sitting at table three, is silently evaluating.</p>
+      <h2>Design gives us the vision. Direction makes it happen.</h2>
+      <p>Event design starts with how the experience should look and feel. We consider the venue, color palette, focal areas, guest flow, stage, tables, signage, branding and the moments guests will actually interact with.</p>
+      <p>Then comes production.</p>
+      <p>A single event may involve a linen company, balloon installer, florist, rental company, printer, photographer, venue team and additional event staff. Each vendor is responsible for their part, but somebody has to see the entire picture.</p>
+      <p>My job is to make sure those individual pieces ultimately feel like one event.</p>
 
+      <h2>The PMI Washington DC Chapter Awards Gala is a good example</h2>
+      <p>For the PMI Washington DC Chapter Awards Gala at the JW Marriott Reston Station, the room included guest tables, centerpieces, branded signage, balloons, marquee letters, a stage backdrop, lounge details and additional installations throughout the venue.</p>
       <figure class="post-inline">
-        <img src="images/pmi-wdc-2026/pmi-wdc-thank-you-sponsors-signage-tower-n087.jpg" alt="Stacked signage tower thanking sponsors and exhibitors with 2026 PMIWDC Conference branding and wayfinding at the PMI Washington DC Chapter event, JW Marriott Reston, Virginia" width="861" height="1600">
-        <figcaption>The arrival moment sets the register for the evening.</figcaption>
+        <img src="images/journal/pmi-wdc-marquee-letters-balloon-installation.jpg" alt="Lit PMIWDC marquee letters in front of a navy, blue and orange balloon installation on a white marble floor at the PMI Washington DC Chapter Awards Gala" style="aspect-ratio:2400/1410" loading="lazy">
+        <figcaption>One installation inside a larger overall design.</figcaption>
+      </figure>
+      <p>Each element came from a larger overall design, but bringing that design to life required much more than selecting décor.</p>
+      <p>There were vendor arrival times, production schedules, installation locations, venue requirements, staffing and a limited setup window to manage before guests entered the space.</p>
+      <figure class="post-inline">
+        <img src="images/journal/pmi-wdc-navy-linen-draping-setup.jpg" alt="A Creative Motion Events team member unfolding a navy linen during setup, with the sponsor step-and-repeat behind him, at the PMI Washington DC Chapter Awards Gala" style="aspect-ratio:2400/1750" loading="lazy">
+        <figcaption>Setup happens on a schedule, inside a limited window.</figcaption>
+      </figure>
+      <p>That behind-the-scenes coordination is what allows the finished event to feel effortless.</p>
+      <figure class="post-inline">
+        <img src="images/journal/pmi-wdc-event-director-overlooking-ballroom.jpg" alt="Fayola Whyte-Manco, in a Creative Motion Events shirt, looking over the finished ballroom of navy-linen tables and the stage screens before guests arrive at the PMI Washington DC Chapter Awards Gala" style="aspect-ratio:2400/1611" loading="lazy">
+        <figcaption>A last look at the room before the doors open.</figcaption>
       </figure>
 
-      <h2>Where sponsor recognition actually works</h2>
-      <p><strong>The stage.</strong> Nothing else comes close. The stage is where the awards are handed out, where the honoree speaks, where every photographer points every camera. A presenting sponsor's mark integrated into the stage backdrop, dimensional, lit, part of the design rather than stuck on it, appears in every image the organization publishes for the next year. That is the visibility they paid for.</p>
-      <p><strong>The arrival moment.</strong> The first thing guests see sets the register for the evening. A single, well-designed welcome installation carrying the event identity and the presenting sponsor does more than three banners at the door.</p>
-      <p><strong>Where guests gather.</strong> The bar, the lounge, the cocktail-hour vignette. Guests spend forty-five minutes in these spaces before the program begins, and they take photos there. A second-tier sponsor integrated into a lounge moment gets more genuine exposure than a logo on a screen that scrolls past during dinner.</p>
-      <p><strong>The tables.</strong> Table sponsorship is common and often handled badly, a tent card nobody reads. Integrating a sponsor's name into the table design, at the scale of the centerpiece rather than the salt shaker, turns a line item into a moment.</p>
-
+      <h2>Grand openings require the same kind of thinking</h2>
+      <p>Even a smaller event can have several moving parts.</p>
+      <p>For the Able Health Services grand opening, the goal was completely different from an evening gala, but the same approach applied: understand the purpose of the event, identify the areas that mattered most and create a cohesive experience around the client’s brand.</p>
       <figure class="post-inline">
-        <img src="images/pmi-wdc-2026/pmi-wdc-logo-cube-sponsor-lounge-florals-091.jpg" alt="Lit Project Management Institute Washington DC logo cube with floral arrangements in the sponsor lounge, PMI Washington DC Chapter Awards Gala, JW Marriott Reston, Virginia" width="1200" height="1600">
-        <figcaption>Where guests linger is where a sponsor is actually seen.</figcaption>
+        <img src="images/journal/able-health-balloon-column-entrance-install.jpg" alt="Creative Motion Events team members building a pink, lime green, white and gold balloon column at the office entrance, beside the Able Health Services logo wall and balloon garland, at the Able Health Services grand opening in Hanover, Maryland" style="aspect-ratio:2400/1617" loading="lazy">
+        <figcaption>Installing the entrance in the client’s brand colors.</figcaption>
       </figure>
+      <p>The scale may change. The responsibility for making everything work together does not.</p>
 
-      <h2>Where it doesn't</h2>
-      <ul>
-        <li><strong>The logo grid.</strong> A step-and-repeat crammed with every sponsor mark at equal size satisfies a contract and pleases no one. If a backdrop is needed for photos, use it for the event identity and the presenting sponsor only.</li>
-        <li><strong>The slide loop.</strong> Screens belong to the program. A logo carousel during dinner reads as filler and is ignored.</li>
-        <li><strong>The pop-up banner.</strong> Retractable banners are trade-show furniture. In a designed ballroom they look like an apology.</li>
-        <li><strong>The centerpiece flag.</strong> A logo on a stick in the floral arrangement undermines the table and the sponsor at the same time.</li>
-      </ul>
-
-      <h2>What sponsors actually want</h2>
-      <p>Ask any corporate marketing manager who approves gala sponsorships in the DMV what they are buying, and the honest answer is usually two things: association with a cause their leadership cares about, and proof, in photographs, that the money went somewhere that looked serious.</p>
-      <p>The second one is where design earns its place. A sponsor who receives a set of images in which their brand appears, elegantly, inside a room that clearly took thought will renew. A sponsor who receives a photo of their logo on a folding banner beside a fire exit will ask the committee to justify the number.</p>
-
-      <figure class="post-inline">
-        <img src="images/pmi-wdc-2026/pmi-wdc-2026-conference-logo-cookie-purple-ribbon-005.jpg" alt="Custom 2026 PMIWDC Conference logo cookie tied with a purple ribbon, a branded favor at the PMI Washington DC Chapter Awards Gala, JW Marriott Reston, Virginia" width="1600" height="1516">
-        <figcaption>A line item, turned into a moment.</figcaption>
-      </figure>
-
-      <h2>Three things to do before the sponsorship packet goes out</h2>
-      <ol>
-        <li><strong>Write the recognition tiers in design language.</strong> Instead of "logo on signage," say "presenting sponsor integrated into stage design; recognized in welcome installation." It sells better and it forces the committee to decide the hierarchy early.</li>
-        <li><strong>Bring the designer in before the packet is final.</strong> Recognition promised in October has to be delivered in April. The room should be designed around what was sold, not retrofitted to it.</li>
-        <li><strong>Plan the photography.</strong> Sponsor deliverables should include images of their recognition in the room. Book the photographer with a shot list that has the sponsors' names on it.</li>
-      </ol>
-
-      <h2>The room is the renewal</h2>
-      <p>Committees think about sponsors when the money comes in and again when the thank-you notes go out. The evening in between is where the relationship is actually decided. A room that makes a sponsor look expensive is not a favor to the sponsor. It is the organization's best argument for next year.</p>
+      <h2>You should not have to manage every vendor yourself</h2>
+      <p>One of the biggest reasons I moved Creative Motion Events toward full event direction was simple: clients should be able to communicate with one person who understands the complete vision instead of trying to independently manage every creative vendor involved.</p>
+      <p>You are still involved in the decisions. You still know where your budget is going. You still approve the direction.</p>
+      <p>But you do not have to become the person chasing deliveries, answering setup questions and figuring out where the balloon team is supposed to install while also preparing to host your event.</p>
+      <p>That is what I am there for.</p>
+      <p>Planning a corporate event, awards gala, grand opening or branded experience? Tell us what you are creating, and we can help take it from concept through event day.</p>
 
       <div class="post-cta">
-        <p>Creative Motion Events designs and produces galas, awards nights, and annual dinners for associations and nonprofits across Washington, DC, Maryland, and Northern Virginia.</p>
-        <a class="btn btn-solid" href="#corporate" data-go="corporate">See gala design</a>
-        <a class="btn" href="#contact" data-go="contact" style="margin-left:12px">Request a corporate proposal</a>
+        <a class="btn btn-solid" href="#contact" data-go="contact">Begin an inquiry</a>
       </div>
-
-      <div class="faq">
-        <h2>FAQ</h2>
-        <details>
-          <summary>How should a nonprofit recognize gala sponsors at the event?</summary>
-          <div class="faq-a">By hierarchy, not quantity. The presenting sponsor belongs in the stage design; second-tier sponsors in arrival and lounge moments; all others in a single, well-designed acknowledgment guests will actually read.</div>
-        </details>
-        <details>
-          <summary>Is a step-and-repeat necessary at a gala?</summary>
-          <div class="faq-a">Only if photography needs it. If so, reserve it for the event identity and presenting sponsor rather than a grid of every logo.</div>
-        </details>
-        <details>
-          <summary>When should sponsor recognition be planned?</summary>
-          <div class="faq-a">Before the sponsorship packet is finalized. Recognition sold in the packet has to be designed into the room, which is easier when the designer is involved early.</div>
-        </details>
-      </div>
-
-      <div class="post-author">
-        <div class="fig author-photo"><img src="images/fayola-author.jpg" alt="Fayola Whyte-Manco, creative director of Creative Motion Events"></div>
-        <div>
-          <div class="h3" style="margin-bottom:6px">Written by Fayola Whyte-Manco</div>
-          <p style="font-size:.92rem">Creative director of Creative Motion Events, based in the Washington DC / Maryland / Virginia area. Fayola has designed and produced galas, awards nights, and appreciation events for associations, employers, and cultural organizations across the DMV since 2017.</p>
-        </div>
-      </div>
-
     </div>
   </article>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "Sponsor-Visible Design: How to Make Your Gala Sponsors Look Expensive",
-    "description": "Your sponsors funded the gala. A Washington-area event designer on how to recognize them in the room without turning your awards night into a trade show.",
+    "headline": "More Than Décor: What an Event Director Actually Does",
+    "description": "What does an event director actually do? Creative Motion Events shares how event design, vendor management, production, setup and event-day direction come together for polished corporate events in Maryland, DC and Northern Virginia.",
     "author": {"@type": "Person", "name": "Fayola Whyte-Manco", "jobTitle": "Creative Director", "worksFor": {"@type": "Organization", "name": "Creative Motion Events"}},
     "publisher": {"@type": "Organization", "name": "Creative Motion Events by Fay LLC"},
-    "datePublished": "2026-09-01",
+    "datePublished": "2026-10-01",
     "mainEntityOfPage": "https://www.creativemotionevents.com/journal/sponsor-recognition-gala-design",
-    "articleSection": "Buyer education",
-    "keywords": "gala sponsor recognition ideas, gala décor Washington DC, nonprofit gala design Maryland"
+    "articleSection": "Corporate",
+    "keywords": "event director, corporate event design DMV, event production Maryland DC Northern Virginia"
   }
   </script>
 </section>
@@ -5599,126 +5525,73 @@ footer .legal a:hover{color:var(--gold)}
   <article class="post">
     <div class="post-head">
       <a class="back" href="#journal" data-go="journal">← Journal</a>
-      <div class="jmeta center">Buyer education · Perspective · September 2026</div>
-      <h1>Before You Hire an Event Designer: What First-Time Clients in the DC Area Should Know</h1>
-      <p class="dek">The milestone is real. The venue is booked. Now someone has suggested a designer, and you have no idea what that means, what it costs, or whether you need one. This is for you.</p>
+      <div class="jmeta center">Design notes · Dinners · October 2026</div>
+      <h1>The Long Table: How One Shared Table Changes a Dinner</h1>
+      <p class="dek">When the goal is connection rather than a stage program, one of the simplest design decisions is also one of the most powerful: seat everyone at one long table.</p>
     </div>
 
-    <div class="fig wide post-hero"><img src="images/albums/jazmine-jaleesa-engagement/jazmine-jaleesa-engagement-dinner-maryland-gallery-186.jpg" alt="Guests dining along the long tent-covered table at Jazmine &amp; Jaleesa's engagement dinner in Maryland" width="1600" height="1067" style="width:100%;height:100%;object-fit:cover;object-position:center 48%"></div>
+    <div class="fig wide post-hero"><img src="images/albums/jazmine-jaleesa-engagement/jazmine-jaleesa-engagement-dinner-maryland-gallery-186.jpg" alt="Guests seated along a long white-draped table under a sheer white tent, with baby's breath florals, gold-rimmed place settings and glassware down the center" style="width:100%;height:auto;aspect-ratio:21/9;object-fit:cover;object-position:center"></div>
 
     <div class="post-body narrow">
-      <p>There is a particular moment in planning a milestone celebration, a fortieth, a fiftieth, an anniversary, a graduation, a baby shower that has somehow become an event, when the spreadsheet stops helping. The venue is chosen. The date is set. The guest list is finally honest. And the person planning it realizes they have a room and a date and no idea what the room is going to <em>look like</em>.</p>
-      <p>That is usually when a friend says: you should talk to a designer.</p>
-      <p>For most people in the Washington area, that is the first time they have heard the phrase applied to a party. So here is what it means, what it does not mean, and how to know whether it is right for the occasion you are planning.</p>
+      <p>Most event rooms in the DMV default to round tables. They are efficient, familiar and easy for a venue to set. But when the goal of an evening is connection, one long shared table changes the whole night.</p>
 
-      <h2>Designer, planner, or both?</h2>
-      <p>The terms get used interchangeably, and they are not the same job.</p>
-      <p>An <strong>event planner</strong> manages logistics: the timeline, the contracts, the caterer, the transportation, the day-of schedule. Their product is a smooth evening.</p>
-      <p>An <strong>event designer</strong> owns the visual and emotional experience of the room: the concept, the color story, the tablescape, the focal installations, the lighting mood, the way guests move through the space. Their product is a transformed room.</p>
-      <p>Some studios do both. Many venues include a coordinator who handles the planning side. If your venue has one, what you likely need is design, someone to make the room feel like it belongs to the person being celebrated.</p>
-
-      <figure class="post-inline">
-        <img src="images/journal/gala-tablescape.jpg" alt="Event planning timeline beside an event designer's swatches and concept sketch">
-        <figcaption>Two jobs, one evening. Know which one you are hiring.</figcaption>
+      <h2>When a long table works best</h2>
+      <p>A long table works best when the conversation is the program. Leadership dinners, donor and board dinners, client appreciation dinners, team retreats and milestone celebrations all benefit when guests can see down the table and talk across it. Nobody is placed at a table at the back of the room. Everyone is part of the same evening.</p>
+      <figure class="post-inline portrait">
+        <img src="images/albums/jazmine-jaleesa-engagement/jazmine-jaleesa-engagement-dinner-maryland-gallery-029.jpg" alt="A gold cordless lamp with a fluted glass shade between low clusters of baby's breath and a white rose, on a long white-draped table set with gold-beaded chargers, under a sheer white tent" style="aspect-ratio:1067/1600" loading="lazy">
+        <figcaption>One table, one runner, one conversation.</figcaption>
       </figure>
 
-      <h2>What a designer actually does</h2>
-      <p>The process, from the client's side, usually looks like this:</p>
-      <ol>
-        <li><strong>A conversation.</strong> Who is this for, what do they love, what is the room, what is the budget, what would make the evening feel like <em>them</em>.</li>
-        <li><strong>A concept.</strong> A mood board and a written direction, not just "gold and white" but a point of view. Good designers present one strong idea, not a menu.</li>
-        <li><strong>A scope and a proposal.</strong> What is included, what is not, and what it costs, with the design fee shown separately from the rentals and florals.</li>
-        <li><strong>Sourcing and coordination.</strong> Linens, florals, custom pieces, signage, rentals. The designer manages those vendors so you do not.</li>
-        <li><strong>Install day.</strong> A team arrives before guests and transforms the room. This is the part clients describe as magic. It is mostly ladders and a very specific plan.</li>
-        <li><strong>Breakdown.</strong> Often same night, sometimes next morning, depending on the venue.</li>
-      </ol>
+      <h2>Design down the length of the table</h2>
+      <p>A long table is really one continuous centerpiece. We design it as a single runner of color and texture, using greenery, florals, a sequin or linen runner, and candles at a steady rhythm, so the eye travels the full length. Low arrangements keep sightlines open. Place settings repeat exactly, which is what makes the table read as finished from both ends.</p>
+      <p>Seating matters as much as styling. With everyone at one table, the host can sit in the middle instead of at a head table. Toasts can happen from a seat, and the evening feels like a dinner instead of an event. For a client or donor dinner, that ease is often exactly the point.</p>
 
-      <h2>What it costs in the DMV</h2>
-      <p>For a styled private celebration in the Washington area, 40 to 150 guests, a real room, a full concept, design and production typically starts around <strong>$5,000</strong> and rises with guest count, custom elements, and live florals. That figure is separate from venue and catering.</p>
-      <p>Below that threshold, a full install with a team is difficult to deliver well. Some studios offer a smaller drop-off styling product for intimate dinners; ask.</p>
-      <p>Two things to look for in any quote:</p>
+      <h2>Rounds still have their place</h2>
+      <p>For a gala with a stage, an awards program or a large guest count, round tables are usually the right call. At the PMI Washington DC Chapter Awards Gala, navy-linen rounds gave every table a clear view of the stage screens. The question is not which format is better. It is what the evening is for.</p>
+
+      <h2>Three questions before you choose</h2>
       <ul>
-        <li><strong>The design fee is its own line.</strong> You should be able to see what you are paying for creative direction versus what you are paying for tablecloths.</li>
-        <li><strong>The scope names what is excluded.</strong> AV, catering, and the venue itself almost always are. Rush timelines and next-day breakdown are often additional.</li>
+        <li>Is there a program? If guests need to face a stage, start with rounds.</li>
+        <li>How many guests? Long tables shine for intimate and mid-size dinners. Larger groups may need several parallel tables.</li>
+        <li>What should people remember? If the answer is the conversation, choose one table.</li>
       </ul>
 
-      <figure class="post-inline">
-        <img src="images/pmi-wdc-2026/pmi-wdc-creative-motion-team-styling-greenery-n078.jpg" alt="Creative Motion Events team member styling greenery for centerpieces at the PMI Washington DC Chapter Awards Gala, JW Marriott Reston, Virginia" width="1036" height="1600">
-        <figcaption>Magic is mostly ladders and a very specific plan.</figcaption>
+      <h2>Let the stationery finish the table</h2>
+      <p>On a long table, the paper pieces matter as much as the florals. Menus, name cards, place cards and thank-you cards are what guests pick up and read, and they are often what makes a styled table feel truly finished.</p>
+      <figure class="post-inline portrait">
+        <img src="images/albums/jazmine-jaleesa-engagement/jazmine-jaleesa-engagement-dinner-maryland-gallery-004.jpg" alt="A white welcome menu with a gold acrylic name card resting on a gold-beaded charger, with baby's breath and glassware softly blurred behind" style="aspect-ratio:1067/1600" loading="lazy">
+        <figcaption>Paper pieces carry the palette to every seat.</figcaption>
       </figure>
-
-      <h2>When you probably need one</h2>
-      <ul>
-        <li>The room is a blank canvas, a hotel ballroom, a rented loft, a tent, a backyard.</li>
-        <li>The occasion is once-in-a-lifetime and you want it to photograph like it.</li>
-        <li>You are planning it for someone else and want the evening to feel like a gift, not a task.</li>
-        <li>You have tried Pinterest and now have four hundred images and no direction.</li>
-      </ul>
-
-      <h2>When you probably don't</h2>
-      <ul>
-        <li>The venue is already beautiful and fully furnished, and a great florist covers it.</li>
-        <li>The guest list is under 25 and the gathering is a dinner.</li>
-        <li>The budget is fully committed to venue and food, with nothing left for the room.</li>
-      </ul>
-      <p>There is no shame in the second list. A good designer will tell you which list you are on.</p>
-
+      <p>We design stationery in the same palette and theme as the rest of the table. A gold acrylic name card on a crisp white menu picks up the gold-beaded chargers. A calligraphy card in black and white sits quietly beside bright florals. When the paper carries the colors of the linens and centerpieces, the table reads as one design from end to end.</p>
+      <p>Stationery also does practical work. Name and place cards show guests exactly where to sit without a seating chart at the door. A menu tells them what the evening holds. A thank-you card at each setting says what the host wants every guest to hear.</p>
+      <p>And it is often what people take home. A name card or menu slipped into a bag becomes the keepsake from the night, long after the flowers are gone.</p>
       <figure class="post-inline">
-        <img src="images/albums/jazmine-jaleesa-engagement/jazmine-jaleesa-engagement-dinner-maryland-gallery-012.jpg" alt="Gold acrylic name card and welcome menu on a gold-beaded charger at Jazmine &amp; Jaleesa's engagement dinner in Maryland" width="1067" height="1600">
-        <figcaption>Designed for the person, not the palette.</figcaption>
+        <img src="images/journal/able-health-reserved-thank-you-card.jpg" alt="A white folded card reading Reserved in black calligraphy with Thank You beneath it, on a wood table in front of pink florals at the Able Health Services grand opening" style="aspect-ratio:2400/1370" loading="lazy">
+        <figcaption>A simple card, lettered with care, tells a guest they were expected.</figcaption>
       </figure>
-
-      <h2>The question to ask on the first call</h2>
-      <p>Not "what do you charge?" Ask: <em>"What would you do with this room for this person?"</em></p>
-      <p>The answer tells you everything. A designer who asks about the guest of honor before the color palette is the one who will make the room feel like it means something. That is the whole point of the evening, and it is the part a spreadsheet was never going to give you.</p>
+      <p>Planning a leadership dinner, donor evening or celebration and wondering about the layout? We would love to walk the room with you.</p>
 
       <div class="post-cta">
-        <p>Creative Motion Events designs milestone celebrations across Washington, DC, Maryland, and Northern Virginia, and destination events by invitation. Investment starts at $5,000.</p>
         <a class="btn btn-solid" href="#contact" data-go="contact">Begin an inquiry</a>
-        <a class="btn" href="#work" data-go="work" style="margin-left:12px">See recent rooms</a>
       </div>
-
-      <div class="faq">
-        <h2>FAQ</h2>
-        <details>
-          <summary>How much does an event designer cost in Washington, DC?</summary>
-          <div class="faq-a">Styled private celebrations in the DMV typically start around $5,000 for design and production, separate from venue and catering. Guest count, custom pieces, and live florals move the number.</div>
-        </details>
-        <details>
-          <summary>What is the difference between an event designer and an event planner?</summary>
-          <div class="faq-a">A planner manages logistics and timeline. A designer owns the look, feel, and transformation of the room. Some studios do both.</div>
-        </details>
-        <details>
-          <summary>How far in advance should I book an event designer for a milestone birthday?</summary>
-          <div class="faq-a">Three to six months is comfortable. Peak seasons, spring, fall, and December, book earlier in the Washington area.</div>
-        </details>
-      </div>
-
-      <div class="post-author">
-        <div class="fig author-photo"><img src="images/fayola-author.jpg" alt="Fayola Whyte-Manco, creative director of Creative Motion Events"></div>
-        <div>
-          <div class="h3" style="margin-bottom:6px">Written by Fayola Whyte-Manco</div>
-          <p style="font-size:.92rem">Creative director of Creative Motion Events, based in the Washington DC / Maryland / Virginia area. Fayola has designed and produced galas, awards nights, and appreciation events for associations, employers, and cultural organizations across the DMV since 2017.</p>
-        </div>
-      </div>
-
     </div>
   </article>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "Before You Hire an Event Designer: What First-Time Clients in the DC Area Should Know",
-    "description": "Planning a milestone birthday, anniversary, or celebration in the DC area? What first-time clients should know before hiring an event designer in Maryland or DC.",
+    "headline": "The Long Table: How One Shared Table Changes a Dinner",
+    "description": "Why a DMV event designer recommends long-table seating for leadership, donor, client and celebration dinners, and how to design one well.",
     "author": {"@type": "Person", "name": "Fayola Whyte-Manco", "jobTitle": "Creative Director", "worksFor": {"@type": "Organization", "name": "Creative Motion Events"}},
     "publisher": {"@type": "Organization", "name": "Creative Motion Events by Fay LLC"},
-    "datePublished": "2026-09-01",
+    "datePublished": "2026-10-01",
     "mainEntityOfPage": "https://www.creativemotionevents.com/journal/hiring-an-event-designer-dc-first-time",
-    "articleSection": "Buyer education",
-    "keywords": "event designer Washington DC, event designer Rockville MD, milestone birthday party planner DC"
+    "articleSection": "Design notes",
+    "keywords": "long table dinner design, leadership dinner seating DMV, donor dinner event design"
   }
   </script>
 </section>
+
 
 <!-- ============ CONTACT ============ -->
 <section class="page contact" id="p-contact">
