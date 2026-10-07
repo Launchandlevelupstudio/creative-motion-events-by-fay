@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
 <meta name="theme-color" content="#32071b">
 <title>Events by Fay | Curated Experiences Throughout the DMV</title>
 <meta name="description" content="Events by Fay is a curated experiences brand from Creative Motion Events, hosting stylish experiences throughout the DMV. Join the waitlist for the first experience: In Motion.">
@@ -225,9 +228,15 @@ main section[id]{scroll-margin-top:150px}
    Font size and line-height match the main site body, which this page does not share. */
 header.site-header{background:#fff;z-index:50;position:sticky;top:0;color:#161311;font-family:"Jost",-apple-system,"Segoe UI",sans-serif;font-weight:300;font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
 header.site-header .bar{max-width:1180px;margin:0 auto;padding:18px 24px 0;display:flex;flex-direction:column;align-items:center}
-header.site-header .wm{display:flex;flex-direction:column;align-items:center;line-height:1.1;text-align:center;color:#161311;text-decoration:none}
-header.site-header .wm .co{font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:#A38443}
-header.site-header .wm .by{font-family:"Cormorant Garamond",Garamond,"Times New Roman",serif;font-style:italic;font-weight:300;font-size:1.35rem;margin-top:3px}
+header.site-header .wm{display:flex;align-items:center;justify-content:center;line-height:0;color:#161311;text-decoration:none}
+header.site-header .wm picture{display:block}
+header.site-header .wm img{height:48px;width:auto;max-width:none}
+header.site-header .wm .logo-mark{display:none}
+@media(max-width:768px){
+  header.site-header .wm .logo-wide{display:none}
+  header.site-header .wm .logo-mark{display:block}
+  header.site-header .wm .logo-mark img{height:44px}
+}
 header.site-header nav{margin-top:14px;width:100%;position:relative}
 header.site-header nav ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0 2.4rem;margin:0;padding:0 12px;position:relative}
 header.site-header nav ul::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:#C8C2B8;z-index:0}
@@ -263,6 +272,8 @@ footer.site-footer .social{display:flex;justify-content:center;flex-wrap:wrap;al
 footer.site-footer .social a{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border:0;border-radius:50%;overflow:hidden;padding:0;transition:opacity .2s,transform .2s;background:transparent;text-decoration:none}
 footer.site-footer .social a:hover{opacity:.85;transform:translateY(-1px)}
 footer.site-footer .social a img{width:34px;height:34px;object-fit:cover;border-radius:50%;display:block}
+footer.site-footer .footer-mark{display:flex;justify-content:center;margin:0 auto 22px}
+footer.site-footer .footer-mark img{height:48px;width:auto;max-width:none;object-fit:contain;border-radius:0}
 footer.site-footer .legal{margin-top:22px;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:#6B655E;line-height:2}
 
 </style>
@@ -270,7 +281,16 @@ footer.site-footer .legal{margin-top:22px;font-size:.62rem;letter-spacing:.2em;t
 <body>
 <header class="site-header">
   <div class="bar">
-    <a class="wm" href="index.html#home"><span class="co">Creative Motion Events</span><span class="by">Fayola Whyte-Manco</span></a>
+    <a class="wm" href="index.html#home">
+      <picture class="logo-wide">
+        <source srcset="images/brand/cm-logo-horizontal.webp" type="image/webp">
+        <img src="images/brand/cm-logo-horizontal.png" alt="Creative Motion Events by Fay">
+      </picture>
+      <picture class="logo-mark">
+        <source srcset="images/brand/cm-logo-monogram.webp" type="image/webp">
+        <img src="images/brand/cm-logo-monogram.png" alt="Creative Motion Events by Fay">
+      </picture>
+    </a>
     <nav id="siteNav" aria-label="Primary">
       <ul id="navList">
       <li><a href="index.html#who">Meet Fayola</a></li>
@@ -368,6 +388,12 @@ footer.site-footer .legal{margin-top:22px;font-size:.62rem;letter-spacing:.2em;t
 
 </main>
 <footer class="site-footer">
+  <div class="footer-mark">
+    <picture>
+      <source srcset="images/brand/cm-logo-monogram.webp" type="image/webp">
+      <img src="images/brand/cm-logo-monogram.png" alt="Creative Motion Events by Fay">
+    </picture>
+  </div>
   <div class="social">
     <a href="https://www.instagram.com/creative_motion_events?stkn=MWo1ZHBrNDZ5YTd3aA==" target="_blank" rel="noopener" aria-label="Instagram">
       <img src="images/social/instagram.png" alt="" width="34" height="34" decoding="async">
