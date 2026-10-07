@@ -619,30 +619,56 @@ footer .legal a:hover{color:var(--gold)}
   #p-annual-partnership .partner-intro,#p-annual-partnership .partner-benefit p,#p-annual-partnership .partner-step p,#p-annual-partnership .partner-invest p,#p-annual-partnership .partner-inquiry-lead{font-size:.95rem;line-height:1.5}
 }
 
-/* What We Do: process photos. Ratios live on the image (height:auto), same approach as #p-corporate. */
-#p-what .what-phase{margin-top:46px;min-width:0}
-#p-what .what-design{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;margin-top:4px}
-#p-what .what-produce{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:28px 48px;align-items:start}
-#p-what .what-day{display:grid;grid-template-columns:minmax(0,1.28fr) minmax(0,.72fr);gap:28px 48px;align-items:center}
-#p-what .what-figs{display:grid;grid-template-columns:1.2fr .9fr .9fr;gap:14px;align-items:start;min-width:0}
-#p-what .what-figs .fig.wide{grid-column:1 / -1}
-#p-what .what-figs .fig,#p-what .what-day .fig{aspect-ratio:auto;height:auto;max-height:none;min-width:0}
-#p-what .what-figs .fig img,#p-what .what-day .fig img{display:block;width:100%;height:auto;max-height:none;object-fit:cover}
-#p-what .what-figs .fig.wide img,#p-what .what-day .fig.wide img{aspect-ratio:16/9}
-#p-what .what-figs .fig.sq img{aspect-ratio:1/1}
-#p-what .what-figs .fig.tall img{aspect-ratio:4/5;object-position:center 40%}
-#p-what .what-day .fig.wide img{object-position:center 55%}
-#p-what .what-figs .fig.wide img{object-position:center 46%}
-@media(max-width:820px){
-  #p-what .what-design,#p-what .what-produce,#p-what .what-day{grid-template-columns:1fr;gap:22px}
-  #p-what .what-phase{margin-top:34px}
+/* What We Do — editorial column matching the approved mockup */
+#p-what .what-col{width:min(860px, calc(100% - 48px));margin:0 auto}
+#p-what .what-wide{width:min(1040px, calc(100% - 28px));margin:0 auto}
+#p-what .pt{padding:52px 0 22px}
+#p-what .pt h1{font-size:clamp(1.35rem, 4.6vw, 2.15rem);letter-spacing:.24em}
+#p-what .pt .rule{width:52px;margin-top:14px}
+#p-what .pt .sub{font-size:clamp(1.02rem, 3.1vw, 1.28rem);margin-top:12px;line-height:1.35}
+#p-what .what-hero{margin:22px 0 0}
+#p-what .what-hero img{display:block;width:100%;height:auto;aspect-ratio:5/2;object-fit:cover;object-position:center 30%}
+#p-what .what-block{margin-top:34px}
+#p-what .what-block .h3{margin-bottom:12px}
+#p-what .what-list{list-style:none;border-top:1px solid var(--line);margin:0}
+#p-what .what-list li{font-family:var(--serif);font-weight:400;font-size:clamp(1.05rem, 2.6vw, 1.28rem);line-height:1.3;color:var(--black);padding:11px 0 12px;border-bottom:1px solid var(--line)}
+#p-what .what-grid{display:grid;grid-template-columns:1.12fr 1fr;gap:10px;align-items:stretch;margin-top:22px}
+#p-what .what-grid-main{position:relative;min-height:0;min-width:0}
+#p-what .what-grid-main img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%}
+#p-what .what-stack{display:grid;gap:10px;min-width:0}
+#p-what .what-stack img{display:block;width:100%;height:auto;aspect-ratio:2.05/1;object-fit:cover}
+#p-what .what-stack img.team{object-position:center 32%}
+#p-what .what-stack img.olive{object-position:center 34%}
+#p-what .what-banner{margin-top:28px}
+#p-what .what-banner img{display:block;width:100%;height:auto;aspect-ratio:3.75/1;object-fit:cover;object-position:center 24%}
+#p-what .what-steps{display:grid;grid-template-columns:1fr 1fr;gap:32px 36px;margin:8px 0 64px}
+#p-what .what-step{display:grid;grid-template-columns:auto 1fr;gap:12px 14px;align-items:start;min-width:0}
+#p-what .what-num{width:38px;height:38px;border:1px solid var(--gold);border-radius:50%;color:var(--gold);display:grid;place-items:center;font-family:var(--serif);font-size:.92rem;line-height:1;letter-spacing:.02em}
+#p-what .what-step h3{font-family:var(--serif);font-weight:400;font-size:clamp(1.2rem, 2.4vw, 1.55rem);margin:4px 0 6px;line-height:1.15}
+#p-what .what-step p{color:var(--grey);font-size:.92rem;line-height:1.55;margin:0;max-width:none}
+@media(min-width:900px){
+  #p-what .what-col{width:min(820px, 68%)}
+  #p-what .what-wide{width:min(1040px, 82%)}
+  #p-what .pt{padding:64px 0 28px}
+  #p-what .what-hero{margin-top:26px}
+  #p-what .what-block{margin-top:42px}
+  #p-what .what-grid{margin-top:26px;gap:12px}
+  #p-what .what-stack{gap:12px}
 }
 @media(max-width:640px){
-  #p-what .what-figs{grid-template-columns:1fr 1fr}
-  #p-what .what-figs .fig.wide,#p-what .what-figs .fig.tall{grid-column:1 / -1}
-  #p-what .what-figs .fig.wide img,#p-what .what-day .fig.wide img{height:auto;max-height:none;aspect-ratio:16/9}
-  #p-what .what-figs .fig.tall img{height:auto;max-height:none;aspect-ratio:4/5;object-position:center 40%}
-  #p-what .what-figs .fig.sq img{height:auto;max-height:none;aspect-ratio:1/1}
+  #p-what .what-col{width:min(860px, calc(100% - 40px))}
+  #p-what .what-wide{width:min(1040px, calc(100% - 24px))}
+  #p-what .pt{padding:36px 0 16px}
+  #p-what .what-hero{margin-top:16px}
+  #p-what .what-block{margin-top:26px}
+  #p-what .what-list li{padding:8px 0 9px}
+  #p-what .what-grid{gap:8px;margin-top:16px}
+  #p-what .what-stack{gap:8px}
+  #p-what .what-banner{margin-top:22px}
+  #p-what .what-steps{gap:22px 14px;margin-bottom:48px}
+  #p-what .what-step{gap:8px 10px}
+  #p-what .what-num{width:32px;height:32px;font-size:.78rem}
+  #p-what .what-step p{font-size:.82rem;line-height:1.45}
 }
 
 </style>
@@ -753,45 +779,68 @@ footer .legal a:hover{color:var(--gold)}
 
 <!-- ============ WHAT WE DO ============ -->
 <section class="page" id="p-what">
-  <div class="pt"><h1>What We Do</h1><div class="rule"></div>
-    <div class="sub">Every detail. Every space. Every person.</div></div>
-  <div class="wrap"><div class="fig wide"><img src="images/pmi-wdc-2026/pmi-wdc-awards-gala-planner-overlooking-finished-ballroom-n141.jpg" alt="Creative Motion Events planner, seen from behind in a branded shirt, overlooking the finished ballroom and lit stage at the PMI Washington DC Chapter Awards Gala, JW Marriott Reston, Virginia" width="2000" height="1343" class="bias-left"></div></div>
-  <div class="section"><div class="wrap cols">
-    <div><div class="h3">Services</div><ul class="list">
-      <li>Event design &amp; creative direction</li><li>Tablescape &amp; installation design</li>
-      <li>Branded stages, entry moments &amp; step-and-repeat</li><li>Florals &amp; décor sourcing</li>
-      <li>Custom signage &amp; printed material</li><li>Full vendor sourcing &amp; direction</li>
-      <li>Budget oversight &amp; timeline management</li><li>Install lead, on-site direction &amp; breakdown</li>
-      <li>Photography &amp; videography coordination</li><li>Annual design partnerships</li>
-    </ul></div>
-    <div><div class="h3">Capabilities</div><ul class="list">
-      <li>Galas &amp; awards nights</li><li>Holiday &amp; employee appreciation</li>
-      <li>Grand openings &amp; brand moments</li><li>Cultural &amp; embassy celebrations</li>
-      <li>Executive &amp; donor dinners</li><li>Nonprofit &amp; association programs</li>
-      <li>Milestone birthdays &amp; anniversaries</li><li>Showers &amp; intimate gatherings</li>
-      <li>Destination celebrations</li><li>Annual design partnership</li>
-    </ul></div>
-  </div></div>
-  <div class="section"><div class="wrap">
-    <div class="pt" style="padding-top:0"><h1 style="font-size:1.6rem">How We Work</h1><div class="rule"></div></div>
-    <div class="what-phase what-design">
-      <div class="step"><h3>We connect</h3><p>A relaxed, honest conversation about your vision, your people, and what this moment means to you.</p></div>
-      <div class="step"><h3>We design</h3><p>A full creative concept (mood, color, texture and flow) with a proposal in five business days.</p></div>
+  <div class="what-col">
+    <div class="pt"><h1>What We Do</h1><div class="rule"></div>
+      <div class="sub">Every detail. Every space. Every person.</div></div>
+    <figure class="what-hero">
+      <img src="images/what-we-do/team-pitcher-table-setup.jpg" alt="Two event staff in black shirts setting a silver pitcher on a navy table in a ballroom">
+    </figure>
+    <div class="what-block">
+      <div class="h3">Services</div>
+      <ul class="what-list">
+        <li>Event design &amp; creative direction</li>
+        <li>Tablescape &amp; installation design</li>
+        <li>Branded stages, entry moments &amp; step-and-repeat</li>
+        <li>Florals &amp; décor sourcing</li>
+        <li>Custom signage &amp; printed material</li>
+        <li>Full vendor sourcing &amp; direction</li>
+        <li>Install lead, on-site direction &amp; breakdown</li>
+      </ul>
     </div>
-    <div class="what-phase what-produce">
-      <div class="step"><h3>We produce</h3><p>Every vendor, every timeline, every detail, managed and directed so you never have to worry.</p></div>
-      <div class="what-figs">
-        <div class="fig wide"><img src="images/what-we-do/event-staff-linen-setup.jpg" alt="Creative Motion Events event staff preparing navy table linens during setup" width="2000" height="1390"></div>
-        <div class="fig tall"><img src="images/what-we-do/install-olive-tree-placement.jpg" alt="Creative Motion Events team member placing a potted olive tree during an event installation" width="1269" height="2000"></div>
-        <div class="fig sq"><img src="images/able-health/able-health-grand-opening-hanover-md-fayola-balloon-installation.jpg" alt="Fayola Whyte-Manco installing a pink, lime and gold balloon garland at the Able Health Services grand opening in Hanover, Maryland" width="1272" height="1600" style="object-position:center 22%"></div>
-        <div class="fig sq"><img src="images/pmi-wdc-2026/pmi-wdc-marquee-letters-balloon-wall-n171.jpg" alt="Lit PMIWDC marquee letters under a navy, teal and orange balloon wall at the PMI Washington DC Chapter Awards Gala, JW Marriott Reston, Virginia" width="1600" height="1074"></div>
+    <div class="pt"><h1>Behind the Design</h1><div class="rule"></div>
+      <div class="sub">Ideas, details and people that bring it all to life.</div></div>
+  </div>
+  <div class="what-wide">
+    <div class="what-grid">
+      <figure class="what-grid-main">
+        <img src="images/what-we-do/team-greenery-prep.jpg" alt="Two event staff in black shirts arranging greenery with floral shears">
+      </figure>
+      <div class="what-stack">
+        <img class="team" src="images/what-we-do/cme-event-staff-team-group.jpg" alt="Five event staff in black polo shirts posing together in front of a balloon installation">
+        <img class="olive" src="images/what-we-do/olive-tree-planter-install.jpg" alt="An event staff member placing a small olive tree into a white planter">
       </div>
     </div>
-    <div class="what-phase what-day">
-      <div class="fig wide"><img src="images/what-we-do/on-site-direction-team-briefing.jpg" alt="Creative Motion Events team giving on-site direction to event staff in a ballroom before guests arrive" width="2000" height="1210"></div>
-      <div class="step"><h3>You feel it</h3><p>You walk into your event and feel exactly what you hoped for. That's when we know we did our job.</p></div>
+  </div>
+  <div class="what-col">
+    <div class="what-block">
+      <div class="h3">Capabilities</div>
+      <ul class="what-list">
+        <li>Galas &amp; awards nights</li>
+        <li>Holiday &amp; employee appreciation</li>
+        <li>Grand openings &amp; brand moments</li>
+        <li>Cultural &amp; embassy celebrations</li>
+        <li>Executive &amp; donor dinners</li>
+        <li>Nonprofit &amp; association programs</li>
+        <li>Milestone birthdays &amp; anniversaries</li>
+        <li>Showers &amp; intimate gatherings</li>
+        <li>Destination celebrations</li>
+      </ul>
     </div>
-  </div></div>
+  </div>
+  <div class="what-wide">
+    <figure class="what-banner">
+      <img src="images/what-we-do/pmiwdc-marquee-balloon-wall.jpg" alt="Illuminated PMIWDC marquee letters framed by a blue and orange balloon garland">
+    </figure>
+  </div>
+  <div class="what-col">
+    <div class="pt"><h1>How We Work</h1><div class="rule"></div></div>
+    <div class="what-steps">
+      <article class="what-step"><span class="what-num">01</span><div><h3>We connect</h3><p>A relaxed, honest conversation about your vision, your people, and what this moment means to you.</p></div></article>
+      <article class="what-step"><span class="what-num">02</span><div><h3>We design</h3><p>A full creative concept (mood, color, texture and flow) with a proposal in five business days.</p></div></article>
+      <article class="what-step"><span class="what-num">03</span><div><h3>We produce</h3><p>Every vendor, every timeline, every detail, managed and directed so you never have to worry.</p></div></article>
+      <article class="what-step"><span class="what-num">04</span><div><h3>You feel it</h3><p>You walk into your event and feel exactly what you hoped for. That's when we know we did our job.</p></div></article>
+    </div>
+  </div>
 </section>
 
 <!-- ============ CORPORATE ============ -->
