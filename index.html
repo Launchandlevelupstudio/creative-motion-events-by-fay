@@ -5711,13 +5711,21 @@ function go(p){
     a.classList.toggle('on',on);
   });
   closeMenu();
-  try{window.history.replaceState(null,'',location.pathname+'#'+p)}catch(e){}
+  try{
+    window.history.replaceState(null,'',p==='home'?location.pathname+location.search:location.pathname+'#'+p);
+  }catch(e){}
   scrollToTop();
   requestAnimationFrame(scrollToTop);
 }
 document.addEventListener('click',e=>{
   const a=e.target.closest('[data-go]');
-  if(a){e.preventDefault();go(a.dataset.go)}
+  if(a){e.preventDefault();go(a.dataset.go);return}
+  const home=e.target.closest('a[href="#home"]');
+  if(home){e.preventDefault();go('home')}
+});
+window.addEventListener('hashchange',function(){
+  const raw=(location.hash||'').slice(1).split(/[?&]/)[0];
+  if(!location.hash||raw==='home') go('home');
 });
 const partnershipThanks=new URLSearchParams(location.search).get('partnership')==='thanks';
 let start=(location.hash||'#home').slice(1).split(/[?&]/)[0];
