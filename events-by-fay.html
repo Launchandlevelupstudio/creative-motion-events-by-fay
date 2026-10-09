@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32">
-<link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
 <meta name="theme-color" content="#32071b">
 <title>Events by Fay | Curated Experiences Throughout the DMV</title>
 <meta name="description" content="Events by Fay is a curated experiences brand from Creative Motion Events, hosting stylish experiences throughout the DMV. Join the waitlist for the first experience: In Motion.">
@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Italiana&amp;family=Jost:wght@300;400&amp;family=Playfair+Display:ital,wght@0,400;0,500;1,400&amp;display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="images/events-by-fay/hero-cocktails.jpg">
+<link rel="preload" as="image" href="/images/events-by-fay/hero-cocktails.jpg">
 <style>
 
 :root{--paper:#fffaf3;--cream:#fcf5eb;--plum:#390819;--blackplum:#17060e;--wine:#5c0a29;--copper:#ff8b65;--copperdeep:#d96947;--ivory:#fff7eb;--ink:#23151b;--muted:#5a4c4b}
@@ -52,7 +52,7 @@ body{margin:0;color:var(--ink);background:var(--paper);font-family:'DM Sans',Ari
 
 /* Full-bleed editorial hero. Drinks photo is BACKGROUND, never a floating card. */
 .hero{position:relative;z-index:0;background:var(--blackplum);min-height:645px;color:var(--ivory);display:flex;align-items:center;overflow:hidden;isolation:isolate}
-.hero-image{position:absolute;z-index:-3;inset:0 0 0 auto;width:69%;background-image:url('images/events-by-fay/hero-cocktails.jpg');background-size:cover;background-position:center 39%}
+.hero-image{position:absolute;z-index:-3;inset:0 0 0 auto;width:69%;background-image:url('/images/events-by-fay/hero-cocktails.jpg');background-size:cover;background-position:center 39%}
 .hero:before{content:'';position:absolute;z-index:-2;inset:0;background:linear-gradient(90deg,#1a050def 0%,#24040feF 24%,rgba(38,3,17,.93) 39%,rgba(33,4,14,.52) 60%,rgba(16,2,8,.07) 88%),linear-gradient(0deg,rgba(21,2,10,.38),transparent 30%)}
 .hero-inner{position:relative;padding:68px 0 64px}
 .hero .eyebrow{color:#ebd5cd;line-height:1.8;margin-bottom:25px;max-width:390px}
@@ -99,7 +99,7 @@ body{margin:0;color:var(--ink);background:var(--paper);font-family:'DM Sans',Ari
 .offer-card p{font-size:12px;line-height:1.65;color:#655356;margin:0}
 
 .waitlist{position:relative;isolation:isolate;min-height:330px;display:flex;align-items:center;justify-content:center;text-align:center;background:#4c0b26;color:var(--ivory);overflow:hidden;padding:55px 20px}
-.waitlist:before{content:'';position:absolute;z-index:-2;inset:-25px;background:url('images/events-by-fay/waitlist-ambiance.jpg') center/cover no-repeat;filter:blur(16px)}
+.waitlist:before{content:'';position:absolute;z-index:-2;inset:-25px;background:url('/images/events-by-fay/waitlist-ambiance.jpg') center/cover no-repeat;filter:blur(16px)}
 .waitlist:after{content:'';position:absolute;z-index:-1;inset:0;background:linear-gradient(100deg,rgba(65,4,29,.80),rgba(65,4,29,.63),rgba(65,4,29,.8))}
 .waitlist .smallcaps{color:#ffede0}
 .waitlist .shortline{margin:13px auto 23px}
@@ -274,27 +274,33 @@ footer.site-footer .footer-mark img{height:48px;width:auto;max-width:none;object
 footer.site-footer .legal{margin-top:22px;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:#6B655E;line-height:2}
 
 </style>
+<!-- ANALYTICS_PLACEHOLDER -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N3WFGBRV3Y"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-N3WFGBRV3Y');</script>
+<!-- Page views: gtag config sends one page_view for the loaded URL. In-site pushState and popstate route changes are recorded once by GA4 enhanced measurement (Page changes based on browser history events), which is on by default. This site does not also send a manual page_view, so those navigations are not double-counted. A short script above the snippet canonicalizes legacy hash URLs before gtag runs, and the router skips history.replaceState when the URL is already canonical, so the initial load is a single page_view. -->
+<!-- CLARITY_PLACEHOLDER: Microsoft Clarity snippet goes here -->
+<!-- ANALYTICS_END -->
 </head>
 <body>
 <header class="site-header">
   <div class="bar">
-    <a class="wm" href="index.html#home">
+    <a class="wm" href="/">
       <picture class="logo-wide">
-        <source srcset="images/brand/cm-logo-horizontal.webp" type="image/webp">
-        <img src="images/brand/cm-logo-horizontal.png" alt="Creative Motion Events by Fay">
+        <source srcset="/images/brand/cm-logo-horizontal.webp" type="image/webp">
+        <img src="/images/brand/cm-logo-horizontal.png" alt="Creative Motion Events by Fay">
       </picture>
     </a>
     <nav id="siteNav" aria-label="Primary">
       <ul id="navList">
-      <li><a href="index.html#who">Meet Fayola</a></li>
-      <li><a href="index.html#what">What We Do</a></li>
-      <li><a href="index.html#corporate">Corporate</a></li>
-      <li><a href="index.html#annual-partnership">Annual Design Partnership</a></li>
-      <li><a href="index.html#private">Private</a></li>
-      <li><a href="index.html#work">Work</a></li>
-      <li><a href="index.html#journal">Journal</a></li>
-      <li><a href="events-by-fay.html" class="on" aria-current="page">Events by Fay</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="/meet-fayola/">Meet Fayola</a></li>
+      <li><a href="/what-we-do/">What We Do</a></li>
+      <li><a href="/corporate-events/">Corporate</a></li>
+      <li><a href="/annual-design-partnership/">Annual Design Partnership</a></li>
+      <li><a href="/private-celebrations/">Private</a></li>
+      <li><a href="/work/">Work</a></li>
+      <li><a href="/journal/">Journal</a></li>
+      <li><a href="/events-by-fay.html" class="on" aria-current="page">Events by Fay</a></li>
+      <li><a href="/contact/">Contact</a></li>
       </ul>
       <button type="button" class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navList">MENU</button>
     </nav>
@@ -311,14 +317,14 @@ footer.site-footer .legal{margin-top:22px;font-size:.62rem;letter-spacing:.2em;t
    <h1 id="hero-title"><span>Events</span><span class="line"><span class="by">by</span> Fay</span></h1>
    <h2>Curated experiences<br/>throughout the DMV.</h2>
    <p>Not just somewhere to go. Something to experience. Beautiful spaces, creative activations, good energy, and connections worth getting dressed for.</p>
-   <button type="button" class="pillbtn" data-open-waitlist>Join Waitlist <span aria-hidden="true">→</span></button>
+   <button type="button" class="pillbtn" data-open-waitlist data-cta="Join Waitlist">Join Waitlist <span aria-hidden="true">→</span></button>
    <a class="hero-next-link" href="#up-next">Discover our first event <span aria-hidden="true">↗</span></a>
   </div>
  </section>
 
  <section class="about section-pad" id="about">
   <div class="wrap about-layout">
-   <img class="about-photo" src="images/events-by-fay/candlelit-table-details.jpg" alt="Warm gold table lamp, lush florals, and candlelit event details" loading="lazy"/>
+   <img class="about-photo" src="/images/events-by-fay/candlelit-table-details.jpg" alt="Warm gold table lamp, lush florals, and candlelit event details" loading="lazy"/>
    <div>
     <div class="section-top smallcaps">What is Events by Fay?</div>
     <h2 class="section-head serif">Beautiful spaces.<br/>Real experiences.</h2>
@@ -337,7 +343,7 @@ footer.site-footer .legal{margin-top:22px;font-size:.62rem;letter-spacing:.2em;t
   <div class="wrap next-layout">
     <div class="next-visual">
       <div class="next-photo-frame">
-        <img src="images/events-by-fay/in-motion-artwork.jpg" alt="Events by Fay presents In Motion. Business, Celebration, Connection. DMV Area, Coming Soon." loading="lazy" />
+        <img src="/images/events-by-fay/in-motion-artwork.jpg" alt="Events by Fay presents In Motion. Business, Celebration, Connection. DMV Area, Coming Soon." loading="lazy" />
       </div>
       <button class="next-preview" type="button" data-open-poster>View full event artwork <span aria-hidden="true">↗</span></button>
     </div>
@@ -350,7 +356,7 @@ footer.site-footer .legal{margin-top:22px;font-size:.62rem;letter-spacing:.2em;t
       <p class="next-description">Expect beautiful spaces, meaningful conversations, music, curated vendors, and hands-on experiences that give you more than just somewhere to go.</p>
       <p class="next-footnote">Date, location, and experience details will be announced soon.</p>
       <div class="next-actions">
-        <button type="button" class="pillbtn" data-open-waitlist>Get on the In Motion Waitlist <span aria-hidden="true">→</span></button>
+        <button type="button" class="pillbtn" data-open-waitlist data-cta="Get on the In Motion Waitlist">Get on the In Motion Waitlist <span aria-hidden="true">→</span></button>
       </div>
     </div>
   </div>
@@ -375,7 +381,7 @@ footer.site-footer .legal{margin-top:22px;font-size:.62rem;letter-spacing:.2em;t
    <span class="shortline" aria-hidden="true"></span>
    <h2 class="serif">Join the Waitlist</h2>
    <p>Be first in line for upcoming experiences, In Motion details, and ticket announcements.</p>
-   <button class="pillbtn" type="button" data-open-waitlist>Join Waitlist <span aria-hidden="true">→</span></button>
+   <button class="pillbtn" type="button" data-open-waitlist data-cta="Join Waitlist">Join Waitlist <span aria-hidden="true">→</span></button>
   </div>
  </section>
 
@@ -383,25 +389,25 @@ footer.site-footer .legal{margin-top:22px;font-size:.62rem;letter-spacing:.2em;t
 <footer class="site-footer">
   <div class="footer-mark">
     <picture>
-      <source srcset="images/brand/cm-logo-monogram.webp" type="image/webp">
-      <img src="images/brand/cm-logo-monogram.png" alt="Creative Motion Events by Fay">
+      <source srcset="/images/brand/cm-logo-monogram.webp" type="image/webp">
+      <img src="/images/brand/cm-logo-monogram.png" alt="Creative Motion Events by Fay">
     </picture>
   </div>
   <div class="social">
     <a href="https://www.instagram.com/creative_motion_events?stkn=MWo1ZHBrNDZ5YTd3aA==" target="_blank" rel="noopener" aria-label="Instagram">
-      <img src="images/social/instagram.png" alt="" width="34" height="34" decoding="async">
+      <img src="/images/social/instagram.png" alt="Creative Motion Events on Instagram" width="34" height="34" decoding="async">
     </a>
     <a href="https://www.facebook.com/@creativemotionevents" target="_blank" rel="noopener" aria-label="Facebook">
-      <img src="images/social/facebook.png" alt="" width="34" height="34" decoding="async">
+      <img src="/images/social/facebook.png" alt="Creative Motion Events on Facebook" width="34" height="34" decoding="async">
     </a>
     <a href="https://www.tiktok.com/@creativemotionevents" target="_blank" rel="noopener" aria-label="TikTok">
-      <img src="images/social/tiktok.png" alt="" width="34" height="34" decoding="async">
+      <img src="/images/social/tiktok.png" alt="Creative Motion Events on TikTok" width="34" height="34" decoding="async">
     </a>
     <a href="https://www.linkedin.com/in/fayola-whyte-manco-184a5bb9" target="_blank" rel="noopener" aria-label="LinkedIn">
-      <img src="images/social/linkedin.png" alt="" width="34" height="34" decoding="async">
+      <img src="/images/social/linkedin.png" alt="Fayola Whyte-Manco on LinkedIn" width="34" height="34" decoding="async">
     </a>
     <a href="https://share.google/4a3MVaYvzguSOtZ5O" target="_blank" rel="noopener" aria-label="Google Reviews">
-      <img src="images/social/google-reviews.png" alt="" width="34" height="34" decoding="async">
+      <img src="/images/social/google-reviews.png" alt="Creative Motion Events on Google" width="34" height="34" decoding="async">
     </a>
   </div>
   <div class="legal">© 2026 Creative Motion Events by Fay LLC &nbsp;·&nbsp; Est. 2017</div>
@@ -434,7 +440,7 @@ footer.site-footer .legal{margin-top:22px;font-size:.62rem;letter-spacing:.2em;t
 <div class="dialog-backdrop" id="poster-dialog" role="presentation" aria-hidden="true">
  <div class="dialog poster-dialog" role="dialog" aria-modal="true" aria-label="In Motion event preview">
   <button type="button" class="close-btn" aria-label="Close event poster" data-close-dialog>×</button>
-  <img src="images/events-by-fay/in-motion-artwork.jpg" alt="Events by Fay presents In Motion. Business, Celebration, Connection. DMV area, coming soon.">
+  <img src="/images/events-by-fay/in-motion-artwork.jpg" alt="Events by Fay presents In Motion. Business, Celebration, Connection. DMV area, coming soon.">
  </div>
 </div>
 
@@ -478,14 +484,15 @@ footer.site-footer .legal{margin-top:22px;font-size:.62rem;letter-spacing:.2em;t
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDialogs();});
 
   var form=document.getElementById('waitlist-form');
-  var FALLBACK_NEXT='https://creativemotionevents.com/events-by-fay.html?waitlist=thanks';
+  var CANONICAL_NEXT='https://creativemotionevents.com/events-by-fay.html?waitlist=thanks';
   function waitlistNextUrl(){
     try{
-      if(location.protocol==='http:'||location.protocol==='https:'){
+      var host=location.hostname;
+      if(host==='creativemotionevents.com'||host==='www.creativemotionevents.com'){
         return location.origin+location.pathname+'?waitlist=thanks';
       }
     }catch(err){}
-    return FALLBACK_NEXT;
+    return CANONICAL_NEXT;
   }
   if(form){
     var next=document.getElementById('waitlist-next');
@@ -506,5 +513,23 @@ footer.site-footer .legal{margin-top:22px;font-size:.62rem;letter-spacing:.2em;t
 })();
 </script>
 
+<script>
+document.addEventListener('click',function(e){
+  if(typeof gtag!=='function') return;
+  var el=e.target.closest('a,button');
+  if(!el) return;
+  var href=el.getAttribute('href')||'';
+  if(el.tagName==='A' && (href.indexOf('mailto:')===0 || href.indexOf('tel:')===0)){
+    gtag('event','contact_click',{method:href.indexOf('mailto:')===0?'email':'phone',link_url:href});
+  }
+  var label=el.getAttribute('data-cta');
+  if(label) gtag('event','cta_click',{label:label});
+});
+document.addEventListener('submit',function(e){
+  if(typeof gtag!=='function') return;
+  if(!e.target || e.target.id!=='waitlist-form') return;
+  gtag('event','generate_lead',{form_name:'events-by-fay-waitlist'});
+});
+</script>
 </body>
 </html>
