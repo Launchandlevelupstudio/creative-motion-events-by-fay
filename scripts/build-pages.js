@@ -411,7 +411,13 @@ function tagCtas(html) {
 }
 
 const GA_SNIPPET = '<script async src="https://www.googletagmanager.com/gtag/js?id=G-N3WFGBRV3Y"></script>\n<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag(\'js\',new Date());gtag(\'config\',\'G-N3WFGBRV3Y\');</script>';
-const CLARITY_COMMENT = '<!-- CLARITY_PLACEHOLDER: Microsoft Clarity snippet goes here -->';
+const CLARITY_SNIPPET = `<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "yuylgu79i3");
+</script>`;
 const PAGEVIEW_NOTE = '<!-- Page views: gtag config sends one page_view for the loaded URL. In-site pushState and popstate route changes are recorded once by GA4 enhanced measurement (Page changes based on browser history events), which is on by default. This site does not also send a manual page_view, so those navigations are not double-counted. A short script above the snippet canonicalizes legacy hash URLs before gtag runs, and the router skips history.replaceState when the URL is already canonical, so the initial load is a single page_view. -->';
 
 function canonicalizerScript() {
@@ -457,7 +463,7 @@ function analyticsBlock(opts) {
   if (opts && opts.canonicalizer) lines.push(canonicalizerScript());
   lines.push(GA_SNIPPET);
   lines.push(PAGEVIEW_NOTE);
-  lines.push(CLARITY_COMMENT);
+  lines.push(CLARITY_SNIPPET);
   lines.push('<!-- ANALYTICS_END -->');
   return lines.join('\n');
 }
