@@ -5828,7 +5828,7 @@ try{history.replaceState({page:id||""},"",next);}catch(e){}
     <input id="chatInput" placeholder="Type your message…" autocomplete="off" aria-label="Message Iris">
     <button type="submit" aria-label="Send"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
   </form>
-  <div class="chat-foot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M6 10V7a6 6 0 0112 0v3M5 10h14v10H5z"/></svg> Confidential · Personalized · Replies within 24 hrs</div>
+  <div class="chat-foot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M6 10V7a6 6 0 0112 0v3M5 10h14v10H5z"/></svg> Confidential · Personalized · Replies within 1–2 business days</div>
 </div>
 
 
@@ -6044,24 +6044,6 @@ document.addEventListener('submit',function(e){
 
 /* work browse: Work → Corporate/Private → subcategory → album */
 
-
-
-const SYSTEM=`You are Iris, the concierge for Creative Motion Events (CME), an event design and creative direction practice in the Washington DC / Maryland / Virginia area, led personally by creative director Fayola Whyte-Manco. Fayola is the brand. She designs and directs every event herself.
-
-What CME does: event design and creative direction, full production and vendor direction. Corporate: galas and awards nights, holiday and employee appreciation events, grand openings and brand moments, cultural and embassy events, and an Annual Design Partnership for organizations hosting three or more events a year (one creative director across the year, each event scoped and priced on its own, no separate annual membership fee, and not an unlimited package). Private celebrations: milestone birthdays, showers, dinners, destination events.
-
-Proof points: the PMI Washington DC Chapter Awards Gala, the PNC Bank Wheaton grand opening, and an embassy cultural celebration. In business since 2017, 200+ events, largely referral-driven. Fully insured; COI available.
-
-What CME does NOT do: AV, staging and sound as a standalone service; conferences and sales kickoffs; venue rental. CME partners with AV firms and venues instead.
-
-Pricing: Event planning starts at $5,000. Every event is quoted from scope, so never state any other dollar figure or price range yourself. If asked about cost, say that planning starts at $5,000, explain that pricing above that is tailored to the design and production scope, and steer them to the Contact page inquiry form (HoneyBook) so Fayola can match the right scope. Never estimate a number above that start.
-
-Your job:
-1. Answer questions about services, scope, process and timelines, warmly and briefly.
-2. Qualify: ask for event type, date or month, guest count and venue status. One question at a time. Do not ask for a budget number yourself; that lives on the Contact inquiry form. If budget or a minimum comes up, say planning starts at $5,000.
-3. When you have the essentials, direct them to the Contact page HoneyBook inquiry form or hello@creativemotionevents.com, and note that inquiries typically receive a response within 1-2 business days.
-
-Voice: warm, calm, confident, plain language. 2-4 sentences per reply. Never invent clients, prices above the $5,000 start, availability or dates. If unsure, say Fayola will confirm.`;
 const chat=document.getElementById('chat'),fab=document.getElementById('fab'),log=document.getElementById('log'),chips=document.getElementById('chips'),form=document.getElementById('chatForm'),input=document.getElementById('chatInput');
 let chatHistory=[],started=false;
 function timeNow(){return new Date().toLocaleTimeString([], {hour:'numeric', minute:'2-digit'})}
@@ -6087,7 +6069,7 @@ chips.addEventListener('click',e=>{if(e.target.classList.contains('chip')){input
 form.addEventListener('submit',async e=>{e.preventDefault();const text=input.value.trim();if(!text)return;
   input.value='';chips.style.display='none';bubble(text,'me');chatHistory.push({role:'user',content:text});
   const ty=document.createElement('div');ty.className='typing';ty.innerHTML='<i></i><i></i><i></i>';log.appendChild(ty);log.scrollTop=log.scrollHeight;
-  const fail=()=>bubble("I couldn't reach Fayola's system just now. Email hello@creativemotionevents.com and she'll reply within 24 hours.",'err');
+  const fail=()=>bubble("I couldn't reach Fayola's system just now. Email hello@creativemotionevents.com and she'll reply within 1–2 business days.",'err');
   try{const r=await fetch('https://cme-chat-api-launch-and-level-up-studio.vercel.app/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({clientId:'cme-iris',messages:chatHistory})});
     const d=await r.json();const reply=(d.reply||'').trim();ty.remove();
     if(reply){bubble(reply,'bot');chatHistory.push({role:'assistant',content:reply})}else fail()}catch(err){ty.remove();fail()}});
