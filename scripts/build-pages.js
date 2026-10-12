@@ -9,6 +9,11 @@
  * The homepage written back to index.html is the source for the next run.
  * Nested copies are regenerated. Analytics markup sits outside the
  * replaced SEO block and is refreshed as one block on each build.
+ *
+ * Landing pages in ./landing-pages.js are generated from this same shell
+ * (head, analytics, canonical, Open Graph, JSON-LD). Their sections are
+ * injected only into those new files. They are not added to `routes`, so
+ * the shared shell, nav, footer, and existing route files stay unchanged.
  */
 const fs = require('fs');
 const path = require('path');
@@ -231,6 +236,8 @@ const routes = [
 
 const PATH_BY_ID = {};
 routes.forEach(function (r) { PATH_BY_ID[r.id] = r.path; });
+
+const landingRoutes = require('./landing-pages');
 
 function esc(s) {
   return String(s)
@@ -566,16 +573,76 @@ function render(template, route) {
   return html;
 }
 
+function visibleWords(html) {
+  const text = String(html)
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&rsquo;|&#8217;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&mdash;/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return text ? text.split(' ').filter(Boolean).length : 0;
+}
+
+function pageMetaMap(list) {
+  return Object.fromEntries(list.map(function (r) {
+    return [r.id, {
+      title: r.title,
+      description: r.description,
+      ogType: r.ogType || 'website',
+      image: r.image || BRAND_IMAGE,
+      imageAlt: r.imageAlt || BRAND_ALT
+    }];
+  }));
+}
+
+function extendRouter(html, extra) {
+  const all = routes.concat(extra);
+  const pathById = {};
+  all.forEach(function (r) { pathById[r.id] = r.path; });
+  const start = html.indexOf('const ROUTES=');
+  const end = html.indexOf(';\nconst ORIGIN=', start);
+  if (start < 0 || end < 0) throw new Error('could not extend the landing-page router');
+  const block = 'const ROUTES=' + JSON.stringify(pathById) + ';\nconst PAGE_META=' + JSON.stringify(pageMetaMap(all));
+  return html.slice(0, start) + block + html.slice(end);
+}
+
+const CONTACT_ANCHOR = '<!-- ============ CONTACT ============ -->';
+
+function injectLandingSections(html) {
+  if (!html.includes(CONTACT_ANCHOR)) throw new Error('contact anchor missing');
+  const block = landingRoutes.map(function (r) { return r.section; }).join('\n\n');
+  return html.replace(CONTACT_ANCHOR, block + '\n\n' + CONTACT_ANCHOR);
+}
+
+function renderLanding(template, route) {
+  let html = injectLandingSections(template);
+  html = extendRouter(html, landingRoutes);
+  html = setHead(html, route);
+  html = setActive(html, route.id);
+  const ons = html.match(/<section class="page on/g) || [];
+  if (ons.length !== 1) throw new Error(route.id + ' has ' + ons.length + ' active sections');
+  if (!html.includes('id="p-' + route.id + '"')) throw new Error('missing section ' + route.id);
+  if (/noindex/i.test(html.slice(0, html.indexOf('</head>')))) throw new Error(route.id + ' is noindex');
+  return html;
+}
+
 function writeSitemap() {
-  const urls = routes.map(function (r) { return r.path; }).concat(['/events-by-fay.html']);
+  const entries = routes.map(function (r) {
+    return { path: r.path, lastmod: LASTMOD };
+  }).concat(landingRoutes.map(function (r) {
+    return { path: r.path, lastmod: r.lastmod || LASTMOD };
+  })).concat([{ path: '/events-by-fay.html', lastmod: LASTMOD }]);
   const body = [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
   ];
-  urls.forEach(function (p) {
+  entries.forEach(function (entry) {
     body.push('  <url>');
-    body.push('    <loc>' + abs(p) + '</loc>');
-    body.push('    <lastmod>' + LASTMOD + '</lastmod>');
+    body.push('    <loc>' + abs(entry.path) + '</loc>');
+    body.push('    <lastmod>' + entry.lastmod + '</lastmod>');
     body.push('  </url>');
   });
   body.push('</urlset>');
@@ -710,13 +777,34 @@ function main() {
   let template = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
   template = applyShared(template);
   template = setActive(template, '__none__');
+  const shell = template;
   routes.forEach(function (route) {
-    if (!template.includes('id="p-' + route.id + '"')) throw new Error('template missing #p-' + route.id);
-    const html = render(template, route);
+    if (!shell.includes('id="p-' + route.id + '"')) throw new Error('template missing #p-' + route.id);
+    const html = render(shell, route);
     if (route.path === '/') {
       fs.writeFileSync(path.join(ROOT, 'index.html'), html);
       return;
     }
+    const dir = path.join(ROOT, route.path);
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(path.join(dir, 'index.html'), html);
+  });
+  const landingSeen = {};
+  landingRoutes.forEach(function (route) {
+    if (landingSeen[route.path] || PATH_BY_ID[route.id] || routes.some(function (r) { return r.path === route.path; })) {
+      throw new Error('landing route collides with an existing route ' + route.path);
+    }
+    landingSeen[route.path] = true;
+    if (route.title.length >= 60) throw new Error('landing title must be under 60 characters (' + route.title.length + '): ' + route.path);
+    if (route.description.length > 170) throw new Error('landing description too long (' + route.description.length + '): ' + route.path);
+    const words = visibleWords(route.section);
+    if (words < 500 || words > 800) throw new Error(route.path + ' has ' + words + ' words (need 500-800)');
+    if (!route.section.includes('<h1>') || !route.section.includes('<h2>')) throw new Error(route.path + ' needs an H1 and H2s');
+    if ((route.section.match(/<h1>/g) || []).length !== 1) throw new Error(route.path + ' must have one H1');
+    if (/\$\d/.test(route.section)) throw new Error(route.path + ' includes a price');
+    if (shell.includes('id="p-' + route.id + '"')) throw new Error('landing section leaked into the shared shell: ' + route.id);
+    const html = renderLanding(shell, route);
+    if (html.includes('rel="nofollow"') && route.section.includes('nofollow')) throw new Error(route.path + ' nofollows its own links');
     const dir = path.join(ROOT, route.path);
     fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(path.join(dir, 'index.html'), html);
@@ -726,8 +814,11 @@ function main() {
   updateEventsByFay();
   const notFoundPath = path.join(ROOT, '404.html');
   fs.writeFileSync(notFoundPath, installAnalytics(fs.readFileSync(notFoundPath, 'utf8'), { canonicalizer: false }));
-  console.log('Wrote ' + routes.length + ' routes');
+  console.log('Wrote ' + routes.length + ' routes and ' + landingRoutes.length + ' landing pages');
   routes.forEach(function (r) { console.log(r.path + '\t' + r.title); });
+  landingRoutes.forEach(function (r) {
+    console.log(r.path + '\t' + r.title + '\t' + visibleWords(r.section) + ' words');
+  });
 }
 
 main();
