@@ -652,6 +652,53 @@ document.addEventListener('submit',function(e){
   fs.writeFileSync(file, html);
 }
 
+// Legacy URLs from the previous site that still appear in search results.
+// Each gets a small redirect stub at <from>/index.html. GitHub Pages
+// answers /about with a 301 to /about/, so one file covers both forms.
+// These are deliberately not routes: they stay out of sitemap.xml and the router.
+const LEGACY_REDIRECTS = [
+  { from: '/about/', to: '/meet-fayola/', label: 'Meet Fayola' },
+  { from: '/services/', to: '/what-we-do/', label: 'What We Do' },
+  { from: '/reviews/', to: '/work/', label: 'Our Work' }
+];
+
+function redirectStub(r) {
+  const url = abs(r.to);
+  return [
+    '<!DOCTYPE html>',
+    '<html lang="en">',
+    '<head>',
+    '<meta charset="utf-8">',
+    '<meta name="viewport" content="width=device-width, initial-scale=1">',
+    '<title>' + esc(r.label) + ' | Creative Motion Events</title>',
+    '<meta http-equiv="refresh" content="0; url=' + esc(r.to) + '">',
+    '<link rel="canonical" href="' + esc(url) + '">',
+    '<script>location.replace(' + JSON.stringify(r.to) + ' + location.search + location.hash);</script>',
+    '<style>',
+    'html,body{margin:0;min-height:100%;background:#161311;color:#FAF9F6}',
+    'body{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px;box-sizing:border-box;font-family:"Jost",-apple-system,"Segoe UI",sans-serif;font-weight:300;text-align:center;line-height:1.7}',
+    'a{color:#A38443;text-decoration:none;border-bottom:1px solid #A38443;letter-spacing:.12em;text-transform:uppercase;font-size:.8rem}',
+    'a:hover,a:focus-visible{color:#FAF9F6;border-color:#FAF9F6}',
+    '</style>',
+    '</head>',
+    '<body>',
+    '<p>This page has moved. <a href="' + esc(r.to) + '">Continue to ' + esc(r.label) + '</a></p>',
+    '</body>',
+    '</html>',
+    ''
+  ].join('\n');
+}
+
+function writeRedirectStubs() {
+  LEGACY_REDIRECTS.forEach(function (r) {
+    if (routes.some(function (route) { return route.path === r.from; })) throw new Error('legacy redirect collides with route ' + r.from);
+    if (!routes.some(function (route) { return route.path === r.to; })) throw new Error('legacy redirect target is not a route ' + r.to);
+    const dir = path.join(ROOT, r.from);
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(path.join(dir, 'index.html'), redirectStub(r));
+  });
+}
+
 function main() {
   const seen = {};
   routes.forEach(function (r) {
@@ -675,6 +722,7 @@ function main() {
     fs.writeFileSync(path.join(dir, 'index.html'), html);
   });
   writeSitemap();
+  writeRedirectStubs();
   updateEventsByFay();
   const notFoundPath = path.join(ROOT, '404.html');
   fs.writeFileSync(notFoundPath, installAnalytics(fs.readFileSync(notFoundPath, 'utf8'), { canonicalizer: false }));
