@@ -12,7 +12,9 @@
  * keeps the shared head, nav, footer, chat, and lightbox, plus the one
  * section that page shows. site.html is publicly reachable on GitHub Pages,
  * so it carries a noindex meta. That meta is stripped before any route,
- * landing page, or other generated file is written. Analytics markup sits
+ * landing page, or other generated file is written. 404.html keeps the
+ * noindex meta from main. The noindex check allowlists 404.html and
+ * scripts/site.html. Analytics markup sits
  * outside the replaced SEO
  * block and is refreshed as one block on each build.
  *
@@ -805,34 +807,32 @@ function stripTemplateNoindex(html) {
   return html.replace(/<meta name="robots" content="noindex, nofollow">\n?/g, '');
 }
 
+const NOINDEX_ALLOWLIST = [
+  path.join(ROOT, '404.html'),
+  path.join(__dirname, 'site.html')
+];
+
 function assertPublishedPagesAreIndexable() {
-  const templatePath = path.join(__dirname, 'site.html');
-  const template = fs.readFileSync(templatePath, 'utf8');
+  const template = fs.readFileSync(path.join(__dirname, 'site.html'), 'utf8');
   if (!template.includes(TEMPLATE_NOINDEX)) throw new Error('scripts/site.html is missing noindex');
+  const notFound = fs.readFileSync(path.join(ROOT, '404.html'), 'utf8');
+  if (!notFound.includes('<meta name="robots" content="noindex">')) throw new Error('404.html is missing noindex');
   function walk(dir) {
     for (const name of fs.readdirSync(dir)) {
       if (name === 'node_modules' || name === '.git' || name === 'images') continue;
       const abs = path.join(dir, name);
-      if (abs === templatePath) continue;
       const st = fs.statSync(abs);
       if (st.isDirectory()) {
-        if (name === 'scripts') continue;
         walk(abs);
         continue;
       }
       if (!name.endsWith('.html')) continue;
+      if (NOINDEX_ALLOWLIST.indexOf(abs) !== -1) continue;
       const html = fs.readFileSync(abs, 'utf8');
       if (/noindex/i.test(html)) throw new Error('generated page contains noindex: ' + path.relative(ROOT, abs));
     }
   }
   walk(ROOT);
-  const otherScripts = fs.readdirSync(__dirname).filter(function (name) {
-    return name.endsWith('.html') && name !== 'site.html';
-  });
-  otherScripts.forEach(function (name) {
-    const html = fs.readFileSync(path.join(__dirname, name), 'utf8');
-    if (/noindex/i.test(html)) throw new Error('generated page contains noindex: scripts/' + name);
-  });
 }
 
 function readTemplate() {
