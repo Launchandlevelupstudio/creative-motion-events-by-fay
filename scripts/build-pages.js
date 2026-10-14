@@ -10,7 +10,10 @@
  * The first build copies it from index.html. Later builds read site.html,
  * because index.html is rewritten as the homepage only. Each public page
  * keeps the shared head, nav, footer, chat, and lightbox, plus the one
- * section that page shows. Analytics markup sits outside the replaced SEO
+ * section that page shows. site.html is publicly reachable on GitHub Pages,
+ * so it carries a noindex meta. That meta is stripped before any route,
+ * landing page, or other generated file is written. Analytics markup sits
+ * outside the replaced SEO
  * block and is refreshed as one block on each build.
  *
  * Landing pages in ./landing-pages.js are generated from this same shell
@@ -791,6 +794,47 @@ function writeRedirectStubs() {
   });
 }
 
+const TEMPLATE_NOINDEX = '<meta name="robots" content="noindex, nofollow">';
+
+function ensureTemplateNoindex(html) {
+  if (html.includes(TEMPLATE_NOINDEX)) return html;
+  return html.replace('<meta charset="utf-8">', '<meta charset="utf-8">\n' + TEMPLATE_NOINDEX);
+}
+
+function stripTemplateNoindex(html) {
+  return html.replace(/<meta name="robots" content="noindex, nofollow">\n?/g, '');
+}
+
+function assertPublishedPagesAreIndexable() {
+  const templatePath = path.join(__dirname, 'site.html');
+  const template = fs.readFileSync(templatePath, 'utf8');
+  if (!template.includes(TEMPLATE_NOINDEX)) throw new Error('scripts/site.html is missing noindex');
+  function walk(dir) {
+    for (const name of fs.readdirSync(dir)) {
+      if (name === 'node_modules' || name === '.git' || name === 'images') continue;
+      const abs = path.join(dir, name);
+      if (abs === templatePath) continue;
+      const st = fs.statSync(abs);
+      if (st.isDirectory()) {
+        if (name === 'scripts') continue;
+        walk(abs);
+        continue;
+      }
+      if (!name.endsWith('.html')) continue;
+      const html = fs.readFileSync(abs, 'utf8');
+      if (/noindex/i.test(html)) throw new Error('generated page contains noindex: ' + path.relative(ROOT, abs));
+    }
+  }
+  walk(ROOT);
+  const otherScripts = fs.readdirSync(__dirname).filter(function (name) {
+    return name.endsWith('.html') && name !== 'site.html';
+  });
+  otherScripts.forEach(function (name) {
+    const html = fs.readFileSync(path.join(__dirname, name), 'utf8');
+    if (/noindex/i.test(html)) throw new Error('generated page contains noindex: scripts/' + name);
+  });
+}
+
 function readTemplate() {
   const source = path.join(__dirname, 'site.html');
   if (fs.existsSync(source)) {
@@ -827,8 +871,10 @@ async function main() {
   let template = readTemplate();
   template = applyShared(template);
   template = setActive(template, '__none__');
+  template = ensureTemplateNoindex(template);
   fs.writeFileSync(path.join(__dirname, 'site.html'), template);
-  const shell = template;
+  const shell = stripTemplateNoindex(template);
+  if (/noindex/i.test(shell.slice(0, shell.indexOf('</head>')))) throw new Error('page shell still contains noindex');
   const report = [];
   routes.forEach(function (route) {
     if (!shell.includes('id="p-' + route.id + '"')) throw new Error('template missing #p-' + route.id);
@@ -875,6 +921,7 @@ async function main() {
   if (!fayHtml.includes('.hero-image{max-width:100%')) throw new Error('events-by-fay hero max-width missing');
   const notFoundPath = path.join(ROOT, '404.html');
   fs.writeFileSync(notFoundPath, installAnalytics(fs.readFileSync(notFoundPath, 'utf8'), { canonicalizer: false }));
+  assertPublishedPagesAreIndexable();
   console.log('Wrote ' + routes.length + ' routes and ' + landingRoutes.length + ' landing pages');
   console.log('path\tbytes\timgs\tsrcset');
   report.forEach(function (row) {
