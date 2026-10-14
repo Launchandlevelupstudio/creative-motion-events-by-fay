@@ -2,6 +2,10 @@
 
 Single-file preview build of the redesigned Creative Motion Events site (GitHub-ready).
 
+## Image budget
+
+`images/` is about 750 MB of GitHub's 1 GB repository guidance. The WebP files beside each JPEG are generated output. Don't regenerate all of them casually. `node scripts/build-images.js` rewrites a variant only when its source file is newer.
+
 ## What's inside
 - `index.html` — the entire site (all pages, styles, and scripts in one file for easy preview/upload)
 - **Images**: photos are **CSS placeholders** pending real assets (no embedded base64 photos or Google Photos hotlinks). Swap placeholders for hosted image files before launch.

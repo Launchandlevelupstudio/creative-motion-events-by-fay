@@ -1,14 +1,22 @@
 #!/usr/bin/env node
 /**
- * Generate one folder/index.html per site route from the root index.html.
+ * Generate one folder/index.html per site route from the full template.
  * GitHub Pages (legacy, branch root) serves the committed files. Re-run
- * after editing shared markup in index.html:
+ * after editing shared markup:
  *
  *   node scripts/build-pages.js
  *
- * The homepage written back to index.html is the source for the next run.
- * Nested copies are regenerated. Analytics markup sits outside the
- * replaced SEO block and is refreshed as one block on each build.
+ * scripts/site.html is the full single-page template (every section).
+ * The first build copies it from index.html. Later builds read site.html,
+ * because index.html is rewritten as the homepage only. Each public page
+ * keeps the shared head, nav, footer, chat, and lightbox, plus the one
+ * section that page shows. site.html is publicly reachable on GitHub Pages,
+ * so it carries a noindex meta. That meta is stripped before any route,
+ * landing page, or other generated file is written. 404.html keeps the
+ * noindex meta from main. The noindex check allowlists 404.html and
+ * scripts/site.html. Analytics markup sits
+ * outside the replaced SEO
+ * block and is refreshed as one block on each build.
  *
  * Landing pages in ./landing-pages.js are generated from this same shell
  * (head, analytics, canonical, Open Graph, JSON-LD). Their sections are
@@ -17,6 +25,13 @@
  */
 const fs = require('fs');
 const path = require('path');
+const { pruneToPage } = require('./prune-pages');
+const {
+  buildVariantIndex,
+  rewritePageHtml,
+  lazyNonHeroImages,
+  polishEventsByFay
+} = require('./responsive-images');
 
 const ROOT = path.resolve(__dirname, '..');
 const ORIGIN = 'https://creativemotionevents.com';
@@ -238,6 +253,7 @@ const PATH_BY_ID = {};
 routes.forEach(function (r) { PATH_BY_ID[r.id] = r.path; });
 
 const landingRoutes = require('./landing-pages');
+let variantIndex = new Map();
 
 function esc(s) {
   return String(s)
@@ -460,6 +476,13 @@ function canonicalizerScript() {
     + 'next=cleaned+location.search+location.hash;\n'
     + '}\n'
     + 'if((location.pathname+location.search+location.hash)!==next){\n'
+    + 'var destPath=norm((next.split("#")[0]||"").split("?")[0]);\n'
+    + 'if(norm(location.pathname)!==destPath){\n'
+    + 'window.__CME_REDIRECTING=true;\n'
+    + 'window["ga-disable-G-N3WFGBRV3Y"]=true;\n'
+    + 'location.replace(next);\n'
+    + 'return;\n'
+    + '}\n'
     + 'try{history.replaceState({page:id||""},"",next);}catch(e){}\n'
     + '}\n'
     + '})();</script>';
@@ -570,6 +593,8 @@ function render(template, route) {
   const ons = html.match(/<section class="page on/g) || [];
   if (ons.length !== 1) throw new Error(route.id + ' has ' + ons.length + ' active sections');
   if (!html.includes('id="p-' + route.id + '"')) throw new Error('missing section ' + route.id);
+  html = pruneToPage(html, route.id);
+  html = rewritePageHtml(html, variantIndex);
   return html;
 }
 
@@ -626,6 +651,8 @@ function renderLanding(template, route) {
   if (ons.length !== 1) throw new Error(route.id + ' has ' + ons.length + ' active sections');
   if (!html.includes('id="p-' + route.id + '"')) throw new Error('missing section ' + route.id);
   if (/noindex/i.test(html.slice(0, html.indexOf('</head>')))) throw new Error(route.id + ' is noindex');
+  html = pruneToPage(html, route.id);
+  html = rewritePageHtml(html, variantIndex);
   return html;
 }
 
@@ -695,6 +722,9 @@ function updateEventsByFay() {
     return '<button' + attrs + ' data-cta="' + label.replace(/"/g, '&quot;') + '">' + inner + '</button>';
   });
   html = installAnalytics(html, { canonicalizer: false });
+  html = polishEventsByFay(html);
+  html = rewritePageHtml(html, variantIndex);
+  html = lazyNonHeroImages(html);
   if (!html.includes('events-by-fay-waitlist')) {
     html = html.replace('</body>', `<script>
 document.addEventListener('click',function(e){
@@ -766,7 +796,71 @@ function writeRedirectStubs() {
   });
 }
 
-function main() {
+const TEMPLATE_NOINDEX = '<meta name="robots" content="noindex, nofollow">';
+
+function ensureTemplateNoindex(html) {
+  if (html.includes(TEMPLATE_NOINDEX)) return html;
+  return html.replace('<meta charset="utf-8">', '<meta charset="utf-8">\n' + TEMPLATE_NOINDEX);
+}
+
+function stripTemplateNoindex(html) {
+  return html.replace(/<meta name="robots" content="noindex, nofollow">\n?/g, '');
+}
+
+const NOINDEX_ALLOWLIST = [
+  path.join(ROOT, '404.html'),
+  path.join(__dirname, 'site.html')
+];
+
+function assertPublishedPagesAreIndexable() {
+  const template = fs.readFileSync(path.join(__dirname, 'site.html'), 'utf8');
+  if (!template.includes(TEMPLATE_NOINDEX)) throw new Error('scripts/site.html is missing noindex');
+  const notFound = fs.readFileSync(path.join(ROOT, '404.html'), 'utf8');
+  if (!notFound.includes('<meta name="robots" content="noindex">')) throw new Error('404.html is missing noindex');
+  function walk(dir) {
+    for (const name of fs.readdirSync(dir)) {
+      if (name === 'node_modules' || name === '.git' || name === 'images') continue;
+      const abs = path.join(dir, name);
+      const st = fs.statSync(abs);
+      if (st.isDirectory()) {
+        walk(abs);
+        continue;
+      }
+      if (!name.endsWith('.html')) continue;
+      if (NOINDEX_ALLOWLIST.indexOf(abs) !== -1) continue;
+      const html = fs.readFileSync(abs, 'utf8');
+      if (/noindex/i.test(html)) throw new Error('generated page contains noindex: ' + path.relative(ROOT, abs));
+    }
+  }
+  walk(ROOT);
+}
+
+function readTemplate() {
+  const source = path.join(__dirname, 'site.html');
+  if (fs.existsSync(source)) {
+    const html = fs.readFileSync(source, 'utf8');
+    if (!html.includes('id="p-home"') || !html.includes('id="p-album-titi-bridal-shower"') || !html.includes('id="p-contact"')) {
+      throw new Error('scripts/site.html is missing page sections; refusing to build from the pruned homepage');
+    }
+    return html;
+  }
+  const home = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+  if (!home.includes('id="p-album-titi-bridal-shower"')) {
+    throw new Error('index.html has no album sections and scripts/site.html is missing');
+  }
+  return home;
+}
+
+function pageStats(html) {
+  const imgs = html.match(/<img\b/gi) || [];
+  const srcset = html.match(/\bsrcset="/gi) || [];
+  return { bytes: Buffer.byteLength(html), imgs: imgs.length, srcset: srcset.length };
+}
+
+async function main() {
+  await require('./build-images').build();
+  variantIndex = buildVariantIndex(ROOT);
+  if (!variantIndex.size) throw new Error('no image variants were indexed');
   const seen = {};
   routes.forEach(function (r) {
     if (seen[r.path]) throw new Error('duplicate path ' + r.path);
@@ -774,13 +868,19 @@ function main() {
     if (r.title.length > 70) console.warn('long title (' + r.title.length + '): ' + r.path);
     if (r.description.length > 170) console.warn('long description (' + r.description.length + '): ' + r.path);
   });
-  let template = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+  let template = readTemplate();
   template = applyShared(template);
   template = setActive(template, '__none__');
-  const shell = template;
+  template = ensureTemplateNoindex(template);
+  fs.writeFileSync(path.join(__dirname, 'site.html'), template);
+  const shell = stripTemplateNoindex(template);
+  if (/noindex/i.test(shell.slice(0, shell.indexOf('</head>')))) throw new Error('page shell still contains noindex');
+  const report = [];
   routes.forEach(function (route) {
     if (!shell.includes('id="p-' + route.id + '"')) throw new Error('template missing #p-' + route.id);
     const html = render(shell, route);
+    const stats = pageStats(html);
+    report.push({ path: route.path, bytes: stats.bytes, imgs: stats.imgs, srcset: stats.srcset });
     if (route.path === '/') {
       fs.writeFileSync(path.join(ROOT, 'index.html'), html);
       return;
@@ -804,6 +904,8 @@ function main() {
     if (/\$\d/.test(route.section)) throw new Error(route.path + ' includes a price');
     if (shell.includes('id="p-' + route.id + '"')) throw new Error('landing section leaked into the shared shell: ' + route.id);
     const html = renderLanding(shell, route);
+    const stats = pageStats(html);
+    report.push({ path: route.path, bytes: stats.bytes, imgs: stats.imgs, srcset: stats.srcset });
     if (html.includes('rel="nofollow"') && route.section.includes('nofollow')) throw new Error(route.path + ' nofollows its own links');
     const dir = path.join(ROOT, route.path);
     fs.mkdirSync(dir, { recursive: true });
@@ -812,13 +914,26 @@ function main() {
   writeSitemap();
   writeRedirectStubs();
   updateEventsByFay();
+  const fayPath = path.join(ROOT, 'events-by-fay.html');
+  const fayHtml = fs.readFileSync(fayPath, 'utf8');
+  const fayStats = pageStats(fayHtml);
+  report.push({ path: '/events-by-fay.html', bytes: fayStats.bytes, imgs: fayStats.imgs, srcset: fayStats.srcset });
+  if (!fayHtml.includes('.hero-image{max-width:100%')) throw new Error('events-by-fay hero max-width missing');
   const notFoundPath = path.join(ROOT, '404.html');
   fs.writeFileSync(notFoundPath, installAnalytics(fs.readFileSync(notFoundPath, 'utf8'), { canonicalizer: false }));
+  assertPublishedPagesAreIndexable();
   console.log('Wrote ' + routes.length + ' routes and ' + landingRoutes.length + ' landing pages');
+  console.log('path\tbytes\timgs\tsrcset');
+  report.forEach(function (row) {
+    console.log(row.path + '\t' + row.bytes + '\t' + row.imgs + '\t' + row.srcset);
+  });
   routes.forEach(function (r) { console.log(r.path + '\t' + r.title); });
   landingRoutes.forEach(function (r) {
     console.log(r.path + '\t' + r.title + '\t' + visibleWords(r.section) + ' words');
   });
 }
 
-main();
+main().catch(function (err) {
+  console.error(err);
+  process.exit(1);
+});

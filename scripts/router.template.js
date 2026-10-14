@@ -1,4 +1,10 @@
-/* path router: real URLs, instant in-site navigation, old hashes redirect */
+/* path router: real URLs, old hashes redirect.
+   Each document only contains its own page section. Links to another
+   page load that document. A legacy hash for a section that is not in
+   this document is a full navigation, started from the head canonicalizer. */
+if(window.__CME_REDIRECTING){
+/* navigation already in flight */
+}else{
 if('scrollRestoration' in window.history){window.history.scrollRestoration='manual'}
 const ROUTES=__ROUTES_JSON__;
 const PAGE_META=__META_JSON__;
@@ -81,12 +87,24 @@ function show(p){
   }
   return p;
 }
-function go(p, opts){
-  opts=opts||{};
-  p=show(p);
-  let url=ROUTES[p];
+function pageUrl(p, opts){
+  let url=ROUTES[p]||'/';
   if(opts.keepThanks) url+='?partnership=thanks';
   if(opts.hash) url+=opts.hash;
+  return url;
+}
+function go(p, opts){
+  opts=opts||{};
+  if(p==='inquire') p='annual-partnership';
+  if(pages.indexOf(p)===-1) p='home';
+  if(!document.getElementById('p-'+p)){
+    const url=pageUrl(p, opts);
+    if(opts.replace) location.replace(url);
+    else location.assign(url);
+    return p;
+  }
+  p=show(p);
+  let url=pageUrl(p, opts);
   try{
     const here=location.pathname+location.search+location.hash;
     if(here!==url){
@@ -99,16 +117,28 @@ function go(p, opts){
     scrollToTop();
     requestAnimationFrame(scrollToTop);
   }
+  return p;
 }
 document.addEventListener('click',function(e){
   const a=e.target.closest('[data-go]');
   if(!a) return;
   if(e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey) return;
+  const id=a.dataset.go==='inquire'?'annual-partnership':a.dataset.go;
+  if(!document.getElementById('p-'+id)){
+    if(a.tagName==='A' && a.getAttribute('href')) return;
+    e.preventDefault();
+    go(a.dataset.go);
+    return;
+  }
   e.preventDefault();
   go(a.dataset.go);
 });
 window.addEventListener('popstate',function(){
   const p=hashPage()||PATH_TO_PAGE[normalizePath(location.pathname)]||'home';
+  if(!document.getElementById('p-'+p)){
+    location.replace(ROUTES[p]||'/');
+    return;
+  }
   show(p);
   if(new URLSearchParams(location.search).get('partnership')==='thanks'){
     const inquire=document.getElementById('inquire');
@@ -199,3 +229,4 @@ document.addEventListener('submit',function(e){
   if(!form || form.id!=='partnershipInquiry') return;
   gtag('event','generate_lead',{form_name:'annual-design-partnership'});
 });
+}

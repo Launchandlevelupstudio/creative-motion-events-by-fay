@@ -1,0 +1,29 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "Single-file preview build of the redesigned Creative Motion Events site (GitHub-ready).",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-pages.js",
+    "build:images": "node scripts/build-images.js",
+    "build:pages": "node scripts/build-pages.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Launchandlevelupstudio/creative-motion-events-by-fay.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Launchandlevelupstudio/creative-motion-events-by-fay/issues"
+  },
+  "homepage": "https://github.com/Launchandlevelupstudio/creative-motion-events-by-fay#readme",
+  "dependencies": {
+    "sharp": "^0.34.4"
+  }
+}
