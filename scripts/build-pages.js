@@ -255,7 +255,7 @@ function jsonScript(obj) {
 function businessSchema() {
   return {
     '@context': 'https://schema.org',
-    '@type': ['LocalBusiness', 'ProfessionalService'],
+    '@type': 'LocalBusiness',
     '@id': ORIGIN + '/#business',
     name: 'Creative Motion Events',
     alternateName: 'Creative Motion Events by Fay',
