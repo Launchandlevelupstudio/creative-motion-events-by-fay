@@ -17,7 +17,7 @@ function buildVariantIndex(root) {
       if (fs.statSync(abs).isDirectory()) {
         const rel = path.relative(images, abs);
         const top = rel.split(path.sep)[0];
-        if (top === 'brand' || top === 'social') continue;
+        if (top === 'brand' || top === 'social' || top === 'badges') continue;
         walk(abs);
         continue;
       }

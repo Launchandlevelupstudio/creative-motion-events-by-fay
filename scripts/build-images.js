@@ -13,7 +13,7 @@ const sharp = require('sharp');
 const ROOT = path.resolve(__dirname, '..');
 const IMAGES = path.join(ROOT, 'images');
 const WIDTHS = [480, 960, 1600];
-const SKIP_TOP = new Set(['brand', 'social']);
+const SKIP_TOP = new Set(['brand', 'social', 'badges']);
 const HERO_SRC = '/images/home/fayola-whyte-manco-creative-director.jpg';
 const QUALITY = 84;
 
