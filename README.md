@@ -16,7 +16,7 @@ Home, Meet Fayola, What We Do, Corporate, Private, Work, Journal (with the first
 ## Known items before this goes live
 1. **Images**: all photos are gray CSS placeholder blocks that preserve layout. Before launch, replace these with permanently hosted image files (upload real files to the repo / hosting, not links to Google Photos).
 2. **Multi-page SEO**: this file uses client-side JavaScript to switch between "pages" on a single URL. For real SEO benefit (especially the Journal article), each page should eventually live at its own crawlable URL with its own `<title>` and `<meta name="description">` — that requires either a static site generator (e.g. Eleventy, Astro) or hosting on a platform that supports multiple pages (Squarespace, Webflow, etc.) rather than this single-file structure.
-3. **Contact form**: not yet wired to a backend. On launch, connect it to HoneyBook, Formspree, Netlify Forms, or similar so submissions actually arrive somewhere.
+3. **Contact form**: inquiries post JSON to Web3Forms (`https://api.web3forms.com/submit`) for hello@creativemotionevents.com. Set `WEB3FORMS_ACCESS_KEY` in the contact-page script to the key created for that inbox. It is `TODO_ACCESS_KEY` until then, and the form will not send.
 4. **Iris (the AI concierge)**: calls the Anthropic API directly from the browser. This works for demos, but for production you'll want a small backend/proxy so the API key isn't exposed client-side, and to add basic rate-limiting.
 5. **Reviews link**: currently points to a Google search results query for the business name. Replace with a direct Google Business Profile / Maps link once available for a cleaner destination.
 
