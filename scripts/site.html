@@ -5886,6 +5886,14 @@ try{history.replaceState({page:id||""},"",next);}catch(e){}
       function validEmail(value){
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
       }
+      function todayLocal(){
+        var now = new Date();
+        var month = now.getMonth() + 1;
+        var day = now.getDate();
+        return now.getFullYear() + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day;
+      }
+      var dateInput = field('inquiry-date');
+      if(dateInput) dateInput.min = todayLocal();
       function digits(value){
         return (value.match(/\d/g) || []).length;
       }
@@ -5912,8 +5920,10 @@ try{history.replaceState({page:id||""},"",next);}catch(e){}
         if(phone && digits(phone) < 7) ok = false;
         setError('inquiry-event-type', eventType ? '' : 'Choose an event type.');
         if(!eventType) ok = false;
-        setError('inquiry-date', eventDate ? '' : 'Choose an estimated event date.');
-        if(!eventDate) ok = false;
+        var today = todayLocal();
+        if(dateInput) dateInput.min = today;
+        setError('inquiry-date', !eventDate ? 'Choose an estimated event date.' : (eventDate < today ? 'Please choose today or a future date.' : ''));
+        if(!eventDate || eventDate < today) ok = false;
         setError('inquiry-guests', guestCount ? '' : 'Choose an estimated guest count.');
         if(!guestCount) ok = false;
         setError('inquiry-investment', investment ? '' : 'Choose an anticipated investment.');
