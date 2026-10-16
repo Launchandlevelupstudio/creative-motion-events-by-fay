@@ -442,6 +442,34 @@ input:focus,select:focus,textarea:focus{outline:1px solid var(--gold);outline-of
 .support-opts input{width:auto;margin-top:3px;accent-color:var(--gold)}
 @media(max-width:820px){.contact-grid{grid-template-columns:1fr;gap:40px}.row{grid-template-columns:1fr}}
 
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.home-inquire{background:#F8F6F1;text-align:center;padding:8px 24px 78px}
+.home-inquire p{margin:0 auto;color:#4a4540}
+.home-inquire .btns{margin-top:18px}
+#inquire{scroll-margin-top:110px}
+.inquiry-block{position:relative}
+.inquiry-form{display:grid;gap:18px;margin-top:22px}
+.inquiry-form .field{display:grid;gap:0}
+.inquiry-form .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field-error{min-height:0;margin:6px 0 0;font-size:.82rem;line-height:1.4;color:#f0d0d0;letter-spacing:0;text-transform:none}
+.field-error:empty{display:none}
+.inquiry-form [aria-invalid="true"]{border-color:#f0d0d0}
+.contact .inquire-start,.contact .inquire-submit{display:inline-block;background:var(--gold);color:#1a1613;border-color:var(--gold);text-align:center}
+.contact .inquire-start{padding:20px 36px;font-size:.78rem;letter-spacing:.2em}
+.contact .inquire-start:hover,.contact .inquire-submit:hover{background:#fff;color:#1a1613;border-color:#fff}
+.inquiry-form .opt{letter-spacing:.04em;text-transform:none}
+.inquiry-form input,.inquiry-form select,.inquiry-form textarea{color-scheme:dark}
+.form-status{margin-top:18px;padding:16px 18px;border:1px solid var(--gold);color:var(--white);line-height:1.5}
+.form-status a{color:var(--gold);text-decoration:underline}
+.form-status.is-error{border-color:#f0d0d0}
+.hp-field{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
+footer .footer-contact{margin-top:18px;font-family:var(--serif);font-size:1.15rem;letter-spacing:.02em;line-height:1.6}
+footer .footer-contact a:hover{color:var(--gold)}
+footer .footer-contact span{margin:0 8px;color:var(--grey)}
+@media(max-width:820px){.inquiry-form .row{grid-template-columns:1fr}}
+@media(max-width:560px){.contact .inquire-start,.contact .inquire-submit{width:100%}}
+
+
 /* footer with socials - photo logos */
 footer{padding:44px 24px 96px;text-align:center;border-top:1px solid var(--line)}
 .social{display:flex;justify-content:center;flex-wrap:wrap;align-items:center;gap:16px 22px}
@@ -515,6 +543,7 @@ footer .chamber-badge img{height:90px;width:auto;max-width:none}
 .msg-wrap{display:flex;flex-direction:column;gap:4px}
 .msg-row.me .msg-wrap{align-items:flex-end}
 .msg{font-size:.9rem;line-height:1.55;padding:12px 15px;white-space:pre-wrap;animation:rise .28s ease both;border-radius:16px}
+.msg a{color:var(--gold)}
 .msg.bot{background:var(--cw-bubble);color:var(--cw-text);border:1px solid var(--cw-border-soft);border-bottom-left-radius:4px}
 .msg.me{background:linear-gradient(135deg,var(--cw-gold-soft),var(--cw-gold-deep));color:#1B1509;border-bottom-right-radius:4px}
 .msg.err{background:#3A2A22;color:#F0C9AE;border:1px solid #5A3E2E;border-bottom-left-radius:4px}
@@ -830,7 +859,7 @@ try{thanks=new URLSearchParams(location.search).get("partnership")==="thanks";}c
 var id=null;
 if(thanks)id="annual-partnership";
 else if(raw==="home")id="home";
-else if(raw==="inquire")id="annual-partnership";
+else if(raw==="inquire"&&norm(location.pathname)!=="/contact/")id="annual-partnership";
 else if(raw&&Object.prototype.hasOwnProperty.call(ROUTES,raw))id=raw;
 var next;
 if(id){
@@ -935,7 +964,7 @@ try{history.replaceState({page:id||""},"",next);}catch(e){}
     <p style="margin-top:22px"><a class="jread" href="/what-we-do/" data-go="what">See how we work</a></p>
   </div></div>
   <div class="post-cta">
-    <p>Inquiries receive a response within 1-2 business days.</p>
+    <p>Inquiries receive a response within 24 hours.</p>
     <div class="btns">
       <a class="btn btn-solid" href="/contact/" data-go="contact" data-cta="Begin an Inquiry">Begin an Inquiry</a>
       <a class="btn btn-ghost" href="/work/private-celebrations/" data-go="work-private">View Private Albums</a>
@@ -1009,6 +1038,11 @@ try{history.replaceState({page:id||""},"",next);}catch(e){}
   <a class="chamber-badge" href="https://www.greaterbethesdachamber.org" target="_blank" rel="noopener">
     <img src="/images/badges/GBCC-Proud-Member-2026-Badge.png" alt="Greater Bethesda Chamber of Commerce Proud Member 2026" width="180" height="90" loading="lazy">
   </a>
+  <div class="footer-contact">
+    <a href="mailto:hello@creativemotionevents.com">hello@creativemotionevents.com</a>
+    <span aria-hidden="true">·</span>
+    <a href="tel:+13013377256">301-337-7256</a>
+  </div>
   <div class="legal">© 2026 Creative Motion Events by Fay LLC &nbsp;·&nbsp; Est. 2017</div>
 </footer>
 
@@ -1029,7 +1063,7 @@ try{history.replaceState({page:id||""},"",next);}catch(e){}
     <input id="chatInput" placeholder="Type your message…" autocomplete="off" aria-label="Message Iris">
     <button type="submit" aria-label="Send"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
   </form>
-  <div class="chat-foot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M6 10V7a6 6 0 0112 0v3M5 10h14v10H5z"/></svg> Confidential · Personalized · Replies within 1–2 business days</div>
+  <div class="chat-foot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M6 10V7a6 6 0 0112 0v3M5 10h14v10H5z"/></svg> Confidential · Personalized · Replies within 24 hours</div>
 </div>
 
 
@@ -1087,7 +1121,10 @@ function hashPage(){
   const raw=(location.hash||'').replace(/^#/,'').split(/[?&]/)[0];
   if(!raw) return null;
   if(raw==='home') return 'home';
-  if(raw==='inquire') return 'annual-partnership';
+  if(raw==='inquire'){
+    if(normalizePath(location.pathname)==='/contact/') return null;
+    return 'annual-partnership';
+  }
   if(pages.indexOf(raw)!==-1) return raw;
   return null;
 }
@@ -1200,13 +1237,18 @@ window.addEventListener('hashchange',function(){
 });
 const partnershipThanks=new URLSearchParams(location.search).get('partnership')==='thanks';
 const inquireHash=(location.hash||'').replace(/^#/,'').split(/[?&]/)[0]==='inquire';
+const contactInquire=inquireHash && normalizePath(location.pathname)==='/contact/';
 let start=hashPage()||PATH_TO_PAGE[normalizePath(location.pathname)]||'home';
 if(partnershipThanks) start='annual-partnership';
-go(start,{replace:true,hash:inquireHash?'#inquire':'',keepThanks:partnershipThanks,noscroll:partnershipThanks});
+go(start,{replace:true,hash:inquireHash?'#inquire':'',keepThanks:partnershipThanks,noscroll:partnershipThanks||contactInquire});
 if(partnershipThanks){
   const inquire=document.getElementById('inquire');
   if(inquire) inquire.classList.add('is-thanks');
   setTimeout(function(){if(inquire) inquire.scrollIntoView({block:'start'})},80);
+}
+if(contactInquire){
+  const inquiry=document.getElementById('inquire');
+  if(inquiry) inquiry.scrollIntoView({block:'start',behavior:'auto'});
 }
 document.addEventListener('click',function(e){
   const s=e.target.closest('[data-scroll]');
@@ -1244,6 +1286,11 @@ function settleScroll(){
   if(partnershipThanks){
     const inquire=document.getElementById('inquire');
     if(inquire) inquire.scrollIntoView({block:'start',behavior:'auto'});
+    return;
+  }
+  if(normalizePath(location.pathname)==='/contact/' && (location.hash||'').replace(/^#/,'').split(/[?&]/)[0]==='inquire'){
+    const inquiry=document.getElementById('inquire');
+    if(inquiry) inquiry.scrollIntoView({block:'start',behavior:'auto'});
     return;
   }
   scrollToTop();
@@ -1301,7 +1348,7 @@ chips.addEventListener('click',e=>{if(e.target.classList.contains('chip')){input
 form.addEventListener('submit',async e=>{e.preventDefault();const text=input.value.trim();if(!text)return;
   input.value='';chips.style.display='none';bubble(text,'me');chatHistory.push({role:'user',content:text});
   const ty=document.createElement('div');ty.className='typing';ty.innerHTML='<i></i><i></i><i></i>';log.appendChild(ty);log.scrollTop=log.scrollHeight;
-  const fail=()=>bubble("I couldn't reach Fayola's system just now. Email hello@creativemotionevents.com and she'll reply within 1–2 business days.",'err');
+  const fail=()=>{const d=bubble("I couldn't reach Fayola's system just now. Email hello@creativemotionevents.com and she'll reply within 24 hours.",'err');d.innerHTML="I couldn't reach Fayola's system just now. Email <a href=\"mailto:hello@creativemotionevents.com\">hello@creativemotionevents.com</a> and she'll reply within 24 hours.";};
   try{const r=await fetch('https://cme-chat-api-launch-and-level-up-studio.vercel.app/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({clientId:'cme-iris',messages:chatHistory})});
     const d=await r.json();const reply=(d.reply||'').trim();ty.remove();
     if(reply){bubble(reply,'bot');chatHistory.push({role:'assistant',content:reply})}else fail()}catch(err){ty.remove();fail()}});

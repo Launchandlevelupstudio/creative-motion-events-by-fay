@@ -56,10 +56,10 @@ module.exports = [
       <h2>One studio, whether the host is a chapter or a family</h2>
       <p>Corporate work covers galas and awards nights, holiday parties and employee appreciation, grand openings, cultural and embassy celebrations, and executive or donor dinners. A volunteer committee and a family planning a shower are different clients. Both get one point of contact. Fayola oversees the creative vision from the first concept through the final installation. If the brief is a gala or a branded opening, <a href="/corporate-event-design/" data-go="corporate-event-design">corporate event design</a> is the closer look. If the brief is the calendar, the vendors, and the decisions, <a href="/corporate-event-planning/" data-go="corporate-event-planning">corporate event planning</a> is.</p>
       <p>Organizations with three or more events a year can ask about an Annual Design Partnership. Each event is scoped on its own. There is no separate annual membership fee, and it is not an unlimited package. The design fee is shown apart from rentals and florals. Venue and catering stay with you.</p>
-      <p>The studio has been featured by Rockville REDI, Voyage Maryland, Brides &amp; Weddings Magazine, and Capitol Romance. The work itself is in the albums. Write hello@creativemotionevents.com or call 301-337-7256, and say what the room should feel like.</p>
+      <p>The studio has been featured by Rockville REDI, Voyage Maryland, Brides &amp; Weddings Magazine, and Capitol Romance. The work itself is in the albums. Write <a href="mailto:hello@creativemotionevents.com">hello@creativemotionevents.com</a> or call <a href="tel:+13013377256">301-337-7256</a>, and say what the room should feel like.</p>
       <div class="post-cta">
-        <p>Inquiries receive a response within 1-2 business days.</p>
-        <a class="btn btn-solid" href="/contact/" data-go="contact" data-cta="Inquire">Inquire</a>
+        <p>Inquiries receive a response within 24 hours.</p>
+        <a class="btn btn-solid" href="/contact/#inquire" data-go="contact" data-cta="Inquire">Inquire</a>
       </div>
       <div class="album-links">
         <a href="/work/" data-go="work">See the work</a><span class="dot">·</span>
@@ -119,10 +119,10 @@ module.exports = [
       <h2>Washington, Bethesda, and the rest of the map</h2>
       <p>If your event is in Bethesda, in the District, in Frederick County, or elsewhere in Maryland or Virginia, the inquiry is the same. Tell us the venue, the date, and what the day has to accomplish. Hosts planning a private celebration can start from <a href="/private-celebrations/" data-go="private">private celebrations</a>. The install and the breakdown are the same discipline, scaled to the gathering.</p>
       <p>Organizations with three or more events a year can put production inside an <a href="/annual-design-partnership/" data-go="annual-partnership">Annual Design Partnership</a>. You share the calendar. Every event still has its own proposal, design fee, approved production budget, and execution plan. There is no separate annual membership fee, and the partnership is not an unlimited package. For a single date, <a href="/corporate-event-planning/" data-go="corporate-event-planning">corporate event planning</a> is the path from the first conversation to that setup window.</p>
-      <p>Write hello@creativemotionevents.com or call 301-337-7256. A useful first note names the city, the venue if you have one, and whether the day is a gala, an opening, an appreciation event, or a private celebration.</p>
+      <p>Write <a href="mailto:hello@creativemotionevents.com">hello@creativemotionevents.com</a> or call <a href="tel:+13013377256">301-337-7256</a>. A useful first note names the city, the venue if you have one, and whether the day is a gala, an opening, an appreciation event, or a private celebration.</p>
       <div class="post-cta">
-        <p>Inquiries receive a response within 1-2 business days.</p>
-        <a class="btn btn-solid" href="/contact/" data-go="contact" data-cta="Inquire">Inquire</a>
+        <p>Inquiries receive a response within 24 hours.</p>
+        <a class="btn btn-solid" href="/contact/#inquire" data-go="contact" data-cta="Inquire">Inquire</a>
       </div>
       <div class="album-links">
         <a href="/journal/what-an-event-director-actually-does/" data-go="post-sponsor-recognition">What an event director does</a><span class="dot">·</span>
@@ -182,8 +182,8 @@ module.exports = [
       <p>Corporate event design is the same eye, pointed at an organization instead of a household. For Able Health Services in Hanover, Maryland, the brand showed up as a red carpet, a ribbon, and balloon columns, plus a small reserved card lettered so a guest knew they were expected. For the PNC Bank grand opening in Wheaton, the design was an entry and a branch opening that still felt like the bank. Neither room needed to look like a gala to be designed. They needed a point of view and a few decisions held all the way through.</p>
       <p>A full creative concept covers mood, color, texture, and flow, with tablescape and installation design. The proposal comes in five business days, and the design fee is shown separately from rentals and florals. Hosts in Frederick County and across the DMV can start with <a href="/event-designer-frederick-md/" data-go="event-designer-frederick">the Frederick overview</a>, or go to <a href="/corporate-event-design/" data-go="corporate-event-design">corporate event design</a> when the room belongs to an organization.</p>
       <div class="post-cta">
-        <p>Inquiries receive a response within 1-2 business days.</p>
-        <a class="btn btn-solid" href="/contact/" data-go="contact" data-cta="Inquire">Inquire</a>
+        <p>Inquiries receive a response within 24 hours.</p>
+        <a class="btn btn-solid" href="/contact/#inquire" data-go="contact" data-cta="Inquire">Inquire</a>
       </div>
       <div class="album-links">
         <a href="/journal/the-long-table/" data-go="post-hiring-designer">The long table</a><span class="dot">·</span>
@@ -243,10 +243,10 @@ module.exports = [
       <h2>A year of events, still designed one by one</h2>
       <p>Organizations with three or more events a year can work through an <a href="/annual-design-partnership/" data-go="annual-partnership">Annual Design Partnership</a>. You share the calendar and agree on a twelve-month commitment. Every event still has its own proposal, design fee, and production budget. There is no separate annual membership fee, and outside vendors are budgeted on that event.</p>
       <p>Corporate event design can stand next to <a href="/corporate-event-planning/" data-go="corporate-event-planning">corporate event planning</a>, or the same studio can hold both. Planning is the calendar, the vendors, and the approvals. Design is what the room looks like once those decisions are made. Many organizations want both, from one person, which is how Fayola works. If you are comparing approaches, <a href="/event-design/" data-go="event-design">event design</a> is the broader note on tables, stages, and private celebrations. This page stays with the organization.</p>
-      <p>Selected clients and partners already in the portfolio include PMI, PNC Bank, Able Health Services, and JW Marriott. Tell us which of those rooms is closest to yours, or tell us it is none of them. Write hello@creativemotionevents.com or call 301-337-7256.</p>
+      <p>Selected clients and partners already in the portfolio include PMI, PNC Bank, Able Health Services, and JW Marriott. Tell us which of those rooms is closest to yours, or tell us it is none of them. Write <a href="mailto:hello@creativemotionevents.com">hello@creativemotionevents.com</a> or call <a href="tel:+13013377256">301-337-7256</a>.</p>
       <div class="post-cta">
-        <p>Inquiries receive a response within 1-2 business days.</p>
-        <a class="btn btn-solid" href="/contact/" data-go="contact" data-cta="Inquire">Inquire</a>
+        <p>Inquiries receive a response within 24 hours.</p>
+        <a class="btn btn-solid" href="/contact/#inquire" data-go="contact" data-cta="Inquire">Inquire</a>
       </div>
       <div class="album-links">
         <a href="/work/corporate-events/galas/" data-go="work-corporate-galas">Gala album</a><span class="dot">·</span>
@@ -304,11 +304,11 @@ module.exports = [
       <p>Year-end dates in the DMV book early. Employers who want an appreciation night people remember usually decide the date, the room, and the feeling ahead of time, then let one partner carry the work through breakdown. If there is a program, plan the sightlines. If the point is conversation, a long table may be the better plan. The notes on <a href="/journal/employee-appreciation-events-in-the-dmv/" data-go="post-employee-appreciation">employee appreciation</a> and <a href="/journal/the-long-table/" data-go="post-hiring-designer">the long table</a> help while that choice is still open.</p>
       <p>Teams with a full calendar can plan the year through an <a href="/annual-design-partnership/" data-go="annual-partnership">Annual Design Partnership</a>: three or more events in twelve months, each scoped on its own. There is no separate annual membership fee, and it is not an unlimited package. The creative director already knows the brand, so the next event does not start from a blank page.</p>
       <h2>What to send with the inquiry</h2>
-      <p>The useful first note is concrete. Organization, date or season, city, a rough guest count if you know it, and whether the evening is a gala, an opening, an appreciation event, a cultural reception, or something else. If you already have a venue, name it. If you do not, say so. Email hello@creativemotionevents.com or call 301-337-7256. You can also inquire on the contact page. Expect a response within 1-2 business days.</p>
+      <p>The useful first note is concrete. Organization, date or season, city, a rough guest count if you know it, and whether the evening is a gala, an opening, an appreciation event, a cultural reception, or something else. If you already have a venue, name it. If you do not, say so. Email <a href="mailto:hello@creativemotionevents.com">hello@creativemotionevents.com</a> or call <a href="tel:+13013377256">301-337-7256</a>. You can also inquire on the contact page. Expect a response within 24 hours.</p>
       <p>If you already know the look, start with design. If you know the date and the purpose, start here. <a href="/private-celebrations/" data-go="private">Private celebrations</a> have their own door. Organizations in Frederick and the rest of Maryland can also read <a href="/event-designer-frederick-md/" data-go="event-designer-frederick">how the studio works across the DMV</a>. It is the same person on the other end of the note.</p>
       <div class="post-cta">
-        <p>Inquiries receive a response within 1-2 business days.</p>
-        <a class="btn btn-solid" href="/contact/" data-go="contact" data-cta="Inquire">Inquire</a>
+        <p>Inquiries receive a response within 24 hours.</p>
+        <a class="btn btn-solid" href="/contact/#inquire" data-go="contact" data-cta="Inquire">Inquire</a>
       </div>
       <div class="album-links">
         <a href="/corporate-events/" data-go="corporate">Corporate events</a><span class="dot">·</span>

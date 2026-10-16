@@ -49,6 +49,12 @@ body{margin:0;color:var(--ink);background:var(--paper);font-family:'DM Sans',Ari
 .nav-links a:hover{color:var(--copperdeep)}
 .pillbtn{display:inline-flex;align-items:center;gap:22px;border:0;border-radius:999px;background:var(--copper);color:#251019;padding:15px 26px;font-size:11px;letter-spacing:.11em;text-transform:uppercase;font-weight:700;transition:transform .15s,filter .15s;white-space:nowrap}
 .pillbtn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.ebf a.in-motion-inquiry{text-transform:none;letter-spacing:.02em;font-size:13px;font-weight:700}
+footer.site-footer .footer-contact{margin-top:18px;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.15rem;letter-spacing:.02em;line-height:1.6}
+footer.site-footer .footer-contact a{color:#161311;text-decoration:none}
+footer.site-footer .footer-contact a:hover{color:#A38443}
+footer.site-footer .footer-contact span{margin:0 8px;color:#6B655E}
 
 /* Full-bleed editorial hero. Drinks photo is BACKGROUND, never a floating card. */
 .hero{position:relative;z-index:0;background:var(--blackplum);min-height:645px;color:var(--ivory);display:flex;align-items:center;overflow:hidden;isolation:isolate}
@@ -174,7 +180,11 @@ body{margin:0;color:var(--ink);background:var(--paper);font-family:'DM Sans',Ari
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
 .hero-next-link{display:inline-flex;margin-left:20px;border-bottom:1px solid rgba(255,247,235,.5);padding:0 0 5px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#fbe6dc;white-space:nowrap}
-@media(max-width:500px){.hero-next-link{margin:18px 0 0;display:flex;width:max-content}}
+@media(max-width:500px){
+ .hero-next-link{margin:18px 0 0;display:flex;width:max-content}
+ .hero-actions{width:100%}
+ .hero-actions .pillbtn{white-space:normal;text-align:center;width:100%;justify-content:center}
+}
 /* Dedicated What's Next feature, intentionally distinct from brand introduction. */
 .events{display:block;position:relative;background:linear-gradient(125deg,#230610 0%,#16030b 54%,#3a0a1e 100%);color:var(--ivory);padding:84px 0 91px;min-height:0;isolation:isolate}
 .events:after{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle at 85% 22%,rgba(255,139,101,.12),transparent 35%)}
@@ -325,7 +335,10 @@ footer.site-footer .chamber-badge img{height:90px;width:auto;max-width:none;obje
    <h1 id="hero-title"><span>Events</span><span class="line"><span class="by">by</span> Fay</span></h1>
    <h2>Curated experiences<br/>throughout the DMV.</h2>
    <p>Not just somewhere to go. Something to experience. Beautiful spaces, creative activations, good energy, and connections worth getting dressed for.</p>
-   <button type="button" class="pillbtn" data-open-waitlist data-cta="Join Waitlist">Join Waitlist <span aria-hidden="true">→</span></button>
+   <div class="hero-actions">
+    <button type="button" class="pillbtn" data-open-waitlist data-cta="Join Waitlist">Join Waitlist <span aria-hidden="true">→</span></button>
+    <a class="pillbtn in-motion-inquiry" href="/contact/#inquire" data-cta="in_motion_list">Get on the IN MOTION list</a>
+   </div>
    <a class="hero-next-link" href="#up-next">Discover our first event <span aria-hidden="true">↗</span></a>
   </div>
  </section>
@@ -364,6 +377,7 @@ footer.site-footer .chamber-badge img{height:90px;width:auto;max-width:none;obje
       <p class="next-description">Expect beautiful spaces, meaningful conversations, music, curated vendors, and hands-on experiences that give you more than just somewhere to go.</p>
       <p class="next-footnote">Date, location, and experience details will be announced soon.</p>
       <div class="next-actions">
+        <a class="pillbtn in-motion-inquiry" href="/contact/#inquire" data-cta="in_motion_list">Get on the IN MOTION list</a>
         <button type="button" class="pillbtn" data-open-waitlist data-cta="Get on the In Motion Waitlist">Get on the In Motion Waitlist <span aria-hidden="true">→</span></button>
       </div>
     </div>
@@ -421,6 +435,11 @@ footer.site-footer .chamber-badge img{height:90px;width:auto;max-width:none;obje
   <a class="chamber-badge" href="https://www.greaterbethesdachamber.org" target="_blank" rel="noopener">
     <img src="/images/badges/GBCC-Proud-Member-2026-Badge.png" alt="Greater Bethesda Chamber of Commerce Proud Member 2026" width="180" height="90" loading="lazy">
   </a>
+  <div class="footer-contact">
+    <a href="mailto:hello@creativemotionevents.com">hello@creativemotionevents.com</a>
+    <span aria-hidden="true">·</span>
+    <a href="tel:+13013377256">301-337-7256</a>
+  </div>
   <div class="legal">© 2026 Creative Motion Events by Fay LLC &nbsp;·&nbsp; Est. 2017</div>
 </footer>
 

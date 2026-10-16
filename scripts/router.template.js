@@ -45,7 +45,10 @@ function hashPage(){
   const raw=(location.hash||'').replace(/^#/,'').split(/[?&]/)[0];
   if(!raw) return null;
   if(raw==='home') return 'home';
-  if(raw==='inquire') return 'annual-partnership';
+  if(raw==='inquire'){
+    if(normalizePath(location.pathname)==='/contact/') return null;
+    return 'annual-partnership';
+  }
   if(pages.indexOf(raw)!==-1) return raw;
   return null;
 }
@@ -158,13 +161,18 @@ window.addEventListener('hashchange',function(){
 });
 const partnershipThanks=new URLSearchParams(location.search).get('partnership')==='thanks';
 const inquireHash=(location.hash||'').replace(/^#/,'').split(/[?&]/)[0]==='inquire';
+const contactInquire=inquireHash && normalizePath(location.pathname)==='/contact/';
 let start=hashPage()||PATH_TO_PAGE[normalizePath(location.pathname)]||'home';
 if(partnershipThanks) start='annual-partnership';
-go(start,{replace:true,hash:inquireHash?'#inquire':'',keepThanks:partnershipThanks,noscroll:partnershipThanks});
+go(start,{replace:true,hash:inquireHash?'#inquire':'',keepThanks:partnershipThanks,noscroll:partnershipThanks||contactInquire});
 if(partnershipThanks){
   const inquire=document.getElementById('inquire');
   if(inquire) inquire.classList.add('is-thanks');
   setTimeout(function(){if(inquire) inquire.scrollIntoView({block:'start'})},80);
+}
+if(contactInquire){
+  const inquiry=document.getElementById('inquire');
+  if(inquiry) inquiry.scrollIntoView({block:'start',behavior:'auto'});
 }
 document.addEventListener('click',function(e){
   const s=e.target.closest('[data-scroll]');
@@ -202,6 +210,11 @@ function settleScroll(){
   if(partnershipThanks){
     const inquire=document.getElementById('inquire');
     if(inquire) inquire.scrollIntoView({block:'start',behavior:'auto'});
+    return;
+  }
+  if(normalizePath(location.pathname)==='/contact/' && (location.hash||'').replace(/^#/,'').split(/[?&]/)[0]==='inquire'){
+    const inquiry=document.getElementById('inquire');
+    if(inquiry) inquiry.scrollIntoView({block:'start',behavior:'auto'});
     return;
   }
   scrollToTop();

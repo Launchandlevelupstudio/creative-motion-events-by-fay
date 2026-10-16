@@ -424,7 +424,6 @@ function tagCtas(html) {
     ['<a class="btn btn-solid" href="/annual-design-partnership/#inquire" data-scroll="inquire">', '<a class="btn btn-solid" href="/annual-design-partnership/#inquire" data-scroll="inquire" data-cta="Discuss Your Event Calendar">'],
     ['<a class="btn btn-solid" href="/contact/" data-go="contact">Begin an Inquiry</a>', '<a class="btn btn-solid" href="/contact/" data-go="contact" data-cta="Begin an Inquiry">Begin an Inquiry</a>'],
     ['<a class="btn btn-solid" href="/contact/" data-go="contact">Begin an inquiry</a>', '<a class="btn btn-solid" href="/contact/" data-go="contact" data-cta="Begin an inquiry">Begin an inquiry</a>'],
-    ['<a href="https://creativemotionevents.hbportal.co/public/69fbbb7a0634dc956af011b7" target="_blank" rel="noopener">', '<a href="https://creativemotionevents.hbportal.co/public/69fbbb7a0634dc956af011b7" target="_blank" rel="noopener" data-cta="Start your inquiry on HoneyBook">'],
     ['<button class="chip">Book a consultation</button>', '<button class="chip" data-cta="Book a consultation">Book a consultation</button>']
   ];
   swaps.forEach(function (pair) {
@@ -461,7 +460,7 @@ function canonicalizerScript() {
     + 'var id=null;\n'
     + 'if(thanks)id="annual-partnership";\n'
     + 'else if(raw==="home")id="home";\n'
-    + 'else if(raw==="inquire")id="annual-partnership";\n'
+    + 'else if(raw==="inquire"&&norm(location.pathname)!=="/contact/")id="annual-partnership";\n'
     + 'else if(raw&&Object.prototype.hasOwnProperty.call(ROUTES,raw))id=raw;\n'
     + 'var next;\n'
     + 'if(id){\n'
