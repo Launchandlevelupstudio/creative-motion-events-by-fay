@@ -1144,6 +1144,7 @@ try{history.replaceState({page:id||""},"",next);}catch(e){}
         var payload = {
           _subject: 'New Inquiry - ' + name.replace(/[\r\n]+/g, ' ') + ' - ' + eventType,
           _replyto: email,
+          _cc: 'cmeinquiries@mail.grokbot.com',
           _template: 'table',
           _captcha: 'false',
           _honey: '',
