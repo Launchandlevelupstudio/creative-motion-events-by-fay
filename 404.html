@@ -78,6 +78,12 @@ nav a:hover,nav a:focus-visible{color:var(--black)}
 .miss h1{font-family:var(--serif);font-weight:300;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.1;letter-spacing:.04em;margin:18px 0 16px}
 .miss p{max-width:36rem;margin:0 auto 28px;color:var(--grey)}
 .btn{display:inline-block;padding:17px 32px;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;border:1px solid var(--black);font-family:var(--sans);background:var(--black);color:var(--white);font-weight:400}
+.btn-ghost{background:transparent;color:var(--black)}
+.miss-links{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.footer-services{margin:8px auto 18px}
+.footer-services .h3{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.footer-services a{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#8A847C;padding:4px 0}
+.footer-services a:hover{color:var(--black)}
 .btn:hover{background:var(--gold);border-color:var(--gold)}
 footer{padding:44px 24px 64px;text-align:center;border-top:1px solid var(--line)}
 footer .footer-mark{display:flex;justify-content:center;margin:0 auto 22px}
@@ -94,7 +100,7 @@ footer .chamber-badge img{height:90px;width:auto;max-width:none}
     <a class="wm" href="/">
       <picture class="logo-wide">
         <source srcset="/images/brand/cm-logo-horizontal.webp" type="image/webp">
-        <img src="/images/brand/cm-logo-horizontal.png" alt="Creative Motion Events by Fay">
+        <img src="/images/brand/cm-logo-horizontal.png" alt="Creative Motion Events by Fay" width="457" height="96">
       </picture>
     </a>
     <nav id="siteNav" aria-label="Primary">
@@ -117,13 +123,18 @@ footer .chamber-badge img{height:90px;width:auto;max-width:none}
   <p class="kicker">404</p>
   <h1>This page could not be found.</h1>
   <p>The link may be out of date. Creative Motion Events still designs corporate events and private celebrations across Washington DC, Maryland, and Virginia.</p>
-  <a class="btn" href="/">Back to the homepage</a>
+  <div class="miss-links">
+    <a class="btn" href="/">Back to the homepage</a>
+    <a class="btn btn-ghost" href="/corporate-events/">Corporate events</a>
+    <a class="btn btn-ghost" href="/work/corporate-events/">Corporate portfolio</a>
+    <a class="btn btn-ghost" href="/contact/">Contact</a>
+  </div>
 </main>
 <footer>
   <div class="footer-mark">
     <picture>
       <source srcset="/images/brand/cm-logo-monogram.webp" type="image/webp">
-      <img src="/images/brand/cm-logo-monogram.png" alt="Creative Motion Events by Fay">
+      <img src="/images/brand/cm-logo-monogram.png" alt="Creative Motion Events by Fay" width="108" height="96" loading="lazy">
     </picture>
   </div>
   <div class="social">
@@ -143,6 +154,14 @@ footer .chamber-badge img{height:90px;width:auto;max-width:none}
       <img src="/images/social/google-reviews.png" alt="Creative Motion Events on Google" width="34" height="34" decoding="async">
     </a>
   </div>
+  <nav class="footer-services" aria-label="Services">
+    <div class="h3">Services</div>
+    <a href="/corporate-event-design/">Corporate Event Design</a>
+    <a href="/corporate-event-planning/">Corporate Event Planning</a>
+    <a href="/event-production/">Event Production</a>
+    <a href="/event-design/">Event Design</a>
+    <a href="/event-designer-frederick-md/">Frederick, MD</a>
+  </nav>
   <a class="chamber-badge" href="https://www.greaterbethesdachamber.org" target="_blank" rel="noopener">
     <img src="/images/badges/GBCC-Proud-Member-2026-Badge.png" alt="Greater Bethesda Chamber of Commerce Proud Member 2026" width="180" height="90" loading="lazy">
   </a>

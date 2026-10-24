@@ -47,80 +47,99 @@ const routes = [
   {
     id: 'home',
     path: '/',
-    title: 'Event Design & Production in Washington DC, Maryland & Virginia | Creative Motion Events',
-    description: 'Design-led galas, awards nights, and appreciation events for organizations across the DMV, and luxury private celebrations. Creative Motion Events, led by Fayola Whyte-Manco.',
+    title: 'Corporate Event Design & Production DC, MD & VA | Creative Motion',
+    description: 'Corporate event design & production in DC, Maryland & Northern Virginia. Galas, grand openings, brand activations. Investment starts at $5,000.',
     crumbs: []
   },
   {
     id: 'who',
     path: '/meet-fayola/',
-    title: 'Meet Fayola Whyte-Manco | Event Design in Washington DC, Maryland & Virginia',
-    description: 'Fayola Whyte-Manco is the Founder and Creative Director of Creative Motion Events, an event design and production studio serving Washington, DC, Maryland, and Virginia since 2017.',
+    title: 'Fayola Whyte-Manco, Owner & Creative Director | Creative Motion',
+    description: 'Fayola Whyte-Manco is Owner & Creative Director of Creative Motion Events, designing corporate events across DC, Maryland and Virginia since 2017.',
     crumbs: [['Home', '/'], ['Meet Fayola', '/meet-fayola/']],
     image: img('/images/fayola-meet.jpg'),
-    imageAlt: 'Fayola Whyte-Manco, Founder and Creative Director of Creative Motion Events'
+    imageAlt: 'Fayola Whyte-Manco, Owner & Creative Director of Creative Motion Events'
   },
   {
     id: 'what',
     path: '/what-we-do/',
-    title: 'What We Do | Event Design & Production in Washington DC, Maryland & Virginia',
-    description: 'Event design and creative direction, tablescapes, branded stages, florals, signage, vendor direction, and on-site production for galas, grand openings, and private celebrations in the DMV.',
+    title: 'Corporate Event Design & Production Services | Creative Motion',
+    description: 'Corporate event design & production: creative direction, branded stages, florals, signage and on-site vendor direction for galas, openings and conferences.',
+    image: img('/images/what-we-do/on-site-direction-pointing-edited.jpg'),
+    imageAlt: 'A team lead in a black blazer pointing and giving direction, with a staff member\'s back and a Creative Motion Events shirt in the foreground of a bright event space',
     crumbs: [['Home', '/'], ['What We Do', '/what-we-do/']]
   },
   {
     id: 'corporate',
     path: '/corporate-events/',
-    title: 'Corporate Event Design & Production in Washington DC, Maryland & Virginia | Creative Motion Events',
-    description: 'Corporate galas, awards ceremonies, grand openings, employee celebrations, and branded experiences for associations, employers, and cultural organizations across the DMV.',
+    title: 'Corporate Event Design & Production in DC, MD & Northern VA',
+    description: 'Galas, grand openings and conferences designed and produced by Fayola Whyte-Manco across DC, Maryland & Northern Virginia. Investment starts at $5,000.',
+    image: img('/images/pmi-wdc-2026/pmi-wdc-conference-general-session-jw-marriott-reston-ballroom.jpg'),
+    imageAlt: 'PMI Washington DC Chapter general session at JW Marriott Reston Station: panel on white lounge seating before a branded stage, guests at navy-draped round tables with floral centerpieces',
+    corporateService: true,
     crumbs: [['Home', '/'], ['Corporate Events', '/corporate-events/']]
   },
   {
     id: 'annual-partnership',
     path: '/annual-design-partnership/',
-    title: 'Annual Design Partnership | Corporate Events in Washington DC, Maryland & Virginia',
-    description: 'One creative partner for organizations hosting three or more events a year in the DMV. Each event is scoped on its own, with no separate annual membership fee.',
+    title: 'Annual Design Partnership for Organizations | Creative Motion',
+    description: 'One creative partner for organizations hosting three or more events a year. Each event is scoped on its own. Investment starts at $5,000.',
+    image: img('/images/corporate/pmi-wdc-floral-centerpiece-branded-plinth.jpg'),
+    imageAlt: 'Blue hydrangeas and orange roses in a gold pedestal bowl on a white plinth branded Project Management Institute Washington, DC Chapter',
     crumbs: [['Home', '/'], ['Annual Design Partnership', '/annual-design-partnership/']]
   },
   {
     id: 'private',
     path: '/private-celebrations/',
-    title: 'Private Celebration Design in Washington DC, Maryland & Virginia | Creative Motion Events',
-    description: 'Milestone birthdays, anniversaries, bridal showers, engagement dinners, intimate dinners, and destination celebrations, designed with elegance and produced with calm.',
+    title: 'Private Celebrations in DC, MD & VA | Creative Motion Events',
+    description: 'Milestone birthdays, anniversaries, engagement dinners, intimate dinners, and destination celebrations, designed with elegance and produced with calm.',
+    image: img('/images/private/private-engagement-celebration-she-said-oui-tablescape.jpg'),
+    imageAlt: 'Engagement celebration table with a black-and-white striped runner, hot-pink napkins, gold-beaded chargers, and a She Said Oui arch — Creative Motion Events',
     crumbs: [['Home', '/'], ['Private Celebrations', '/private-celebrations/']]
   },
   {
     id: 'work',
     path: '/work/',
-    title: 'Event Design Portfolio | Washington DC, Maryland & Virginia | Creative Motion Events',
+    title: 'Event Portfolio: Galas & Grand Openings | Creative Motion',
     description: 'Corporate galas, grand openings, and private celebrations designed and produced by Creative Motion Events across Washington DC, Maryland, and Virginia.',
+    image: img('/images/pmi-wdc-2026/pmi-wdc-awards-gala-jw-marriott-reston-ballroom-n129.jpg'),
+    imageAlt: 'Finished ballroom for the PMI Washington DC Chapter Awards Gala at JW Marriott Reston Station',
     crumbs: [['Home', '/'], ['Work', '/work/']]
   },
   {
     id: 'work-corporate',
     path: '/work/corporate-events/',
-    title: 'Corporate Event Portfolio | Galas & Grand Openings in the DMV | Creative Motion Events',
+    title: 'Corporate Event Portfolio: DC, MD & VA | Creative Motion',
     description: 'Galas, awards nights, grand openings, and brand moments designed by Creative Motion Events for organizations in Washington DC, Maryland, and Virginia.',
+    image: img('/images/pmi-wdc-2026/pmi-wdc-awards-gala-jw-marriott-reston-ballroom-n129.jpg'),
+    imageAlt: 'Finished ballroom for the PMI Washington DC Chapter Awards Gala at JW Marriott Reston Station',
     crumbs: [['Home', '/'], ['Work', '/work/'], ['Corporate Events', '/work/corporate-events/']]
   },
   {
     id: 'work-corporate-galas',
     path: '/work/corporate-events/galas/',
     title: 'Gala & Awards Event Design in the DMV | Creative Motion Events',
-    description: 'Awards nights and celebration galas designed and produced by Creative Motion Events, including the PMI Washington DC Chapter Awards Gala at JW Marriott Reston.',
+    description: 'Awards nights and celebration galas designed and produced by Creative Motion Events, including the PMI Washington DC Chapter Awards Gala at JW Marriott Reston Station.',
+    image: img('/images/pmi-wdc-2026/pmi-wdc-awards-gala-jw-marriott-reston-ballroom-n129.jpg'),
+    imageAlt: 'Finished ballroom for the PMI Washington DC Chapter Awards Gala at JW Marriott Reston Station',
     crumbs: [['Home', '/'], ['Work', '/work/'], ['Corporate Events', '/work/corporate-events/'], ['Galas', '/work/corporate-events/galas/']]
   },
   {
     id: 'work-corporate-grand-openings',
     path: '/work/corporate-events/grand-openings/',
-    title: 'Grand Opening & Brand Moment Design in Maryland | Creative Motion Events',
-    description: 'Grand openings and brand moments by Creative Motion Events, including Able Health Services in Hanover, Maryland, and a PNC Bank grand opening in Maryland.',
+    title: 'Grand Opening Event Design in DC, MD & VA | Creative Motion',
+    description: 'Grand openings and brand moments by Creative Motion Events, including Able Health Services in Hanover, Maryland, and PNC Bank in Wheaton, Maryland.',
+    image: img('/images/albums/pnc-grand-opening/pnc-bank-grand-opening-maryland-cover.jpg'),
+    imageAlt: 'PNC Bank grand opening exterior and entry event design in Wheaton, Maryland by Creative Motion Events',
     crumbs: [['Home', '/'], ['Work', '/work/'], ['Corporate Events', '/work/corporate-events/'], ['Grand Openings', '/work/corporate-events/grand-openings/']]
   },
   {
     id: 'work-private',
     path: '/work/private-celebrations/',
-    title: 'Private Celebration Portfolio in Maryland & the DMV | Creative Motion Events',
-    description: 'Engagement dinners, bridal showers, and intimate celebrations designed by Creative Motion Events.',
+    title: 'Private Celebration Portfolio | Creative Motion Events',
+    description: 'Engagement dinners and intimate celebrations designed by Creative Motion Events.',
+    image: img('/images/albums/jazmine-jaleesa-engagement/jazmine-jaleesa-engagement-dinner-maryland-cover.jpg'),
+    imageAlt: 'Elegant engagement dinner tablescape designed by Creative Motion Events in Maryland',
     crumbs: [['Home', '/'], ['Work', '/work/'], ['Private Celebrations', '/work/private-celebrations/']]
   },
   {
@@ -129,22 +148,6 @@ const routes = [
     title: 'Engagement Dinner Design in Maryland | Creative Motion Events',
     description: 'Engagement dinners and intimate celebrations designed by Creative Motion Events, including Jazmine and Jaleesa’s engagement dinner.',
     crumbs: [['Home', '/'], ['Work', '/work/'], ['Private Celebrations', '/work/private-celebrations/'], ['Engagements', '/work/private-celebrations/engagements/']]
-  },
-  {
-    id: 'work-private-bridal',
-    path: '/work/private-celebrations/bridal-showers/',
-    title: 'Bridal Shower Design in Maryland | Creative Motion Events',
-    description: 'Bridal showers designed by Creative Motion Events in Maryland, including Titi’s bridal shower.',
-    crumbs: [['Home', '/'], ['Work', '/work/'], ['Private Celebrations', '/work/private-celebrations/'], ['Bridal Showers', '/work/private-celebrations/bridal-showers/']]
-  },
-  {
-    id: 'album-titi-bridal-shower',
-    path: '/work/private-celebrations/bridal-showers/titi-bridal-shower/',
-    title: 'Titi’s Bridal Shower in Maryland | Creative Motion Events',
-    description: 'A luxury bridal shower in Maryland designed by Creative Motion Events, with a tablescape, florals, and a Miss to Mrs backdrop.',
-    crumbs: [['Home', '/'], ['Work', '/work/'], ['Private Celebrations', '/work/private-celebrations/'], ['Bridal Showers', '/work/private-celebrations/bridal-showers/'], ['Titi’s Bridal Shower', '/work/private-celebrations/bridal-showers/titi-bridal-shower/']],
-    image: img('/images/albums/titi-bridal-shower/titi-bridal-shower-maryland-cover.jpg'),
-    imageAlt: 'Luxury bridal shower — bride at Miss to Mrs backdrop by Creative Motion Events in Maryland'
   },
   {
     id: 'album-jazmine-jaleesa-engagement',
@@ -158,16 +161,16 @@ const routes = [
   {
     id: 'album-pnc-grand-opening',
     path: '/work/corporate-events/grand-openings/pnc-bank-grand-opening/',
-    title: 'PNC Bank Grand Opening in Maryland | Creative Motion Events',
+    title: 'PNC Bank Grand Opening in Wheaton | Creative Motion',
     description: 'Grand opening event design for PNC Bank in Wheaton, Maryland, by Creative Motion Events.',
     crumbs: [['Home', '/'], ['Work', '/work/'], ['Corporate Events', '/work/corporate-events/'], ['Grand Openings', '/work/corporate-events/grand-openings/'], ['PNC Bank Grand Opening', '/work/corporate-events/grand-openings/pnc-bank-grand-opening/']],
     image: img('/images/albums/pnc-grand-opening/pnc-bank-grand-opening-maryland-cover.jpg'),
-    imageAlt: 'PNC Bank grand opening exterior and entry event design in Maryland by Creative Motion Events'
+    imageAlt: 'PNC Bank grand opening exterior and entry event design in Wheaton, Maryland by Creative Motion Events'
   },
   {
     id: 'album-able-health-grand-opening',
     path: '/work/corporate-events/grand-openings/able-health-services-grand-opening/',
-    title: 'Able Health Services Grand Opening in Hanover, Maryland | Creative Motion Events',
+    title: 'Able Health Services Grand Opening, Hanover | Creative Motion',
     description: 'Ribbon cutting, red carpet, and branded balloon design for the Able Health Services grand opening in Hanover, Maryland. Photography by Danielle Clark.',
     crumbs: [['Home', '/'], ['Work', '/work/'], ['Corporate Events', '/work/corporate-events/'], ['Grand Openings', '/work/corporate-events/grand-openings/'], ['Able Health Services Grand Opening', '/work/corporate-events/grand-openings/able-health-services-grand-opening/']],
     image: img('/images/albums/able-health-grand-opening/able-health-services-grand-opening-hanover-md-cover.jpg'),
@@ -176,11 +179,11 @@ const routes = [
   {
     id: 'album-pmi-wdc-awards-gala',
     path: '/work/corporate-events/galas/pmi-washington-dc-chapter-awards-gala/',
-    title: 'PMI Washington DC Chapter Awards Gala | JW Marriott Reston | Creative Motion Events',
-    description: 'Awards gala and conference design for the PMI Washington DC Chapter at JW Marriott Reston, October 2026. Photography by Danielle Clark.',
+    title: 'PMI Washington DC Chapter Awards Gala | Creative Motion',
+    description: 'Awards gala and conference design for the PMI Washington DC Chapter at JW Marriott Reston Station, October 2026. Photography by Danielle Clark.',
     crumbs: [['Home', '/'], ['Work', '/work/'], ['Corporate Events', '/work/corporate-events/'], ['Galas', '/work/corporate-events/galas/'], ['PMI Washington DC Chapter Awards Gala', '/work/corporate-events/galas/pmi-washington-dc-chapter-awards-gala/']],
     image: img('/images/pmi-wdc-2026/pmi-wdc-awards-gala-jw-marriott-reston-ballroom-n129.jpg'),
-    imageAlt: 'Finished ballroom with navy tables, orchid centerpieces and the lit 2026 PMIWDC Conference stage for the PMI Washington DC Chapter Awards Gala, JW Marriott Reston, Virginia'
+    imageAlt: 'Finished ballroom with navy tables, orchid centerpieces and the lit 2026 PMIWDC Conference stage for the PMI Washington DC Chapter Awards Gala, JW Marriott Reston Station, Virginia'
   },
   {
     id: 'journal',
@@ -193,7 +196,7 @@ const routes = [
     id: 'post-employee-appreciation',
     path: '/journal/employee-appreciation-events-in-the-dmv/',
     title: 'Employee Appreciation Events in the DMV | Creative Motion Events',
-    description: 'How Creative Motion Events designs appreciation nights, team celebrations, and office milestones for employers, associations, and healthcare teams across DC, Maryland, and Virginia.',
+    description: 'How I design appreciation nights and team celebrations for employers and associations across DC, Maryland, and Virginia.',
     crumbs: [['Home', '/'], ['Journal', '/journal/'], ['Employee Appreciation Events in the DMV', '/journal/employee-appreciation-events-in-the-dmv/']],
     ogType: 'article',
     image: img('/images/journal/pmi-wdc-conference-stage-screen-wide.jpg'),
@@ -243,8 +246,8 @@ const routes = [
   {
     id: 'contact',
     path: '/contact/',
-    title: 'Contact Creative Motion Events | Washington DC, Maryland & Virginia',
-    description: 'Plan a corporate gala, an appreciation event, or a private celebration with Fayola Whyte-Manco. Email hello@creativemotionevents.com or call 301-337-7256.',
+    title: 'Request a Proposal | Creative Motion Events',
+    description: 'Request a corporate proposal from Fayola Whyte-Manco. Investment starts at $5,000. Email hello@creativemotionevents.com or call 301-337-7256.',
     crumbs: [['Home', '/'], ['Contact', '/contact/']]
   }
 ];
@@ -283,12 +286,21 @@ function businessSchema() {
     telephone: '+1-301-337-7256',
     foundingDate: '2017',
     slogan: 'Events with intention',
-    description: 'Creative Motion Events is corporate and private event design and creative direction, led personally by Fayola Whyte-Manco. Galas, awards nights, appreciation events, and luxury private celebrations across Washington DC, Maryland and Virginia.',
+    description: 'Creative Motion Events is a corporate event design & production studio led by Fayola Whyte-Manco, Owner & Creative Director. Galas, grand openings, brand activations and conferences across Washington DC, Maryland and Northern Virginia, plus select private celebrations.',
+    priceRange: '$5,000+',
+    knowsAbout: [
+      'corporate event design & production',
+      'on-site vendor direction',
+      'grand openings',
+      'galas',
+      'conferences',
+      'brand activations'
+    ],
     founder: {
       '@type': 'Person',
       '@id': ORIGIN + '/meet-fayola/#fayola-whyte-manco',
       name: 'Fayola Whyte-Manco',
-      jobTitle: 'Founder and Creative Director',
+      jobTitle: 'Owner & Creative Director',
       url: ORIGIN + '/meet-fayola/',
       sameAs: ['https://www.linkedin.com/in/fayola-whyte-manco-184a5bb9']
     },
@@ -299,7 +311,12 @@ function businessSchema() {
       { '@type': 'AdministrativeArea', name: 'Northern Virginia' },
       { '@type': 'City', name: 'Hanover', containedInPlace: { '@type': 'State', name: 'Maryland' } },
       { '@type': 'City', name: 'Wheaton', containedInPlace: { '@type': 'State', name: 'Maryland' } },
-      { '@type': 'City', name: 'Reston', containedInPlace: { '@type': 'State', name: 'Virginia' } }
+      { '@type': 'City', name: 'Reston', containedInPlace: { '@type': 'State', name: 'Virginia' } },
+      { '@type': 'City', name: 'Bethesda', containedInPlace: { '@type': 'State', name: 'Maryland' } },
+      { '@type': 'City', name: 'Rockville', containedInPlace: { '@type': 'State', name: 'Maryland' } },
+      { '@type': 'City', name: 'Frederick', containedInPlace: { '@type': 'State', name: 'Maryland' } },
+      { '@type': 'City', name: 'Tysons', containedInPlace: { '@type': 'State', name: 'Virginia' } },
+      { '@type': 'City', name: 'Arlington', containedInPlace: { '@type': 'State', name: 'Virginia' } }
     ],
     sameAs: [
       'https://www.instagram.com/creative_motion_events',
@@ -338,7 +355,7 @@ function postingSchema(route) {
     author: {
       '@type': 'Person',
       name: 'Fayola Whyte-Manco',
-      jobTitle: 'Founder and Creative Director',
+      jobTitle: 'Owner & Creative Director',
       url: ORIGIN + '/meet-fayola/'
     },
     publisher: {
@@ -352,6 +369,29 @@ function postingSchema(route) {
     url: abs(route.path),
     articleSection: post.articleSection,
     keywords: post.keywords
+  };
+}
+
+
+function corporateServiceSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': ORIGIN + '/corporate-events/#service',
+    name: 'Corporate Event Design & Production',
+    serviceType: 'Corporate event design and production',
+    url: ORIGIN + '/corporate-events/',
+    provider: { '@id': ORIGIN + '/#business' },
+    areaServed: [
+      { '@type': 'City', name: 'Washington', containedInPlace: { '@type': 'AdministrativeArea', name: 'District of Columbia' } },
+      { '@type': 'City', name: 'Bethesda', containedInPlace: { '@type': 'State', name: 'Maryland' } },
+      { '@type': 'City', name: 'Rockville', containedInPlace: { '@type': 'State', name: 'Maryland' } },
+      { '@type': 'City', name: 'Frederick', containedInPlace: { '@type': 'State', name: 'Maryland' } },
+      { '@type': 'City', name: 'Reston', containedInPlace: { '@type': 'State', name: 'Virginia' } },
+      { '@type': 'City', name: 'Tysons', containedInPlace: { '@type': 'State', name: 'Virginia' } },
+      { '@type': 'City', name: 'Arlington', containedInPlace: { '@type': 'State', name: 'Virginia' } }
+    ],
+    offers: { '@type': 'Offer', priceSpecification: { '@type': 'PriceSpecification', minPrice: 5000, priceCurrency: 'USD' } }
   };
 }
 
@@ -383,6 +423,7 @@ function seoBlock(route) {
   lines.push(jsonScript(businessSchema()));
   if (route.crumbs.length) lines.push(jsonScript(breadcrumbSchema(route)));
   if (route.posting) lines.push(jsonScript(postingSchema(route)));
+  if (route.corporateService) lines.push(jsonScript(corporateServiceSchema()));
   lines.push('<!-- SEO_HEAD_END -->');
   return lines.join('\n');
 }
@@ -755,7 +796,10 @@ document.addEventListener('submit',function(e){
 const LEGACY_REDIRECTS = [
   { from: '/about/', to: '/meet-fayola/', label: 'Meet Fayola' },
   { from: '/services/', to: '/what-we-do/', label: 'What We Do' },
-  { from: '/reviews/', to: '/work/', label: 'Our Work' }
+  { from: '/reviews/', to: '/work/#testimonials', label: 'Our Work' },
+  { from: '/work/private-celebrations/bridal-showers/', to: '/work/private-celebrations/', label: 'Private Celebrations' },
+  { from: '/work/private-celebrations/bridal-showers/titi-bridal-shower/', to: '/work/private-celebrations/', label: 'Private Celebrations' },
+  { from: '/events-by-fay/', to: '/events-by-fay.html', label: 'Events by Fay' }
 ];
 
 function redirectStub(r) {
@@ -766,6 +810,7 @@ function redirectStub(r) {
     '<head>',
     '<meta charset="utf-8">',
     '<meta name="viewport" content="width=device-width, initial-scale=1">',
+    '<meta name="robots" content="noindex">',
     '<title>' + esc(r.label) + ' | Creative Motion Events</title>',
     '<meta http-equiv="refresh" content="0; url=' + esc(r.to) + '">',
     '<link rel="canonical" href="' + esc(url) + '">',
@@ -787,8 +832,10 @@ function redirectStub(r) {
 
 function writeRedirectStubs() {
   LEGACY_REDIRECTS.forEach(function (r) {
+    const targetPath = r.to.split('#')[0];
     if (routes.some(function (route) { return route.path === r.from; })) throw new Error('legacy redirect collides with route ' + r.from);
-    if (!routes.some(function (route) { return route.path === r.to; })) throw new Error('legacy redirect target is not a route ' + r.to);
+    const knownTarget = targetPath === '/events-by-fay.html' || routes.some(function (route) { return route.path === targetPath; });
+    if (!knownTarget) throw new Error('legacy redirect target is not a route ' + r.to);
     const dir = path.join(ROOT, r.from);
     fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(path.join(dir, 'index.html'), redirectStub(r));
@@ -828,7 +875,10 @@ function assertPublishedPagesAreIndexable() {
       if (!name.endsWith('.html')) continue;
       if (NOINDEX_ALLOWLIST.indexOf(abs) !== -1) continue;
       const html = fs.readFileSync(abs, 'utf8');
-      if (/noindex/i.test(html)) throw new Error('generated page contains noindex: ' + path.relative(ROOT, abs));
+      if (/noindex/i.test(html)) {
+        if (/http-equiv="refresh"/i.test(html)) continue;
+        throw new Error('generated page contains noindex: ' + path.relative(ROOT, abs));
+      }
     }
   }
   walk(ROOT);
@@ -838,13 +888,13 @@ function readTemplate() {
   const source = path.join(__dirname, 'site.html');
   if (fs.existsSync(source)) {
     const html = fs.readFileSync(source, 'utf8');
-    if (!html.includes('id="p-home"') || !html.includes('id="p-album-titi-bridal-shower"') || !html.includes('id="p-contact"')) {
+    if (!html.includes('id="p-home"') || !html.includes('id="p-album-pnc-grand-opening"') || !html.includes('id="p-contact"')) {
       throw new Error('scripts/site.html is missing page sections; refusing to build from the pruned homepage');
     }
     return html;
   }
   const home = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
-  if (!home.includes('id="p-album-titi-bridal-shower"')) {
+  if (!home.includes('id="p-album-pnc-grand-opening"')) {
     throw new Error('index.html has no album sections and scripts/site.html is missing');
   }
   return home;
