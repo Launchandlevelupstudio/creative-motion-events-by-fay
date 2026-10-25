@@ -593,10 +593,6 @@ function applyShared(html) {
   html = rootify(html);
   html = rewriteRouteHrefs(html);
   html = fillSocialAlts(html);
-  html = html.replace(
-    '<div class="hline">Creative Direction &amp; Event Design</div>',
-    '<h1 class="hline">Creative Direction &amp; Event Design</h1>'
-  );
   if (!html.includes('h1.hline{')) {
     html = html.replace(
       '.hline{display:flex;align-items:center;gap:2.2cqw;font-size:max(1.9cqw,.6rem);letter-spacing:.36em;text-transform:uppercase;color:var(--gold);font-weight:400}',
