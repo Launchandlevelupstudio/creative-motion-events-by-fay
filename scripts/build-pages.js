@@ -48,7 +48,7 @@ const routes = [
     id: 'home',
     path: '/',
     title: 'Corporate Event Design & Production DC, MD & VA | Creative Motion',
-    description: 'Corporate event design & production in DC, Maryland & Northern Virginia. Galas, grand openings, brand activations. Investment starts at $5,000.',
+    description: 'Corporate event design & production in DC, Maryland & Northern Virginia. Galas, grand openings, brand activations.',
     crumbs: []
   },
   {
@@ -73,7 +73,7 @@ const routes = [
     id: 'corporate',
     path: '/corporate-events/',
     title: 'Corporate Event Design & Production in DC, MD & Northern VA',
-    description: 'Galas, grand openings and conferences designed and produced by Fayola Whyte-Manco across DC, Maryland & Northern Virginia. Investment starts at $5,000.',
+    description: 'Galas, grand openings and conferences designed and produced by Fayola Whyte-Manco across DC, Maryland & Northern Virginia.',
     image: img('/images/pmi-wdc-2026/pmi-wdc-conference-general-session-jw-marriott-reston-ballroom.jpg'),
     imageAlt: 'PMI Washington DC Chapter general session at JW Marriott Reston Station: panel on white lounge seating before a branded stage, guests at navy-draped round tables with floral centerpieces',
     corporateService: true,
@@ -83,7 +83,7 @@ const routes = [
     id: 'annual-partnership',
     path: '/annual-design-partnership/',
     title: 'Annual Design Partnership for Organizations | Creative Motion',
-    description: 'One creative partner for organizations hosting three or more events a year. Each event is scoped on its own. Investment starts at $5,000.',
+    description: 'One creative partner for organizations hosting three or more events a year. Each event is scoped on its own.',
     image: img('/images/corporate/pmi-wdc-floral-centerpiece-branded-plinth.jpg'),
     imageAlt: 'Blue hydrangeas and orange roses in a gold pedestal bowl on a white plinth branded Project Management Institute Washington, DC Chapter',
     crumbs: [['Home', '/'], ['Annual Design Partnership', '/annual-design-partnership/']]
@@ -137,7 +137,7 @@ const routes = [
     id: 'work-private',
     path: '/work/private-celebrations/',
     title: 'Private Celebration Portfolio | Creative Motion Events',
-    description: 'Engagement dinners and intimate celebrations designed by Creative Motion Events.',
+    description: 'Engagement dinners, bridal showers, and intimate celebrations designed by Creative Motion Events.',
     image: img('/images/albums/jazmine-jaleesa-engagement/jazmine-jaleesa-engagement-dinner-maryland-cover.jpg'),
     imageAlt: 'Elegant engagement dinner tablescape designed by Creative Motion Events in Maryland',
     crumbs: [['Home', '/'], ['Work', '/work/'], ['Private Celebrations', '/work/private-celebrations/']]
@@ -148,6 +148,22 @@ const routes = [
     title: 'Engagement Dinner Design in Maryland | Creative Motion Events',
     description: 'Engagement dinners and intimate celebrations designed by Creative Motion Events, including Jazmine and Jaleesa’s engagement dinner.',
     crumbs: [['Home', '/'], ['Work', '/work/'], ['Private Celebrations', '/work/private-celebrations/'], ['Engagements', '/work/private-celebrations/engagements/']]
+  },
+  {
+    id: 'work-private-bridal',
+    path: '/work/private-celebrations/bridal-showers/',
+    title: 'Bridal Shower Design in Maryland | Creative Motion Events',
+    description: 'Bridal showers designed by Creative Motion Events in Maryland, including Titi’s bridal shower.',
+    crumbs: [['Home', '/'], ['Work', '/work/'], ['Private Celebrations', '/work/private-celebrations/'], ['Bridal Showers', '/work/private-celebrations/bridal-showers/']]
+  },
+  {
+    id: 'album-titi-bridal-shower',
+    path: '/work/private-celebrations/bridal-showers/titi-bridal-shower/',
+    title: 'Titi’s Bridal Shower in Maryland | Creative Motion Events',
+    description: 'A luxury bridal shower in Maryland designed by Creative Motion Events, with a tablescape, florals, and a Miss to Mrs backdrop.',
+    crumbs: [['Home', '/'], ['Work', '/work/'], ['Private Celebrations', '/work/private-celebrations/'], ['Bridal Showers', '/work/private-celebrations/bridal-showers/'], ['Titi’s Bridal Shower', '/work/private-celebrations/bridal-showers/titi-bridal-shower/']],
+    image: img('/images/albums/titi-bridal-shower/titi-bridal-shower-maryland-cover.jpg'),
+    imageAlt: 'Luxury bridal shower — bride at Miss to Mrs backdrop by Creative Motion Events in Maryland'
   },
   {
     id: 'album-jazmine-jaleesa-engagement',
@@ -247,7 +263,7 @@ const routes = [
     id: 'contact',
     path: '/contact/',
     title: 'Request a Proposal | Creative Motion Events',
-    description: 'Request a corporate proposal from Fayola Whyte-Manco. Investment starts at $5,000. Email hello@creativemotionevents.com or call 301-337-7256.',
+    description: 'Request a corporate proposal from Fayola Whyte-Manco. Email hello@creativemotionevents.com or call 301-337-7256.',
     crumbs: [['Home', '/'], ['Contact', '/contact/']]
   }
 ];
@@ -287,7 +303,6 @@ function businessSchema() {
     foundingDate: '2017',
     slogan: 'Events with intention',
     description: 'Creative Motion Events is a corporate event design & production studio led by Fayola Whyte-Manco, Owner & Creative Director. Galas, grand openings, brand activations and conferences across Washington DC, Maryland and Northern Virginia, plus select private celebrations.',
-    priceRange: '$5,000+',
     knowsAbout: [
       'corporate event design & production',
       'on-site vendor direction',
@@ -390,8 +405,7 @@ function corporateServiceSchema() {
       { '@type': 'City', name: 'Reston', containedInPlace: { '@type': 'State', name: 'Virginia' } },
       { '@type': 'City', name: 'Tysons', containedInPlace: { '@type': 'State', name: 'Virginia' } },
       { '@type': 'City', name: 'Arlington', containedInPlace: { '@type': 'State', name: 'Virginia' } }
-    ],
-    offers: { '@type': 'Offer', priceSpecification: { '@type': 'PriceSpecification', minPrice: 5000, priceCurrency: 'USD' } }
+    ]
   };
 }
 
@@ -461,7 +475,7 @@ function fillSocialAlts(html) {
 function tagCtas(html) {
   const swaps = [
     ['<a class="cta" href="/contact/" data-go="contact">', '<a class="cta" href="/contact/" data-go="contact" data-cta="Let\'s Create Together">'],
-    ['<a class="btn btn-solid" href="/contact/" data-go="contact">Request a Corporate Proposal', '<a class="btn btn-solid" href="/contact/" data-go="contact" data-cta="Request a Corporate Proposal">Request a Corporate Proposal'],
+    ['<a class="btn btn-solid" href="/contact/" data-go="contact">Request Proposal', '<a class="btn btn-solid" href="/contact/" data-go="contact" data-cta="Request Proposal">Request Proposal'],
     ['<a class="btn btn-solid" href="/annual-design-partnership/#inquire" data-scroll="inquire">', '<a class="btn btn-solid" href="/annual-design-partnership/#inquire" data-scroll="inquire" data-cta="Discuss Your Event Calendar">'],
     ['<a class="btn btn-solid" href="/contact/" data-go="contact">Begin an Inquiry</a>', '<a class="btn btn-solid" href="/contact/" data-go="contact" data-cta="Begin an Inquiry">Begin an Inquiry</a>'],
     ['<a class="btn btn-solid" href="/contact/" data-go="contact">Begin an inquiry</a>', '<a class="btn btn-solid" href="/contact/" data-go="contact" data-cta="Begin an inquiry">Begin an inquiry</a>'],
@@ -797,8 +811,6 @@ const LEGACY_REDIRECTS = [
   { from: '/about/', to: '/meet-fayola/', label: 'Meet Fayola' },
   { from: '/services/', to: '/what-we-do/', label: 'What We Do' },
   { from: '/reviews/', to: '/work/#testimonials', label: 'Our Work' },
-  { from: '/work/private-celebrations/bridal-showers/', to: '/work/private-celebrations/', label: 'Private Celebrations' },
-  { from: '/work/private-celebrations/bridal-showers/titi-bridal-shower/', to: '/work/private-celebrations/', label: 'Private Celebrations' },
   { from: '/events-by-fay/', to: '/events-by-fay.html', label: 'Events by Fay' }
 ];
 
