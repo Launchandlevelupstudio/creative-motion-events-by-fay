@@ -163,7 +163,7 @@ const routes = [
     description: 'A luxury bridal shower in Maryland designed by Creative Motion Events, with a tablescape, florals, and a Miss to Mrs backdrop.',
     crumbs: [['Home', '/'], ['Work', '/work/'], ['Private Celebrations', '/work/private-celebrations/'], ['Bridal Showers', '/work/private-celebrations/bridal-showers/'], ['Titi’s Bridal Shower', '/work/private-celebrations/bridal-showers/titi-bridal-shower/']],
     image: img('/images/albums/titi-bridal-shower/titi-bridal-shower-maryland-cover.jpg'),
-    imageAlt: 'Luxury bridal shower — bride at Miss to Mrs backdrop by Creative Motion Events in Maryland'
+    imageAlt: 'Bridal shower'
   },
   {
     id: 'album-jazmine-jaleesa-engagement',
@@ -263,7 +263,7 @@ const routes = [
     id: 'contact',
     path: '/contact/',
     title: 'Request a Proposal | Creative Motion Events',
-    description: 'Request a corporate proposal from Fayola Whyte-Manco. Email hello@creativemotionevents.com or call 301-337-7256.',
+    description: 'Request a proposal from Fayola Whyte-Manco. Email hello@creativemotionevents.com or call 301-337-7256.',
     crumbs: [['Home', '/'], ['Contact', '/contact/']]
   }
 ];
