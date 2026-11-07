@@ -341,6 +341,21 @@ async function main() {
     fs.writeFileSync(file, Buffer.from(image.data, 'base64'));
     console.log('SHOT', file, fs.readFileSync(file).readUInt32BE(16), fs.readFileSync(file).readUInt32BE(20));
   }
+  async function fullShot(name, width, height, mobile) {
+    await send('Emulation.setDeviceMetricsOverride', { width: width, height: height, deviceScaleFactor: 1, mobile: mobile });
+    await sleep(150);
+    await evaluate('window.scrollTo(0, 0)');
+    const metrics = await send('Page.getLayoutMetrics');
+    const content = metrics.cssContentSize || metrics.contentSize;
+    const image = await send('Page.captureScreenshot', {
+      format: 'png',
+      captureBeyondViewport: true,
+      clip: { x: 0, y: 0, width: Math.ceil(content.width), height: Math.ceil(content.height), scale: 1 }
+    });
+    const file = path.join(ARTIFACTS, name);
+    fs.writeFileSync(file, Buffer.from(image.data, 'base64'));
+    console.log('FULL', file, fs.readFileSync(file).readUInt32BE(16), fs.readFileSync(file).readUInt32BE(20));
+  }
   function clearOfChrome(frame, names) {
     return names.every(function (name) {
       const item = frame[name];
@@ -385,14 +400,51 @@ async function main() {
     document.getElementById('inquiry-date').value = 'June';
     document.getElementById('inquiry-guests').selectedIndex = 3;
     document.getElementById('inquiry-investment').selectedIndex = 3;
-    document.getElementById('inquiry-honeypot').value = 'bot';
+    document.getElementById('inquiry-honeypot').checked = true;
     document.getElementById('inquiryForm').requestSubmit();
   })()`);
   await sleep(200);
-  check('a filled honeypot does not post', posts.length === 0);
+  check('a checked honeypot does not post', posts.length === 0);
 
   await evaluate(`(() => {
-    document.getElementById('inquiry-honeypot').value = '';
+    const store = window.sessionStorage;
+    window.__cmeSet = store.setItem.bind(store);
+    window.__cmeGet = store.getItem.bind(store);
+    store.getItem = function (key) {
+      if (String(key).indexOf('cme-inquiry-draft:') === 0) return '{';
+      return window.__cmeGet(key);
+    };
+    document.getElementById('inquiry-honeypot').checked = false;
+    document.getElementById('inquiryForm').requestSubmit();
+  })()`);
+  await sleep(200);
+  const malformed = await evaluate(`({
+    text: document.getElementById('inquiryStatus').textContent,
+    button: document.getElementById('inquirySubmit').textContent,
+    proceed: document.getElementById('inquirySubmit').getAttribute('data-proceed')
+  })`);
+  check('a malformed saved copy does not send and asks before posting', posts.length === 0 && malformed.proceed === 'storage' && malformed.button === 'Send anyway' && malformed.text.indexOf('Nothing was sent') !== -1 && malformed.text.indexOf('Formspark accepted') === -1, JSON.stringify(malformed));
+  await evaluate(`(() => {
+    window.sessionStorage.getItem = window.__cmeGet;
+    window.sessionStorage.setItem = function () { throw new DOMException('quota', 'QuotaExceededError'); };
+    document.getElementById('inquirySubmit').removeAttribute('data-proceed');
+    document.getElementById('inquirySubmit').textContent = 'Send inquiry';
+    document.getElementById('inquiryForm').requestSubmit();
+  })()`);
+  await sleep(250);
+  const blocked = await evaluate(`({
+    text: document.getElementById('inquiryStatus').textContent,
+    button: document.getElementById('inquirySubmit').textContent,
+    hidden: document.getElementById('inquiryForm').hidden,
+    leads: ${leadsExpr('contact_inquiry')}
+  })`);
+  check('blocked storage warns before sending and does not claim acceptance', posts.length === 0 && blocked.button === 'Send anyway' && blocked.hidden === false && blocked.leads === 0 && blocked.text.indexOf('Nothing was sent') !== -1 && blocked.text.indexOf('Send anyway') !== -1 && blocked.text.indexOf('Formspark accepted') === -1, JSON.stringify(blocked));
+  await sleep(400);
+  check('a storage warning does not retry the send', posts.length === 0);
+  await evaluate(`window.sessionStorage.setItem = window.__cmeSet;`);
+
+  await evaluate(`(() => {
+    document.getElementById('inquiry-honeypot').checked = false;
     const form = document.getElementById('inquiryForm');
     form.requestSubmit();
     try { form.requestSubmit(); } catch (err) {}
@@ -481,12 +533,20 @@ async function main() {
     document.getElementById('partnership-email').value = 'amina@example.com';
     document.querySelector('#partnershipInquiry [name="Events Per Year"]').selectedIndex = 2;
     document.querySelector('#partnershipInquiry [name="Upcoming Event Types / Details"]').value = 'Three fall galas';
+    document.getElementById('partnership-honeypot').checked = true;
+    document.getElementById('partnershipInquiry').requestSubmit();
+  })()`);
+  await sleep(200);
+  check('a checked partnership honeypot does not post', posts.length === beforeFail + 1);
+  await evaluate(`(() => {
+    document.getElementById('partnership-honeypot').checked = false;
     const form = document.getElementById('partnershipInquiry');
-    form.requestSubmit(); form.requestSubmit();
+    form.requestSubmit();
+    try { form.requestSubmit(); } catch (err) {}
   })()`);
   await waitText('Formspark accepted this submission');
   const partner = JSON.parse(posts[posts.length - 1].body);
-  check('partnership posts once to the same endpoint with its source', posts.length === beforeFail + 2 && partner.Source === 'Annual Design Partnership' && partner['Work Email'] === 'amina@example.com' && partner['Contact Name'] === 'Amina Cole' && partner._email.subject === 'Annual Design Partnership inquiry' && !partner._cc && !partner._captcha);
+  check('partnership posts once to the same endpoint with its source', posts.length === beforeFail + 2 && partner.Source === 'Annual Design Partnership' && partner['Work Email'] === 'amina@example.com' && partner['Contact Name'] === 'Amina Cole' && partner._honeypot === '' && partner._email.subject === 'Annual Design Partnership inquiry' && !partner._cc && !partner._captcha);
   check('partnership lead is counted once', (await evaluate(leadsExpr('annual-design-partnership'))) === 1);
   check('partnership form is hidden after acceptance', (await evaluate(`getComputedStyle(document.getElementById('partnershipInquiry')).display`)) === 'none');
   await shot('viewport-formspark-partnership-success-desktop.png', 1280, 900, false);
@@ -509,11 +569,21 @@ async function main() {
   check('partnership rejection keeps the name and does not count a lead', partnerKept === 'Amina Cole' && (await evaluate(leadsExpr('annual-design-partnership'))) === 0);
   await shot('viewport-formspark-partnership-rejected-desktop.png', 1280, 900, false);
   await shot('viewport-formspark-partnership-rejected-mobile.png', 390, 844, true);
+  const photo = await evaluate(`(() => {
+    const img = document.querySelector('.partner-inquiry-photo');
+    if (!img) return null;
+    const style = getComputedStyle(img);
+    return { naturalWidth: img.naturalWidth, naturalHeight: img.naturalHeight, width: img.clientWidth, height: img.clientHeight, fit: style.objectFit, position: style.objectPosition };
+  })()`);
+  check('partnership photo rule is recorded for the full-page capture', !!photo && photo.naturalWidth > 0, JSON.stringify(photo));
+  fs.writeFileSync(path.join(ARTIFACTS, 'partnership-photo-metrics.json'), JSON.stringify(photo, null, 2));
   const partnerFrame390 = await evaluate(frameExpr());
   check('partnership label, error, and return link are clear of the header and chat at 390', clearOfChrome(partnerFrame390, ['label', 'status', 'back']), JSON.stringify(partnerFrame390));
   await shot('viewport-formspark-partnership-rejected-320.png', 320, 844, true);
   const partnerFrame320 = await evaluate(frameExpr());
   check('partnership label, error, and return link are clear of the header and chat at 320', clearOfChrome(partnerFrame320, ['label', 'status', 'back']), JSON.stringify(partnerFrame320));
+  await fullShot('fullpage-formspark-partnership-rejected-desktop.png', 1280, 900, false);
+  await fullShot('fullpage-formspark-partnership-rejected-mobile.png', 390, 844, true);
 
   check('no provider request was forwarded', continued === 0);
   const failed = report.filter(function (item) { return !item.pass; });

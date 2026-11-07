@@ -37,6 +37,18 @@
     return data;
   }
 
+  function recoveryMatches(stored, source, kind, fields) {
+    var draft = readableDraft(stored, source);
+    if (!draft || draft.kind !== kind || !fields || typeof fields !== 'object' || Array.isArray(fields)) return false;
+    var keys = Object.keys(fields);
+    var saved = Object.keys(draft.fields);
+    if (keys.length !== saved.length) return false;
+    for (var i = 0; i < keys.length; i++) {
+      if (draft.fields[keys[i]] !== fields[keys[i]]) return false;
+    }
+    return true;
+  }
+
   function classifyFormsparkResponse(status, body, attemptId, source) {
     var code = Number(status);
     if (code === 403) return 'rejected';
@@ -86,6 +98,7 @@
 
     var busy = false;
     var counted = {};
+    if (!submitBtn.getAttribute('data-label')) submitBtn.setAttribute('data-label', submitBtn.textContent);
 
     function field(id) { return document.getElementById(id); }
     function originalDescribed(input) {
@@ -210,11 +223,11 @@
       return fields;
     }
     function writeDraft(kind, status) {
+      var fields = snapshot();
       try {
-        var data = { source: config.source, ambiguous: kind !== 'accepted', kind: kind, status: status || 0, fields: snapshot() };
+        var data = { source: config.source, ambiguous: kind !== 'accepted', kind: kind, status: status || 0, fields: fields };
         sessionStorage.setItem(draftKey, JSON.stringify(data));
-        var back = readableDraft(JSON.parse(sessionStorage.getItem(draftKey)), config.source);
-        return !!(back && back.kind === kind);
+        return recoveryMatches(JSON.parse(sessionStorage.getItem(draftKey)), config.source, kind, fields);
       } catch (err) {
         return false;
       }
@@ -294,9 +307,18 @@
       var valid = config.emailId === 'inquiry-email' ? validateContact() : validatePartnership();
       if (!valid) return;
       if (honeypotFilled()) return;
+      var explicitProceed = submitBtn.getAttribute('data-proceed') === 'storage';
+      if (!explicitProceed && !writeDraft('pending', 0)) {
+        submitBtn.setAttribute('data-proceed', 'storage');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send anyway';
+        showStatus('alert', "This browser couldn't save a copy of this form, so coming back may not restore it. Nothing was sent. Choose Send anyway to post this once.");
+        return;
+      }
+      submitBtn.removeAttribute('data-proceed');
+      submitBtn.textContent = submitBtn.getAttribute('data-label') || submitBtn.textContent;
       var attemptId = token();
       var data = collect(attemptId);
-      writeDraft('pending', 0);
       busy = true;
       window.setTimeout(function () {
         submitBtn.disabled = true;
@@ -359,6 +381,7 @@
     validAttemptToken: validAttemptToken,
     mergeDescribedBy: mergeDescribedBy,
     readableDraft: readableDraft,
+    recoveryMatches: recoveryMatches,
     DRAFT_PREFIX: DRAFT_PREFIX,
     ENDPOINT: ENDPOINT,
     FROM_NAME: FROM_NAME

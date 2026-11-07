@@ -1,5 +1,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const fs = require('fs');
+const path = require('path');
 const inquiry = require('./inquiry-form');
 
 const id = 'abcdefghijABCDEFGHIJ12';
@@ -29,6 +31,31 @@ test('validation keeps the original hint ids and puts them back when the error c
   assert.equal(inquiry.mergeDescribedBy('inquiry-name-hint inquiry-name-error', 'inquiry-name-error', false), 'inquiry-name-hint');
   assert.equal(inquiry.mergeDescribedBy('', 'inquiry-name-error', false), '');
   assert.equal(inquiry.mergeDescribedBy('hint-a hint-b', 'inquiry-email-error', true), 'hint-a hint-b inquiry-email-error');
+});
+
+test('a saved copy counts only when the same entries can be read back', function () {
+  var fields = { 'Full name': 'Amina Cole', 'Tell us about your vision': 'Keep this vision' };
+  var draft = { source: 'Contact', ambiguous: true, kind: 'pending', fields: fields };
+  assert.equal(inquiry.recoveryMatches(draft, 'Contact', 'pending', fields), true);
+  assert.equal(inquiry.recoveryMatches({ source: 'Contact', ambiguous: true, kind: 'pending', fields: { 'Full name': 'Amina Cole' } }, 'Contact', 'pending', fields), false);
+  assert.equal(inquiry.recoveryMatches({ source: 'Contact', ambiguous: true, kind: 'unreachable', fields: fields }, 'Contact', 'pending', fields), false);
+  assert.equal(inquiry.recoveryMatches(null, 'Contact', 'pending', fields), false);
+  assert.equal(inquiry.recoveryMatches('{', 'Contact', 'pending', fields), false);
+});
+
+test('both forms use the documented Formspark checkbox honeypot', function () {
+  ['contact/index.html', 'annual-design-partnership/index.html', 'scripts/site.html'].forEach(function (file) {
+    var html = fs.readFileSync(path.join(__dirname, '..', file), 'utf8');
+    var fields = html.match(/<input\b[^>]*name="_honeypot"[^>]*>/g) || [];
+    assert.ok(fields.length >= 1, file);
+    fields.forEach(function (tag) {
+      assert.match(tag, /type="checkbox"/);
+      assert.match(tag, /style="display:none"/);
+      assert.match(tag, /tabindex="-1"/);
+      assert.match(tag, /autocomplete="off"/);
+      assert.doesNotMatch(tag, /type="text"/);
+    });
+  });
 });
 
 test('only an ambiguous draft for this form can be restored', function () {

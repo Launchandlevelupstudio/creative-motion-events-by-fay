@@ -1323,7 +1323,7 @@ try{history.replaceState({page:id||""},"",next);}catch(e){}
         <form id="partnershipInquiry" action="https://submit-form.com/BhrPePdn2" method="POST">
           <input type="hidden" name="Source" value="Annual Design Partnership">
           <input type="hidden" name="_email.subject" value="Annual Design Partnership inquiry">
-          <input type="checkbox" name="_honeypot" id="partnership-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+          <input type="checkbox" name="_honeypot" id="partnership-honeypot" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
           <label><span>Contact Name</span><input name="Contact Name" autocomplete="name" required placeholder="Your name"></label>
           <label><span>Organization</span><input name="Organization" autocomplete="organization" required placeholder="Company or association"></label>
           <label><span>Work Email</span><input type="email" name="Work Email" id="partnership-email" autocomplete="email" required placeholder="name@organization.com"></label>
@@ -5944,10 +5944,7 @@ try{history.replaceState({page:id||""},"",next);}catch(e){}
       <form id="inquiryForm" class="inquiry-form" method="POST" action="https://submit-form.com/BhrPePdn2" novalidate>
         <input type="hidden" name="Source" value="Contact">
         <input type="hidden" name="_email.subject" value="Contact inquiry">
-        <div class="hp-field" aria-hidden="true">
-          <label for="inquiry-honeypot">Leave this field blank</label>
-          <input id="inquiry-honeypot" name="_honeypot" type="text" tabindex="-1" autocomplete="off" value="">
-        </div>
+        <input type="checkbox" name="_honeypot" id="inquiry-honeypot" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="field">
           <label for="inquiry-name">Full name</label>
           <input id="inquiry-name" name="Full name" type="text" autocomplete="name" required>
