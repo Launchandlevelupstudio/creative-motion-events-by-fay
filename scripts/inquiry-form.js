@@ -2,10 +2,9 @@
  * Contact inquiries use FormSubmit's documented HTML form POST.
  * A JSON fetch needs a CORS preflight. On Nov 7, 2026 that OPTIONS
  * request returned Cloudflare HTTP 522 and the POST was never sent.
- * A document POST does not send that preflight. Landing on _next is
- * FormSubmit's documented redirect after it accepts a submission for
- * processing. It is not proof the message reached an inbox.
- * This page does not submit again unless the visitor chooses to.
+ * The return URL carries a random attempt id, not the visitor's details.
+ * It counts only when that id is still pending in this browser, and only once.
+ * The redirect is not proof the message reached an inbox.
  */
 (function (root, factory) {
   var api = factory();
@@ -16,19 +15,54 @@
   var ACTION = 'https://formsubmit.co/hello@creativemotionevents.com';
   var COPY_TO = 'cmeinquiries@mail.grokbot.com';
   var STORAGE_KEY = 'cme-contact-inquiry';
-  var CANONICAL_NEXT = 'https://creativemotionevents.com/contact/?inquiry=accepted';
-  var SUCCESS = 'Thank you. FormSubmit sent you back to this page after the submission. That is its usual redirect after it accepts a form for processing. This page cannot confirm that the message has arrived in an inbox. You can expect a response within 24 hours if it was delivered.';
+  var RETURN_BASE = 'https://creativemotionevents.com/contact/';
+  var SUCCESS = 'Thank you. FormSubmit sent you back using the return address for this attempt. That is its usual redirect after it accepts a form for processing. This page cannot confirm that the message has arrived in an inbox. You can expect a response within 24 hours if it was delivered.';
   var UNCERTAIN = 'This page did not get confirmation of your last attempt. Your details are still here. Send again only if you want another inquiry, because the first one may already have been received.';
-  var UNCERTAIN_FOOT = 'Creative Motion Events specializes in elevated event design and full-service production. A second send is a separate inquiry.';
+  var UNMATCHED = 'This return link does not match the attempt saved in this browser. Your saved details are still here. Send again only if you want another inquiry, because an earlier one may already have been received.';
+  var UNMATCHED_EMPTY = 'This return link does not match an attempt saved in this browser. It does not confirm a submission.';
+  var REPLAYED = 'This return link was already used. It does not confirm another submission.';
+  var STORAGE_WRITE = "This browser couldn't save a copy of this form. If you send it, coming back may not restore these fields, and this page will not recognize that return. Choose Send anyway to post it anyway.";
+  var STORAGE_READ = "This browser couldn't read the saved attempt. Nothing was restored, and this page cannot confirm a return.";
+  var FOOT_READY = 'Creative Motion Events specializes in elevated event design and full-service production. After a message arrives, you can expect a response within 24 hours.';
+  var FOOT_UNCERTAIN = 'Creative Motion Events specializes in elevated event design and full-service production. A second send is a separate inquiry.';
+  var FOOT_STORAGE = 'No copy of the form was restored from this browser.';
 
-  function inquiryView(search, stored) {
+  function validAttemptToken(token) {
+    return typeof token === 'string' && /^[A-Za-z0-9]{20,32}$/.test(token);
+  }
+
+  function attemptsOf(stored) {
+    if (!stored || typeof stored !== 'object' || !stored.attempts || typeof stored.attempts !== 'object') return {};
+    return stored.attempts;
+  }
+
+  function pendingAttempts(stored) {
+    var attempts = attemptsOf(stored);
+    return Object.keys(attempts).filter(function (id) {
+      var item = attempts[id];
+      return item && item.id === id && item.pending === true && item.consumed !== true && validAttemptToken(id);
+    }).sort(function (a, b) {
+      return (attempts[b].created || 0) - (attempts[a].created || 0);
+    });
+  }
+
+  function inquiryView(search, stored, options) {
+    if (options && options.storageUnavailable) return 'storage-unavailable';
     var params = new URLSearchParams(String(search || '').replace(/^\?/, ''));
-    var redirected = params.get('inquiry') === 'accepted';
-    var record = stored && typeof stored === 'object' ? stored : null;
-    var id = record && typeof record.id === 'string' && record.id ? record.id : '';
-    if (id && (record.done === true || (redirected && record.pending === true))) return 'redirected';
-    if (id && record.pending === true) return 'uncertain';
+    var token = params.get('inquiry') || '';
+    var attempts = attemptsOf(stored);
+    var match = validAttemptToken(token) && attempts[token] && attempts[token].id === token ? attempts[token] : null;
+    if (match && match.pending === true && match.consumed !== true) return 'matched';
+    if (match && match.consumed === true) return 'replayed';
+    if (token) return 'unmatched';
+    if (pendingAttempts(stored).length) return 'uncertain';
     return 'ready';
+  }
+
+  function returnUrl(origin, id) {
+    var base = RETURN_BASE;
+    if (origin) base = String(origin).replace(/\/$/, '') + '/contact/';
+    return base + '?inquiry=' + id;
   }
 
   function mount() {
@@ -44,21 +78,39 @@
     if (!statusEl || !submitBtn) return;
 
     var navigating = false;
+    var sendWithoutSave = false;
 
     function field(id) { return document.getElementById(id); }
     function readStore() {
       try {
         var raw = sessionStorage.getItem(STORAGE_KEY);
-        return raw ? JSON.parse(raw) : null;
+        if (!raw) return { ok: true, data: { attempts: {} } };
+        var data = JSON.parse(raw);
+        if (!data || typeof data !== 'object' || !data.attempts || typeof data.attempts !== 'object') {
+          return { ok: false, data: null };
+        }
+        return { ok: true, data: data };
       } catch (err) {
-        return null;
+        return { ok: false, data: null };
       }
     }
-    function writeStore(record) {
+    function writeStore(data) {
       try {
-        if (!record) sessionStorage.removeItem(STORAGE_KEY);
-        else sessionStorage.setItem(STORAGE_KEY, JSON.stringify(record));
-      } catch (err) {}
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        var back = JSON.parse(sessionStorage.getItem(STORAGE_KEY));
+        return !!(back && back.attempts);
+      } catch (err) {
+        return false;
+      }
+    }
+    function newToken() {
+      var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      var bytes = new Uint8Array(24);
+      if (window.crypto && window.crypto.getRandomValues) window.crypto.getRandomValues(bytes);
+      else for (var i = 0; i < bytes.length; i++) bytes[i] = Math.floor(Math.random() * 256);
+      var out = '';
+      for (var j = 0; j < bytes.length; j++) out += chars.charAt(bytes[j] % chars.length);
+      return out;
     }
     function setError(id, message) {
       var input = field(id);
@@ -88,7 +140,7 @@
       anchor.textContent = text;
       return anchor;
     }
-    function showStatus(kind, lead) {
+    function showStatus(kind, lead, footText) {
       var isAlert = kind !== 'success';
       statusEl.hidden = false;
       statusEl.classList.toggle('is-error', isAlert);
@@ -104,11 +156,24 @@
         statusEl.append(document.createTextNode('.'));
       }
       if (foot) {
-        foot.hidden = !isAlert;
-        if (isAlert) foot.textContent = UNCERTAIN_FOOT;
+        foot.hidden = false;
+        foot.textContent = footText || (isAlert ? FOOT_UNCERTAIN : FOOT_READY);
       }
       if (another) another.hidden = isAlert;
       try { statusEl.focus(); } catch (err) {}
+    }
+    function readyFoot() {
+      form.hidden = false;
+      submitBtn.disabled = false;
+      submitBtn.removeAttribute('aria-busy');
+      if (!sendWithoutSave) submitBtn.textContent = 'Send inquiry';
+      statusEl.hidden = true;
+      statusEl.replaceChildren();
+      if (another) another.hidden = true;
+      if (foot) {
+        foot.hidden = false;
+        foot.textContent = FOOT_READY;
+      }
     }
     function snapshot() {
       return {
@@ -124,7 +189,7 @@
       };
     }
     function restore(fields) {
-      if (!fields) return;
+      if (!fields) return false;
       field('inquiry-name').value = fields.name || '';
       field('inquiry-email').value = fields.email || '';
       field('inquiry-organization').value = fields.organization || '';
@@ -134,58 +199,101 @@
       field('inquiry-guests').value = fields.guests || '';
       field('inquiry-investment').value = fields.investment || '';
       field('inquiry-vision').value = fields.vision || '';
+      return true;
     }
-    function nextUrl() {
+    function pageOrigin() {
       try {
         var host = location.hostname;
         if (host === 'creativemotionevents.com' || host === 'www.creativemotionevents.com' || host === '127.0.0.1' || host === 'localhost') {
-          return location.origin + '/contact/?inquiry=accepted';
+          return location.origin;
         }
       } catch (err) {}
-      return CANONICAL_NEXT;
+      return 'https://creativemotionevents.com';
     }
-    function recordLead(record) {
-      if (!record || record.leadRecorded) return;
-      record.leadRecorded = true;
+    function recordLead(item) {
       try {
         if (typeof gtag === 'function') {
           gtag('event', 'generate_lead', {
-            event_type: record.fields ? record.fields.eventType : '',
-            investment: record.fields ? record.fields.investment : '',
+            event_type: item.fields ? item.fields.eventType : '',
+            investment: item.fields ? item.fields.investment : '',
             form_name: 'contact_inquiry'
           });
         }
       } catch (err) {}
     }
+    function saveAttempt(attempt) {
+      var read = readStore();
+      if (!read.ok) return false;
+      var data = read.data;
+      data.attempts[attempt.id] = attempt;
+      return writeStore(data);
+    }
+    function consume(id) {
+      var read = readStore();
+      if (!read.ok) return { ok: false };
+      var item = read.data.attempts[id];
+      if (!item || item.id !== id || item.pending !== true || item.consumed === true) return { ok: true, applied: false };
+      item.pending = false;
+      item.consumed = true;
+      item.leadRecorded = true;
+      if (!writeStore(read.data)) return { ok: false };
+      return { ok: true, applied: true, item: item };
+    }
+    function latestPending(data) {
+      var ids = pendingAttempts(data);
+      if (!ids.length) return null;
+      return data.attempts[ids[0]];
+    }
     function applyView() {
-      var record = readStore();
-      var view = inquiryView(location.search, record);
-      if (view === 'redirected') {
-        record.pending = false;
-        record.done = true;
-        recordLead(record);
-        writeStore(record);
+      var read = readStore();
+      if (!read.ok) {
+        form.hidden = false;
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send inquiry';
+        showStatus('alert', STORAGE_READ, FOOT_STORAGE);
+        return;
+      }
+      var view = inquiryView(location.search, read.data);
+      if (view === 'matched') {
+        var token = new URLSearchParams(location.search).get('inquiry');
+        var result = consume(token);
+        if (!result.ok) {
+          showStatus('alert', STORAGE_READ, FOOT_STORAGE);
+          return;
+        }
+        if (!result.applied) {
+          readyFoot();
+          return;
+        }
+        recordLead(result.item);
         form.hidden = true;
         submitBtn.disabled = true;
-        showStatus('success', SUCCESS);
+        showStatus('success', SUCCESS, FOOT_READY);
         return;
       }
       form.hidden = false;
       submitBtn.disabled = false;
       submitBtn.removeAttribute('aria-busy');
-      submitBtn.textContent = 'Send inquiry';
-      if (view === 'uncertain') {
-        restore(record.fields);
-        showStatus('uncertain', UNCERTAIN);
+      if (!sendWithoutSave) submitBtn.textContent = 'Send inquiry';
+      if (view === 'replayed') {
+        var replayed = attemptsOf(read.data)[new URLSearchParams(location.search).get('inquiry')];
+        if (replayed) restore(replayed.fields);
+        showStatus('alert', REPLAYED, FOOT_UNCERTAIN);
         return;
       }
-      statusEl.hidden = true;
-      statusEl.replaceChildren();
-      if (another) another.hidden = true;
-      if (foot) {
-        foot.hidden = false;
-        foot.textContent = 'Creative Motion Events specializes in elevated event design and full-service production. After a message arrives, you can expect a response within 24 hours.';
+      if (view === 'unmatched') {
+        var pending = latestPending(read.data);
+        if (pending) restore(pending.fields);
+        showStatus('alert', pending ? UNMATCHED : UNMATCHED_EMPTY, pending ? FOOT_UNCERTAIN : FOOT_READY);
+        return;
       }
+      if (view === 'uncertain') {
+        var saved = latestPending(read.data);
+        if (saved) restore(saved.fields);
+        showStatus('alert', UNCERTAIN, FOOT_UNCERTAIN);
+        return;
+      }
+      readyFoot();
     }
     function validate() {
       var name = field('inquiry-name').value.trim();
@@ -216,21 +324,10 @@
 
     if (another) {
       another.addEventListener('click', function () {
-        writeStore(null);
-        form.hidden = false;
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Send inquiry';
-        statusEl.hidden = true;
-        another.hidden = true;
-        if (foot) {
-          foot.hidden = false;
-          foot.textContent = 'Creative Motion Events specializes in elevated event design and full-service production. After a message arrives, you can expect a response within 24 hours.';
-        }
         try {
-          if (window.history && window.history.replaceState) {
-            window.history.replaceState({}, '', location.pathname);
-          }
+          if (window.history && window.history.replaceState) window.history.replaceState({}, '', location.pathname);
         } catch (err) {}
+        readyFoot();
         field('inquiry-name').focus();
       });
     }
@@ -248,21 +345,32 @@
         event.preventDefault();
         return;
       }
-      navigating = true;
       var fields = snapshot();
+      var id = newToken();
       var subject = field('inquiry-subject');
       var reply = field('inquiry-replyto');
       var next = field('inquiry-next');
       if (subject) subject.value = 'New Inquiry - ' + fields.name.replace(/[\r\n]+/g, ' ').trim() + ' - ' + fields.eventType;
       if (reply) reply.value = fields.email.trim();
-      if (next) next.value = nextUrl();
-      writeStore({
-        id: String(Date.now()) + '-' + Math.random().toString(16).slice(2),
-        pending: true,
-        done: false,
-        leadRecorded: false,
-        fields: fields
-      });
+      if (next) next.value = returnUrl(pageOrigin(), id);
+      if (!sendWithoutSave) {
+        var saved = saveAttempt({
+          id: id,
+          pending: true,
+          consumed: false,
+          leadRecorded: false,
+          created: Date.now(),
+          fields: fields
+        });
+        if (!saved) {
+          event.preventDefault();
+          sendWithoutSave = true;
+          submitBtn.textContent = 'Send anyway';
+          showStatus('alert', STORAGE_WRITE, FOOT_STORAGE);
+          return;
+        }
+      }
+      navigating = true;
       submitBtn.setAttribute('aria-busy', 'true');
       event.preventDefault();
       window.setTimeout(function () {
@@ -282,10 +390,17 @@
   return {
     mount: mount,
     inquiryView: inquiryView,
+    validAttemptToken: validAttemptToken,
+    pendingAttempts: pendingAttempts,
+    returnUrl: returnUrl,
     ACTION: ACTION,
     COPY_TO: COPY_TO,
     SUCCESS: SUCCESS,
     UNCERTAIN: UNCERTAIN,
-    CANONICAL_NEXT: CANONICAL_NEXT
+    UNMATCHED: UNMATCHED,
+    REPLAYED: REPLAYED,
+    STORAGE_WRITE: STORAGE_WRITE,
+    STORAGE_READ: STORAGE_READ,
+    RETURN_BASE: RETURN_BASE
   };
 });

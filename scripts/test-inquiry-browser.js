@@ -157,7 +157,7 @@ async function main() {
           return;
         }
         const params = new URLSearchParams(paused.request.postData || '');
-        const next = params.get('_next') || (web.origin + '/contact/?inquiry=accepted');
+        const next = params.get('_next') || (web.origin + '/contact/');
         send('Fetch.fulfillRequest', {
           requestId: paused.requestId,
           responseCode: 303,
@@ -244,39 +244,33 @@ async function main() {
     throw new Error('missing text ' + snippet);
   }
 
-  async function shot(name, width, mobile) {
-    await send('Emulation.setDeviceMetricsOverride', { width: width, height: 900, deviceScaleFactor: 1, mobile: mobile });
-    await sleep(80);
-    const size = await evaluate(`(() => {
-      const header = document.querySelector('header');
-      if (header) header.style.position = 'static';
-      const fab = document.getElementById('fab');
-      if (fab) fab.style.display = 'none';
-      const chat = document.getElementById('chat');
-      if (chat) chat.style.display = 'none';
-      const width = ${width};
-      return {
-        height: document.documentElement.scrollHeight,
-        scrollWidth: document.documentElement.scrollWidth,
-        overflow: document.documentElement.scrollWidth > width + 1
-      };
-    })()`);
-    if (size.overflow) throw new Error(name + ' overflows horizontally ' + size.scrollWidth);
+  async function shot(name, width, height, mobile) {
     await send('Emulation.setDeviceMetricsOverride', {
-      width: width,
-      height: Math.ceil(size.height),
-      deviceScaleFactor: 1,
-      mobile: mobile
+      width: width, height: height, deviceScaleFactor: 1, mobile: mobile
     });
+    await sleep(80);
+    await evaluate(`(() => {
+      const status = document.getElementById('inquiryStatus');
+      const header = document.querySelector('header');
+      const fab = document.getElementById('fab');
+      const another = document.getElementById('inquiryAnother');
+      const headerH = header ? header.getBoundingClientRect().height : 0;
+      const fabTop = fab ? fab.getBoundingClientRect().top : window.innerHeight;
+      const topLimit = headerH + 12;
+      const bottomLimit = Math.min(window.innerHeight - 12, fabTop - 8);
+      const rect = status.getBoundingClientRect();
+      let bottom = rect.bottom;
+      if (another && !another.hidden) bottom = Math.max(bottom, another.getBoundingClientRect().bottom);
+      const minDelta = bottom - bottomLimit;
+      const maxDelta = rect.top - topLimit;
+      const delta = minDelta > maxDelta ? maxDelta : minDelta;
+      window.scrollTo({ top: Math.max(0, window.scrollY + delta), behavior: 'instant' });
+    })()`);
     await sleep(40);
-    const image = await send('Page.captureScreenshot', {
-      format: 'png',
-      captureBeyondViewport: true,
-      clip: { x: 0, y: 0, width: width, height: Math.ceil(size.height), scale: 1 }
-    });
+    const image = await send('Page.captureScreenshot', { format: 'png' });
     const file = path.join(ARTIFACTS, name);
     fs.writeFileSync(file, Buffer.from(image.data, 'base64'));
-    console.log('SHOT', file, width, size.height);
+    console.log('SHOT', file, width, height, 'png', fs.readFileSync(file).readUInt32BE(16), fs.readFileSync(file).readUInt32BE(20));
   }
 
   mode = 'redirect';
@@ -304,10 +298,13 @@ async function main() {
   await go('/contact/?inquiry=accepted');
   const bare = await evaluate(`({
     hidden: document.getElementById('inquiryForm').hidden,
-    status: document.getElementById('inquiryStatus').hidden,
+    text: document.getElementById('inquiryStatus').textContent,
     leads: (window.dataLayer || []).filter(function(item){ return item && item[1] === 'generate_lead'; }).length
   })`);
-  check('opening the redirect URL without a pending attempt does not count a lead', bare.hidden === false && bare.status === true && bare.leads === 0, JSON.stringify(bare));
+  check('a direct accepted URL does not count a lead', bare.hidden === false && bare.text.indexOf('does not match') !== -1 && bare.leads === 0, JSON.stringify(bare));
+  await go('/contact/?inquiry=zzzzzzzzzzzzzzzzzzzz');
+  const direct = await evaluate(`document.getElementById('inquiryStatus').textContent`);
+  check('an unknown return token does not confirm a submission', direct.indexOf('does not confirm a submission') !== -1, direct);
 
   await fill();
   await evaluate(`document.getElementById('inquiry-honey').value = 'bot'; document.getElementById('inquiryForm').requestSubmit();`);
@@ -329,7 +326,10 @@ async function main() {
   const contentType = JSON.stringify(posts[0].headers);
   check('the body keeps the copy inbox and captcha false', body.get('_cc') === 'cmeinquiries@mail.grokbot.com' && body.get('_captcha') === 'false' && body.get('_template') === 'table', posts[0].body);
   check('the body is form fields, not a JSON fetch', contentType.toLowerCase().indexOf('application/json') === -1 && body.get('_replyto') === 'amina@example.com', contentType + ' ' + posts[0].body.slice(0, 180));
-  check('the subject and vision are in the form body', body.get('_subject') === 'New Inquiry - Amina Cole - Corporate gala or awards night' && body.get('Tell us about your vision') === 'Gold tables under one long runner');
+  check('the subject and renamed fields are in the form body', body.get('_subject') === 'New Inquiry - Amina Cole - Corporate gala or awards night' && body.get('Full name') === 'Amina Cole' && body.get('Email') === 'amina@example.com' && body.get('Tell us about your vision') === 'Gold tables under one long runner');
+  const nextUrl = body.get('_next') || '';
+  const returnToken = (nextUrl.split('inquiry=')[1] || '').split('&')[0];
+  check('the return URL is this attempt token and not the visitor details', /^[A-Za-z0-9]{20,32}$/.test(returnToken) && nextUrl.indexOf('accepted') === -1 && nextUrl.indexOf('amina') === -1 && nextUrl.indexOf('Cole') === -1, nextUrl);
   const success = await evaluate(`({
     display: getComputedStyle(document.getElementById('inquiryForm')).display,
     text: document.getElementById('inquiryStatus').textContent,
@@ -338,31 +338,44 @@ async function main() {
   })`);
   check('the redirect hides the form and does not claim inbox delivery', success.display === 'none' && success.text.indexOf('cannot confirm') !== -1 && success.text.indexOf('within 24 hours if it was delivered') !== -1, success.text);
   check('one lead is recorded for that redirect', (await leads()) === 1);
-  await go('/contact/?inquiry=accepted');
-  const leadsAfterReload = await leads();
-  check('reloading the redirect does not record another lead or send again', leadsAfterReload === 0 && posts.length === 1, 'leads ' + leadsAfterReload + ' posts ' + posts.length);
-  await shot('contact-success-desktop.png', 1280, false);
-  await shot('contact-success-mobile.png', 390, true);
+  await shot('viewport-success-desktop.png', 1280, 900, false);
+  await shot('viewport-success-mobile.png', 390, 844, true);
+  await go('/contact/?inquiry=' + returnToken);
+  const replayed = await evaluate(`({
+    text: document.getElementById('inquiryStatus').textContent,
+    display: getComputedStyle(document.getElementById('inquiryForm')).display,
+    leads: (window.dataLayer || []).filter(function(item){ return item && item[1] === 'generate_lead' && item[2] && item[2].form_name === 'contact_inquiry'; }).length
+  })`);
+  check('replaying the return URL does not count another lead or show a new success', replayed.leads === 0 && replayed.display !== 'none' && replayed.text.indexOf('already used') !== -1 && posts.length === before + 1, replayed.text);
 
   await send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 900, deviceScaleFactor: 1, mobile: false });
   const held = posts.length;
-  await evaluate(`sessionStorage.setItem('cme-contact-inquiry', JSON.stringify({
-    id: 'attempt-uncertain',
-    pending: true,
-    done: false,
-    leadRecorded: false,
-    fields: {
-      name: 'Amina Cole',
-      email: 'amina@example.com',
-      organization: 'North Hall',
-      phone: '301-555-0100',
-      eventType: 'Corporate gala or awards night',
-      eventDate: 'June',
-      guests: '50–100',
-      investment: '$12,000–$20,000',
-      vision: 'Gold tables under one long runner'
+  await evaluate(`sessionStorage.setItem('cme-contact-inquiry', JSON.stringify({ attempts: {
+    aaaaaaaaaaaaaaaaaaaa: {
+      id: 'aaaaaaaaaaaaaaaaaaaa', pending: true, consumed: false, leadRecorded: false, created: 1,
+      fields: { name: 'Amina Cole', email: 'amina@example.com', organization: 'North Hall', phone: '301-555-0100', eventType: 'Corporate gala or awards night', eventDate: 'June', guests: '50–100', investment: '$12,000–$20,000', vision: 'Gold tables under one long runner' }
+    },
+    bbbbbbbbbbbbbbbbbbbb: {
+      id: 'bbbbbbbbbbbbbbbbbbbb', pending: true, consumed: false, leadRecorded: false, created: 2,
+      fields: { name: 'Other Tab', email: 'other@example.com', organization: '', phone: '', eventType: 'Conference or meeting', eventDate: '', guests: 'Under 25', investment: 'Not sure yet', vision: 'Second tab' }
     }
-  }));`);
+  }}));`);
+  await go('/contact/?inquiry=accepted');
+  const stale = await evaluate(`({
+    text: document.getElementById('inquiryStatus').textContent,
+    display: getComputedStyle(document.getElementById('inquiryForm')).display,
+    name: document.getElementById('inquiry-name').value,
+    leads: (window.dataLayer || []).filter(function(item){ return item && item[1] === 'generate_lead' && item[2] && item[2].form_name === 'contact_inquiry'; }).length
+  })`);
+  check('a static accepted URL with a pending attempt does not count a lead', stale.display !== 'none' && stale.leads === 0 && stale.text.indexOf('does not match') !== -1 && stale.name === 'Other Tab', stale.text);
+  await go('/contact/?inquiry=aaaaaaaaaaaaaaaaaaaa');
+  const firstTab = await evaluate(`({
+    text: document.getElementById('inquiryStatus').textContent,
+    display: getComputedStyle(document.getElementById('inquiryForm')).display,
+    leads: (window.dataLayer || []).filter(function(item){ return item && item[1] === 'generate_lead' && item[2] && item[2].form_name === 'contact_inquiry'; }).length,
+    otherPending: JSON.parse(sessionStorage.getItem('cme-contact-inquiry')).attempts.bbbbbbbbbbbbbbbbbbbb.pending
+  })`);
+  check('one tab return consumes only that attempt', firstTab.display === 'none' && firstTab.leads === 1 && firstTab.text.indexOf('this attempt') !== -1 && firstTab.otherPending === true, JSON.stringify(firstTab));
   await go('/contact/');
   const uncertain = await evaluate(`({
     text: document.getElementById('inquiryStatus').textContent,
@@ -374,16 +387,34 @@ async function main() {
     display: getComputedStyle(document.getElementById('inquiryForm')).display,
     leads: (window.dataLayer || []).filter(function(item){ return item && item[1] === 'generate_lead' && item[2] && item[2].form_name === 'contact_inquiry'; }).length
   })`);
-  check('coming back without the redirect keeps the entries and does not claim the attempt failed or succeeded', uncertain.display !== 'none' && uncertain.name === 'Amina Cole' && uncertain.email === 'amina@example.com' && uncertain.vision === 'Gold tables under one long runner' && uncertain.date === 'June' && uncertain.text.indexOf('did not get confirmation') !== -1 && uncertain.text.indexOf('another inquiry') !== -1 && uncertain.text.indexOf('not sent') === -1 && uncertain.role === 'alert', uncertain.text);
+  check('coming back without the redirect keeps the remaining attempt and does not claim it failed or succeeded', uncertain.display !== 'none' && uncertain.name === 'Other Tab' && uncertain.email === 'other@example.com' && uncertain.vision === 'Second tab' && uncertain.text.indexOf('did not get confirmation') !== -1 && uncertain.text.indexOf('another inquiry') !== -1 && uncertain.text.indexOf('not sent') === -1 && uncertain.role === 'alert', uncertain.text);
   check('showing that uncertainty does not post or record a lead', posts.length === held && uncertain.leads === 0, 'posts ' + posts.length);
-  await shot('contact-uncertain-desktop.png', 1280, false);
-  await shot('contact-uncertain-mobile.png', 390, true);
+  await shot('viewport-uncertain-desktop.png', 1280, 900, false);
+  await shot('viewport-uncertain-mobile.png', 390, 844, true);
 
   mode = 'redirect';
   const again = posts.length;
   await evaluate(`document.getElementById('inquiryForm').requestSubmit();`);
   await waitText('cannot confirm that the message has arrived');
   check('a later explicit send is one more post, not an automatic retry', posts.length === again + 1, 'posts ' + posts.length);
+  await go('/contact/');
+  await fill();
+  await evaluate(`(() => {
+    const store = window.sessionStorage;
+    store.setItem = function () { throw new Error('storage blocked'); };
+  })()`);
+  const blockedPosts = posts.length;
+  await evaluate(`document.getElementById('inquiryForm').requestSubmit();`);
+  await sleep(300);
+  const storageWarn = await evaluate(`({
+    text: document.getElementById('inquiryStatus').textContent,
+    button: document.getElementById('inquirySubmit').textContent,
+    name: document.getElementById('inquiry-name').value
+  })`);
+  check('a storage failure stays on the page and does not pretend the fields were saved', posts.length === blockedPosts && storageWarn.button === 'Send anyway' && storageWarn.text.indexOf("couldn't save") !== -1 && storageWarn.text.indexOf('may not restore') !== -1 && storageWarn.name === 'Amina Cole', JSON.stringify(storageWarn));
+  await evaluate(`document.getElementById('inquiryForm').requestSubmit();`);
+  await waitText('does not match');
+  check('Send anyway posts once and that unrecognized return does not count a lead', posts.length === blockedPosts + 1 && (await leads()) === 0, 'posts ' + posts.length + ' leads ' + (await leads()));
   check('no FormSubmit request was forwarded', continued === 0 && options === 0, 'options ' + options);
 
   fs.writeFileSync(path.join(ARTIFACTS, 'inquiry-browser-results.json'), JSON.stringify({
