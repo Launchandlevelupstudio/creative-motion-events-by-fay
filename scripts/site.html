@@ -450,7 +450,7 @@ input:focus,select:focus,textarea:focus{outline:1px solid var(--gold);outline-of
 #inquiryForm[hidden]{display:none !important}
 #inquiryAnother{margin-top:16px}
 #inquiryAnother[hidden]{display:none !important}
-.form-status{margin-top:18px;margin-bottom:18px;padding:16px 18px;border:1px solid var(--gold);color:var(--white);line-height:1.5;font-size:1rem;font-weight:400;overflow-wrap:anywhere;scroll-margin-top:130px;scroll-margin-bottom:96px}
+.form-status{margin-top:18px;margin-bottom:18px;padding:16px 18px;border:1px solid var(--gold);color:var(--white);line-height:1.5;font-size:1rem;font-weight:400;overflow-wrap:anywhere;scroll-margin-top:180px;scroll-margin-bottom:220px}
 .form-status:focus{outline:2px solid #fff;outline-offset:3px}
 .form-status a{color:#E7D3A1;text-decoration:underline;text-underline-offset:2px}
 .form-status a:focus-visible{outline:2px solid #fff;outline-offset:2px}
@@ -533,6 +533,17 @@ footer .chamber-badge img{height:90px;width:auto;max-width:none}
 .fab svg{width:26px;height:26px;stroke:var(--cw-gold);fill:none;stroke-width:1.5}
 .fab .dot{display:none}
 @media(max-width:640px){.fab{right:16px;bottom:16px;width:54px;height:54px}.fab svg{width:22px;height:22px}}
+@media(max-width:640px){
+  #inquiryStatus.is-visible,#partnershipStatus.is-visible,#inquiryFoot,.partner-return{margin-right:72px}
+  #inquiryAnother:not([hidden]){width:auto;max-width:calc(100% - 72px)}
+  .inquiry-block,#p-annual-partnership .partner-inquiry{padding-bottom:104px}
+  #partnershipInquiry{gap:4px}
+  #partnershipInquiry textarea{min-height:48px}
+  #partnershipInquiry input,#partnershipInquiry select{min-height:40px;padding:8px 12px}
+  #partnershipInquiry .btn{padding:12px 14px;letter-spacing:.12em;line-height:1.35}
+  #partnershipStatus.is-visible{margin-top:4px}
+  #p-annual-partnership .partner-return{margin-top:6px}
+}
 
 .chat{position:fixed;right:24px;bottom:24px;z-index:95;width:min(390px,calc(100vw - 30px));
   height:min(640px,calc(100vh - 40px));background:var(--cw-panel);display:none;flex-direction:column;
@@ -794,9 +805,22 @@ footer .chamber-badge img{height:90px;width:auto;max-width:none}
 #partnershipInquiry button:disabled{opacity:.72;cursor:progress}
 #p-annual-partnership .partner-thanks{display:none;font-family:var(--serif);font-style:italic;font-size:1.25rem;line-height:1.45;color:var(--black);max-width:none;margin:8px 0 0}
 #inquire.is-thanks #partnershipInquiry{display:none}
+#partnershipInquiry[hidden]{display:none !important}
+#partnershipStatus[hidden]{display:none !important}
+#partnershipStatus.is-visible{display:block;margin:8px 0 0;font-family:var(--serif);font-size:1.05rem;line-height:1.45;color:var(--black);scroll-margin-top:180px;scroll-margin-bottom:160px}
+#partnershipInquiry label,.partner-return,#inquiryFoot{scroll-margin-top:180px}
 #inquire.is-thanks .partner-thanks{display:block}
 #p-annual-partnership .partner-return{margin:14px 0 0;color:#726d68;max-width:none;font-size:.95rem}
 #p-annual-partnership .partner-return a{color:#a17f58;border-bottom:1px solid var(--gold);padding-bottom:1px}
+@media(max-width:640px){
+  #inquiryStatus.is-visible,#partnershipStatus.is-visible,#inquiryFoot,#p-annual-partnership .partner-return{margin-right:72px}
+  #partnershipInquiry{gap:4px}
+  #partnershipInquiry textarea{min-height:48px}
+  #partnershipInquiry input,#partnershipInquiry select{min-height:40px;padding:8px 12px}
+  #partnershipInquiry .btn{padding:12px 14px;letter-spacing:.12em;line-height:1.35}
+  #partnershipStatus.is-visible{margin-top:4px}
+  #p-annual-partnership .partner-return{margin-top:6px}
+}
 #p-annual-partnership .partner-inquiry-photo{display:block;width:100%;height:auto;min-height:0;max-height:none;aspect-ratio:219/248;object-fit:cover;object-position:center 40%;align-self:center;background:#EDE8E0}
 @media(max-width:820px){
   #p-corporate .corp-featured{grid-template-columns:1fr;gap:18px}
@@ -1296,14 +1320,10 @@ try{history.replaceState({page:id||""},"",next);}catch(e){}
         <p class="h3">Let's Plan Your Year Together</p>
         <h2 id="inquireTitle">Tell Us What's on Your Calendar.</h2>
         <p class="partner-inquiry-lead">Share a few details and we'll be in touch to discuss whether an Annual Design Partnership is right for your organization.</p>
-        <form id="partnershipInquiry" action="https://formsubmit.co/hello@creativemotionevents.com" method="POST">
-          <input type="hidden" name="_subject" value="Annual Design Partnership inquiry">
-          <input type="hidden" name="_cc" value="cmeinquiries@mail.grokbot.com">
-          <input type="hidden" name="_captcha" value="true">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_next" id="partnership-next" value="https://creativemotionevents.com/annual-design-partnership/?partnership=thanks">
-          <input type="hidden" name="_replyto" id="partnership-replyto" value="">
-          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <form id="partnershipInquiry" action="https://submit-form.com/BhrPePdn2" method="POST">
+          <input type="hidden" name="Source" value="Annual Design Partnership">
+          <input type="hidden" name="_email.subject" value="Annual Design Partnership inquiry">
+          <input type="checkbox" name="_honeypot" id="partnership-honeypot" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
           <label><span>Contact Name</span><input name="Contact Name" autocomplete="name" required placeholder="Your name"></label>
           <label><span>Organization</span><input name="Organization" autocomplete="organization" required placeholder="Company or association"></label>
           <label><span>Work Email</span><input type="email" name="Work Email" id="partnership-email" autocomplete="email" required placeholder="name@organization.com"></label>
@@ -1311,7 +1331,8 @@ try{history.replaceState({page:id||""},"",next);}catch(e){}
           <label><span>Upcoming Event Types / Details</span><textarea name="Upcoming Event Types / Details" placeholder="Tell us about your upcoming events, dates, and goals"></textarea></label>
           <button class="btn btn-solid" type="submit">Request a Partnership Consultation <span aria-hidden="true">→</span></button>
         </form>
-        <p class="partner-thanks" id="partnershipThanks">Thank you. Your Annual Design Partnership inquiry is in. You can expect a response within 24 hours.</p>
+        <p class="partner-thanks" id="partnershipThanks" hidden></p>
+        <p class="partner-status" id="partnershipStatus" role="status" tabindex="-1" hidden></p>
         <p class="partner-return">Planning just one event? <a href="/corporate-events/" data-go="corporate">Explore Corporate Events.</a></p>
       </div>
       <img class="partner-inquiry-photo" src="/images/annual-partnership/gold-cocktail-tables-cream-florals.jpg" alt="Elegant gold cocktail tables, cream florals, and candlelight at a contemporary event space" width="219" height="248">
@@ -5920,17 +5941,10 @@ try{history.replaceState({page:id||""},"",next);}catch(e){}
     </div>
     <div class="inquiry-block" id="inquire">
       <p class="inquire-note">I reply within 24 hours. — Fayola</p>
-      <form id="inquiryForm" class="inquiry-form" method="POST" action="https://formsubmit.co/hello@creativemotionevents.com" novalidate>
-        <input type="hidden" name="_subject" id="inquiry-subject" value="">
-        <input type="hidden" name="_replyto" id="inquiry-replyto" value="">
-        <input type="hidden" name="_cc" value="cmeinquiries@mail.grokbot.com">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" id="inquiry-next" value="https://creativemotionevents.com/contact/">
-        <div class="hp-field" aria-hidden="true">
-          <label for="inquiry-honey">Leave this field blank</label>
-          <input id="inquiry-honey" name="_honey" type="text" tabindex="-1" autocomplete="off" value="">
-        </div>
+      <form id="inquiryForm" class="inquiry-form" method="POST" action="https://submit-form.com/BhrPePdn2" novalidate>
+        <input type="hidden" name="Source" value="Contact">
+        <input type="hidden" name="_email.subject" value="Contact inquiry">
+        <input type="checkbox" name="_honeypot" id="inquiry-honeypot" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="field">
           <label for="inquiry-name">Full name</label>
           <input id="inquiry-name" name="Full name" type="text" autocomplete="name" required>
@@ -6082,6 +6096,7 @@ try{history.replaceState({page:id||""},"",next);}catch(e){}
   <img id="lbImg" alt="Enlarged event photo">
 </div>
 
+<script src="/scripts/inquiry-form.js"></script>
 <script>
 /* ROUTER_START */
 /* path router: real URLs, old hashes redirect.
@@ -6231,10 +6246,7 @@ window.addEventListener('popstate',function(){
   show(p);
   if(new URLSearchParams(location.search).get('partnership')==='thanks'){
     const inquire=document.getElementById('inquire');
-    if(inquire){
-      inquire.classList.add('is-thanks');
-      inquire.scrollIntoView({block:'start',behavior:'auto'});
-    }
+    if(inquire) inquire.scrollIntoView({block:'start',behavior:'auto'});
     return;
   }
   scrollToTop();
@@ -6253,7 +6265,6 @@ if(partnershipThanks) start='annual-partnership';
 go(start,{replace:true,hash:inquireHash?'#inquire':'',keepThanks:partnershipThanks,noscroll:partnershipThanks||contactInquire});
 if(partnershipThanks){
   const inquire=document.getElementById('inquire');
-  if(inquire) inquire.classList.add('is-thanks');
   setTimeout(function(){if(inquire) inquire.scrollIntoView({block:'start'})},80);
 }
 if(contactInquire){
@@ -6268,30 +6279,6 @@ document.addEventListener('click',function(e){
   e.preventDefault();
   el.scrollIntoView({behavior:'smooth',block:'start'});
 });
-(function(){
-  const form=document.getElementById('partnershipInquiry');
-  if(!form) return;
-  const next=document.getElementById('partnership-next');
-  const reply=document.getElementById('partnership-replyto');
-  const email=document.getElementById('partnership-email');
-  const CANONICAL='https://creativemotionevents.com/annual-design-partnership/?partnership=thanks';
-  function nextUrl(){
-    try{
-      const host=location.hostname;
-      if(host==='creativemotionevents.com'||host==='www.creativemotionevents.com'){
-        return location.origin+'/annual-design-partnership/?partnership=thanks';
-      }
-    }catch(err){}
-    return CANONICAL;
-  }
-  if(next) next.value=nextUrl();
-  form.addEventListener('submit',function(){
-    if(next) next.value=nextUrl();
-    if(reply&&email) reply.value=email.value;
-    const btn=form.querySelector('button[type="submit"]');
-    if(btn){btn.disabled=true;btn.setAttribute('aria-busy','true');}
-  });
-})();
 function settleScroll(){
   if(partnershipThanks){
     const inquire=document.getElementById('inquire');
@@ -6321,12 +6308,6 @@ document.addEventListener('click',function(e){
   }
   const label=el.getAttribute('data-cta');
   if(label) gtag('event','cta_click',{label:label});
-});
-document.addEventListener('submit',function(e){
-  if(typeof gtag!=='function') return;
-  const form=e.target;
-  if(!form || form.id!=='partnershipInquiry') return;
-  gtag('event','generate_lead',{form_name:'annual-design-partnership'});
 });
 }
 /* ROUTER_END */
