@@ -506,9 +506,16 @@ input:focus,select:focus,textarea:focus{outline:1px solid var(--gold);outline-of
 .contact .inquire-start{padding:20px 36px;font-size:.78rem;letter-spacing:.2em}
 .contact .inquire-start:hover,.contact .inquire-submit:hover{background:#fff;color:#1a1613;border-color:#fff}
 .inquiry-form .opt{letter-spacing:.04em;text-transform:none}
-.inquiry-form input,.inquiry-form select,.inquiry-form textarea{color-scheme:dark}
-.form-status{margin-top:18px;padding:16px 18px;border:1px solid var(--gold);color:var(--white);line-height:1.5}
-.form-status a{color:var(--gold);text-decoration:underline}
+.inquiry-form label{font-size:.8rem;letter-spacing:.08em;line-height:1.4;color:rgba(255,255,255,.92)}
+.inquiry-form input,.inquiry-form select,.inquiry-form textarea{color-scheme:dark;font-size:16px;min-height:44px;background:rgba(255,255,255,.06)}
+.inquiry-form textarea{min-height:132px;resize:vertical}
+.inquiry-form .inquire-submit{min-height:48px;touch-action:manipulation}
+.inquiry-form .inquire-submit:disabled{opacity:.72;cursor:progress}
+#inquiryForm[hidden]{display:none !important}
+.form-status{margin-top:18px;padding:16px 18px;border:1px solid var(--gold);color:var(--white);line-height:1.5;font-size:1rem;font-weight:400;overflow-wrap:anywhere;scroll-margin-top:130px;scroll-margin-bottom:96px}
+.form-status:focus{outline:2px solid #fff;outline-offset:3px}
+.form-status a{color:#E7D3A1;text-decoration:underline;text-underline-offset:2px}
+.form-status a:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .form-status.is-error{border-color:#f0d0d0}
 .hp-field{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
 footer .footer-contact{margin-top:18px;font-family:var(--serif);font-size:1.15rem;letter-spacing:.02em;line-height:1.6}
@@ -1139,151 +1146,16 @@ try{history.replaceState({page:id||""},"",next);}catch(e){}
         </div>
         <button class="btn inquire-submit" id="inquirySubmit" type="submit">Send inquiry</button>
       </form>
-      <div id="inquiryStatus" class="form-status" role="status" aria-live="polite" tabindex="-1" hidden></div>
-      <p class="form-foot">Creative Motion Events specializes in elevated event design and full-service production. After submitting your inquiry, you can expect a response within 24 hours.</p>
+      <div id="inquiryStatus" class="form-status" role="status" aria-live="polite" aria-atomic="true" tabindex="-1" hidden></div>
+      <p class="form-foot" id="inquiryFoot">Creative Motion Events specializes in elevated event design and full-service production. After submitting your inquiry, you can expect a response within 24 hours.</p>
     </div>
     <script>
     (function(){
-      var FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/hello@creativemotionevents.com';
-      var SUCCESS = "Thank you! We'll be in touch within 24 hours.";
-      var form = document.getElementById('inquiryForm');
-      if(!form) return;
-      var statusEl = document.getElementById('inquiryStatus');
-      var submitBtn = document.getElementById('inquirySubmit');
-
-      function field(id){ return document.getElementById(id); }
-      function setError(id, message){
-        var input = field(id);
-        var error = field(id + '-error');
-        if(error) error.textContent = message || '';
-        if(!input) return;
-        if(message){
-          var described = [input.getAttribute('data-described'), id + '-error'].filter(Boolean).join(' ');
-          input.setAttribute('aria-invalid', 'true');
-          input.setAttribute('aria-describedby', described);
-        } else {
-          input.removeAttribute('aria-invalid');
-          var base = input.getAttribute('data-described');
-          if(base) input.setAttribute('aria-describedby', base);
-          else input.removeAttribute('aria-describedby');
-        }
-      }
-      var SEND_FAILED = 'We could not send your inquiry just now. Email <a href="mailto:hello@creativemotionevents.com">hello@creativemotionevents.com</a> or call <a href="tel:+13013377256">301-337-7256</a>, and you can expect a response within 24 hours.';
-      function showStatus(message, isError){
-        statusEl.hidden = false;
-        if(message === SEND_FAILED) statusEl.innerHTML = message;
-        else statusEl.textContent = message;
-        statusEl.classList.toggle('is-error', !!isError);
-        statusEl.focus();
-      }
-      function validEmail(value){
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-      }
-      function todayLocal(){
-        var now = new Date();
-        var month = now.getMonth() + 1;
-        var day = now.getDate();
-        return now.getFullYear() + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day;
-      }
-      function digits(value){
-        return (value.match(/\d/g) || []).length;
-      }
-
-      form.addEventListener('submit', function(event){
-        event.preventDefault();
-        var name = field('inquiry-name').value.trim();
-        var email = field('inquiry-email').value.trim();
-        var phone = field('inquiry-phone').value.trim();
-        var organization = field('inquiry-organization').value.trim();
-        var eventType = field('inquiry-event-type').value;
-        var eventDate = field('inquiry-date').value;
-        var guestCount = field('inquiry-guests').value;
-        var investment = field('inquiry-investment').value;
-        var vision = field('inquiry-vision').value.trim();
-        var honey = field('inquiry-honey').value;
-        var ok = true;
-
-        setError('inquiry-name', name ? '' : 'Enter your full name.');
-        if(!name) ok = false;
-        setError('inquiry-email', validEmail(email) ? '' : 'Enter a valid email address.');
-        if(!validEmail(email)) ok = false;
-        setError('inquiry-phone', (!phone || digits(phone) >= 7) ? '' : 'Enter a phone number with at least 7 digits, or leave it blank.');
-        if(phone && digits(phone) < 7) ok = false;
-        setError('inquiry-event-type', eventType ? '' : 'Choose an event type.');
-        if(!eventType) ok = false;
-        setError('inquiry-guests', guestCount ? '' : 'Choose an estimated guest count.');
-        if(!guestCount) ok = false;
-        setError('inquiry-investment', investment ? '' : 'Choose an anticipated investment.');
-        if(!investment) ok = false;
-
-        if(!ok){
-          var first = form.querySelector('[aria-invalid="true"]');
-          if(first) first.focus();
-          return;
-        }
-
-        if(honey){
-          form.hidden = true;
-          showStatus(SUCCESS, false);
-          return;
-        }
-
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Sending...';
-        statusEl.hidden = true;
-
-        var payload = {
-          _subject: 'New Inquiry - ' + name.replace(/[\r\n]+/g, ' ') + ' - ' + eventType,
-          _replyto: email,
-          _cc: 'cmeinquiries@mail.grokbot.com',
-          _template: 'table',
-          _captcha: 'false',
-          _honey: '',
-          'Full name': name,
-          'Email': email,
-          'Phone': phone,
-          'Organization/Company': organization,
-          'Event type': eventType,
-          'Event date': eventDate,
-          'Estimated guest count': guestCount,
-          'Anticipated investment': investment,
-          'Tell us about your vision': vision
-        };
-
-        fetch(FORMSUBMIT_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(payload)
-        }).then(function(response){
-          return response.json().catch(function(){ return null; });
-        }).then(function(data){
-          var message = data && data.message ? String(data.message) : '';
-          var needsActivation = /activat/i.test(message);
-          var sent = data && (data.success === true || data.success === 'true') && !needsActivation;
-          if(sent){
-            if(typeof gtag === 'function'){
-              gtag('event', 'generate_lead', {
-                event_type: eventType,
-                investment: investment,
-                form_name: 'contact_inquiry'
-              });
-            }
-            form.hidden = true;
-            showStatus(SUCCESS, false);
-            return;
-          }
-          showStatus(SEND_FAILED, true);
-        }).catch(function(){
-          showStatus(SEND_FAILED, true);
-        }).then(function(){
-          if(submitBtn){
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Send inquiry';
-          }
-        });
-      });
+      var form=document.getElementById('inquiryForm');
+      if(form) form.addEventListener('submit', function(event){ event.preventDefault(); });
     })();
     </script>
+    <script src="/scripts/inquiry-form.js"></script>
   </div>
 </section>
 
