@@ -2,50 +2,37 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const inquiry = require('./inquiry-form');
 
-const ACCEPTED_MESSAGE = 'The form was submitted successfully.';
-const ACTIVATION = "This form needs Activation. We've sent you an email containing an 'Activate Form' link. Just click it and your form will be actived!";
+const pending = { id: 'attempt-1', pending: true, done: false, leadRecorded: false };
+const done = { id: 'attempt-1', pending: false, done: true, leadRecorded: true };
 
-test('string and boolean true with an acceptance message are accepted', function () {
-  assert.equal(inquiry.classifyInquiryResponse(200, { success: 'true', message: ACCEPTED_MESSAGE }), 'accepted');
-  assert.equal(inquiry.classifyInquiryResponse(200, { success: true, message: ACCEPTED_MESSAGE }), 'accepted');
+test('a redirect counts only together with this browser pending attempt', function () {
+  assert.equal(inquiry.inquiryView('?inquiry=accepted', pending), 'redirected');
+  assert.equal(inquiry.inquiryView('inquiry=accepted', pending), 'redirected');
 });
 
-test('the string false is not accepted, even though it is truthy', function () {
-  assert.equal(inquiry.classifyInquiryResponse(200, { success: 'false', message: 'Unable to submit form.' }), 'rejected');
-  assert.equal(inquiry.classifyInquiryResponse(200, { success: 'false', message: ACTIVATION }), 'rejected');
-  assert.equal(inquiry.classifyInquiryResponse(200, { success: false, message: ACTIVATION }), 'rejected');
+test('the redirect URL alone is not acceptance', function () {
+  assert.equal(inquiry.inquiryView('?inquiry=accepted', null), 'ready');
+  assert.equal(inquiry.inquiryView('?inquiry=accepted', {}), 'ready');
+  assert.equal(inquiry.inquiryView('?inquiry=accepted', { pending: true }), 'ready');
 });
 
-test('an activation notice is not accepted even when the flag says true', function () {
-  assert.equal(inquiry.classifyInquiryResponse(200, { success: 'true', message: ACTIVATION }), 'rejected');
-  assert.equal(inquiry.classifyInquiryResponse(200, { success: true, message: 'Please activate this form.' }), 'rejected');
+test('a pending attempt without the redirect is uncertain, not a new send', function () {
+  assert.equal(inquiry.inquiryView('', pending), 'uncertain');
+  assert.equal(inquiry.inquiryView('?inquiry=other', pending), 'uncertain');
 });
 
-test('HTTP success alone is not acceptance', function () {
-  assert.equal(inquiry.classifyInquiryResponse(200, null), 'unreadable');
-  assert.equal(inquiry.classifyInquiryResponse(200, {}), 'rejected');
-  assert.equal(inquiry.classifyInquiryResponse(200, { success: 'true', message: '' }), 'unreadable');
-  assert.equal(inquiry.classifyInquiryResponse(200, { success: 'true' }), 'unreadable');
-  assert.equal(inquiry.classifyInquiryResponse(204, null), 'unreadable');
+test('a finished attempt stays on the redirect result', function () {
+  assert.equal(inquiry.inquiryView('', done), 'redirected');
+  assert.equal(inquiry.inquiryView('?inquiry=accepted', done), 'redirected');
 });
 
-test('a success flag on an HTTP error is not acceptance', function () {
-  assert.equal(inquiry.classifyInquiryResponse(500, { success: 'true', message: ACCEPTED_MESSAGE }), 'http-error');
-  assert.equal(inquiry.classifyInquiryResponse(422, { success: 'false', message: 'nope' }), 'http-error');
-  assert.equal(inquiry.classifyInquiryResponse(403, null), 'http-error');
-});
-
-test('other truthy success values are not acceptance', function () {
-  assert.equal(inquiry.classifyInquiryResponse(200, { success: 'True', message: ACCEPTED_MESSAGE }), 'rejected');
-  assert.equal(inquiry.classifyInquiryResponse(200, { success: 1, message: ACCEPTED_MESSAGE }), 'rejected');
-  assert.equal(inquiry.classifyInquiryResponse(200, { success: 'yes', message: ACCEPTED_MESSAGE }), 'rejected');
-});
-
-test('routing constants stay on the contact inbox and the copy inbox', function () {
-  assert.equal(inquiry.ENDPOINT, 'https://formsubmit.co/ajax/hello@creativemotionevents.com');
+test('the contact form posts to the documented FormSubmit address, not the ajax endpoint', function () {
+  assert.equal(inquiry.ACTION, 'https://formsubmit.co/hello@creativemotionevents.com');
+  assert.equal(inquiry.ACTION.indexOf('/ajax/'), -1);
   assert.equal(inquiry.COPY_TO, 'cmeinquiries@mail.grokbot.com');
-  assert.equal(inquiry.SUCCESS.includes('accepted'), true);
-  assert.equal(/24 hours/.test(inquiry.NOT_ACCEPTED), false);
-  assert.equal(/24 hours/.test(inquiry.NOT_REACHED), false);
-  assert.equal(/24 hours/.test(inquiry.NOT_CONFIRMED), false);
+  assert.equal(inquiry.CANONICAL_NEXT, 'https://creativemotionevents.com/contact/?inquiry=accepted');
+  assert.equal(/inbox/.test(inquiry.SUCCESS), true);
+  assert.equal(/cannot confirm/.test(inquiry.SUCCESS), true);
+  assert.equal(/another inquiry/.test(inquiry.UNCERTAIN), true);
+  assert.equal(/not sent/.test(inquiry.UNCERTAIN), false);
 });

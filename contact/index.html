@@ -512,7 +512,9 @@ input:focus,select:focus,textarea:focus{outline:1px solid var(--gold);outline-of
 .inquiry-form .inquire-submit{min-height:48px;touch-action:manipulation}
 .inquiry-form .inquire-submit:disabled{opacity:.72;cursor:progress}
 #inquiryForm[hidden]{display:none !important}
-.form-status{margin-top:18px;padding:16px 18px;border:1px solid var(--gold);color:var(--white);line-height:1.5;font-size:1rem;font-weight:400;overflow-wrap:anywhere;scroll-margin-top:130px;scroll-margin-bottom:96px}
+#inquiryAnother{margin-top:16px}
+#inquiryAnother[hidden]{display:none !important}
+.form-status{margin-top:18px;margin-bottom:18px;padding:16px 18px;border:1px solid var(--gold);color:var(--white);line-height:1.5;font-size:1rem;font-weight:400;overflow-wrap:anywhere;scroll-margin-top:130px;scroll-margin-bottom:96px}
 .form-status:focus{outline:2px solid #fff;outline-offset:3px}
 .form-status a{color:#E7D3A1;text-decoration:underline;text-underline-offset:2px}
 .form-status a:focus-visible{outline:2px solid #fff;outline-offset:2px}
@@ -1067,33 +1069,39 @@ try{history.replaceState({page:id||""},"",next);}catch(e){}
     </div>
     <div class="inquiry-block" id="inquire">
       <p class="inquire-note">I reply within 24 hours. — Fayola</p>
-      <form id="inquiryForm" class="inquiry-form" novalidate>
+      <form id="inquiryForm" class="inquiry-form" method="POST" action="https://formsubmit.co/hello@creativemotionevents.com" novalidate>
+        <input type="hidden" name="_subject" id="inquiry-subject" value="">
+        <input type="hidden" name="_replyto" id="inquiry-replyto" value="">
+        <input type="hidden" name="_cc" value="cmeinquiries@mail.grokbot.com">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" id="inquiry-next" value="https://creativemotionevents.com/contact/?inquiry=accepted">
         <div class="hp-field" aria-hidden="true">
           <label for="inquiry-honey">Leave this field blank</label>
           <input id="inquiry-honey" name="_honey" type="text" tabindex="-1" autocomplete="off" value="">
         </div>
         <div class="field">
           <label for="inquiry-name">Full name</label>
-          <input id="inquiry-name" name="name" type="text" autocomplete="name" required>
+          <input id="inquiry-name" name="Full name" type="text" autocomplete="name" required>
           <p class="field-error" id="inquiry-name-error"></p>
         </div>
         <div class="field">
           <label for="inquiry-email">Email</label>
-          <input id="inquiry-email" name="email" type="email" autocomplete="email" required>
+          <input id="inquiry-email" name="Email" type="email" autocomplete="email" required>
           <p class="field-error" id="inquiry-email-error"></p>
         </div>
         <div class="field">
           <label for="inquiry-organization">Organization/Company <span class="opt">(optional)</span></label>
-          <input id="inquiry-organization" name="organization" type="text" autocomplete="organization">
+          <input id="inquiry-organization" name="Organization/Company" type="text" autocomplete="organization">
         </div>
         <div class="field">
           <label for="inquiry-phone">Phone <span class="opt">(optional)</span></label>
-          <input id="inquiry-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel">
+          <input id="inquiry-phone" name="Phone" type="tel" autocomplete="tel" inputmode="tel">
           <p class="field-error" id="inquiry-phone-error"></p>
         </div>
         <div class="field">
           <label for="inquiry-event-type">Event type</label>
-          <select id="inquiry-event-type" name="event_type" required>
+          <select id="inquiry-event-type" name="Event type" required>
             <option value="">Select an event type</option>
             <option>Corporate gala or awards night</option>
             <option>Grand opening or ribbon cutting</option>
@@ -1110,12 +1118,12 @@ try{history.replaceState({page:id||""},"",next);}catch(e){}
         <div class="row">
           <div class="field">
             <label for="inquiry-date">Event date (or month/season if not set)</label>
-            <input id="inquiry-date" name="event_date" type="text" autocomplete="off">
+            <input id="inquiry-date" name="Event date" type="text" autocomplete="off">
             <p class="field-error" id="inquiry-date-error"></p>
           </div>
           <div class="field">
             <label for="inquiry-guests">Estimated guest count</label>
-            <select id="inquiry-guests" name="guest_count" required>
+            <select id="inquiry-guests" name="Estimated guest count" required>
               <option value="">Select a guest count</option>
               <option>Under 25</option>
               <option>25–50</option>
@@ -1129,7 +1137,7 @@ try{history.replaceState({page:id||""},"",next);}catch(e){}
         </div>
         <div class="field">
           <label for="inquiry-investment">Anticipated investment</label>
-          <select id="inquiry-investment" name="investment" required>
+          <select id="inquiry-investment" name="Anticipated investment" required>
             <option value="">Select a range</option>
             <option>Under $8,000</option>
             <option>$8,000–$12,000</option>
@@ -1142,19 +1150,14 @@ try{history.replaceState({page:id||""},"",next);}catch(e){}
         </div>
         <div class="field">
           <label for="inquiry-vision">Tell us about your vision <span class="opt">(optional)</span></label>
-          <textarea id="inquiry-vision" name="message" rows="5"></textarea>
+          <textarea id="inquiry-vision" name="Tell us about your vision" rows="5"></textarea>
         </div>
         <button class="btn inquire-submit" id="inquirySubmit" type="submit">Send inquiry</button>
       </form>
       <div id="inquiryStatus" class="form-status" role="status" aria-live="polite" aria-atomic="true" tabindex="-1" hidden></div>
-      <p class="form-foot" id="inquiryFoot">Creative Motion Events specializes in elevated event design and full-service production. After submitting your inquiry, you can expect a response within 24 hours.</p>
+      <button type="button" class="btn inquire-submit" id="inquiryAnother" hidden>Send another inquiry</button>
+      <p class="form-foot" id="inquiryFoot">Creative Motion Events specializes in elevated event design and full-service production. After a message arrives, you can expect a response within 24 hours.</p>
     </div>
-    <script>
-    (function(){
-      var form=document.getElementById('inquiryForm');
-      if(form) form.addEventListener('submit', function(event){ event.preventDefault(); });
-    })();
-    </script>
     <script src="/scripts/inquiry-form.js"></script>
   </div>
 </section>
