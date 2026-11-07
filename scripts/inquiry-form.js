@@ -16,8 +16,25 @@
   var ENDPOINT = 'https://submit-form.com/BhrPePdn2';
   var FROM_NAME = 'Creative Motion Events';
 
+  var DRAFT_PREFIX = 'cme-inquiry-draft:';
+
   function validAttemptToken(token) {
     return typeof token === 'string' && /^[A-Za-z0-9]{20,32}$/.test(token);
+  }
+
+  function mergeDescribedBy(existing, errorId, invalid) {
+    var ids = String(existing || '').split(/\s+/).filter(Boolean).filter(function (id) {
+      return id !== errorId;
+    });
+    if (invalid) ids.push(errorId);
+    return ids.join(' ');
+  }
+
+  function readableDraft(data, source) {
+    if (!data || typeof data !== 'object' || Array.isArray(data)) return null;
+    if (data.source !== source || data.ambiguous !== true || data.kind === 'accepted') return null;
+    if (!data.fields || typeof data.fields !== 'object' || Array.isArray(data.fields)) return null;
+    return data;
   }
 
   function classifyFormsparkResponse(status, body, attemptId, source) {
@@ -71,18 +88,22 @@
     var counted = {};
 
     function field(id) { return document.getElementById(id); }
+    function originalDescribed(input) {
+      if (!input.hasAttribute('data-described')) {
+        input.setAttribute('data-described', input.getAttribute('aria-describedby') || '');
+      }
+      return input.getAttribute('data-described');
+    }
     function setError(id, message) {
       var input = field(id);
       var error = field(id + '-error');
-      if (!input || !error) return;
-      error.textContent = message || '';
-      if (message) {
-        input.setAttribute('aria-invalid', 'true');
-        input.setAttribute('aria-describedby', id + '-error');
-      } else {
-        input.removeAttribute('aria-invalid');
-        input.removeAttribute('aria-describedby');
-      }
+      if (error) error.textContent = message || '';
+      if (!input) return;
+      var next = mergeDescribedBy(originalDescribed(input), id + '-error', !!message);
+      if (message) input.setAttribute('aria-invalid', 'true');
+      else input.removeAttribute('aria-invalid');
+      if (next) input.setAttribute('aria-describedby', next);
+      else input.removeAttribute('aria-describedby');
     }
     function validEmail(value) {
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -176,6 +197,40 @@
       }
       return data;
     }
+    var draftKey = DRAFT_PREFIX + config.source;
+    function snapshot() {
+      var fields = {};
+      var nodes = form.querySelectorAll('input, select, textarea');
+      for (var i = 0; i < nodes.length; i++) {
+        var el = nodes[i];
+        if (!el.name || el.name === '_honeypot' || el.name === 'Source' || el.name.indexOf('_email') === 0) continue;
+        if (el.type === 'hidden' || el.type === 'submit' || el.type === 'button' || el.type === 'checkbox') continue;
+        fields[el.name] = el.value;
+      }
+      return fields;
+    }
+    function writeDraft(kind, status) {
+      try {
+        var data = { source: config.source, ambiguous: kind !== 'accepted', kind: kind, status: status || 0, fields: snapshot() };
+        sessionStorage.setItem(draftKey, JSON.stringify(data));
+        var back = readableDraft(JSON.parse(sessionStorage.getItem(draftKey)), config.source);
+        return !!(back && back.kind === kind);
+      } catch (err) {
+        return false;
+      }
+    }
+    function clearDraft() {
+      try { sessionStorage.removeItem(draftKey); } catch (err) {}
+    }
+    function applyDraft(fields) {
+      var nodes = form.querySelectorAll('input, select, textarea');
+      for (var i = 0; i < nodes.length; i++) {
+        var el = nodes[i];
+        if (!el.name || !Object.prototype.hasOwnProperty.call(fields, el.name)) continue;
+        if (el.type === 'hidden' || el.type === 'checkbox' || el.type === 'submit' || el.type === 'button') continue;
+        el.value = fields[el.name] == null ? '' : String(fields[el.name]);
+      }
+    }
     function token() {
       var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
       var bytes = new Uint8Array(24);
@@ -241,6 +296,7 @@
       if (honeypotFilled()) return;
       var attemptId = token();
       var data = collect(attemptId);
+      writeDraft('pending', 0);
       busy = true;
       window.setTimeout(function () {
         submitBtn.disabled = true;
@@ -259,27 +315,51 @@
       }).then(function (result) {
         var kind = classifyFormsparkResponse(result.status, result.body, attemptId, config.source);
         if (kind === 'accepted') {
+          clearDraft();
           recordLead(attemptId, data);
           showStatus('success', messageFor('accepted'));
           finishSuccess();
           return;
         }
-        showStatus('alert', messageFor(kind, result.status));
+        var saved = writeDraft(kind, result.status);
+        var text = messageFor(kind, result.status);
+        if (!saved) text += ' This browser could not save a copy of these entries. Reloading this page may clear them.';
+        showStatus('alert', text);
         submitBtn.disabled = false;
       }).catch(function () {
-        showStatus('alert', messageFor('unreachable'));
+        var saved = writeDraft('unreachable', 0);
+        var text = messageFor('unreachable');
+        if (!saved) text += ' This browser could not save a copy of these entries. Reloading this page may clear them.';
+        showStatus('alert', text);
         submitBtn.disabled = false;
       }).then(function () {
         busy = false;
         submitBtn.removeAttribute('aria-busy');
       });
     });
+
+    var opened = null;
+    try { opened = readableDraft(JSON.parse(sessionStorage.getItem(draftKey) || 'null'), config.source); }
+    catch (err) {
+      showStatus('alert', "This browser couldn't read the saved entries. Nothing was restored, and nothing was sent.");
+      opened = null;
+    }
+    if (opened) {
+      applyDraft(opened.fields);
+      var restored = opened.kind === 'pending'
+        ? 'A previous send did not finish on this page. Nothing was sent again. Your details are back in the form.'
+        : messageFor(opened.kind, opened.status);
+      showStatus('alert', restored);
+    }
   }
 
   return {
     mount: mount,
     classifyFormsparkResponse: classifyFormsparkResponse,
     validAttemptToken: validAttemptToken,
+    mergeDescribedBy: mergeDescribedBy,
+    readableDraft: readableDraft,
+    DRAFT_PREFIX: DRAFT_PREFIX,
     ENDPOINT: ENDPOINT,
     FROM_NAME: FROM_NAME
   };

@@ -221,29 +221,119 @@ async function main() {
       return item && item[0] === 'event' && item[1] === 'generate_lead' && item[2] && item[2].form_name === ${JSON.stringify(name)};
     }).length`;
   }
-  async function shot(name, width, height, mobile) {
-    await send('Emulation.setDeviceMetricsOverride', { width: width, height: height, deviceScaleFactor: 1, mobile: mobile });
-    await sleep(100);
-    await evaluate(`(() => {
-      const status = document.querySelector('#inquiryStatus.is-visible, #partnershipStatus.is-visible, #inquiryStatus:not([hidden]), #partnershipStatus:not([hidden])');
-      const el = document.getElementById('inquiryStatus') && !document.getElementById('inquiryStatus').hidden
-        ? document.getElementById('inquiryStatus')
-        : document.getElementById('partnershipStatus');
-      if (!el) return;
+  function frameExpr() {
+    return `(() => {
+      function box(el){ const r = el.getBoundingClientRect(); return {top:r.top,bottom:r.bottom,left:r.left,right:r.right}; }
+      function shown(el){ return !!(el && !el.hidden && getComputedStyle(el).display !== 'none'); }
+      function overlaps(a, b){
+        if (!a || !b) return false;
+        return Math.min(a.right, b.right) - Math.max(a.left, b.left) > 0.5 && Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top) > 0.5;
+      }
       const header = document.querySelector('header');
       const fab = document.getElementById('fab');
-      const headerH = header ? header.getBoundingClientRect().height : 0;
-      const fabTop = fab ? fab.getBoundingClientRect().top : window.innerHeight;
-      const topLimit = headerH + 12;
-      const bottomLimit = Math.min(window.innerHeight - 12, fabTop - 8);
-      const rect = el.getBoundingClientRect();
-      const another = document.getElementById('inquiryAnother');
-      let bottom = rect.bottom;
-      if (another && !another.hidden) bottom = Math.max(bottom, another.getBoundingClientRect().bottom);
-      const minDelta = bottom - bottomLimit;
-      const maxDelta = rect.top - topLimit;
-      const delta = minDelta > maxDelta ? maxDelta : minDelta;
+      const headerBottom = header ? header.getBoundingClientRect().bottom : 0;
+      const fabBox = shown(fab) ? box(fab) : null;
+      function place(el){
+        if (!shown(el)) return { present: false };
+        const r = box(el);
+        return {
+          present: true,
+          top: Math.round(r.top),
+          bottom: Math.round(r.bottom),
+          belowHeader: r.top >= headerBottom - 1,
+          aboveFab: !fabBox || r.bottom <= fabBox.top + 1,
+          inViewport: r.top >= -1 && r.bottom <= window.innerHeight + 1,
+          overlapsFab: overlaps(r, fabBox),
+          overlapsHeader: r.top < headerBottom - 1 && r.bottom > headerBottom + 1
+        };
+      }
+      const form = document.getElementById('inquiryForm');
+      const partner = document.getElementById('partnershipInquiry');
+      const label = (shown(partner) && partner.querySelector('label')) || (shown(form) && form.querySelector('label')) || null;
+      return {
+        headerBottom: Math.round(headerBottom),
+        status: place(document.querySelector('#inquiryStatus.is-visible, #partnershipStatus.is-visible')),
+        another: place(document.getElementById('inquiryAnother')),
+        foot: place(document.getElementById('inquiryFoot')),
+        back: place(document.querySelector('.partner-return')),
+        label: place(label)
+      };
+    })()`;
+  }
+  async function shot(name, width, height, mobile) {
+    await send('Emulation.setDeviceMetricsOverride', { width: width, height: height, deviceScaleFactor: 1, mobile: mobile });
+    await sleep(120);
+    await evaluate(`(() => {
+      function shown(el){ return !!(el && !el.hidden && getComputedStyle(el).display !== 'none'); }
+      const header = document.querySelector('header');
+      const fab = document.getElementById('fab');
+      const headerBottom = header ? header.getBoundingClientRect().bottom : 0;
+      const fabTop = shown(fab) ? fab.getBoundingClientRect().top : window.innerHeight;
+      const clearTop = headerBottom + 12;
+      const clearBottom = Math.min(window.innerHeight - 8, fabTop - 10);
+      const nodes = [];
+      function add(el){ if (shown(el)) nodes.push(el); }
+      const partner = document.getElementById('partnershipInquiry');
+      const form = document.getElementById('inquiryForm');
+      if (shown(partner)) add(partner.querySelector('label'));
+      add(document.querySelector('#inquiryStatus.is-visible, #partnershipStatus.is-visible'));
+      add(document.getElementById('inquiryAnother'));
+      add(document.getElementById('inquiryFoot'));
+      add(document.querySelector('.partner-return'));
+      if (!nodes.length) return;
+      let top = Infinity, bottom = -Infinity;
+      nodes.forEach(function (el) {
+        const r = el.getBoundingClientRect();
+        top = Math.min(top, r.top);
+        bottom = Math.max(bottom, r.bottom);
+      });
+      const minDelta = bottom - clearBottom;
+      const maxDelta = top - clearTop;
+      const delta = (bottom - top) <= (clearBottom - clearTop)
+        ? (minDelta > 0 ? minDelta : (maxDelta < 0 ? maxDelta : 0))
+        : maxDelta;
       window.scrollTo({ top: Math.max(0, window.scrollY + delta), behavior: 'instant' });
+      const blockers = document.querySelectorAll('p, h1, h2, h3, label, .lines, .note');
+      for (let pass = 0; pass < 4; pass++) {
+        let cut = 0;
+        blockers.forEach(function (el) {
+          if (!shown(el)) return;
+          const r = el.getBoundingClientRect();
+          if (r.height < 8 || r.height > 480) return;
+          if (r.top < headerBottom - 1 && r.bottom > headerBottom + 1) cut = Math.max(cut, r.bottom);
+        });
+        if (!cut) break;
+        const nudge = cut - headerBottom + 8;
+        let frameTop = Infinity, frameBottom = -Infinity;
+        nodes.forEach(function (el) {
+          const r = el.getBoundingClientRect();
+          frameTop = Math.min(frameTop, r.top);
+          frameBottom = Math.max(frameBottom, r.bottom);
+        });
+        const room = frameTop - (headerBottom + 4);
+        const applied = Math.min(nudge, room);
+        if (applied < 2) break;
+        window.scrollTo({ top: window.scrollY + applied, behavior: 'instant' });
+      }
+      const lines = document.querySelector('.contact .lines');
+      if (shown(lines)) {
+        const line = lines.getBoundingClientRect();
+        if (line.top < headerBottom + 6 && line.bottom > headerBottom) {
+          const need = headerBottom + 6 - line.top;
+          let frameBottom = -Infinity;
+          nodes.forEach(function (el) { frameBottom = Math.max(frameBottom, el.getBoundingClientRect().bottom); });
+          if (frameBottom + need <= clearBottom - 4) window.scrollTo({ top: Math.max(0, window.scrollY - need), behavior: 'instant' });
+        }
+      }
+      if (shown(form) && !shown(partner)) {
+        const labels = form.querySelectorAll('label');
+        for (let i = 0; i < labels.length; i++) {
+          const r = labels[i].getBoundingClientRect();
+          if (r.top < headerBottom - 1 && r.bottom > headerBottom + 1) {
+            window.scrollTo({ top: window.scrollY + r.bottom - headerBottom + 4, behavior: 'instant' });
+          }
+        }
+      }
     })()`);
     await sleep(40);
     const image = await send('Page.captureScreenshot', { format: 'png' });
@@ -251,19 +341,41 @@ async function main() {
     fs.writeFileSync(file, Buffer.from(image.data, 'base64'));
     console.log('SHOT', file, fs.readFileSync(file).readUInt32BE(16), fs.readFileSync(file).readUInt32BE(20));
   }
+  function clearOfChrome(frame, names) {
+    return names.every(function (name) {
+      const item = frame[name];
+      if (!item || !item.present) return false;
+      return item.belowHeader && item.inViewport && !item.overlapsFab && !item.overlapsHeader;
+    });
+  }
 
   mode = 'echo';
   await go('/contact/');
   await evaluate(`(() => {
+    document.getElementById('inquiry-name').setAttribute('aria-describedby', 'inquiry-name-hint');
     document.getElementById('inquiry-vision').value = 'Keep this vision';
     document.getElementById('inquiryForm').requestSubmit();
   })()`);
   await sleep(200);
   const validation = await evaluate(`({
     name: document.getElementById('inquiry-name-error').textContent,
-    vision: document.getElementById('inquiry-vision').value
+    vision: document.getElementById('inquiry-vision').value,
+    described: document.getElementById('inquiry-name').getAttribute('aria-describedby'),
+    invalid: document.getElementById('inquiry-name').getAttribute('aria-invalid')
   })`);
   check('contact validation does not post and keeps the vision', posts.length === 0 && validation.name && validation.vision === 'Keep this vision', validation.name);
+  check('an invalid field keeps its original hint and adds the error', validation.described === 'inquiry-name-hint inquiry-name-error' && validation.invalid === 'true', validation.described);
+  await evaluate(`(() => {
+    document.getElementById('inquiry-name').value = 'Amina Cole';
+    document.getElementById('inquiryForm').requestSubmit();
+  })()`);
+  await sleep(150);
+  const restoredHint = await evaluate(`({
+    described: document.getElementById('inquiry-name').getAttribute('aria-describedby'),
+    invalid: document.getElementById('inquiry-name').getAttribute('aria-invalid'),
+    posts: ${posts.length}
+  })`);
+  check('clearing the error puts the original hint back', restoredHint.described === 'inquiry-name-hint' && !restoredHint.invalid && posts.length === 0, JSON.stringify(restoredHint));
 
   await evaluate(`(() => {
     document.getElementById('inquiry-name').value = 'Amina Cole';
@@ -298,11 +410,11 @@ async function main() {
   check('a hidden accepted form does not post again', posts.length === afterAccept, 'posts ' + posts.length);
   await shot('viewport-formspark-contact-success-desktop.png', 1280, 900, false);
   await shot('viewport-formspark-contact-success-mobile.png', 390, 844, true);
-  const contactChat390 = await evaluate(overlapExpr('#inquiryAnother'));
-  check('chat does not cover Send another inquiry at 390', contactChat390.overlaps === false, JSON.stringify(contactChat390));
+  const contactFrame390 = await evaluate(frameExpr());
+  check('contact confirmation, action, and footnote are clear of the header and chat at 390', clearOfChrome(contactFrame390, ['status', 'another', 'foot']), JSON.stringify(contactFrame390));
   await shot('viewport-formspark-contact-success-320.png', 320, 844, true);
-  const contactChat320 = await evaluate(overlapExpr('#inquiryAnother'));
-  check('chat does not cover Send another inquiry at 320', contactChat320.overlaps === false, JSON.stringify(contactChat320));
+  const contactFrame320 = await evaluate(frameExpr());
+  check('contact confirmation, action, and footnote are clear of the header and chat at 320', clearOfChrome(contactFrame320, ['status', 'another', 'foot']), JSON.stringify(contactFrame320));
 
   mode = 'reject';
   const beforeReject = posts.length;
@@ -326,6 +438,11 @@ async function main() {
   check('rejection keeps the contact entries and does not count a lead', posts.length === beforeReject + 1 && rejected.name === 'Amina Cole' && rejected.vision === 'Keep this vision' && rejected.leads === 0, JSON.stringify(rejected) + ' posts ' + posts.length);
   await shot('viewport-formspark-contact-rejected-desktop.png', 1280, 900, false);
   await shot('viewport-formspark-contact-rejected-mobile.png', 390, 844, true);
+  const contactReject390 = await evaluate(frameExpr());
+  check('contact rejection status and footnote are clear of the header and chat at 390', clearOfChrome(contactReject390, ['status', 'foot']), JSON.stringify(contactReject390));
+  await shot('viewport-formspark-contact-rejected-320.png', 320, 844, true);
+  const contactRejectFrame = await evaluate(frameExpr());
+  check('contact rejection status and footnote are clear of the header and chat at 320', clearOfChrome(contactRejectFrame, ['status', 'foot']), JSON.stringify(contactRejectFrame));
 
   mode = 'fail';
   const beforeFail = posts.length;
@@ -334,6 +451,27 @@ async function main() {
   check('a network failure does not post again by itself and keeps the vision', posts.length === beforeFail + 1 && (await evaluate(`document.getElementById('inquiry-vision').value`)) === 'Keep this vision');
   await sleep(400);
   check('the network failure is not retried automatically', posts.length === beforeFail + 1);
+  const beforeReload = posts.length;
+  await go('/contact/');
+  await waitText('did not get a reply from Formspark');
+  await sleep(300);
+  const reloaded = await evaluate(`({
+    name: document.getElementById('inquiry-name').value,
+    vision: document.getElementById('inquiry-vision').value,
+    hidden: document.getElementById('inquiryForm').hidden,
+    text: document.getElementById('inquiryStatus').textContent,
+    leads: ${leadsExpr('contact_inquiry')}
+  })`);
+  check('reload after an unanswered send restores the entries without sending or claiming acceptance', posts.length === beforeReload && reloaded.name === 'Amina Cole' && reloaded.vision === 'Keep this vision' && reloaded.hidden === false && reloaded.text.indexOf('Formspark accepted') === -1 && reloaded.text.indexOf('did not get a reply') !== -1 && reloaded.leads === 0, JSON.stringify(reloaded) + ' posts ' + posts.length);
+  await evaluate(`sessionStorage.setItem('cme-inquiry-draft:Contact', JSON.stringify({ source: 'Contact', ambiguous: false, kind: 'accepted', fields: { 'Full name': 'Planted Success', 'Tell us about your vision': 'nope' } }))`);
+  await go('/contact/');
+  await sleep(250);
+  const ignored = await evaluate(`({
+    name: document.getElementById('inquiry-name').value,
+    text: document.body.innerText,
+    leads: ${leadsExpr('contact_inquiry')}
+  })`);
+  check('a stored acceptance record does not restore entries or show success', posts.length === beforeReload && ignored.name === '' && ignored.text.indexOf('Formspark accepted') === -1 && ignored.text.indexOf('Planted Success') === -1 && ignored.leads === 0, ignored.name);
 
   mode = 'echo';
   await go('/annual-design-partnership/');
@@ -353,6 +491,9 @@ async function main() {
   check('partnership form is hidden after acceptance', (await evaluate(`getComputedStyle(document.getElementById('partnershipInquiry')).display`)) === 'none');
   await shot('viewport-formspark-partnership-success-desktop.png', 1280, 900, false);
   await shot('viewport-formspark-partnership-success-mobile.png', 390, 844, true);
+  await shot('viewport-formspark-partnership-success-320.png', 320, 844, true);
+  const partnerOkFrame = await evaluate(frameExpr());
+  check('partnership confirmation is clear of the header and chat at 320', clearOfChrome(partnerOkFrame, ['status', 'back']), JSON.stringify(partnerOkFrame));
 
   mode = 'reject';
   await go('/annual-design-partnership/');
@@ -368,11 +509,11 @@ async function main() {
   check('partnership rejection keeps the name and does not count a lead', partnerKept === 'Amina Cole' && (await evaluate(leadsExpr('annual-design-partnership'))) === 0);
   await shot('viewport-formspark-partnership-rejected-desktop.png', 1280, 900, false);
   await shot('viewport-formspark-partnership-rejected-mobile.png', 390, 844, true);
-  const partnerChat390 = await evaluate(overlapExpr('#partnershipStatus'));
-  check('chat does not cover the partnership error at 390', partnerChat390.overlaps === false, JSON.stringify(partnerChat390));
+  const partnerFrame390 = await evaluate(frameExpr());
+  check('partnership label, error, and return link are clear of the header and chat at 390', clearOfChrome(partnerFrame390, ['label', 'status', 'back']), JSON.stringify(partnerFrame390));
   await shot('viewport-formspark-partnership-rejected-320.png', 320, 844, true);
-  const partnerChat320 = await evaluate(overlapExpr('#partnershipStatus'));
-  check('chat does not cover the partnership error at 320', partnerChat320.overlaps === false, JSON.stringify(partnerChat320));
+  const partnerFrame320 = await evaluate(frameExpr());
+  check('partnership label, error, and return link are clear of the header and chat at 320', clearOfChrome(partnerFrame320, ['label', 'status', 'back']), JSON.stringify(partnerFrame320));
 
   check('no provider request was forwarded', continued === 0);
   const failed = report.filter(function (item) { return !item.pass; });
