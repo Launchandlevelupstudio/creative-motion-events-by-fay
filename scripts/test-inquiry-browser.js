@@ -204,6 +204,18 @@ async function main() {
     }
     throw new Error('missing ' + snippet);
   }
+  function overlapExpr(selector) {
+    return `(() => {
+      function box(el){ const r = el.getBoundingClientRect(); return {top:r.top,left:r.left,right:r.right,bottom:r.bottom,display:getComputedStyle(el).display}; }
+      const a = document.querySelector(${JSON.stringify(selector)});
+      const b = document.getElementById('fab');
+      if (!a || !b) return {overlaps:null};
+      const A = box(a), B = box(b);
+      const w = Math.min(A.right, B.right) - Math.max(A.left, B.left);
+      const h = Math.min(A.bottom, B.bottom) - Math.max(A.top, B.top);
+      return {overlaps: w > 0 && h > 0, width: Math.max(0, Math.round(w)), height: Math.max(0, Math.round(h)), fabDisplay: B.display};
+    })()`;
+  }
   function leadsExpr(name) {
     return `(window.dataLayer || []).filter(function(item){
       return item && item[0] === 'event' && item[1] === 'generate_lead' && item[2] && item[2].form_name === ${JSON.stringify(name)};
@@ -225,7 +237,10 @@ async function main() {
       const topLimit = headerH + 12;
       const bottomLimit = Math.min(window.innerHeight - 12, fabTop - 8);
       const rect = el.getBoundingClientRect();
-      const minDelta = rect.bottom - bottomLimit;
+      const another = document.getElementById('inquiryAnother');
+      let bottom = rect.bottom;
+      if (another && !another.hidden) bottom = Math.max(bottom, another.getBoundingClientRect().bottom);
+      const minDelta = bottom - bottomLimit;
       const maxDelta = rect.top - topLimit;
       const delta = minDelta > maxDelta ? maxDelta : minDelta;
       window.scrollTo({ top: Math.max(0, window.scrollY + delta), behavior: 'instant' });
@@ -283,6 +298,11 @@ async function main() {
   check('a hidden accepted form does not post again', posts.length === afterAccept, 'posts ' + posts.length);
   await shot('viewport-formspark-contact-success-desktop.png', 1280, 900, false);
   await shot('viewport-formspark-contact-success-mobile.png', 390, 844, true);
+  const contactChat390 = await evaluate(overlapExpr('#inquiryAnother'));
+  check('chat does not cover Send another inquiry at 390', contactChat390.overlaps === false, JSON.stringify(contactChat390));
+  await shot('viewport-formspark-contact-success-320.png', 320, 844, true);
+  const contactChat320 = await evaluate(overlapExpr('#inquiryAnother'));
+  check('chat does not cover Send another inquiry at 320', contactChat320.overlaps === false, JSON.stringify(contactChat320));
 
   mode = 'reject';
   const beforeReject = posts.length;
@@ -348,6 +368,11 @@ async function main() {
   check('partnership rejection keeps the name and does not count a lead', partnerKept === 'Amina Cole' && (await evaluate(leadsExpr('annual-design-partnership'))) === 0);
   await shot('viewport-formspark-partnership-rejected-desktop.png', 1280, 900, false);
   await shot('viewport-formspark-partnership-rejected-mobile.png', 390, 844, true);
+  const partnerChat390 = await evaluate(overlapExpr('#partnershipStatus'));
+  check('chat does not cover the partnership error at 390', partnerChat390.overlaps === false, JSON.stringify(partnerChat390));
+  await shot('viewport-formspark-partnership-rejected-320.png', 320, 844, true);
+  const partnerChat320 = await evaluate(overlapExpr('#partnershipStatus'));
+  check('chat does not cover the partnership error at 320', partnerChat320.overlaps === false, JSON.stringify(partnerChat320));
 
   check('no provider request was forwarded', continued === 0);
   const failed = report.filter(function (item) { return !item.pass; });
